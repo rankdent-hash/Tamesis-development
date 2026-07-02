@@ -50,6 +50,48 @@ export const services = [
   { name: "General Construction", slug: "construction", icon: "HardHat" },
 ] as const;
 
+export type Service = (typeof services)[number];
+
+export function getServiceContent(service: Service) {
+  const name = service.name;
+  const lower = name.toLowerCase();
+
+  return {
+    overview: `Our ${lower} service is delivered by directly employed, experienced engineers — not a loose network of subcontractors. From a single reported issue to a portfolio-wide programme of works, we assess, quote and carry out ${lower} to a consistent standard across every London borough.`,
+    whatWeDo: [
+      `Initial assessment and diagnosis of the ${lower} issue or requirement`,
+      "A clear, itemised quotation before any work begins",
+      "Work carried out by our own directly employed engineers, not subcontractors",
+      "Protection of the property and a full clean-up on completion",
+      "A quality check and sign-off before we consider the job complete",
+      "Follow-up support if anything needs revisiting",
+    ],
+    commonIssues: [
+      `Emergency or urgent ${lower} requirements needing a fast response`,
+      `Recurring or previously unresolved ${lower} problems`,
+      `${name} required as part of a wider refurbishment or planned maintenance programme`,
+      `${name} needed to satisfy an insurance claim or compliance requirement`,
+    ],
+    faqs: [
+      {
+        q: `How quickly can you respond for ${lower}?`,
+        a: `Response times depend on urgency. Emergency ${lower} requests are prioritised and are typically actioned within hours; non-urgent work is scheduled with you in advance.`,
+      },
+      {
+        q: `Do you provide a fixed quote before starting ${lower} work?`,
+        a: "Yes. We assess the work first and provide a clear, itemised quotation before anything begins, so there are no surprises.",
+      },
+      {
+        q: "Are your engineers directly employed?",
+        a: "Yes — all work is carried out by our own directly employed, experienced teams, not ad-hoc subcontractors, so you get a consistent standard of work.",
+      },
+      {
+        q: `Do you work with housing associations and local authorities on ${lower}?`,
+        a: `Yes, ${lower} is delivered both as standalone jobs for homeowners and landlords, and as part of larger contracts for housing associations, local authorities and managing agents.`,
+      },
+    ],
+  };
+}
 export const sectors = [
   {
     name: "Housing Associations",

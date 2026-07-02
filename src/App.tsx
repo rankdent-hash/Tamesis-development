@@ -6,6 +6,8 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { ReviewsPage } from "./pages/ReviewsPage";
 import { Careers } from "./pages/Careers";
 import { Contact } from "./pages/Contact";
+import { ServiceTemplate } from "./pages/ServiceTemplate";
+import { ServicesPage } from "./pages/ServicesPage";
 import { ComingSoon } from "./pages/ComingSoon";
 import { services, sectors } from "./data/content";
 
@@ -15,9 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<ComingSoon title="Services" />} />
+        <Route path="/services" element={<ServicesPage />} />
         {services.map((s) => (
-          <Route key={s.slug} path={`/services/${s.slug}`} element={<ComingSoon title={s.name} />} />
+          <Route key={s.slug} path={`/services/${s.slug}`} element={<ServiceTemplate service={s} />} />
         ))}
         <Route path="/sectors" element={<SectorsPage />} />
         {sectors.map((s) => (
