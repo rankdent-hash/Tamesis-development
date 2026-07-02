@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-navy-950: #060f1f;
+  --color-navy-900: #0b1f3a;
+  --color-navy-800: #12294d;
+  --color-navy-700: #1a3661;
+  --color-navy-600: #24487d;
+  --color-navy-100: #e7ebf2;
+  --color-navy-50: #f4f6f9;
+
+  --color-teal-700: #0c554d;
+  --color-teal-600: #0f6e63;
+  --color-teal-500: #159c8c;
+  --color-teal-400: #2bbba9;
+  --color-teal-100: #dcf3ee;
+  --color-teal-50: #f0faf8;
+
+  --color-ink: #1c2530;
+  --color-slate: #56616f;
+  --color-slate-light: #8993a1;
+  --color-paper: #f7f8fa;
+
+  --shadow-card: 0 1px 2px rgba(11,31,58,0.04), 0 8px 24px -8px rgba(11,31,58,0.12);
+  --shadow-card-hover: 0 4px 10px rgba(11,31,58,0.06), 0 20px 40px -12px rgba(11,31,58,0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Corner-bracket signature motif — engineering/technical mark, used sparingly on hover/focus states */
+.corner-marks {
+  position: relative;
+}
+.corner-marks::before,
+.corner-marks::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-teal-400);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.corner-marks::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  transform: translate(4px, 4px);
+}
+.corner-marks::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+  transform: translate(-4px, -4px);
+}
+.corner-marks:hover::before,
+.corner-marks:hover::after,
+.corner-marks:focus-within::before,
+.corner-marks:focus-within::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(21, 156, 140, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 156, 140, 0.16) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal-400);
+  outline-offset: 2px;
+}
