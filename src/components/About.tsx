@@ -1,18 +1,19 @@
 import { PlaceholderImage } from "./PlaceholderImage";
+import { AnimateIn } from "./AnimateIn";
 
 export function About() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-        <div className="corner-marks">
+        <AnimateIn className="corner-marks">
           <PlaceholderImage
             label="Tamesis engineers &amp; office"
             className="aspect-[4/5] lg:aspect-[5/6] rounded-2xl shadow-card-hover"
           />
-        </div>
+        </AnimateIn>
 
-        <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-teal-600 font-semibold">About Tamesis</span>
+        <AnimateIn delay={0.1}>
+          <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">About Tamesis</span>
           <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
             Built on Quality. Trusted Across London.
           </h2>
@@ -35,7 +36,7 @@ export function About() {
           >
             About Us
           </a>
-        </div>
+        </AnimateIn>
       </div>
     </section>
   );

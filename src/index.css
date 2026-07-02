@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Archivo", sans-serif;
+  --font-display: "Manrope", sans-serif;
   --font-body: "Inter", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-accent: "Plus Jakarta Sans", sans-serif;
 
   --color-navy-950: #060f1f;
   --color-navy-900: #0b1f3a;
@@ -14,12 +14,25 @@
   --color-navy-100: #e7ebf2;
   --color-navy-50: #f4f6f9;
 
-  --color-teal-700: #0c554d;
-  --color-teal-600: #0f6e63;
-  --color-teal-500: #159c8c;
-  --color-teal-400: #2bbba9;
-  --color-teal-100: #dcf3ee;
-  --color-teal-50: #f0faf8;
+  --color-orange-700: #c2410c;
+  --color-orange-600: #ea580c;
+  --color-orange-500: #f97316;
+  --color-orange-400: #fb923c;
+  --color-orange-100: #ffedd5;
+  --color-orange-50: #fff7ed;
+
+  --color-blue-700: #1d4ed8;
+  --color-blue-600: #2563eb;
+  --color-blue-500: #3b82f6;
+  --color-blue-400: #60a5fa;
+  --color-blue-300: #93c5fd;
+  --color-blue-200: #bfdbfe;
+  --color-blue-100: #dbeafe;
+  --color-blue-50: #eff6ff;
+
+  --color-green-600: #16a34a;
+  --color-green-500: #22c55e;
+  --color-green-400: #4ade80;
 
   --color-ink: #1c2530;
   --color-slate: #56616f;
@@ -60,7 +73,7 @@ body {
   position: absolute;
   width: 14px;
   height: 14px;
-  border-color: var(--color-teal-400);
+  border-color: var(--color-blue-400);
   opacity: 0;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
@@ -88,8 +101,8 @@ body {
 
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(21, 156, 140, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(21, 156, 140, 0.16) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.14) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -98,6 +111,6 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-teal-400);
+  outline: 2px solid var(--color-blue-400);
   outline-offset: 2px;
 }

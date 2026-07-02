@@ -8,7 +8,7 @@ export function Projects() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-teal-600 font-semibold">Our Work</span>
+            <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Our Work</span>
             <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
               Featured Projects
             </h2>
@@ -31,14 +31,14 @@ export function Projects() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-mono uppercase tracking-widest text-teal-600 font-semibold">
+                <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">
                   {project.category}
                 </span>
                 <h3 className="mt-2 font-display font-semibold text-navy-900 text-lg leading-snug">{project.title}</h3>
                 <span className="mt-2 flex items-center gap-1.5 text-sm text-slate">
                   <MapPin size={14} /> {project.location}
                 </span>
-                <span className="mt-4 inline-flex text-sm font-semibold text-navy-900 group-hover:text-teal-600 transition-colors">
+                <span className="mt-4 inline-flex text-sm font-semibold text-navy-900 group-hover:text-blue-600 transition-colors">
                   Read Case Study &rarr;
                 </span>
               </div>

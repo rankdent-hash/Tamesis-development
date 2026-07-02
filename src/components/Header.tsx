@@ -19,21 +19,21 @@ export function Header() {
       <div className="hidden lg:flex bg-navy-950 text-navy-100 text-sm">
         <div className="mx-auto max-w-[1400px] w-full px-8 flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
-            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-teal-400 transition-colors">
+            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
               <Phone size={14} strokeWidth={2} />
               Management: {company.phoneManagement}
             </a>
-            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-teal-400 transition-colors">
+            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
               <Phone size={14} strokeWidth={2} />
               Job Booking: {company.phoneJobBooking}
             </a>
           </div>
           <div className="flex items-center gap-4 font-medium">
-            <a href="/quote" className="hover:text-teal-400 transition-colors">Request a Quote</a>
+            <a href="/quote" className="hover:text-blue-400 transition-colors">Request a Quote</a>
             <span className="text-navy-700">|</span>
-            <a href="/report-repair" className="hover:text-teal-400 transition-colors">Report a Repair</a>
+            <a href="/report-repair" className="hover:text-blue-400 transition-colors">Report a Repair</a>
             <span className="text-navy-700">|</span>
-            <a href="/emergency" className="text-teal-400 hover:text-teal-300 transition-colors">Emergency Callout</a>
+            <a href="/emergency" className="text-blue-400 hover:text-blue-300 transition-colors">Emergency Callout</a>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ export function Header() {
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-20">
           <a href="/" className="flex items-center gap-3 shrink-0">
-            <span className="w-10 h-10 rounded-lg bg-navy-900 text-teal-400 font-display font-bold text-lg flex items-center justify-center">
+            <span className="w-10 h-10 rounded-lg bg-navy-900 text-blue-400 font-display font-bold text-lg flex items-center justify-center">
               T
             </span>
             <span className="font-display font-bold text-navy-900 text-lg leading-tight tracking-tight">
@@ -56,9 +56,9 @@ export function Header() {
 
           <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="relative py-2 hover:text-teal-600 transition-colors group">
+              <a key={link.href} href={link.href} className="relative py-2 hover:text-blue-600 transition-colors group">
                 {link.label}
-                <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-teal-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200" />
+                <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200" />
               </a>
             ))}
           </nav>
@@ -66,7 +66,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="/quote"
-              className="rounded-full bg-teal-600 text-white px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-teal-700 hover:shadow-card-hover transition-all"
+              className="rounded-full bg-orange-500 text-navy-950 px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
             >
               Request a Quote
             </a>
@@ -92,7 +92,7 @@ export function Header() {
               <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="text-sm font-medium text-navy-700">
                 Job Booking: {company.phoneJobBooking}
               </a>
-              <a href="/quote" className="rounded-full bg-teal-600 text-white px-6 py-3 text-sm font-semibold text-center">
+              <a href="/quote" className="rounded-full bg-orange-500 text-navy-950 px-6 py-3 text-sm font-semibold text-center">
                 Request a Quote
               </a>
             </div>

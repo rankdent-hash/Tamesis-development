@@ -16,9 +16,9 @@ export function PlaceholderImage({
       role="img"
       aria-label={label}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-navy-900/60 via-navy-900/20 to-teal-700/40" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-900/60 via-navy-900/20 to-blue-700/40" />
       <div className="absolute inset-0 flex items-end p-4">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-navy-100/60 bg-navy-950/40 rounded px-2 py-1">
+        <span className="text-[10px] font-accent uppercase tracking-widest text-navy-100/60 bg-navy-950/40 rounded px-2 py-1">
           {label}
         </span>
       </div>

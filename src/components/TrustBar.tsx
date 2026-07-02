@@ -8,7 +8,7 @@ function Stat({ value, suffix, label, decimals }: (typeof stats)[number]) {
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center px-6 py-8 lg:py-0">
-      <span className="font-mono font-semibold text-3xl lg:text-4xl text-white tabular-nums">
+      <span className="font-accent font-semibold text-3xl lg:text-4xl text-white tabular-nums">
         {display}
         {suffix}
       </span>

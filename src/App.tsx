@@ -1,40 +1,37 @@
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { TrustBar } from "./components/TrustBar";
-import { About } from "./components/About";
-import { Services } from "./components/Services";
-import { Sectors } from "./components/Sectors";
-import { WhyChoose } from "./components/WhyChoose";
-import { Projects } from "./components/Projects";
-import { Process } from "./components/Process";
-import { Reviews } from "./components/Reviews";
-import { Coverage } from "./components/Coverage";
-import { EmergencyCallout } from "./components/EmergencyCallout";
-import { News } from "./components/News";
-import { FinalCta } from "./components/FinalCta";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { ComingSoon } from "./pages/ComingSoon";
+import { services, sectors } from "./data/content";
 
 function App() {
   return (
-    <div className="min-h-screen bg-paper">
-      <Header />
-      <main>
-        <Hero />
-        <TrustBar />
-        <About />
-        <Services />
-        <Sectors />
-        <WhyChoose />
-        <Projects />
-        <Process />
-        <Reviews />
-        <Coverage />
-        <EmergencyCallout />
-        <News />
-        <FinalCta />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<ComingSoon title="About Us" />} />
+        <Route path="/services" element={<ComingSoon title="Services" />} />
+        {services.map((s) => (
+          <Route key={s.slug} path={`/services/${s.slug}`} element={<ComingSoon title={s.name} />} />
+        ))}
+        <Route path="/sectors" element={<ComingSoon title="Sectors" />} />
+        {sectors.map((s) => (
+          <Route key={s.name} path={`/sectors/${s.name.toLowerCase().replace(/\s+/g, "-")}`} element={<ComingSoon title={s.name} />} />
+        ))}
+        <Route path="/projects" element={<ComingSoon title="Projects" />} />
+        <Route path="/reviews" element={<ComingSoon title="Reviews" />} />
+        <Route path="/careers" element={<ComingSoon title="Careers" />} />
+        <Route path="/contact" element={<ComingSoon title="Contact" />} />
+        <Route path="/quote" element={<ComingSoon title="Request a Quote" />} />
+        <Route path="/report-repair" element={<ComingSoon title="Report a Repair" />} />
+        <Route path="/emergency" element={<ComingSoon title="Emergency Callout" />} />
+        <Route path="/coverage" element={<ComingSoon title="Coverage Areas" />} />
+        <Route path="/news" element={<ComingSoon title="Latest News" />} />
+        <Route path="/privacy-policy" element={<ComingSoon title="Privacy Policy" />} />
+        <Route path="/cookie-policy" element={<ComingSoon title="Cookie Policy" />} />
+        <Route path="/terms" element={<ComingSoon title="Terms" />} />
+        <Route path="*" element={<ComingSoon title="Page Not Found" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

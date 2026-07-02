@@ -13,7 +13,7 @@ export function FinalCta() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href="/quote"
-            className="rounded-full bg-teal-500 text-navy-950 px-9 py-4 text-sm font-bold shadow-card hover:bg-teal-400 hover:shadow-card-hover transition-all"
+            className="rounded-full bg-orange-500 text-navy-950 px-9 py-4 text-sm font-bold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
           >
             Request a Quote
           </a>

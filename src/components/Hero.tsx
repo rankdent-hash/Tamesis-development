@@ -1,4 +1,5 @@
 import { ChevronDown, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const badges = [
   "Established 2014",
@@ -17,9 +18,14 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-transparent to-navy-950/40" />
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
+      <motion.div
+        className="relative mx-auto max-w-[1400px] px-6 lg:px-8"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/40 bg-teal-500/10 px-4 py-1.5 text-xs font-mono uppercase tracking-widest text-teal-300 mb-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-1.5 text-xs font-accent uppercase tracking-widest text-blue-300 mb-8">
             Property Maintenance &amp; Refurbishment · Since 2014
           </div>
 
@@ -37,7 +43,7 @@ export function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="/quote"
-              className="rounded-full bg-teal-500 text-navy-950 px-8 py-4 text-sm font-bold shadow-card hover:bg-teal-400 hover:shadow-card-hover transition-all"
+              className="rounded-full bg-orange-500 text-navy-950 px-8 py-4 text-sm font-bold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
             >
               Request a Quote
             </a>
@@ -52,20 +58,20 @@ export function Hero() {
           <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3">
             {badges.map((badge) => (
               <li key={badge} className="flex items-center gap-2 text-sm text-navy-100/75 font-medium">
-                <CheckCircle2 size={16} className="text-teal-400 shrink-0" />
+                <CheckCircle2 size={16} className="text-green-400 shrink-0" />
                 {badge}
               </li>
             ))}
           </ul>
         </div>
-      </div>
+      </motion.div>
 
       <a
         href="#trust-bar"
         aria-label="Scroll to content"
-        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-navy-100/50 hover:text-teal-400 transition-colors"
+        className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-navy-100/50 hover:text-blue-400 transition-colors"
       >
-        <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
+        <span className="text-[10px] font-accent uppercase tracking-widest">Scroll</span>
         <ChevronDown size={18} className="animate-bounce" />
       </a>
     </section>

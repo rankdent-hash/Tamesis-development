@@ -5,7 +5,7 @@ export function Process() {
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-teal-600 font-semibold">How It Works</span>
+          <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">How It Works</span>
           <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
             Our Process
           </h2>
@@ -15,7 +15,7 @@ export function Process() {
           <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-navy-100" />
           {process.map((item) => (
             <div key={item.step} className="relative text-center flex flex-col items-center">
-              <span className="relative z-10 flex w-12 h-12 items-center justify-center rounded-full bg-navy-900 text-teal-400 font-mono font-semibold text-lg">
+              <span className="relative z-10 flex w-12 h-12 items-center justify-center rounded-full bg-navy-900 text-blue-400 font-accent font-semibold text-lg">
                 {item.step}
               </span>
               <h3 className="mt-5 font-display font-semibold text-navy-900 text-lg">{item.title}</h3>

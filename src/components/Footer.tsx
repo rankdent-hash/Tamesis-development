@@ -63,7 +63,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-16 grid lg:grid-cols-6 gap-12">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-lg bg-teal-500 text-navy-950 font-display font-bold text-lg flex items-center justify-center">
+            <span className="w-10 h-10 rounded-lg bg-blue-500 text-navy-950 font-display font-bold text-lg flex items-center justify-center">
               T
             </span>
             <span className="font-display font-bold text-white text-lg">Tamesis Development Ltd</span>
@@ -71,17 +71,17 @@ export function Footer() {
 
           <div className="mt-6 space-y-3 text-sm text-navy-100/70">
             <p className="flex items-start gap-2">
-              <MapPin size={16} className="shrink-0 mt-0.5 text-teal-400" />
+              <MapPin size={16} className="shrink-0 mt-0.5 text-blue-400" />
               {company.addressLines.join(", ")}
             </p>
-            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-teal-400 transition-colors">
-              <Phone size={16} className="text-teal-400" /> Management: {company.phoneManagement}
+            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <Phone size={16} className="text-blue-400" /> Management: {company.phoneManagement}
             </a>
-            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-teal-400 transition-colors">
-              <Phone size={16} className="text-teal-400" /> Job Booking: {company.phoneJobBooking}
+            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <Phone size={16} className="text-blue-400" /> Job Booking: {company.phoneJobBooking}
             </a>
-            <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-teal-400 transition-colors">
-              <Mail size={16} className="text-teal-400" /> {company.email}
+            <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <Mail size={16} className="text-blue-400" /> {company.email}
             </a>
           </div>
 
@@ -91,7 +91,7 @@ export function Footer() {
                 key={social.label}
                 href="#"
                 aria-label={social.label}
-                className="w-9 h-9 rounded-full border border-navy-700 flex items-center justify-center hover:bg-teal-600 hover:border-teal-600 transition-colors"
+                className="w-9 h-9 rounded-full border border-navy-700 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d={social.path} />
@@ -107,7 +107,7 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {col.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-navy-100/70 hover:text-teal-400 transition-colors">
+                  <a href={link.href} className="text-sm text-navy-100/70 hover:text-blue-400 transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -121,9 +121,9 @@ export function Footer() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-navy-100/50">
           <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. XXXXXXXX.</span>
           <div className="flex gap-6">
-            <a href="/privacy-policy" className="hover:text-teal-400 transition-colors">Privacy Policy</a>
-            <a href="/cookie-policy" className="hover:text-teal-400 transition-colors">Cookie Policy</a>
-            <a href="/terms" className="hover:text-teal-400 transition-colors">Terms</a>
+            <a href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
+            <a href="/cookie-policy" className="hover:text-blue-400 transition-colors">Cookie Policy</a>
+            <a href="/terms" className="hover:text-blue-400 transition-colors">Terms</a>
           </div>
         </div>
       </div>
