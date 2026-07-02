@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { SectorsPage } from "./pages/SectorsPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { ReviewsPage } from "./pages/ReviewsPage";
+import { Careers } from "./pages/Careers";
+import { Contact } from "./pages/Contact";
 import { ComingSoon } from "./pages/ComingSoon";
 import { services, sectors } from "./data/content";
 
@@ -8,19 +14,19 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<ComingSoon title="About Us" />} />
+        <Route path="/about" element={<About />} />
         <Route path="/services" element={<ComingSoon title="Services" />} />
         {services.map((s) => (
           <Route key={s.slug} path={`/services/${s.slug}`} element={<ComingSoon title={s.name} />} />
         ))}
-        <Route path="/sectors" element={<ComingSoon title="Sectors" />} />
+        <Route path="/sectors" element={<SectorsPage />} />
         {sectors.map((s) => (
           <Route key={s.name} path={`/sectors/${s.name.toLowerCase().replace(/\s+/g, "-")}`} element={<ComingSoon title={s.name} />} />
         ))}
-        <Route path="/projects" element={<ComingSoon title="Projects" />} />
-        <Route path="/reviews" element={<ComingSoon title="Reviews" />} />
-        <Route path="/careers" element={<ComingSoon title="Careers" />} />
-        <Route path="/contact" element={<ComingSoon title="Contact" />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/quote" element={<ComingSoon title="Request a Quote" />} />
         <Route path="/report-repair" element={<ComingSoon title="Report a Repair" />} />
         <Route path="/emergency" element={<ComingSoon title="Emergency Callout" />} />

@@ -96,13 +96,21 @@ export const whyChoose = [
 ] as const;
 
 export const projects = [
-  { title: "Void Turnaround Programme", category: "Void Refurbishment", location: "Hackney, London" },
+  { title: "Void Turnaround Programme", category: "Maintenance", location: "Hackney, London" },
   { title: "Full Bathroom Refurbishment", category: "Bathrooms", location: "Fulham, London" },
-  { title: "Estate-Wide Planned Maintenance", category: "Planned Maintenance", location: "Croydon, London" },
-  { title: "Commercial Office Refit", category: "Commercial Refurbishment", location: "Southwark, London" },
-  { title: "Insurance Reinstatement Works", category: "Insurance Reinstatement", location: "Wandsworth, London" },
-  { title: "Multi-Unit Roof & Leak Repairs", category: "Leak Detection", location: "Camden, London" },
+  { title: "Estate-Wide Planned Maintenance", category: "Maintenance", location: "Croydon, London" },
+  { title: "Commercial Office Refit", category: "Commercial", location: "Southwark, London" },
+  { title: "Insurance Reinstatement Works", category: "Repairs", location: "Wandsworth, London" },
+  { title: "Multi-Unit Roof & Leak Repairs", category: "Repairs", location: "Camden, London" },
+  { title: "Ensuite Bathroom Installation", category: "Bathrooms", location: "Chelsea, London" },
+  { title: "Retail Unit Fit-Out", category: "Commercial", location: "Westminster, London" },
+  { title: "Estate Extension & Groundworks", category: "Construction", location: "Greenwich, London" },
+  { title: "Emergency Leak Response", category: "Repairs", location: "Islington, London" },
+  { title: "Block Communal Area Refurbishment", category: "Maintenance", location: "Lewisham, London" },
+  { title: "New-Build Internal Fit-Out", category: "Construction", location: "Barking, London" },
 ] as const;
+
+export const projectFilters = ["All", "Bathrooms", "Repairs", "Maintenance", "Commercial", "Construction"] as const;
 
 export const process = [
   { step: "1", title: "Contact Us", description: "Call, email or submit a request and speak to our booking team." },
@@ -136,6 +144,78 @@ export const reviews = [
     project: "Void Property Works",
     review: "Fast turnaround on void units across our portfolio, which keeps our re-letting times down. Communication is always clear.",
   },
+  {
+    name: "J. Okonkwo",
+    rating: 5,
+    project: "Kitchen & Bathroom Repairs",
+    review: "Really tidy work and the engineer explained exactly what he was doing throughout. Would use Tamesis again without hesitation.",
+  },
+  {
+    name: "Camden Facilities Team",
+    rating: 5,
+    project: "Commercial Refurbishment",
+    review: "Delivered our office refit on time and around our operating hours with minimal disruption to staff. Excellent project management.",
+  },
+  {
+    name: "R. Patel",
+    rating: 4,
+    project: "Drain Unblocking",
+    review: "Quick response and fair pricing. Engineer arrived within the window given and sorted the blockage properly.",
+  },
+  {
+    name: "Southbank Managing Agents",
+    rating: 5,
+    project: "Estate Planned Maintenance",
+    review: "One of the few contractors who consistently hit their SLA targets across a large portfolio. Reporting is thorough and reliable.",
+  },
+] as const;
+
+export const values = [
+  {
+    name: "Professionalism",
+    icon: "BadgeCheck",
+    description: "Every engineer represents Tamesis on site — in conduct, communication and workmanship.",
+  },
+  {
+    name: "Reliability",
+    icon: "ShieldCheck",
+    description: "We turn up when we say we will, and we finish what we start to specification.",
+  },
+  {
+    name: "Clear Communication",
+    icon: "MessageSquare",
+    description: "Clients and residents are kept informed at every stage, with no surprises.",
+  },
+  {
+    name: "Quality Workmanship",
+    icon: "Hammer",
+    description: "Work is signed off against a quality checklist before we consider a job complete.",
+  },
+] as const;
+
+export const timeline = [
+  { year: "2014", title: "Tamesis Founded", description: "Started delivering responsive repairs across South West London." },
+  { year: "2017", title: "First Housing Association Contract", description: "Secured our first multi-year planned maintenance contract." },
+  { year: "2019", title: "10 Operational Teams", description: "Grew to ten directly managed teams covering all of Greater London." },
+  { year: "2022", title: "3,000th Completed Job", description: "Passed 3,000 completed projects across repairs, refurbishment and construction." },
+  { year: "2026", title: "London Wide Coverage", description: "Now serving housing associations, local authorities, commercial clients and homeowners across every London borough." },
+] as const;
+
+export const vacancies = [
+  { title: "Multi-Trade Engineer", location: "London Wide", type: "Full-Time" },
+  { title: "Plumber", location: "South West London", type: "Full-Time" },
+  { title: "Site Supervisor", location: "London Wide", type: "Full-Time" },
+  { title: "Bathroom Fitter", location: "London Wide", type: "Full-Time / Subcontract" },
+  { title: "Administrator — Job Booking", location: "Fulham Office", type: "Full-Time" },
+] as const;
+
+export const benefits = [
+  { name: "Competitive Pay", icon: "Banknote" },
+  { name: "Company Van & Fuel Card", icon: "Truck" },
+  { name: "Consistent Year-Round Work", icon: "CalendarCheck2" },
+  { name: "Training & Development", icon: "GraduationCap" },
+  { name: "Supportive Team Culture", icon: "Users" },
+  { name: "Career Progression", icon: "TrendingUp" },
 ] as const;
 
 export const news = [
