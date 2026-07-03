@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, Clock, CheckCircle2 } from "lucide-react";
+import { MapPin, Clock, CheckCircle2, AlertCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -9,16 +9,33 @@ import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { vacancies, benefits } from "../data/content";
+import { submitForm } from "../lib/submitForm";
 
 export function Careers() {
   const [selectedRole, setSelectedRole] = useState<string>(vacancies[0].title);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No backend wired up yet — swap this for a real submit handler
-    // (e.g. POST to an API route or a form service) when ready.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+    const ok = await submitForm("careers", {
+      fullName: String(formData.get("fullName") || ""),
+      phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
+      experience: String(formData.get("experience") || ""),
+      role: selectedRole,
+      honeypot: String(formData.get("company_website") || ""),
+    });
+    setSubmitting(false);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -132,9 +149,15 @@ export function Careers() {
                   <label htmlFor="experience" className="block text-sm font-medium text-navy-800 mb-1.5">Relevant Experience</label>
                   <textarea id="experience" name="experience" rows={4} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                 </div>
-                <Button type="submit" variant="primary" className="w-full justify-center">
-                  Submit Application
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>
+                  {submitting ? "Sending..." : "Submit Application"}
                 </Button>
+                {error && (
+                  <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
+                    <AlertCircle size={13} /> Something went wrong — please call us instead.
+                  </p>
+                )}
               </form>
             )}
           </div>

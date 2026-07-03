@@ -35,6 +35,18 @@ subject matter).
   (`src/index.css` `@theme` block) and doesn't require touching individual
   components to re-theme.
 
+## Form submissions → email
+
+All six forms (hero quote, `/quote`, `/contact`, `/report-repair`, `/emergency`, `/careers`) now POST to a Vercel serverless function at `api/submit-form.ts`, which emails the submission via [Resend](https://resend.com). Each form includes a hidden honeypot field for basic spam protection.
+
+**To activate this**, set two environment variables in the Vercel project (Project → Settings → Environment Variables):
+- `RESEND_API_KEY` — from resend.com → API Keys
+- `NOTIFY_EMAIL` — the inbox that should receive submissions (falls back to `contact@tamesisdevelopment.co.uk` if unset)
+
+Until `RESEND_API_KEY` is set, form submissions will fail gracefully (each form shows "Something went wrong — please call us instead").
+
+Currently sends from Resend's shared sandbox address (`onboarding@resend.dev`), which works immediately with no setup. Once a real domain is registered and verified with Resend (a few DNS records), update the `FROM` constant in `api/submit-form.ts` to send from that domain instead — looks more professional and improves deliverability.
+
 ## Lead capture
 
 The homepage hero now has a compact quote-request form (`src/components/HeroQuoteForm.tsx`) on the right side — name, phone, service dropdown, submit. Client-side only for now (shows a success state, no backend wired up), same pattern as the other forms on the site (Contact, Careers, Quote, Report a Repair, Emergency). The component already accepts an optional `presetService` prop so it can be dropped into each of the 20 service pages later with the service field pre-filled/locked — not wired in yet, pending confirmation the homepage version looks right first.

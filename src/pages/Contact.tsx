@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Phone, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -9,15 +9,32 @@ import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
+import { submitForm } from "../lib/submitForm";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No backend wired up yet — swap this for a real submit handler
-    // (e.g. POST to an API route or a form service) when ready.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+    const ok = await submitForm("contact", {
+      name: String(formData.get("name") || ""),
+      phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
+      reason: String(formData.get("reason") || ""),
+      message: String(formData.get("message") || ""),
+      honeypot: String(formData.get("company_website") || ""),
+    });
+    setSubmitting(false);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -108,9 +125,15 @@ export function Contact() {
                     <label htmlFor="c-message" className="block text-sm font-medium text-navy-800 mb-1.5">Message</label>
                     <textarea id="c-message" name="message" rows={5} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                   </div>
-                  <Button type="submit" variant="primary" className="w-full justify-center">
-                    Send Message
+                  <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                  <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>
+                    {submitting ? "Sending..." : "Send Message"}
                   </Button>
+                  {error && (
+                    <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
+                      <AlertCircle size={13} /> Something went wrong — please call us instead.
+                    </p>
+                  )}
                 </form>
               )}
             </AnimateIn>

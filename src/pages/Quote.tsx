@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowLeft, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowLeft, ArrowRight, AlertCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -8,12 +8,15 @@ import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
 import { services, sectors } from "../data/content";
 import { cn } from "../lib/utils";
+import { submitForm } from "../lib/submitForm";
 
 const steps = ["Your Details", "Property & Sector", "The Work", "Review & Submit"];
 
 export function Quote() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -31,10 +34,17 @@ export function Quote() {
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // No backend wired up yet — swap this for a real submit handler when ready.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+    const ok = await submitForm("quote", { ...form });
+    setSubmitting(false);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -205,11 +215,16 @@ export function Quote() {
                         Next <ArrowRight size={16} />
                       </Button>
                     ) : (
-                      <Button type="submit" variant="primary">
-                        Submit Quote Request
+                      <Button type="submit" variant="primary" disabled={submitting}>
+                        {submitting ? "Sending..." : "Submit Quote Request"}
                       </Button>
                     )}
                   </div>
+                  {error && (
+                    <p className="mt-4 flex items-center gap-1.5 justify-center text-xs text-red-600">
+                      <AlertCircle size={13} /> Something went wrong — please call us instead.
+                    </p>
+                  )}
                 </form>
               </>
             )}

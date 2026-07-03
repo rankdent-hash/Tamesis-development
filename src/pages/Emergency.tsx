@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Phone, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Phone, AlertTriangle, CheckCircle2, AlertCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
+import { submitForm } from "../lib/submitForm";
 
 const emergencyTypes = [
   "Flooding / Burst Pipe",
@@ -19,11 +20,28 @@ const emergencyTypes = [
 
 export function Emergency() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No backend wired up yet — swap this for a real submit handler when ready.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+    const ok = await submitForm("emergency", {
+      name: String(formData.get("name") || ""),
+      phone: String(formData.get("phone") || ""),
+      address: String(formData.get("address") || ""),
+      type: String(formData.get("type") || ""),
+      details: String(formData.get("details") || ""),
+      honeypot: String(formData.get("company_website") || ""),
+    });
+    setSubmitting(false);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -97,9 +115,15 @@ export function Emergency() {
                   <label htmlFor="e-details" className="block text-sm font-medium text-navy-800 mb-1.5">Details</label>
                   <textarea id="e-details" name="details" rows={4} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                 </div>
-                <Button type="submit" variant="primary" className="w-full justify-center">
-                  Request Assistance
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+                <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>
+                  {submitting ? "Sending..." : "Request Assistance"}
                 </Button>
+                {error && (
+                  <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
+                    <AlertCircle size={13} /> Something went wrong — please call us instead.
+                  </p>
+                )}
               </form>
             )}
           </div>

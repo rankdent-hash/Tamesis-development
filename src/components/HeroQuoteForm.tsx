@@ -1,15 +1,31 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight, AlertCircle } from "lucide-react";
 import { services } from "../data/content";
+import { submitForm } from "../lib/submitForm";
 
 export function HeroQuoteForm({ presetService }: { presetService?: string }) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [service, setService] = useState(presetService ?? "");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No backend wired up yet — swap this for a real submit handler when ready.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+    const formData = new FormData(e.currentTarget);
+    const ok = await submitForm("hero-quote", {
+      name: String(formData.get("name") || ""),
+      phone: String(formData.get("phone") || ""),
+      service: String(formData.get("service") || ""),
+      honeypot: String(formData.get("company_website") || ""),
+    });
+    setSubmitting(false);
+    if (ok) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -30,6 +46,9 @@ export function HeroQuoteForm({ presetService }: { presetService?: string }) {
               Get a Quote in Minutes
             </h3>
           </div>
+
+          {/* Honeypot — hidden from real users, catches basic bots */}
+          <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
           <input
             type="text"
@@ -66,10 +85,17 @@ export function HeroQuoteForm({ presetService }: { presetService?: string }) {
 
           <button
             type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-orange-500 text-navy-950 px-5 py-3.5 text-sm font-bold hover:bg-orange-400 transition-colors"
+            disabled={submitting}
+            className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-orange-500 text-navy-950 px-5 py-3.5 text-sm font-bold hover:bg-orange-400 transition-colors disabled:opacity-60"
           >
-            Get My Free Quote <ArrowRight size={16} />
+            {submitting ? "Sending..." : "Get My Free Quote"} {!submitting && <ArrowRight size={16} />}
           </button>
+
+          {error && (
+            <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
+              <AlertCircle size={13} /> Something went wrong — please call us instead.
+            </p>
+          )}
 
           <p className="text-center text-[11px] text-slate-light">No obligation. We'll respond within 1 working day.</p>
         </form>
