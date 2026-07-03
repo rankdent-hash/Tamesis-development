@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -17,6 +18,7 @@ const breakdown = [
 ];
 
 export function ReviewsPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.reviews.title} description={seoMeta.reviews.description} path="/reviews" />
@@ -87,10 +89,10 @@ export function ReviewsPage() {
               Ready to Experience the Same Standard?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

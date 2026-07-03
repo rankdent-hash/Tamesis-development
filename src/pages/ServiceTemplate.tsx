@@ -1,4 +1,5 @@
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
@@ -17,6 +18,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
   const path = `/services/${service.slug}`;
   const metaDescription = `Professional ${service.name.toLowerCase()} across London from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo
@@ -52,7 +54,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
               </h2>
               <p className="mt-6 text-slate leading-relaxed">{content.overview}</p>
               <div className="mt-8">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Request a Quote
                 </Button>
               </div>
@@ -215,10 +217,10 @@ export function ServiceTemplate({ service }: { service: Service }) {
               Get in touch for a clear, no-obligation quote from our team.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

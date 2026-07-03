@@ -1,8 +1,10 @@
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/ui/button";
 
 export function ComingSoon({ title }: { title: string }) {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper flex flex-col">
       <Header />
@@ -16,10 +18,10 @@ export function ComingSoon({ title }: { title: string }) {
             This page is being built next. In the meantime, get in touch and our team will help directly.
           </p>
           <div className="mt-8 flex justify-center gap-4">
-            <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+            <Button variant="primary" onClick={() => (navigate("/quote"))}>
               Request a Quote
             </Button>
-            <Button variant="outline" onClick={() => (window.location.href = "/")}>
+            <Button variant="outline" onClick={() => (navigate("/"))}>
               Back to Home
             </Button>
           </div>

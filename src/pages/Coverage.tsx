@@ -1,4 +1,5 @@
 import { MapPin, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -19,6 +20,7 @@ const boroughs = [
 ];
 
 export function Coverage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.coverage.title} description={seoMeta.coverage.description} path="/coverage" />
@@ -53,7 +55,7 @@ export function Coverage() {
               </ul>
 
               <div className="mt-9">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Request a Quote
                 </Button>
               </div>
@@ -105,7 +107,7 @@ export function Coverage() {
               Get in touch — chances are we already do.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

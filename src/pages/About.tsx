@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
@@ -10,6 +11,7 @@ import { Button } from "../components/ui/button";
 import { stats, values, timeline } from "../data/content";
 
 export function About() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.about.title} description={seoMeta.about.description} path="/about" />
@@ -178,10 +180,10 @@ export function About() {
               Want to Work With a Contractor You Can Rely On?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

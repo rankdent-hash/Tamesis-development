@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { PageHero } from "../../components/PageHero";
@@ -34,6 +35,7 @@ export function SectorLayout({
   const relevantServices: Service[] = services.filter((s) => relevantServiceSlugs.includes(s.slug));
   const path = `/sectors/${slug}`;
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo
@@ -64,7 +66,7 @@ export function SectorLayout({
                 ))}
               </div>
               <div className="mt-8">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Request a Quote
                 </Button>
               </div>
@@ -134,10 +136,10 @@ export function SectorLayout({
               {ctaHeading}
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

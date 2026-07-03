@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -10,6 +11,7 @@ import { Button } from "../components/ui/button";
 import { services } from "../data/content";
 
 export function ServicesPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.services.title} description={seoMeta.services.description} path="/services" />
@@ -58,10 +60,10 @@ export function ServicesPage() {
               Get in touch and our team will assess the work and recommend the right service.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

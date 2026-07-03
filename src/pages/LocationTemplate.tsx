@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -16,6 +16,7 @@ export function LocationTemplate({ location }: { location: Location }) {
   const path = `/property-maintenance/${location.slug}`;
   const metaDescription = `Property maintenance, repairs and refurbishment in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo
@@ -54,7 +55,7 @@ export function LocationTemplate({ location }: { location: Location }) {
                 ))}
               </ul>
               <div className="mt-8">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Request a Quote
                 </Button>
               </div>
@@ -127,10 +128,10 @@ export function LocationTemplate({ location }: { location: Location }) {
               Need Work Done in {location.name}?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

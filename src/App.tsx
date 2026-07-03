@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SiteSchema } from "./components/SiteSchema";
 import { StickyMobileCall } from "./components/StickyMobileCall";
+import { InternalLinkInterceptor } from "./components/InternalLinkInterceptor";
 import { PageLoader } from "./components/PageLoader";
 import { services } from "./data/content";
 
@@ -39,6 +40,7 @@ function App() {
     <BrowserRouter>
       <SiteSchema />
       <StickyMobileCall />
+      <InternalLinkInterceptor />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />

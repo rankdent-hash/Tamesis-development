@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -16,6 +16,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
   const path = `/services/${service.slug}/${location.slug}`;
   const metaDescription = `${service.name} in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, no subcontractors.`;
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo
@@ -50,7 +51,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
               </h2>
               <p className="mt-6 text-slate leading-relaxed">{content.overview}</p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Request a Quote
                 </Button>
                 <a
@@ -107,10 +108,10 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
               Need {service.name} in {location.name}?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

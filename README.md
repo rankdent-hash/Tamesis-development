@@ -32,6 +32,12 @@ stats, reviews, or nav links without touching component code. Every nav link
 and card already routes to a real path — pages not yet built render a
 branded "Coming Soon" placeholder rather than a dead link.
 
+## Navigation
+
+All internal links use plain `<a href="/path">` markup rather than React Router's `<Link>`. A global click interceptor (`src/hooks/useInternalLinkInterceptor.ts`, mounted once in `App.tsx`) catches clicks on same-origin `<a>` tags and routes them through React Router instead of a full page reload — external links, `tel:`/`mailto:`, `#` anchors, `target="_blank"`, and modified clicks (cmd/ctrl/shift-click) are left alone for the browser to handle natively. This gets the same instant client-side navigation as converting every anchor to `<Link>`, without the risk of a large mechanical find-and-replace across dynamic `href={...}` expressions.
+
+CTA buttons (the `Button` component, which renders a `<button>` not an `<a>`) navigate via `useNavigate()` directly rather than `window.location.href`.
+
 ## SEO
 
 - Every route sets its own `<title>`, meta description, canonical URL, and Open Graph/Twitter tags via `src/components/Seo.tsx` (client-side, since this is a Vite SPA — Google's crawler executes JS, but if you later want true pre-rendered meta for all crawlers, that would mean moving to a static-generation or SSR setup).

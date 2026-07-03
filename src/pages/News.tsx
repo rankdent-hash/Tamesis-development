@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
@@ -9,6 +10,7 @@ import { Button } from "../components/ui/button";
 import { news } from "../data/content";
 
 export function News() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.news.title} description={seoMeta.news.description} path="/news" />
@@ -51,10 +53,10 @@ export function News() {
               Have a Project You&rsquo;d Like to Discuss?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

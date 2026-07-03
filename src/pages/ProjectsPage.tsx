@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MapPin } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
@@ -15,6 +16,7 @@ export function ProjectsPage() {
 
   const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.projects.title} description={seoMeta.projects.description} path="/projects" />
@@ -89,10 +91,10 @@ export function ProjectsPage() {
               Have a Project in Mind?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>

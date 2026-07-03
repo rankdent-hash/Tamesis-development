@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -10,6 +11,7 @@ import { Button } from "../components/ui/button";
 import { sectors } from "../data/content";
 
 export function SectorsPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-paper">
       <Seo title={seoMeta.sectors.title} description={seoMeta.sectors.description} path="/sectors" />
@@ -58,7 +60,7 @@ export function SectorsPage() {
                 tracked from first contact to sign-off.
               </p>
               <div className="mt-8">
-                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Discuss a Contract
                 </Button>
               </div>
@@ -86,10 +88,10 @@ export function SectorsPage() {
               Ready to Discuss Your Sector&rsquo;s Requirements?
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+              <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
                 Request a Quote
               </Button>
-              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+              <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us
               </Button>
             </div>
