@@ -22,8 +22,8 @@ export function Illustration({
   className?: string;
 }) {
   const seed = hashString(label);
-  const accent = seed % 2 === 0 ? "#f97316" : "#3b82f6"; // orange / blue, alternating by item
-  const accentSoft = seed % 2 === 0 ? "#fb923c" : "#60a5fa";
+  const accent = seed % 2 === 0 ? "#C6A15B" : "#74886C"; // brass / sage, alternating by item
+  const accentSoft = seed % 2 === 0 ? "#D4B67C" : "#93A48C";
 
   // Deterministic-but-varied positions for the decorative shapes, derived
   // from the hash so each label gets its own arrangement.
@@ -37,11 +37,11 @@ export function Illustration({
       <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 w-full h-full">
         <defs>
           <linearGradient id={`bg-${seed}`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#0b1f3a" />
-            <stop offset="100%" stopColor="#06111f" />
+            <stop offset="0%" stopColor="#0E1611" />
+            <stop offset="100%" stopColor="#070B09" />
           </linearGradient>
           <pattern id={`grid-${seed}`} width="8" height="8" patternUnits="userSpaceOnUse">
-            <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#2563eb" strokeOpacity="0.16" strokeWidth="0.3" />
+            <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#93A48C" strokeOpacity="0.16" strokeWidth="0.3" />
           </pattern>
         </defs>
 

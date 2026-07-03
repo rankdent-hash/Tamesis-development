@@ -59,39 +59,58 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy-950 text-navy-100">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-16 grid lg:grid-cols-6 gap-12">
+    <footer className="relative bg-navy-950 text-navy-100 overflow-hidden">
+      <div className="absolute inset-0 blueprint-grid opacity-40" />
+
+      {/* Brand statement */}
+      <div className="relative border-b border-navy-800">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+            <h2 className="font-display font-bold text-white text-3xl lg:text-4xl leading-tight max-w-xl text-balance">
+              London&rsquo;s trusted property maintenance partner, since 2014.
+            </h2>
+            <a
+              href="/quote"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 py-3.5 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
+            >
+              Request a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-6 gap-12">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-lg bg-blue-500 text-navy-950 font-display font-bold text-lg flex items-center justify-center">
+            <span className="w-10 h-10 rounded-lg bg-navy-800 border border-navy-700 text-orange-400 font-display font-bold text-lg flex items-center justify-center">
               T
             </span>
             <span className="font-display font-bold text-white text-lg">Tamesis Development Ltd</span>
           </a>
 
-          <div className="mt-6 space-y-3 text-sm text-navy-100/70">
-            <p className="flex items-start gap-2">
-              <MapPin size={16} className="shrink-0 mt-0.5 text-blue-400" />
+          <div className="mt-7 space-y-3.5 text-sm text-navy-100/70 font-accent">
+            <p className="flex items-start gap-2.5">
+              <MapPin size={15} className="shrink-0 mt-0.5 text-orange-400" />
               {company.addressLines.join(", ")}
             </p>
-            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Phone size={16} className="text-blue-400" /> Management: {company.phoneManagement}
+            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2.5 hover:text-orange-400 transition-colors">
+              <Phone size={15} className="text-orange-400" /> Management {company.phoneManagement}
             </a>
-            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Phone size={16} className="text-blue-400" /> Job Booking: {company.phoneJobBooking}
+            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2.5 hover:text-orange-400 transition-colors">
+              <Phone size={15} className="text-orange-400" /> Job Booking {company.phoneJobBooking}
             </a>
-            <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
-              <Mail size={16} className="text-blue-400" /> {company.email}
+            <a href={`mailto:${company.email}`} className="flex items-center gap-2.5 hover:text-orange-400 transition-colors">
+              <Mail size={15} className="text-orange-400" /> {company.email}
             </a>
           </div>
 
-          <div className="mt-6 flex gap-3">
+          <div className="mt-7 flex gap-3">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href="#"
                 aria-label={social.label}
-                className="w-9 h-9 rounded-full border border-navy-700 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-colors"
+                className="w-9 h-9 rounded-full border border-navy-700 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-navy-950 transition-colors"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d={social.path} />
@@ -103,11 +122,11 @@ export function Footer() {
 
         {columns.map((col) => (
           <div key={col.title}>
-            <h3 className="font-display font-semibold text-white text-sm uppercase tracking-wide">{col.title}</h3>
-            <ul className="mt-5 space-y-3">
+            <h3 className="font-accent font-semibold text-white/90 text-xs uppercase tracking-[0.14em]">{col.title}</h3>
+            <ul className="mt-6 space-y-3.5">
               {col.links.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-navy-100/70 hover:text-blue-400 transition-colors">
+                  <a href={link.href} className="text-sm text-navy-100/70 hover:text-orange-400 transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -117,13 +136,13 @@ export function Footer() {
         ))}
       </div>
 
-      <div className="border-t border-navy-800">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-navy-100/50">
+      <div className="relative border-t border-navy-800">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-accent text-navy-100/50">
           <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. XXXXXXXX.</span>
           <div className="flex gap-6">
-            <a href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
-            <a href="/cookie-policy" className="hover:text-blue-400 transition-colors">Cookie Policy</a>
-            <a href="/terms" className="hover:text-blue-400 transition-colors">Terms</a>
+            <a href="/privacy-policy" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
+            <a href="/cookie-policy" className="hover:text-orange-400 transition-colors">Cookie Policy</a>
+            <a href="/terms" className="hover:text-orange-400 transition-colors">Terms</a>
           </div>
         </div>
       </div>

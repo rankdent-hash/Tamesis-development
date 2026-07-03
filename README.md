@@ -9,11 +9,31 @@ pages afterwards.
 
 ## Brand
 
-- **Palette**: Navy (primary) / Construction Orange (secondary, all CTAs) /
-  Professional Blue (accent — icons, eyebrow labels, links) / Green (success
-  states only, e.g. trust-badge checkmarks).
-- **Fonts**: Manrope (headings), Inter (body), Plus Jakarta Sans (labels,
-  stats, buttons).
+**Design direction**: heritage British property brand — deep racing-green-black,
+antique brass, warm ivory paper — rather than a generic navy/corporate-SaaS
+palette. Signature motif is the blueprint-grid + corner-bracket treatment
+(nods to surveying/technical drawings, ties to the construction/property
+subject matter).
+
+- **Palette**:
+  - `navy-*` — ink: deep heritage green-black (`#0E1611`), primary dark
+    surfaces and text-on-light
+  - `orange-*` — brass: antique gold (`#C6A15B`), the **one** bold accent —
+    used sparingly, primary CTAs only
+  - `blue-*` — sage: muted olive-green, secondary accent for icons/labels/hover
+  - `green-*` — functional success states only (e.g. trust-badge checkmarks),
+    not a brand color
+  - `paper` — warm ivory background (`#FAF8F4`), not flat cool grey
+- **Fonts**: Bricolage Grotesque (headings — distinctive variable display
+  face), Inter (body), IBM Plex Mono (labels, stats, phone numbers — ties
+  into the blueprint/technical motif)
+- **Header**: transparent over the hero, solidifies to the ivory paper
+  background on scroll (every page has a dark hero, so this works site-wide)
+- Tailwind color token *names* (`navy-900`, `orange-500`, etc.) were kept
+  from an earlier palette iteration but now point at the values above — this
+  means the whole site's color scheme lives in one place
+  (`src/index.css` `@theme` block) and doesn't require touching individual
+  components to re-theme.
 
 ## Structure
 

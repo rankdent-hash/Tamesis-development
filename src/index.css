@@ -1,46 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Manrope", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
   --font-body: "Inter", sans-serif;
-  --font-accent: "Plus Jakarta Sans", sans-serif;
+  --font-accent: "IBM Plex Mono", monospace;
 
-  --color-navy-950: #060f1f;
-  --color-navy-900: #0b1f3a;
-  --color-navy-800: #12294d;
-  --color-navy-700: #1a3661;
-  --color-navy-600: #24487d;
-  --color-navy-100: #e7ebf2;
-  --color-navy-50: #f4f6f9;
+  /* Ink — deep heritage green-black, replaces generic navy */
+  --color-navy-950: #070B09;
+  --color-navy-900: #0E1611;
+  --color-navy-800: #16211A;
+  --color-navy-700: #203024;
+  --color-navy-600: #2C4335;
+  --color-navy-100: #E6EAE7;
+  --color-navy-50: #F4F6F4;
 
-  --color-orange-700: #c2410c;
-  --color-orange-600: #ea580c;
-  --color-orange-500: #f97316;
-  --color-orange-400: #fb923c;
-  --color-orange-100: #ffedd5;
-  --color-orange-50: #fff7ed;
+  /* Sage — muted olive, secondary accent for icons/labels/hover */
+  --color-blue-700: #47543F;
+  --color-blue-600: #5C6C52;
+  --color-blue-500: #74886C;
+  --color-blue-400: #93A48C;
+  --color-blue-300: #B3C0AC;
+  --color-blue-200: #CFD8C9;
+  --color-blue-100: #E4E9E1;
+  --color-blue-50: #F2F5F0;
 
-  --color-blue-700: #1d4ed8;
-  --color-blue-600: #2563eb;
-  --color-blue-500: #3b82f6;
-  --color-blue-400: #60a5fa;
-  --color-blue-300: #93c5fd;
-  --color-blue-200: #bfdbfe;
-  --color-blue-100: #dbeafe;
-  --color-blue-50: #eff6ff;
+  /* Brass — the one bold accent, used sparingly (primary CTAs only) */
+  --color-orange-700: #8A6423;
+  --color-orange-600: #A87A2C;
+  --color-orange-500: #C6A15B;
+  --color-orange-400: #D4B67C;
+  --color-orange-100: #F3E9D4;
+  --color-orange-50: #FAF5EA;
 
-  --color-green-600: #16a34a;
-  --color-green-500: #22c55e;
-  --color-green-400: #4ade80;
+  /* Signal green — functional success states only, not a brand color */
+  --color-green-600: #2F6B4A;
+  --color-green-500: #3D8560;
+  --color-green-400: #5CA37E;
 
-  --color-ink: #1c2530;
-  --color-slate: #56616f;
-  --color-slate-light: #8993a1;
-  --color-paper: #f7f8fa;
+  --color-ink: #16201A;
+  --color-slate: #565F58;
+  --color-slate-light: #8A938C;
+  --color-paper: #FAF8F4;
 
-  --shadow-card: 0 1px 2px rgba(11,31,58,0.04), 0 8px 24px -8px rgba(11,31,58,0.12);
-  --shadow-card-hover: 0 4px 10px rgba(11,31,58,0.06), 0 20px 40px -12px rgba(11,31,58,0.18);
+  --shadow-card: 0 1px 2px rgba(14,22,17,0.05), 0 8px 24px -8px rgba(14,22,17,0.14);
+  --shadow-card-hover: 0 4px 10px rgba(14,22,17,0.07), 0 20px 40px -12px rgba(14,22,17,0.20);
 }
 
 html {
@@ -107,8 +111,8 @@ body {
 
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.14) 1px, transparent 1px);
+    linear-gradient(rgba(147, 164, 140, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(147, 164, 140, 0.16) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
