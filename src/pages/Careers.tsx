@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, Clock, CheckCircle2, AlertCircle } from "lucide-react";
+import { MapPin, Clock, CheckCircle2, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -134,20 +134,32 @@ export function Careers() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-navy-800 mb-1.5">Full Name</label>
-                    <input id="fullName" name="fullName" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    <div className="relative">
+                      <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="fullName" name="fullName" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                    <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    <div className="relative">
+                      <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                   </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-navy-800 mb-1.5">Email</label>
-                  <input id="email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                  <div className="relative">
+                      <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                 </div>
                 <div>
                   <label htmlFor="experience" className="block text-sm font-medium text-navy-800 mb-1.5">Relevant Experience</label>
-                  <textarea id="experience" name="experience" rows={4} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
+                  <div className="relative">
+                      <MessageSquare size={16} className="absolute left-3.5 top-3.5 text-navy-700 pointer-events-none" />
+                      <textarea id="experience" name="experience" rows={4} required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
+                    </div>
                 </div>
                 <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>

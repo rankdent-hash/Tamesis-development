@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle, User, MessageSquare, HelpCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -99,31 +99,46 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="c-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
-                      <input id="c-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      <div className="relative">
+                      <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="c-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                     </div>
                     <div>
                       <label htmlFor="c-phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                      <input id="c-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      <div className="relative">
+                      <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="c-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                     </div>
                   </div>
                   <div>
                     <label htmlFor="c-email" className="block text-sm font-medium text-navy-800 mb-1.5">Email</label>
-                    <input id="c-email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    <div className="relative">
+                      <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="c-email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="c-reason" className="block text-sm font-medium text-navy-800 mb-1.5">Reason for Contact</label>
-                    <select id="c-reason" name="reason" required defaultValue="" className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white">
-                      <option value="" disabled>Select an option</option>
-                      <option>Request a Quote</option>
-                      <option>Report a Repair</option>
-                      <option>Emergency Callout</option>
-                      <option>Contract / Sector Enquiry</option>
-                      <option>Other</option>
-                    </select>
+                    <div className="relative">
+                      <HelpCircle size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <select id="c-reason" name="reason" required defaultValue="" className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white">
+                        <option value="" disabled>Select an option</option>
+                        <option>Request a Quote</option>
+                        <option>Report a Repair</option>
+                        <option>Emergency Callout</option>
+                        <option>Contract / Sector Enquiry</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="c-message" className="block text-sm font-medium text-navy-800 mb-1.5">Message</label>
-                    <textarea id="c-message" name="message" rows={5} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
+                    <div className="relative">
+                      <MessageSquare size={16} className="absolute left-3.5 top-3.5 text-navy-700 pointer-events-none" />
+                      <textarea id="c-message" name="message" rows={5} required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
+                    </div>
                   </div>
                   <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                   <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>

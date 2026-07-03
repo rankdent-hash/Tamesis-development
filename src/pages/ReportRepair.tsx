@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Phone, AlertCircle } from "lucide-react";
+import { CheckCircle2, Phone, AlertCircle, User, MessageSquare, MapPin, KeyRound } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -76,24 +76,39 @@ export function ReportRepair() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="r-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
-                    <input id="r-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    <div className="relative">
+                      <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="r-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="r-phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                    <input id="r-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    <div className="relative">
+                      <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="r-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                   </div>
                 </div>
                 <div>
                   <label htmlFor="r-address" className="block text-sm font-medium text-navy-800 mb-1.5">Property Address</label>
-                  <input id="r-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                  <div className="relative">
+                      <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="r-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                 </div>
                 <div>
                   <label htmlFor="r-issue" className="block text-sm font-medium text-navy-800 mb-1.5">Describe the Issue</label>
-                  <textarea id="r-issue" name="issue" rows={5} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" placeholder="What's wrong, where in the property, and how long it's been an issue" />
+                  <div className="relative">
+                      <MessageSquare size={16} className="absolute left-3.5 top-3.5 text-navy-700 pointer-events-none" />
+                      <textarea id="r-issue" name="issue" rows={5} required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" placeholder="What's wrong, where in the property, and how long it's been an issue" />
+                    </div>
                 </div>
                 <div>
                   <label htmlFor="r-access" className="block text-sm font-medium text-navy-800 mb-1.5">Access Notes (optional)</label>
-                  <input id="r-access" name="access" type="text" placeholder="e.g. key held by neighbour, buzzer code, best times to attend" className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                  <div className="relative">
+                      <KeyRound size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                      <input id="r-access" name="access" type="text" placeholder="e.g. key held by neighbour, buzzer code, best times to attend" className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                    </div>
                 </div>
                 <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>

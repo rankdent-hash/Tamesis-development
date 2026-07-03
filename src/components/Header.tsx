@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { company, navLinks } from "../data/content";
 import { cn } from "../lib/utils";
+import { ServicesMegaMenu } from "./ServicesMegaMenu";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const { pathname } = useLocation();
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
@@ -85,29 +87,71 @@ export function Header() {
               solid ? "text-navy-800" : "text-white/85"
             )}
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className={cn(
-                  "relative py-2 transition-colors group",
-                  solid ? "hover:text-navy-900" : "hover:text-white",
-                  isActive(link.href) && (solid ? "text-navy-900" : "text-white")
-                )}
-              >
-                {link.label}
-                <span
+            {navLinks.map((link) =>
+              link.label === "Services" ? (
+                <div
+                  key={link.href}
+                  className="relative"
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
+                >
+                  <a
+                    href={link.href}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    aria-expanded={servicesOpen}
+                    className={cn(
+                      "relative py-2 flex items-center gap-1 transition-colors group",
+                      solid ? "hover:text-navy-900" : "hover:text-white",
+                      isActive(link.href) && (solid ? "text-navy-900" : "text-white")
+                    )}
+                  >
+                    {link.label}
+                    <ChevronDown size={14} className={cn("transition-transform duration-200", servicesOpen && "rotate-180")} />
+                    <span
+                      className={cn(
+                        "absolute left-0 right-0 -bottom-0.5 h-0.5 bg-orange-500 origin-left transition-transform duration-200",
+                        isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      )}
+                    />
+                  </a>
+                  {servicesOpen && <ServicesMegaMenu />}
+                </div>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
                   className={cn(
-                    "absolute left-0 right-0 -bottom-0.5 h-0.5 bg-orange-500 origin-left transition-transform duration-200",
-                    isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    "relative py-2 transition-colors group",
+                    solid ? "hover:text-navy-900" : "hover:text-white",
+                    isActive(link.href) && (solid ? "text-navy-900" : "text-white")
                   )}
-                />
-              </a>
-            ))}
+                >
+                  {link.label}
+                  <span
+                    className={cn(
+                      "absolute left-0 right-0 -bottom-0.5 h-0.5 bg-orange-500 origin-left transition-transform duration-200",
+                      isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    )}
+                  />
+                </a>
+              )
+            )}
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
+            <a
+              href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+              aria-label={`Call Job Booking on ${company.phoneJobBooking}`}
+              className={cn(
+                "flex items-center justify-center w-11 h-11 rounded-full border transition-colors shrink-0",
+                solid
+                  ? "border-navy-200 text-navy-900 hover:bg-navy-900 hover:text-white hover:border-navy-900"
+                  : "border-white/30 text-white hover:bg-white/10"
+              )}
+            >
+              <Phone size={17} strokeWidth={2} />
+            </a>
             <a
               href="/quote"
               className="rounded-full bg-orange-500 text-navy-950 px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"

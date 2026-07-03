@@ -68,6 +68,12 @@ stats, reviews, or nav links without touching component code. Every nav link
 and card already routes to a real path — pages not yet built render a
 branded "Coming Soon" placeholder rather than a dead link.
 
+## Navigation & header
+
+- **Services mega menu**: hovering "Services" in the desktop nav shows a dropdown grouped into 5 categories (Repairs & Maintenance, Plumbing & Drainage, Bathrooms, Interiors & Finishing, Building & Construction), each service with its icon, plus a "View All Services" link to `/services` (the full services index page is kept). Category assignment lives on each service object in `src/data/content.ts` (`category` field) — add a new service there and it automatically appears in the right mega menu column.
+- **Header call icon**: a circular phone icon button sits next to "Request a Quote" in the desktop nav, linking directly to the Job Booking number.
+- **Form field icons**: every input/select/textarea across all 6 forms (hero quote, Quote, Contact, Report a Repair, Emergency, Careers) has a matching icon inside the field (name → person icon, phone → phone icon, etc.) — no separate config, just look at each field's icon prop/wrapper in its component file.
+
 ## Navigation
 
 All internal links use plain `<a href="/path">` markup rather than React Router's `<Link>`. A global click interceptor (`src/hooks/useInternalLinkInterceptor.ts`, mounted once in `App.tsx`) catches clicks on same-origin `<a>` tags and routes them through React Router instead of a full page reload — external links, `tel:`/`mailto:`, `#` anchors, `target="_blank"`, and modified clicks (cmd/ctrl/shift-click) are left alone for the browser to handle natively. This gets the same instant client-side navigation as converting every anchor to `<Link>`, without the risk of a large mechanical find-and-replace across dynamic `href={...}` expressions.

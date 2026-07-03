@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowLeft, ArrowRight, AlertCircle } from "lucide-react";
+import { CheckCircle2, ArrowLeft, ArrowRight, AlertCircle, User, Building2, Phone, Mail, Home, Briefcase, Wrench, MessageSquare, Calendar, type LucideIcon } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -98,12 +98,12 @@ export function Quote() {
                   {step === 0 && (
                     <div className="space-y-5">
                       <div className="grid sm:grid-cols-2 gap-5">
-                        <Field label="Full Name" value={form.name} onChange={(v) => update("name", v)} required />
-                        <Field label="Company (optional)" value={form.company} onChange={(v) => update("company", v)} />
+                        <Field label="Full Name" value={form.name} onChange={(v) => update("name", v)} required icon={User} />
+                        <Field label="Company (optional)" value={form.company} onChange={(v) => update("company", v)} icon={Building2} />
                       </div>
                       <div className="grid sm:grid-cols-2 gap-5">
-                        <Field label="Phone" type="tel" value={form.phone} onChange={(v) => update("phone", v)} required />
-                        <Field label="Email" type="email" value={form.email} onChange={(v) => update("email", v)} required />
+                        <Field label="Phone" type="tel" value={form.phone} onChange={(v) => update("phone", v)} required icon={Phone} />
+                        <Field label="Email" type="email" value={form.email} onChange={(v) => update("email", v)} required icon={Mail} />
                       </div>
                     </div>
                   )}
@@ -112,33 +112,39 @@ export function Quote() {
                     <div className="space-y-5">
                       <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Property Type</label>
-                        <select
-                          value={form.propertyType}
-                          onChange={(e) => update("propertyType", e.target.value)}
-                          required
-                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
-                        >
-                          <option value="" disabled>Select property type</option>
-                          <option>Residential — House</option>
-                          <option>Residential — Flat</option>
-                          <option>Commercial</option>
-                          <option>Void / Empty Property</option>
-                          <option>Communal / Estate</option>
-                        </select>
+                        <div className="relative">
+                          <Home size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                          <select
+                            value={form.propertyType}
+                            onChange={(e) => update("propertyType", e.target.value)}
+                            required
+                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
+                          >
+                            <option value="" disabled>Select property type</option>
+                            <option>Residential — House</option>
+                            <option>Residential — Flat</option>
+                            <option>Commercial</option>
+                            <option>Void / Empty Property</option>
+                            <option>Communal / Estate</option>
+                          </select>
+                        </div>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Sector</label>
-                        <select
-                          value={form.sector}
-                          onChange={(e) => update("sector", e.target.value)}
-                          required
-                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
-                        >
-                          <option value="" disabled>Select sector</option>
-                          {sectors.map((s) => (
-                            <option key={s.name}>{s.name}</option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <Briefcase size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                          <select
+                            value={form.sector}
+                            onChange={(e) => update("sector", e.target.value)}
+                            required
+                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
+                          >
+                            <option value="" disabled>Select sector</option>
+                            {sectors.map((s) => (
+                              <option key={s.name}>{s.name}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -147,33 +153,40 @@ export function Quote() {
                     <div className="space-y-5">
                       <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Service Required</label>
-                        <select
-                          value={form.service}
-                          onChange={(e) => update("service", e.target.value)}
-                          required
-                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
-                        >
-                          <option value="" disabled>Select a service</option>
-                          {services.map((s) => (
-                            <option key={s.slug}>{s.name}</option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <Wrench size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                          <select
+                            value={form.service}
+                            onChange={(e) => update("service", e.target.value)}
+                            required
+                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
+                          >
+                            <option value="" disabled>Select a service</option>
+                            {services.map((s) => (
+                              <option key={s.slug}>{s.name}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Description of Work</label>
-                        <textarea
-                          value={form.description}
-                          onChange={(e) => update("description", e.target.value)}
-                          rows={4}
-                          required
-                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
-                        />
+                        <div className="relative">
+                          <MessageSquare size={16} className="absolute left-3.5 top-3.5 text-navy-700 pointer-events-none" />
+                          <textarea
+                            value={form.description}
+                            onChange={(e) => update("description", e.target.value)}
+                            rows={4}
+                            required
+                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
+                          />
+                        </div>
                       </div>
                       <Field
                         label="Preferred Date (optional)"
                         type="date"
                         value={form.preferredDate}
                         onChange={(v) => update("preferredDate", v)}
+                        icon={Calendar}
                       />
                     </div>
                   )}
@@ -242,23 +255,31 @@ function Field({
   onChange,
   type = "text",
   required = false,
+  icon: FieldIcon,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
   required?: boolean;
+  icon?: LucideIcon;
 }) {
   return (
     <div>
       <label className="block text-sm font-medium text-navy-800 mb-1.5">{label}</label>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        required={required}
-        className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
-      />
+      <div className="relative">
+        {FieldIcon && <FieldIcon size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />}
+        <input
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          required={required}
+          className={cn(
+            "w-full rounded-lg border-2 border-navy-900 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
+            FieldIcon ? "pl-10 pr-4" : "px-4"
+          )}
+        />
+      </div>
     </div>
   );
 }

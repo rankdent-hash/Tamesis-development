@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowRight, AlertCircle } from "lucide-react";
+import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, Wrench } from "lucide-react";
 import { services } from "../data/content";
 import { submitForm } from "../lib/submitForm";
 
@@ -50,38 +50,47 @@ export function HeroQuoteForm({ presetService }: { presetService?: string }) {
           {/* Honeypot — hidden from real users, catches basic bots */}
           <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Full name"
-            required
-            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone number"
-            required
-            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
-          />
-          <select
-            name="service"
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            required
-            disabled={!!presetService}
-            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white disabled:bg-navy-50 disabled:text-navy-700"
-          >
-            <option value="" disabled>
-              What do you need?
-            </option>
-            <option value="General Enquiry">General Enquiry</option>
-            {services.map((s) => (
-              <option key={s.slug} value={s.name}>
-                {s.name}
+          <div className="relative">
+            <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full name"
+              required
+              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+            />
+          </div>
+          <div className="relative">
+            <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone number"
+              required
+              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+            />
+          </div>
+          <div className="relative">
+            <Wrench size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+            <select
+              name="service"
+              value={service}
+              onChange={(e) => setService(e.target.value)}
+              required
+              disabled={!!presetService}
+              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white disabled:bg-navy-50 disabled:text-navy-700"
+            >
+              <option value="" disabled>
+                What do you need?
               </option>
-            ))}
-          </select>
+              <option value="General Enquiry">General Enquiry</option>
+              {services.map((s) => (
+                <option key={s.slug} value={s.name}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <button
             type="submit"
