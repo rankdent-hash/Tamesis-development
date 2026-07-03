@@ -143,6 +143,7 @@ export function Footer() {
             <a href="/privacy-policy" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
             <a href="/cookie-policy" className="hover:text-orange-400 transition-colors">Cookie Policy</a>
             <a href="/terms" className="hover:text-orange-400 transition-colors">Terms</a>
+            <a href="/admin" className="hover:text-orange-400 transition-colors">Admin Login</a>
           </div>
         </div>
       </div>

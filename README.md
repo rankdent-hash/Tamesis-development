@@ -51,6 +51,20 @@ Currently sends from Resend's shared sandbox address (`onboarding@resend.dev`), 
 
 The homepage hero and all 20 individual service pages now have a compact quote-request form (`src/components/HeroQuoteForm.tsx`) — name, phone, service dropdown, submit. On service pages it's pre-filled/locked to that page's service and uses the `compact` variant (~20% narrower, tighter spacing) via `src/components/ServiceHero.tsx`, which also uses the service's own real photo as the hero background. Not yet added to the 160 service×location combo pages — same one-line change (`<ServiceHero service={service} />` in place of the plain `PageHero`) if wanted there too.
 
+## Admin panel — leads dashboard
+
+`/admin` (linked from the footer as "Admin Login") shows every form submission — date/time, form type, name, contact details, service requested, and full message — stored in Postgres. Requires two more environment variables in Vercel, plus attaching Postgres storage:
+
+1. **Attach Vercel Postgres**: in the Vercel dashboard, go to the project → **Storage** tab → **Create Database** → **Postgres**. This auto-injects the `POSTGRES_URL` (and related) environment variables — no manual copying needed. The `leads` table is created automatically on first use.
+2. **Set admin credentials** (Project → Settings → Environment Variables):
+   - `ADMIN_EMAIL` — the login email
+   - `ADMIN_PASSWORD` — the login password
+   - `ADMIN_SESSION_SECRET` — any long random string (used to sign login sessions — e.g. generate one with `openssl rand -hex 32`)
+
+**Important — these are not in the codebase.** Since this GitHub repo is public, credentials are never hardcoded anywhere; they only exist as environment variables in Vercel. Whoever has access to the Vercel project's environment variables can see/change them — that's the actual access boundary, so keep Vercel project access limited to who should be able to log into `/admin`.
+
+Sessions last 12 hours (`server/adminAuth.ts`), then require logging in again. The `/api/leads` endpoint validates every request server-side with a signed token — a stolen/guessed token can't be replayed without the `ADMIN_SESSION_SECRET`.
+
 ## Structure
 
 ```

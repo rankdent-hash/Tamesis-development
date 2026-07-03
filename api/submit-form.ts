@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
+import { sql } from "@vercel/postgres";
 
 // Where notification emails are sent. Update once a real inbox is confirmed.
 const NOTIFY_TO = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
@@ -39,19 +40,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { formType, fields, honeypot } = req.body as {
+    const { formType, fields: rawFields } = req.body as {
       formType?: string;
       fields?: Record<string, string>;
-      honeypot?: string;
     };
+
+    if (!formType || !rawFields || typeof rawFields !== "object") {
+      return res.status(400).json({ success: false, error: "Missing form data" });
+    }
+
+    // The client nests the honeypot inside `fields` — pull it out and strip
+    // it before storing/emailing so it never shows up as a real field.
+    const { honeypot, ...fields } = rawFields;
 
     // Simple spam trap — a hidden field that real users never fill in.
     if (honeypot) {
       return res.status(200).json({ success: true });
-    }
-
-    if (!formType || !fields || typeof fields !== "object") {
-      return res.status(400).json({ success: false, error: "Missing form data" });
     }
 
     const label = FORM_LABELS[formType] || formType;
@@ -79,6 +83,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         </div>
       </div>
     `;
+
+    // Store the lead first — this should succeed even if email delivery has
+    // an issue, so a submission is never silently lost.
+    try {
+      await sql`
+        CREATE TABLE IF NOT EXISTS leads (
+          id SERIAL PRIMARY KEY,
+          form_type TEXT NOT NULL,
+          fields JSONB NOT NULL,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        );
+      `;
+      await sql`
+        INSERT INTO leads (form_type, fields) VALUES (${formType}, ${JSON.stringify(fields)});
+      `;
+    } catch (dbErr) {
+      // Don't fail the whole submission just because the database isn't
+      // configured yet (e.g. Postgres storage not attached in Vercel) — the
+      // email notification below still works either way.
+      console.error("Lead storage error (non-fatal):", dbErr);
+    }
 
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
