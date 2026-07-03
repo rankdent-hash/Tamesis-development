@@ -4,6 +4,8 @@ export function CommercialClients() {
   return (
     <SectorLayout
       name="Commercial Clients"
+      slug="commercial-clients"
+      metaDescription="Commercial refurbishment and maintenance planned around your trading hours, delivering commercial-grade finishes across London."
       heroSubtitle="Refurbishment and maintenance planned around your trading hours, so your premises stay open and operational while the work gets done."
       introHeading="Refurbishment That Keeps You Trading"
       introParagraphs={[

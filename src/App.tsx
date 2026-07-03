@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SiteSchema } from "./components/SiteSchema";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { SectorsPage } from "./pages/SectorsPage";
@@ -28,6 +29,7 @@ import { services } from "./data/content";
 function App() {
   return (
     <BrowserRouter>
+      <SiteSchema />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

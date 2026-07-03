@@ -4,6 +4,8 @@ export function HousingAssociations() {
   return (
     <SectorLayout
       name="Housing Associations"
+      slug="housing-associations"
+      metaDescription="Responsive repairs, void turnaround and planned maintenance for housing association stock across London, with SLA-driven reporting and resident-sensitive delivery."
       heroSubtitle="A responsive repairs and planned maintenance partner for housing association stock across London, with the reporting and consistency your compliance obligations demand."
       introHeading="Delivering Repairs and Maintenance at Portfolio Scale"
       introParagraphs={[

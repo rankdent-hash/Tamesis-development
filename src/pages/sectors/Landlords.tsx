@@ -4,6 +4,8 @@ export function Landlords() {
   return (
     <SectorLayout
       name="Landlords"
+      slug="landlords"
+      metaDescription="Fast void turnaround and responsive repairs for landlords across London, with fixed transparent quotes and one contractor for every property type."
       heroSubtitle="Fast turnarounds on repairs and void works, whether you manage a single rental property or a growing portfolio across London."
       introHeading="Keeping Your Rental Property Tenant-Ready"
       introParagraphs={[

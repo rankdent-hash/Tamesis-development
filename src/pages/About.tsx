@@ -1,4 +1,6 @@
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { AnimateIn } from "../components/AnimateIn";
@@ -10,6 +12,7 @@ import { stats, values, timeline } from "../data/content";
 export function About() {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.about.title} description={seoMeta.about.description} path="/about" />
       <Header />
       <main>
         <PageHero

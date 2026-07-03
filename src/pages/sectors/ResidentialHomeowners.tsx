@@ -4,6 +4,8 @@ export function ResidentialHomeowners() {
   return (
     <SectorLayout
       name="Residential Homeowners"
+      slug="residential-homeowners"
+      metaDescription="Professional property maintenance and refurbishment for London homeowners — from a single repair to a full bathroom or kitchen refurbishment."
       heroSubtitle="The same professional standard we bring to housing association contracts, brought to individual family homes — from a single repair to a full refurbishment."
       introHeading="Professional Standards, Brought to Your Home"
       introParagraphs={[

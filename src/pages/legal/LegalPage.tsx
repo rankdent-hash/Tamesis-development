@@ -1,18 +1,24 @@
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { PageHero } from "../../components/PageHero";
+import { Seo } from "../../components/Seo";
 
 export function LegalPage({
   title,
   updated,
+  description,
+  path,
   sections,
 }: {
   title: string;
   updated: string;
+  description: string;
+  path: string;
   sections: { heading: string; body: string[] }[];
 }) {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={title} description={description} path={path} />
       <Header />
       <main>
         <PageHero eyebrow="Legal" title={title} subtitle={`Last updated: ${updated}`} breadcrumb={title} />

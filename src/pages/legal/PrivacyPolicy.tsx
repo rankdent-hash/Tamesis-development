@@ -1,11 +1,14 @@
 import { LegalPage } from "./LegalPage";
 import { company } from "../../data/content";
+import { seoMeta } from "../../data/seoMeta";
 
 export function PrivacyPolicy() {
   return (
     <LegalPage
       title="Privacy Policy"
       updated="July 2026"
+      description={seoMeta.privacy.description}
+      path="/privacy-policy"
       sections={[
         {
           heading: "Who We Are",

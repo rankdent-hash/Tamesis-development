@@ -1,5 +1,7 @@
 import { MapPin } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PlaceholderImage } from "../components/PlaceholderImage";
@@ -18,6 +20,7 @@ const boroughs = [
 export function Coverage() {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.coverage.title} description={seoMeta.coverage.description} path="/coverage" />
       <Header />
       <main>
         <PageHero

@@ -4,6 +4,8 @@ export function LocalAuthorities() {
   return (
     <SectorLayout
       name="Local Authorities"
+      slug="local-authorities"
+      metaDescription="Framework-ready contracting for council housing stock, void properties and public buildings across London, with transparent, audit-ready reporting."
       heroSubtitle="Framework-ready contracting for council housing stock, void properties and public buildings, delivered with the transparency and reporting local authority procurement requires."
       introHeading="A Contractor Built for Public Sector Delivery"
       introParagraphs={[

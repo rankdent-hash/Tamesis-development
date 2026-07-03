@@ -13,10 +13,13 @@ import { EmergencyCallout } from "../components/EmergencyCallout";
 import { News } from "../components/News";
 import { FinalCta } from "../components/FinalCta";
 import { Footer } from "../components/Footer";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 
 export function Home() {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.home.title} description={seoMeta.home.description} path="/" />
       <Header />
       <main>
         <Hero />

@@ -1,11 +1,14 @@
 import { LegalPage } from "./LegalPage";
 import { company } from "../../data/content";
+import { seoMeta } from "../../data/seoMeta";
 
 export function CookiePolicy() {
   return (
     <LegalPage
       title="Cookie Policy"
       updated="July 2026"
+      description={seoMeta.cookies.description}
+      path="/cookie-policy"
       sections={[
         {
           heading: "What Are Cookies",

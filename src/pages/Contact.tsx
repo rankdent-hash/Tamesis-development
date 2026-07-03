@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Mail, MapPin, Phone, Clock, CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PlaceholderImage } from "../components/PlaceholderImage";
@@ -20,6 +22,7 @@ export function Contact() {
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.contact.title} description={seoMeta.contact.description} path="/contact" />
       <Header />
       <main>
         <PageHero

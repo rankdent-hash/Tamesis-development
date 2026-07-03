@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.tamesisdevelopment.co.uk/sitemap.xml

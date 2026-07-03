@@ -6,15 +6,33 @@ import { PlaceholderImage } from "../components/PlaceholderImage";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Faq } from "../components/Faq";
+import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { services, whyChoose, process, getServiceContent, type Service } from "../data/content";
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
 export function ServiceTemplate({ service }: { service: Service }) {
   const content = getServiceContent(service);
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const path = `/services/${service.slug}`;
+  const metaDescription = `Professional ${service.name.toLowerCase()} across London from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo
+        title={`${service.name} in London`}
+        description={metaDescription}
+        path={path}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: service.name, path },
+          ]),
+          faqJsonLd(content.faqs),
+          serviceJsonLd(service.name, metaDescription, path),
+        ]}
+      />
       <Header />
       <main>
         <PageHero

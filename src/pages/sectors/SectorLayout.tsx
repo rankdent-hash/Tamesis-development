@@ -5,11 +5,15 @@ import { PageHero } from "../../components/PageHero";
 import { PlaceholderImage } from "../../components/PlaceholderImage";
 import { AnimateIn } from "../../components/AnimateIn";
 import { Icon } from "../../components/Icon";
+import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
-import { services } from "../../data/content";
+import { services, type Service } from "../../data/content";
+import { breadcrumbJsonLd } from "../../lib/seo";
 
 export function SectorLayout({
   name,
+  slug,
+  metaDescription,
   heroSubtitle,
   introHeading,
   introParagraphs,
@@ -18,6 +22,8 @@ export function SectorLayout({
   ctaHeading,
 }: {
   name: string;
+  slug: string;
+  metaDescription: string;
   heroSubtitle: string;
   introHeading: string;
   introParagraphs: string[];
@@ -25,10 +31,21 @@ export function SectorLayout({
   relevantServiceSlugs: string[];
   ctaHeading: string;
 }) {
-  const relevantServices = services.filter((s) => relevantServiceSlugs.includes(s.slug));
+  const relevantServices: Service[] = services.filter((s) => relevantServiceSlugs.includes(s.slug));
+  const path = `/sectors/${slug}`;
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo
+        title={`${name} — Property Maintenance for ${name}`}
+        description={metaDescription}
+        path={path}
+        jsonLd={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Sectors", path: "/sectors" },
+          { name, path },
+        ])}
+      />
       <Header />
       <main>
         <PageHero eyebrow="Sectors" title={name} subtitle={heroSubtitle} breadcrumb={name} />

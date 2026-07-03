@@ -1,5 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { AnimateIn } from "../components/AnimateIn";
@@ -10,6 +12,7 @@ import { services } from "../data/content";
 export function ServicesPage() {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.services.title} description={seoMeta.services.description} path="/services" />
       <Header />
       <main>
         <PageHero

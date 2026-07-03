@@ -1,4 +1,6 @@
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PlaceholderImage } from "../components/PlaceholderImage";
@@ -9,6 +11,7 @@ import { news } from "../data/content";
 export function News() {
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.news.title} description={seoMeta.news.description} path="/news" />
       <Header />
       <main>
         <PageHero

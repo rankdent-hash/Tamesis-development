@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { MapPin, Clock, CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { AnimateIn } from "../components/AnimateIn";
@@ -21,6 +23,7 @@ export function Careers() {
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.careers.title} description={seoMeta.careers.description} path="/careers" />
       <Header />
       <main>
         <PageHero

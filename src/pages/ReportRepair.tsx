@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Phone } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
@@ -17,6 +19,7 @@ export function ReportRepair() {
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.reportRepair.title} description={seoMeta.reportRepair.description} path="/report-repair" />
       <Header />
       <main>
         <PageHero

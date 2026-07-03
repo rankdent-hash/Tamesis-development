@@ -32,6 +32,14 @@ stats, reviews, or nav links without touching component code. Every nav link
 and card already routes to a real path — pages not yet built render a
 branded "Coming Soon" placeholder rather than a dead link.
 
+## SEO
+
+- Every route sets its own `<title>`, meta description, canonical URL, and Open Graph/Twitter tags via `src/components/Seo.tsx` (client-side, since this is a Vite SPA — Google's crawler executes JS, but if you later want true pre-rendered meta for all crawlers, that would mean moving to a static-generation or SSR setup).
+- JSON-LD structured data: site-wide `LocalBusiness` schema (`SiteSchema.tsx`), plus `BreadcrumbList` on every inner page, `FAQPage` on every service page, and `Service` schema on service pages.
+- `public/sitemap.xml` and `public/robots.txt` are in place, listing all 42 routes.
+- **Placeholder domain**: `https://www.tamesisdevelopment.co.uk` is used throughout (`src/lib/seo.ts`, `sitemap.xml`, `index.html`, and the company email) — update this to the real domain before launch. A quick way: search-and-replace `tamesisdevelopment.co.uk` across the repo.
+- Still outstanding: location-based SEO pages (Property Maintenance London/Fulham/Chelsea etc. and service+location combinations) from the original brief haven't been built yet.
+
 ## Photography
 
 Every image is currently a styled placeholder (`PlaceholderImage.tsx`) so the

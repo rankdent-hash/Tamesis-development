@@ -1,11 +1,14 @@
 import { LegalPage } from "./LegalPage";
 import { company } from "../../data/content";
+import { seoMeta } from "../../data/seoMeta";
 
 export function Terms() {
   return (
     <LegalPage
       title="Terms & Conditions"
       updated="July 2026"
+      description={seoMeta.terms.description}
+      path="/terms"
       sections={[
         {
           heading: "Introduction",

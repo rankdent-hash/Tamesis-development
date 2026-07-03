@@ -4,6 +4,8 @@ export function PropertyManagement() {
   return (
     <SectorLayout
       name="Property Management Companies"
+      slug="property-management-companies"
+      metaDescription="A single reliable contractor across your entire managed property portfolio in London — fast turnaround on leaseholder repairs and communal area maintenance."
       heroSubtitle="One reliable contractor across your entire managed portfolio, so you're not juggling different tradespeople for every building, block or leaseholder issue."
       introHeading="A Single Point of Contact Across Your Portfolio"
       introParagraphs={[

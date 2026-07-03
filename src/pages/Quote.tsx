@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, ArrowLeft, ArrowRight } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
@@ -37,6 +39,7 @@ export function Quote() {
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.quote.title} description={seoMeta.quote.description} path="/quote" />
       <Header />
       <main>
         <PageHero

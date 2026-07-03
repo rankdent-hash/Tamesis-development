@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Phone, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
+import { Seo } from "../components/Seo";
+import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
@@ -26,6 +28,7 @@ export function Emergency() {
 
   return (
     <div className="min-h-screen bg-paper">
+      <Seo title={seoMeta.emergency.title} description={seoMeta.emergency.description} path="/emergency" />
       <Header />
       <main>
         <PageHero
