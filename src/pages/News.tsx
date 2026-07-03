@@ -9,6 +9,7 @@ import { newsPhotos, unsplashUrl } from "../data/photos";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { news, newsCategoryIcon } from "../data/content";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function News() {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ export function News() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

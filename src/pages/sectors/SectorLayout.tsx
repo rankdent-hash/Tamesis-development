@@ -10,6 +10,7 @@ import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
 import { services, sectors, type Service } from "../../data/content";
 import { breadcrumbJsonLd } from "../../lib/seo";
+import { CtaPhoneLine } from "../../components/CtaPhoneLine";
 
 export function SectorLayout({
   name,
@@ -144,6 +145,7 @@ export function SectorLayout({
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

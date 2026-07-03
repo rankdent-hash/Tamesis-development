@@ -9,6 +9,7 @@ import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { sectors } from "../data/content";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function SectorsPage() {
   const navigate = useNavigate();
@@ -95,6 +96,7 @@ export function SectorsPage() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

@@ -12,6 +12,7 @@ import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { services, whyChoose, process, getServiceContent, type Service } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function ServiceTemplate({ service }: { service: Service }) {
   const content = getServiceContent(service);
@@ -235,6 +236,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

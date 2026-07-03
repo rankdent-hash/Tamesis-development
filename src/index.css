@@ -76,6 +76,11 @@ body {
 /* Corner-bracket signature motif — engineering/technical mark, used sparingly on hover/focus states */
 .corner-marks {
   position: relative;
+  border: 1px solid rgba(198, 161, 91, 0.28);
+  transition: border-color 0.25s ease;
+}
+.corner-marks:hover {
+  border-color: rgba(198, 161, 91, 0.55);
 }
 .corner-marks::before,
 .corner-marks::after {
@@ -83,7 +88,7 @@ body {
   position: absolute;
   width: 14px;
   height: 14px;
-  border-color: var(--color-blue-400);
+  border-color: var(--color-orange-400);
   opacity: 0;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }

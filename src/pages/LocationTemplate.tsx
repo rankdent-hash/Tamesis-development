@@ -10,6 +10,7 @@ import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { services, locations, getLocationContent, type Location } from "../data/content";
 import { breadcrumbJsonLd } from "../lib/seo";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function LocationTemplate({ location }: { location: Location }) {
   const content = getLocationContent(location);
@@ -135,6 +136,7 @@ export function LocationTemplate({ location }: { location: Location }) {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

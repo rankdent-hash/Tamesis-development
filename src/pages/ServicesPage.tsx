@@ -9,6 +9,7 @@ import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { services } from "../data/content";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function ServicesPage() {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ export function ServicesPage() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

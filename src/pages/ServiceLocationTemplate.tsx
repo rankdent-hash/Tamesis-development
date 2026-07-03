@@ -11,6 +11,7 @@ import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { services, locations, getServiceLocationContent, type Service, type Location } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd } from "../lib/seo";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function ServiceLocationTemplate({ service, location }: { service: Service; location: Location }) {
   const content = getServiceLocationContent(service, location);
@@ -125,6 +126,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

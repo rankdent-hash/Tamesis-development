@@ -9,6 +9,7 @@ import { Illustration } from "../components/Illustration";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { stats, values, timeline } from "../data/content";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function About() {
   const navigate = useNavigate();
@@ -188,6 +189,7 @@ export function About() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

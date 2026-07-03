@@ -1,3 +1,5 @@
+import { CtaPhoneLine } from "./CtaPhoneLine";
+
 export function FinalCta() {
   return (
     <section className="relative py-24 lg:py-32 bg-navy-950 overflow-hidden">
@@ -24,6 +26,7 @@ export function FinalCta() {
             Contact Us
           </a>
         </div>
+        <CtaPhoneLine />
       </div>
     </section>
   );

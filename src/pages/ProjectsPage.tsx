@@ -11,6 +11,7 @@ import { projectPhotos, unsplashUrl } from "../data/photos";
 import { Button } from "../components/ui/button";
 import { projects, projectFilters, projectCategoryIcon } from "../data/content";
 import { cn } from "../lib/utils";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function ProjectsPage() {
   const [filter, setFilter] = useState<(typeof projectFilters)[number]>("All");
@@ -109,6 +110,7 @@ export function ProjectsPage() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

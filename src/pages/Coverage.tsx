@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 import { Button } from "../components/ui/button";
 import { locations } from "../data/content";
 
@@ -111,6 +112,7 @@ export function Coverage() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>

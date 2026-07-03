@@ -7,7 +7,7 @@ function Stat({ value, suffix, label, decimals }: (typeof stats)[number]) {
   const display = decimals ? (raw / 10).toFixed(decimals) : raw.toString();
 
   return (
-    <div ref={ref} className="flex flex-col items-center text-center px-6 py-8 lg:py-0">
+    <div ref={ref} className="flex flex-col items-center text-center px-6 py-10 lg:py-4">
       <span className="font-accent font-semibold text-3xl lg:text-4xl text-white tabular-nums">
         {display}
         {suffix}
@@ -19,7 +19,7 @@ function Stat({ value, suffix, label, decimals }: (typeof stats)[number]) {
 
 export function TrustBar() {
   return (
-    <section id="trust-bar" className="relative bg-navy-900">
+    <section id="trust-bar" className="relative bg-navy-900 py-4 lg:py-6">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-navy-700/60">
         {stats.map((stat) => (
           <Stat key={stat.label} {...stat} />

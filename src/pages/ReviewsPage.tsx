@@ -8,6 +8,7 @@ import { PageHero } from "../components/PageHero";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { reviews } from "../data/content";
+import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 const breakdown = [
   { stars: 5, pct: 78 },
@@ -96,6 +97,7 @@ export function ReviewsPage() {
                 Contact Us
               </Button>
             </div>
+            <CtaPhoneLine />
           </div>
         </section>
       </main>
