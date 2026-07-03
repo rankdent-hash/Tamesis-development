@@ -10,6 +10,8 @@ const Home = lazy(() => import("./pages/Home").then((m) => ({ default: m.Home })
 const About = lazy(() => import("./pages/About").then((m) => ({ default: m.About })));
 const ServicesPage = lazy(() => import("./pages/ServicesPage").then((m) => ({ default: m.ServicesPage })));
 const ServiceTemplate = lazy(() => import("./pages/ServiceTemplate").then((m) => ({ default: m.ServiceTemplate })));
+const LocationRoute = lazy(() => import("./pages/LocationTemplate").then((m) => ({ default: m.LocationRoute })));
+const ServiceLocationRoute = lazy(() => import("./pages/ServiceLocationTemplate").then((m) => ({ default: m.ServiceLocationRoute })));
 const SectorsPage = lazy(() => import("./pages/SectorsPage").then((m) => ({ default: m.SectorsPage })));
 const HousingAssociations = lazy(() => import("./pages/sectors/HousingAssociations").then((m) => ({ default: m.HousingAssociations })));
 const LocalAuthorities = lazy(() => import("./pages/sectors/LocalAuthorities").then((m) => ({ default: m.LocalAuthorities })));
@@ -43,6 +45,8 @@ function App() {
           {services.map((s) => (
             <Route key={s.slug} path={`/services/${s.slug}`} element={<ServiceTemplate service={s} />} />
           ))}
+          <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
+          <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />
           <Route path="/sectors/housing-associations" element={<HousingAssociations />} />
           <Route path="/sectors/local-authorities" element={<LocalAuthorities />} />

@@ -212,6 +212,58 @@ export const reviews = [
   },
 ] as const;
 
+export const locations = [
+  { name: "Fulham", slug: "fulham", note: "Home to our Fulham High Street office, so Fulham is where we can respond fastest." },
+  { name: "Chelsea", slug: "chelsea", note: "Regular work in Chelsea's period conversions and high-spec residential properties." },
+  { name: "Westminster", slug: "westminster", note: "Experience with both residential blocks and commercial premises across Westminster." },
+  { name: "Kensington", slug: "kensington", note: "Repairs and refurbishment for Kensington homeowners, landlords and managing agents." },
+  { name: "Hammersmith", slug: "hammersmith", note: "Close to our Fulham base, with fast response times across Hammersmith." },
+  { name: "Camden", slug: "camden", note: "Planned maintenance and repairs for Camden's mix of residential and commercial stock." },
+  { name: "Islington", slug: "islington", note: "Regular work across Islington's period properties and managed developments." },
+  { name: "Wandsworth", slug: "wandsworth", note: "Repairs, refurbishment and planned maintenance across Wandsworth." },
+] as const;
+
+export type Location = (typeof locations)[number];
+
+export function getLocationContent(location: Location) {
+  return {
+    overview: `Tamesis Development Ltd provides property maintenance, repairs, refurbishment and construction services across ${location.name}. ${location.note} Whether it's a single reported repair or an ongoing planned maintenance contract, our directly employed engineers deliver the same professional standard throughout ${location.name}.`,
+    whyChooseLocal: [
+      `Local response times across ${location.name} and the surrounding area`,
+      "Directly employed engineers, not ad-hoc subcontractors",
+      "Work for housing associations, local authorities, managing agents, landlords and homeowners",
+      "Clear, fixed quotes before any work begins",
+    ],
+  };
+}
+
+export function getServiceLocationContent(service: Service, location: Location) {
+  const serviceLower = service.name.toLowerCase();
+  return {
+    overview: `Looking for ${serviceLower} in ${location.name}? Tamesis Development Ltd delivers professional ${serviceLower} across ${location.name}, carried out by our own directly employed engineers rather than a network of subcontractors. ${location.note}`,
+    whatWeDo: [
+      `Initial assessment and diagnosis of the ${serviceLower} issue in your ${location.name} property`,
+      "A clear, itemised quotation before any work begins",
+      "Work carried out by our own directly employed engineers",
+      "Full clean-up and a quality check before we consider the job complete",
+    ],
+    faqs: [
+      {
+        q: `Do you provide ${serviceLower} in ${location.name}?`,
+        a: `Yes — ${serviceLower} is one of our core services and we regularly carry it out across ${location.name} for housing associations, landlords, managing agents and homeowners.`,
+      },
+      {
+        q: `How quickly can you respond in ${location.name}?`,
+        a: `Response times depend on urgency. Emergency requests are prioritised; non-urgent ${serviceLower} work is scheduled with you in advance.`,
+      },
+      {
+        q: "Do you provide a fixed quote before starting work?",
+        a: "Yes. We assess the work first and provide a clear, itemised quotation before anything begins.",
+      },
+    ],
+  };
+}
+
 export const values = [
   {
     name: "Professionalism",

@@ -1,4 +1,4 @@
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -7,6 +7,7 @@ import { PageHero } from "../components/PageHero";
 import { PlaceholderImage } from "../components/PlaceholderImage";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
+import { locations } from "../data/content";
 
 const boroughs = [
   "Westminster", "Camden", "Islington", "Hackney", "Tower Hamlets", "Greenwich",
@@ -61,6 +62,36 @@ export function Coverage() {
             <AnimateIn delay={0.1} className="corner-marks lg:sticky lg:top-32">
               <PlaceholderImage label="Greater London coverage map" className="aspect-square rounded-2xl shadow-card-hover" />
             </AnimateIn>
+          </div>
+        </section>
+
+        {/* Featured areas with dedicated pages */}
+        <section className="py-24 lg:py-32 bg-navy-50">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Featured Areas</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                Areas We Work In Most
+              </h2>
+            </AnimateIn>
+
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {locations.map((location) => (
+                <a
+                  key={location.slug}
+                  href={`/property-maintenance/${location.slug}`}
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600">
+                    <MapPin size={18} strokeWidth={1.75} />
+                  </span>
+                  <span className="mt-4 flex items-center justify-between gap-2">
+                    <span className="font-display font-semibold text-navy-900 text-sm">{location.name}</span>
+                    <ArrowRight size={14} className="text-slate-light group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all" />
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
