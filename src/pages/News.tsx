@@ -4,10 +4,10 @@ import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
-import { news } from "../data/content";
+import { news, newsCategoryIcon } from "../data/content";
 
 export function News() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export function News() {
             {news.map((article, i) => (
               <AnimateIn key={article.title} delay={(i % 3) * 0.06}>
                 <a href="/contact" className="group corner-marks h-full flex flex-col rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow">
-                  <PlaceholderImage label={article.title} className="aspect-[16/10]" />
+                  <Illustration icon={newsCategoryIcon[article.category] ?? "FileText"} label={article.title} className="aspect-[16/10]" />
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-center gap-3 text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">
                       <span>{article.category}</span>

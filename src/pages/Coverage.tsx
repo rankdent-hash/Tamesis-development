@@ -5,7 +5,7 @@ import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { locations } from "../data/content";
@@ -62,7 +62,7 @@ export function Coverage() {
             </AnimateIn>
 
             <AnimateIn delay={0.1} className="corner-marks lg:sticky lg:top-32">
-              <PlaceholderImage label="Greater London coverage map" className="aspect-square rounded-2xl shadow-card-hover" />
+              <Illustration icon="MapPin" label="Greater London coverage map" className="aspect-square rounded-2xl shadow-card-hover" />
             </AnimateIn>
           </div>
         </section>

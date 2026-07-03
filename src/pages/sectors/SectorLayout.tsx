@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { PageHero } from "../../components/PageHero";
-import { PlaceholderImage } from "../../components/PlaceholderImage";
+import { Illustration } from "../../components/Illustration";
 import { AnimateIn } from "../../components/AnimateIn";
 import { Icon } from "../../components/Icon";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
-import { services, type Service } from "../../data/content";
+import { services, sectors, type Service } from "../../data/content";
 import { breadcrumbJsonLd } from "../../lib/seo";
 
 export function SectorLayout({
@@ -33,6 +33,7 @@ export function SectorLayout({
   ctaHeading: string;
 }) {
   const relevantServices: Service[] = services.filter((s) => relevantServiceSlugs.includes(s.slug));
+  const sectorIcon = sectors.find((s) => s.name === name)?.icon ?? "Building2";
   const path = `/sectors/${slug}`;
 
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ export function SectorLayout({
               </div>
             </AnimateIn>
             <AnimateIn delay={0.1} className="corner-marks">
-              <PlaceholderImage label={`${name} works`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
+              <Illustration icon={sectorIcon} label={`${name} works`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
             </AnimateIn>
           </div>
         </section>

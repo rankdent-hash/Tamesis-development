@@ -5,7 +5,7 @@ import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
@@ -63,7 +63,7 @@ export function Contact() {
               </div>
 
               <div className="mt-6 corner-marks">
-                <PlaceholderImage label="Office location map" className="aspect-[16/10] rounded-2xl" />
+                <Illustration icon="MapPin" label="Office location map" className="aspect-[16/10] rounded-2xl" />
               </div>
             </AnimateIn>
 

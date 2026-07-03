@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Seo } from "../components/Seo";
@@ -61,7 +61,7 @@ export function LocationTemplate({ location }: { location: Location }) {
               </div>
             </AnimateIn>
             <AnimateIn delay={0.1} className="corner-marks">
-              <PlaceholderImage label={`Property maintenance in ${location.name}`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
+              <Illustration icon="MapPin" label={`Property maintenance in ${location.name}`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
             </AnimateIn>
           </div>
         </section>

@@ -154,6 +154,14 @@ export const projects = [
 
 export const projectFilters = ["All", "Bathrooms", "Repairs", "Maintenance", "Commercial", "Construction"] as const;
 
+export const projectCategoryIcon: Record<string, string> = {
+  Bathrooms: "Bath",
+  Repairs: "Wrench",
+  Maintenance: "CalendarCheck2",
+  Commercial: "Building2",
+  Construction: "HardHat",
+};
+
 export const process = [
   { step: "1", title: "Contact Us", description: "Call, email or submit a request and speak to our booking team." },
   { step: "2", title: "Survey & Assessment", description: "Our team assesses the work and provides a clear scope and quote." },
@@ -311,6 +319,12 @@ export const benefits = [
   { name: "Supportive Team Culture", icon: "Users" },
   { name: "Career Progression", icon: "TrendingUp" },
 ] as const;
+
+export const newsCategoryIcon: Record<string, string> = {
+  "Company News": "Building2",
+  Guidance: "BookOpen",
+  "Case Study": "FileText",
+};
 
 export const news = [
   {

@@ -6,9 +6,9 @@ import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { Button } from "../components/ui/button";
-import { projects, projectFilters } from "../data/content";
+import { projects, projectFilters, projectCategoryIcon } from "../data/content";
 import { cn } from "../lib/utils";
 
 export function ProjectsPage() {
@@ -60,7 +60,8 @@ export function ProjectsPage() {
                     className="group corner-marks rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow"
                   >
                     <div className="overflow-hidden">
-                      <PlaceholderImage
+                      <Illustration
+                        icon={projectCategoryIcon[project.category] ?? "HardHat"}
                         label={project.title}
                         className="aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
                       />

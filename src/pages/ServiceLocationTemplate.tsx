@@ -3,7 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
@@ -63,7 +63,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
               </div>
             </AnimateIn>
             <AnimateIn delay={0.1} className="corner-marks">
-              <PlaceholderImage label={`${service.name} in ${location.name}`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
+              <Illustration icon={service.icon} label={`${service.name} in ${location.name}`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
             </AnimateIn>
           </div>
         </section>

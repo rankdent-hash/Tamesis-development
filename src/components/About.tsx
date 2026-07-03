@@ -1,4 +1,4 @@
-import { PlaceholderImage } from "./PlaceholderImage";
+import { Illustration } from "./Illustration";
 import { AnimateIn } from "./AnimateIn";
 
 export function About() {
@@ -6,8 +6,9 @@ export function About() {
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
         <AnimateIn className="corner-marks">
-          <PlaceholderImage
-            label="Tamesis engineers &amp; office"
+          <Illustration
+            icon="HardHat"
+            label="Tamesis engineers & office"
             className="aspect-[4/5] lg:aspect-[5/6] rounded-2xl shadow-card-hover"
           />
         </AnimateIn>

@@ -1,6 +1,6 @@
 import { MapPin } from "lucide-react";
-import { projects } from "../data/content";
-import { PlaceholderImage } from "./PlaceholderImage";
+import { projects, projectCategoryIcon } from "../data/content";
+import { Illustration } from "./Illustration";
 
 export function Projects() {
   return (
@@ -25,7 +25,8 @@ export function Projects() {
           {projects.map((project) => (
             <a key={project.title} href="/projects" className="group corner-marks rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow">
               <div className="overflow-hidden">
-                <PlaceholderImage
+                <Illustration
+                  icon={projectCategoryIcon[project.category] ?? "HardHat"}
                   label={project.title}
                   className="aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
                 />

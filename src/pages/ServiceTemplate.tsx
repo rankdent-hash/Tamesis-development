@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Faq } from "../components/Faq";
@@ -60,7 +60,8 @@ export function ServiceTemplate({ service }: { service: Service }) {
               </div>
             </AnimateIn>
             <AnimateIn delay={0.1} className="corner-marks">
-              <PlaceholderImage
+              <Illustration
+                icon={service.icon}
                 label={`${service.name} in progress`}
                 className="aspect-[4/3] rounded-2xl shadow-card-hover"
               />

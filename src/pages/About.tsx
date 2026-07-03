@@ -5,7 +5,7 @@ import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { AnimateIn } from "../components/AnimateIn";
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { Illustration } from "../components/Illustration";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { stats, values, timeline } from "../data/content";
@@ -43,8 +43,9 @@ export function About() {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
             <AnimateIn className="corner-marks">
-              <PlaceholderImage
-                label="Tamesis founder &amp; site team"
+              <Illustration
+                icon="HardHat"
+                label="Tamesis founder & site team"
                 className="aspect-[4/5] lg:aspect-[5/6] rounded-2xl shadow-card-hover"
               />
             </AnimateIn>

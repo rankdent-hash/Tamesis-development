@@ -47,13 +47,11 @@ CTA buttons (the `Button` component, which renders a `<button>` not an `<a>`) na
 - **Placeholder domain**: `https://www.tamesisdevelopment.co.uk` is used throughout (`src/lib/seo.ts`, `sitemap.xml`, `index.html`, and the company email) — update this to the real domain before launch. A quick way: search-and-replace `tamesisdevelopment.co.uk` across the repo.
 - Still outstanding: location-based SEO pages (Property Maintenance London/Fulham/Chelsea etc. and service+location combinations) from the original brief haven't been built yet.
 
-## Photography
+## Imagery
 
-Every image is currently a styled placeholder (`PlaceholderImage.tsx`) so the
-layout is production-ready but has no real photos yet. Replace these with
-real photography of engineers/projects before launch — either swap the
-component for a plain `<img>` tag, or update `PlaceholderImage` to accept a
-`src` prop.
+Every image slot across the site (service pages, sector pages, location pages, project cards, news cards, About, Coverage, Contact) uses `src/components/Illustration.tsx` — an original, on-brand SVG composition (navy background, blueprint grid, geometric accent shapes, centered icon) rather than stock photography. Each item gets a visually distinct layout deterministically derived from its name/label, so a wrench-icon plumbing illustration looks different from a bath-icon bathroom illustration, without needing 200+ unique hand-designed images.
+
+This avoids copyright risk entirely (no stock photo licensing needed) and works today. **Before launch**, swap in real photography of engineers, completed projects, and the office — replace `<Illustration icon="..." label="..." />` with a plain `<img src="..." alt="..." />` wherever a real photo is available; the surrounding layout (aspect ratio classes, `corner-marks`, shadows) will still apply correctly to an `<img>` in the same spot.
 
 ## Local development
 
