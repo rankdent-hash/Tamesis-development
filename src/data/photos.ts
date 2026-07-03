@@ -13,6 +13,27 @@ export function unsplashUrl(photoId: string, params = "auto=format&fit=crop&q=80
 
 export const heroPhoto = "photo-1632862378103-8248dccb7e3d"; // team collaborating on a project
 
+export const aboutPhoto = "photo-1672748341520-6a839e6c05bb"; // engineer in hard hat and workwear
+
+export const coveragePhoto = "photo-1513635269975-59663e0ac1ad"; // aerial London skyline (The Shard)
+
+// Keyed by exact project title (from `projects` in content.ts)
+export const projectPhotos: Record<string, string> = {
+  "Void Turnaround Programme": "photo-1516216628859-9bccecab13ca",
+  "Full Bathroom Refurbishment": "photo-1643949719317-4342d8d4031e",
+  "Estate-Wide Planned Maintenance": "photo-1541888946425-d81bb19240f5",
+  "Commercial Office Refit": "photo-1694521787193-9293daeddbaa",
+  "Insurance Reinstatement Works": "photo-1558227691-41ea78d1f631",
+  "Multi-Unit Roof & Leak Repairs": "photo-1530124566582-a618bc2615dc",
+};
+
+// Keyed by exact article title (from `news` in content.ts)
+export const newsPhotos: Record<string, string> = {
+  "Tamesis Expands Planned Maintenance Team": "photo-1541888946425-d81bb19240f5",
+  "A Guide to Preventing Winter Leaks in Occupied Properties": "photo-1542013936693-884638332954",
+  "How We Deliver Void Turnarounds Faster": "photo-1513692398020-cbaea622c427",
+};
+
 export const servicePhotos: Record<string, string> = {
   "responsive-repairs": "photo-1621905252507-b35492cc74b4",
   "property-maintenance": "photo-1690473768476-44b5cebb7d80",

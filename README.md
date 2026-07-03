@@ -49,11 +49,13 @@ CTA buttons (the `Button` component, which renders a `<button>` not an `<a>`) na
 
 ## Photography
 
-The homepage hero and all 20 service pages (plus the 160 service×location combo pages, which reuse the parent service's photo) now use **real, freely-licensed photos** from Unsplash — sourced in `src/data/photos.ts`. These are genuinely free for commercial use (the Unsplash License: free for any use, no attribution required — https://unsplash.com/license), and only free-tier photos were used (never Unsplash+ or iStock, which require payment).
+The homepage hero, About, Featured Projects, Latest News, and Coverage sections, plus all 20 service pages (and the 160 service×location combo pages, which reuse the parent service's photo) now use **real, freely-licensed photos** from Unsplash — sourced in `src/data/photos.ts`. These are genuinely free for commercial use (the Unsplash License: free for any use, no attribution required — https://unsplash.com/license), and only free-tier photos were used (never Unsplash+ or iStock, which require payment).
 
-**Important caveat**: these are generic trade/property photos representing the *type* of work (a plumber, an electrician, a finished bathroom), not actual photos of Tamesis's own team, vans, or completed projects. Two categories (`painting-decorating`, `damp-mould`) use an approximate fallback photo since a precisely-matched free photo wasn't sourced — worth revisiting with a dedicated search. Before launch, prioritise replacing these with real company photography for authenticity — swap the `servicePhotos` / `heroPhoto` entries in `src/data/photos.ts` with your own image URLs (or local files in `/public`) once available; no other code changes needed.
+Images use Unsplash's `auto=format` parameter, which automatically serves WebP/AVIF to browsers that support it (better than hardcoding a WebP URL, since it degrades gracefully for older browsers instead of breaking).
 
-Every other image slot on the site (About, Sectors, Projects, News, Coverage, Contact) still uses `src/components/Illustration.tsx` — an original, on-brand SVG composition rather than stock photography. See below for details.
+**Important caveat**: these are generic trade/property photos representing the *type* of work (a plumber, an electrician, a finished bathroom, a London skyline), not actual photos of Tamesis's own team, vans, or completed projects. Two service categories (`painting-decorating`, `damp-mould`) use an approximate fallback photo since a precisely-matched free photo wasn't sourced — worth revisiting with a dedicated search. Before launch, prioritise replacing these with real company photography for authenticity — swap the relevant entries in `src/data/photos.ts` with your own image URLs (or local files in `/public`) once available; no other code changes needed.
+
+Every other image slot on the site (Sectors, Coverage/Contact maps on inner pages, Projects/News fallback) still uses `src/components/Illustration.tsx` — an original, on-brand SVG composition rather than stock photography. See below for details.
 
 ## Local development
 

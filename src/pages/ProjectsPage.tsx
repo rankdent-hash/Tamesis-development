@@ -7,6 +7,7 @@ import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Illustration } from "../components/Illustration";
+import { projectPhotos, unsplashUrl } from "../data/photos";
 import { Button } from "../components/ui/button";
 import { projects, projectFilters, projectCategoryIcon } from "../data/content";
 import { cn } from "../lib/utils";
@@ -60,11 +61,20 @@ export function ProjectsPage() {
                     className="group corner-marks rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow"
                   >
                     <div className="overflow-hidden">
-                      <Illustration
-                        icon={projectCategoryIcon[project.category] ?? "HardHat"}
-                        label={project.title}
-                        className="aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
-                      />
+                      {projectPhotos[project.title] ? (
+                        <img
+                          src={unsplashUrl(projectPhotos[project.title])}
+                          alt={project.title}
+                          className="aspect-[4/3] w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Illustration
+                          icon={projectCategoryIcon[project.category] ?? "HardHat"}
+                          label={project.title}
+                          className="aspect-[4/3] transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                     </div>
                     <div className="p-6">
                       <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">

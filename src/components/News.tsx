@@ -1,5 +1,6 @@
 import { news, newsCategoryIcon } from "../data/content";
 import { Illustration } from "./Illustration";
+import { newsPhotos, unsplashUrl } from "../data/photos";
 
 import { AnimateIn } from "./AnimateIn";
 
@@ -17,7 +18,16 @@ export function News() {
         <div className="mt-12 grid md:grid-cols-3 gap-6">
           {news.map((article) => (
             <a key={article.title} href="/news" className="group corner-marks rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover transition-shadow">
-              <Illustration icon={newsCategoryIcon[article.category] ?? "FileText"} label={article.title} className="aspect-[16/10]" />
+              {newsPhotos[article.title] ? (
+                <img
+                  src={unsplashUrl(newsPhotos[article.title])}
+                  alt={article.title}
+                  className="aspect-[16/10] w-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <Illustration icon={newsCategoryIcon[article.category] ?? "FileText"} label={article.title} className="aspect-[16/10]" />
+              )}
               <div className="p-6">
                 <div className="flex items-center gap-3 text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">
                   <span>{article.category}</span>

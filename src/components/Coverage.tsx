@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { coveragePhoto, unsplashUrl } from "../data/photos";
 
 const boroughs = [
   "Westminster", "Camden", "Islington", "Hackney", "Fulham", "Chelsea",
@@ -36,8 +37,14 @@ export function Coverage() {
           </a>
         </div>
 
-        <div className="corner-marks relative rounded-2xl overflow-hidden aspect-square bg-navy-900 blueprint-grid shadow-card-hover">
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-950/50 to-blue-700/30" />
+        <div className="corner-marks relative rounded-2xl overflow-hidden aspect-square bg-navy-900 shadow-card-hover">
+          <img
+            src={unsplashUrl(coveragePhoto)}
+            alt="Aerial view of London, showing our coverage area"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-navy-950/50 to-blue-700/20" />
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="w-4 h-4 rounded-full bg-blue-400 ring-8 ring-blue-400/20 animate-pulse" />
           </div>

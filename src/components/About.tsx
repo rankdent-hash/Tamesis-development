@@ -1,15 +1,16 @@
-import { Illustration } from "./Illustration";
 import { AnimateIn } from "./AnimateIn";
+import { aboutPhoto, unsplashUrl } from "../data/photos";
 
 export function About() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-        <AnimateIn className="corner-marks">
-          <Illustration
-            icon="HardHat"
-            label="Tamesis engineers & office"
-            className="aspect-[4/5] lg:aspect-[5/6] rounded-2xl shadow-card-hover"
+        <AnimateIn className="corner-marks overflow-hidden rounded-2xl shadow-card-hover aspect-[4/5] lg:aspect-[5/6]">
+          <img
+            src={unsplashUrl(aboutPhoto)}
+            alt="Tamesis engineers & office"
+            className="w-full h-full object-cover"
+            loading="lazy"
           />
         </AnimateIn>
 
