@@ -4,6 +4,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Illustration } from "../components/Illustration";
+import { servicePhotos, unsplashUrl } from "../data/photos";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Faq } from "../components/Faq";
@@ -59,12 +60,21 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 </Button>
               </div>
             </AnimateIn>
-            <AnimateIn delay={0.1} className="corner-marks">
-              <Illustration
-                icon={service.icon}
-                label={`${service.name} in progress`}
-                className="aspect-[4/3] rounded-2xl shadow-card-hover"
-              />
+            <AnimateIn delay={0.1} className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+              {servicePhotos[service.slug] ? (
+                <img
+                  src={unsplashUrl(servicePhotos[service.slug])}
+                  alt={`${service.name} in progress`}
+                  className="aspect-[4/3] w-full h-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <Illustration
+                  icon={service.icon}
+                  label={`${service.name} in progress`}
+                  className="aspect-[4/3]"
+                />
+              )}
             </AnimateIn>
           </div>
         </section>

@@ -1,5 +1,6 @@
 import { ChevronDown, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { heroPhoto, unsplashUrl } from "../data/photos";
 
 const badges = [
   "Established 2014",
@@ -12,10 +13,16 @@ const badges = [
 export function Hero() {
   return (
     <section className="relative pt-40 lg:pt-48 pb-24 lg:pb-32 overflow-hidden bg-navy-950">
-      {/* Background photography placeholder */}
-      <div className="absolute inset-0 bg-navy-900 blueprint-grid">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/95 via-navy-950/85 to-navy-950" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/70 via-transparent to-navy-950/40" />
+      {/* Background photography — real photo, dark overlay for text contrast */}
+      <div className="absolute inset-0 bg-navy-900">
+        <img
+          src={unsplashUrl(heroPhoto)}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/90 via-navy-950/80 to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-950/30 to-navy-950/60" />
       </div>
 
       <motion.div
