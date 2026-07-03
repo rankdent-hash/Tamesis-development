@@ -1,0 +1,133 @@
+import { CheckCircle2 } from "lucide-react";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
+import { PageHero } from "../../components/PageHero";
+import { PlaceholderImage } from "../../components/PlaceholderImage";
+import { AnimateIn } from "../../components/AnimateIn";
+import { Icon } from "../../components/Icon";
+import { Button } from "../../components/ui/button";
+import { services } from "../../data/content";
+
+export function SectorLayout({
+  name,
+  heroSubtitle,
+  introHeading,
+  introParagraphs,
+  keyPoints,
+  relevantServiceSlugs,
+  ctaHeading,
+}: {
+  name: string;
+  heroSubtitle: string;
+  introHeading: string;
+  introParagraphs: string[];
+  keyPoints: { title: string; body: string }[];
+  relevantServiceSlugs: string[];
+  ctaHeading: string;
+}) {
+  const relevantServices = services.filter((s) => relevantServiceSlugs.includes(s.slug));
+
+  return (
+    <div className="min-h-screen bg-paper">
+      <Header />
+      <main>
+        <PageHero eyebrow="Sectors" title={name} subtitle={heroSubtitle} breadcrumb={name} />
+
+        {/* Intro */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+            <AnimateIn>
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Overview</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                {introHeading}
+              </h2>
+              <div className="mt-6 space-y-5 text-slate leading-relaxed">
+                {introParagraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Button variant="primary" onClick={() => (window.location.href = "/quote")}>
+                  Request a Quote
+                </Button>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={0.1} className="corner-marks">
+              <PlaceholderImage label={`${name} works`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
+            </AnimateIn>
+          </div>
+        </section>
+
+        {/* Key points */}
+        <section className="py-24 lg:py-32 bg-navy-50">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">How We Help</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                What Sets Us Apart for {name}
+              </h2>
+            </AnimateIn>
+
+            <div className="mt-10 grid sm:grid-cols-2 gap-5">
+              {keyPoints.map((point) => (
+                <div key={point.title} className="corner-marks rounded-2xl border border-navy-100 bg-white p-7 shadow-card">
+                  <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600">
+                    <CheckCircle2 size={18} strokeWidth={1.75} />
+                  </span>
+                  <h3 className="mt-4 font-display font-semibold text-navy-900 text-base">{point.title}</h3>
+                  <p className="mt-2 text-sm text-slate leading-relaxed">{point.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Relevant services */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Relevant Services</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                Services Commonly Delivered for {name}
+              </h2>
+            </AnimateIn>
+
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {relevantServices.map((service) => (
+                <a
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all text-center"
+                >
+                  <span className="flex w-11 h-11 mx-auto items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <Icon name={service.icon} size={20} strokeWidth={1.75} />
+                  </span>
+                  <span className="mt-4 block font-display font-semibold text-navy-900 text-sm leading-snug">{service.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="relative py-20 lg:py-28 bg-navy-950 overflow-hidden">
+          <div className="absolute inset-0 blueprint-grid opacity-50" />
+          <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 text-center">
+            <h2 className="font-display font-bold text-white text-3xl lg:text-4xl leading-tight text-balance max-w-2xl mx-auto">
+              {ctaHeading}
+            </h2>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Button variant="primary" size="lg" onClick={() => (window.location.href = "/quote")}>
+                Request a Quote
+              </Button>
+              <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/contact")}>
+                Contact Us
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
