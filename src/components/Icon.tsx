@@ -1,10 +1,93 @@
-import * as Icons from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import {
+  BadgeCheck,
+  Banknote,
+  Bath,
+  Briefcase,
+  Building,
+  Building2,
+  CalendarCheck2,
+  CalendarClock,
+  CloudRain,
+  Droplets,
+  Eye,
+  GitBranch,
+  GraduationCap,
+  Grid3x3,
+  Hammer,
+  HardHat,
+  Home,
+  House,
+  KeyRound,
+  KeySquare,
+  Landmark,
+  LayoutGrid,
+  MapPin,
+  MessageSquare,
+  PaintRoller,
+  Ruler,
+  Search,
+  ShieldCheck,
+  ShowerHead,
+  Target,
+  ThumbsUp,
+  Timer,
+  TrendingUp,
+  Truck,
+  Users,
+  Waves,
+  Wrench,
+  Zap,
+} from "lucide-react";
 
-type IconName = keyof typeof Icons;
+// Explicit map (rather than `import * as Icons`) so bundlers can tree-shake
+// unused icons instead of pulling the entire lucide-react library into
+// whatever chunk this file ends up in.
+const iconMap = {
+  BadgeCheck,
+  Banknote,
+  Bath,
+  Briefcase,
+  Building,
+  Building2,
+  CalendarCheck2,
+  CalendarClock,
+  CloudRain,
+  Droplets,
+  Eye,
+  GitBranch,
+  GraduationCap,
+  Grid3x3,
+  Hammer,
+  HardHat,
+  Home,
+  House,
+  KeyRound,
+  KeySquare,
+  Landmark,
+  LayoutGrid,
+  MapPin,
+  MessageSquare,
+  PaintRoller,
+  Ruler,
+  Search,
+  ShieldCheck,
+  ShowerHead,
+  Target,
+  ThumbsUp,
+  Timer,
+  TrendingUp,
+  Truck,
+  Users,
+  Waves,
+  Wrench,
+  Zap,
+} satisfies Record<string, React.ComponentType<LucideProps>>;
+
+export type IconName = keyof typeof iconMap;
 
 export function Icon({ name, ...props }: { name: string } & LucideProps) {
-  const Component = Icons[name as IconName] as React.ComponentType<LucideProps> | undefined;
+  const Component = iconMap[name as IconName];
   if (!Component) return null;
   return <Component {...props} />;
 }
