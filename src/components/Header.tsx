@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Phone, Menu, X } from "lucide-react";
 import { company, navLinks } from "../data/content";
+import { cn } from "../lib/utils";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -56,9 +61,22 @@ export function Header() {
 
           <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="relative py-2 hover:text-blue-600 transition-colors group">
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={cn(
+                  "relative py-2 hover:text-blue-600 transition-colors group",
+                  isActive(link.href) && "text-blue-600"
+                )}
+              >
                 {link.label}
-                <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200" />
+                <span
+                  className={cn(
+                    "absolute left-0 right-0 -bottom-0.5 h-0.5 bg-blue-500 origin-left transition-transform duration-200",
+                    isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
               </a>
             ))}
           </nav>
@@ -84,7 +102,13 @@ export function Header() {
         {menuOpen && (
           <div className="lg:hidden border-t border-navy-100 bg-white px-6 py-6 flex flex-col gap-5">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="font-medium text-navy-800" onClick={() => setMenuOpen(false)}>
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={cn("font-medium", isActive(link.href) ? "text-blue-600" : "text-navy-800")}
+                onClick={() => setMenuOpen(false)}
+              >
                 {link.label}
               </a>
             ))}
