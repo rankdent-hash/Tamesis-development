@@ -35,6 +35,10 @@ subject matter).
   (`src/index.css` `@theme` block) and doesn't require touching individual
   components to re-theme.
 
+## Lead capture
+
+The homepage hero now has a compact quote-request form (`src/components/HeroQuoteForm.tsx`) on the right side — name, phone, service dropdown, submit. Client-side only for now (shows a success state, no backend wired up), same pattern as the other forms on the site (Contact, Careers, Quote, Report a Repair, Emergency). The component already accepts an optional `presetService` prop so it can be dropped into each of the 20 service pages later with the service field pre-filled/locked — not wired in yet, pending confirmation the homepage version looks right first.
+
 ## Structure
 
 ```
