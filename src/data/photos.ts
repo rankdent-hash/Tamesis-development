@@ -25,6 +25,12 @@ export const projectPhotos: Record<string, string> = {
   "Commercial Office Refit": "photo-1694521787193-9293daeddbaa",
   "Insurance Reinstatement Works": "photo-1558227691-41ea78d1f631",
   "Multi-Unit Roof & Leak Repairs": "photo-1530124566582-a618bc2615dc",
+  "Ensuite Bathroom Installation": "photo-1661107259637-4e1c55462428",
+  "Retail Unit Fit-Out": "photo-1695721157873-0c87f59a8ea1",
+  "Estate Extension & Groundworks": "photo-1574757987642-5755f0839101",
+  "Emergency Leak Response": "photo-1558618666-fcd25c85cd64",
+  "Block Communal Area Refurbishment": "photo-1620653713380-7a34b773fef8",
+  "New-Build Internal Fit-Out": "photo-1659930087003-2d64e33181f7",
 };
 
 // Keyed by exact article title (from `news` in content.ts)
