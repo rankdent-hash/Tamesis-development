@@ -2,7 +2,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { PageHero } from "../components/PageHero";
+import { ServiceHero } from "../components/ServiceHero";
 import { Illustration } from "../components/Illustration";
 import { servicePhotos, unsplashUrl } from "../data/photos";
 import { AnimateIn } from "../components/AnimateIn";
@@ -39,12 +39,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
       />
       <Header />
       <main>
-        <PageHero
-          eyebrow="Services"
-          title={service.name}
-          subtitle={`Professional ${service.name.toLowerCase()} across London, delivered by directly employed engineers — for housing associations, local authorities, commercial clients, landlords and homeowners.`}
-          breadcrumb={service.name}
-        />
+        <ServiceHero service={service} />
 
         {/* Overview */}
         <section className="py-24 lg:py-32">
