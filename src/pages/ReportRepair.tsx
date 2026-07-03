@@ -58,24 +58,24 @@ export function ReportRepair() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="r-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
-                    <input id="r-name" name="name" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="r-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                   <div>
                     <label htmlFor="r-phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                    <input id="r-phone" name="phone" type="tel" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="r-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="r-address" className="block text-sm font-medium text-navy-800 mb-1.5">Property Address</label>
-                  <input id="r-address" name="address" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                  <input id="r-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                 </div>
                 <div>
                   <label htmlFor="r-issue" className="block text-sm font-medium text-navy-800 mb-1.5">Describe the Issue</label>
-                  <textarea id="r-issue" name="issue" rows={5} required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none" placeholder="What's wrong, where in the property, and how long it's been an issue" />
+                  <textarea id="r-issue" name="issue" rows={5} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" placeholder="What's wrong, where in the property, and how long it's been an issue" />
                 </div>
                 <div>
                   <label htmlFor="r-access" className="block text-sm font-medium text-navy-800 mb-1.5">Access Notes (optional)</label>
-                  <input id="r-access" name="access" type="text" placeholder="e.g. key held by neighbour, buzzer code, best times to attend" className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                  <input id="r-access" name="access" type="text" placeholder="e.g. key held by neighbour, buzzer code, best times to attend" className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                 </div>
                 <Button type="submit" variant="primary" className="w-full justify-center">
                   Report Repair

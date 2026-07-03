@@ -36,14 +36,14 @@ export function HeroQuoteForm({ presetService }: { presetService?: string }) {
             name="name"
             placeholder="Full name"
             required
-            className="w-full rounded-lg border border-navy-100 px-4 py-3 text-sm focus:border-orange-400 focus:ring-1 focus:ring-orange-400 outline-none"
+            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
           />
           <input
             type="tel"
             name="phone"
             placeholder="Phone number"
             required
-            className="w-full rounded-lg border border-navy-100 px-4 py-3 text-sm focus:border-orange-400 focus:ring-1 focus:ring-orange-400 outline-none"
+            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
           />
           <select
             name="service"
@@ -51,7 +51,7 @@ export function HeroQuoteForm({ presetService }: { presetService?: string }) {
             onChange={(e) => setService(e.target.value)}
             required
             disabled={!!presetService}
-            className="w-full rounded-lg border border-navy-100 px-4 py-3 text-sm focus:border-orange-400 focus:ring-1 focus:ring-orange-400 outline-none bg-white disabled:bg-navy-50 disabled:text-navy-700"
+            className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white disabled:bg-navy-50 disabled:text-navy-700"
           >
             <option value="" disabled>
               What do you need?

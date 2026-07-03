@@ -82,20 +82,20 @@ export function Contact() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="c-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
-                      <input id="c-name" name="name" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                      <input id="c-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
                     <div>
                       <label htmlFor="c-phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                      <input id="c-phone" name="phone" type="tel" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                      <input id="c-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="c-email" className="block text-sm font-medium text-navy-800 mb-1.5">Email</label>
-                    <input id="c-email" name="email" type="email" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="c-email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                   <div>
                     <label htmlFor="c-reason" className="block text-sm font-medium text-navy-800 mb-1.5">Reason for Contact</label>
-                    <select id="c-reason" name="reason" required defaultValue="" className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none bg-white">
+                    <select id="c-reason" name="reason" required defaultValue="" className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white">
                       <option value="" disabled>Select an option</option>
                       <option>Request a Quote</option>
                       <option>Report a Repair</option>
@@ -106,7 +106,7 @@ export function Contact() {
                   </div>
                   <div>
                     <label htmlFor="c-message" className="block text-sm font-medium text-navy-800 mb-1.5">Message</label>
-                    <textarea id="c-message" name="message" rows={5} required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none" />
+                    <textarea id="c-message" name="message" rows={5} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                   </div>
                   <Button type="submit" variant="primary" className="w-full justify-center">
                     Send Message

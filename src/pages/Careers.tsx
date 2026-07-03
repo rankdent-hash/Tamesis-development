@@ -117,20 +117,20 @@ export function Careers() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-navy-800 mb-1.5">Full Name</label>
-                    <input id="fullName" name="fullName" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="fullName" name="fullName" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                    <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-navy-800 mb-1.5">Email</label>
-                  <input id="email" name="email" type="email" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                  <input id="email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                 </div>
                 <div>
                   <label htmlFor="experience" className="block text-sm font-medium text-navy-800 mb-1.5">Relevant Experience</label>
-                  <textarea id="experience" name="experience" rows={4} required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none" />
+                  <textarea id="experience" name="experience" rows={4} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                 </div>
                 <Button type="submit" variant="primary" className="w-full justify-center">
                   Submit Application

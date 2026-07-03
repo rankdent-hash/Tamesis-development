@@ -106,7 +106,7 @@ export function Quote() {
                           value={form.propertyType}
                           onChange={(e) => update("propertyType", e.target.value)}
                           required
-                          className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none bg-white"
+                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
                         >
                           <option value="" disabled>Select property type</option>
                           <option>Residential — House</option>
@@ -122,7 +122,7 @@ export function Quote() {
                           value={form.sector}
                           onChange={(e) => update("sector", e.target.value)}
                           required
-                          className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none bg-white"
+                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
                         >
                           <option value="" disabled>Select sector</option>
                           {sectors.map((s) => (
@@ -141,7 +141,7 @@ export function Quote() {
                           value={form.service}
                           onChange={(e) => update("service", e.target.value)}
                           required
-                          className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none bg-white"
+                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
                         >
                           <option value="" disabled>Select a service</option>
                           {services.map((s) => (
@@ -156,7 +156,7 @@ export function Quote() {
                           onChange={(e) => update("description", e.target.value)}
                           rows={4}
                           required
-                          className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none"
+                          className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
                         />
                       </div>
                       <Field
@@ -242,7 +242,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}
-        className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+        className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
       />
     </div>
   );

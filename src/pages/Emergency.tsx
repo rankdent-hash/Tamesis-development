@@ -73,20 +73,20 @@ export function Emergency() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="e-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
-                    <input id="e-name" name="name" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="e-name" name="name" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                   <div>
                     <label htmlFor="e-phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
-                    <input id="e-phone" name="phone" type="tel" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                    <input id="e-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                 </div>
                 <div>
                   <label htmlFor="e-address" className="block text-sm font-medium text-navy-800 mb-1.5">Property Address</label>
-                  <input id="e-address" name="address" type="text" required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" />
+                  <input id="e-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                 </div>
                 <div>
                   <label htmlFor="e-type" className="block text-sm font-medium text-navy-800 mb-1.5">Type of Emergency</label>
-                  <select id="e-type" name="type" required defaultValue="" className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none bg-white">
+                  <select id="e-type" name="type" required defaultValue="" className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white">
                     <option value="" disabled>Select an option</option>
                     {emergencyTypes.map((t) => (
                       <option key={t}>{t}</option>
@@ -95,7 +95,7 @@ export function Emergency() {
                 </div>
                 <div>
                   <label htmlFor="e-details" className="block text-sm font-medium text-navy-800 mb-1.5">Details</label>
-                  <textarea id="e-details" name="details" rows={4} required className="w-full rounded-lg border border-navy-200 px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none" />
+                  <textarea id="e-details" name="details" rows={4} required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none" />
                 </div>
                 <Button type="submit" variant="primary" className="w-full justify-center">
                   Request Assistance
