@@ -41,8 +41,20 @@ try {
   console.error("Postgres pool init error (lead storage will be skipped):", err);
 }
 
-// Where notification emails are sent. Update once a real inbox is confirmed.
-const NOTIFY_TO = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
+// Fallback notification email if no setting has been saved in the admin panel yet.
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
+
+async function getNotifyEmail(): Promise<string> {
+  if (!pool) return NOTIFY_FALLBACK;
+  try {
+    await pool.sql`CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);`;
+    const { rows } = await pool.sql`SELECT value FROM settings WHERE key = 'notify_email';`;
+    if (rows[0]?.value) return rows[0].value as string;
+  } catch (err) {
+    console.error("Could not read notify_email setting (using fallback):", err);
+  }
+  return NOTIFY_FALLBACK;
+}
 
 // Resend's shared sandbox sender — works immediately with no setup, but reads
 // as generic. Once a real domain is verified with Resend, change this to
@@ -145,10 +157,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.error("Lead storage error (non-fatal):", dbErr);
     }
 
+    const notifyTo = await getNotifyEmail();
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: FROM,
-      to: NOTIFY_TO,
+      to: notifyTo,
       replyTo: fields.email || undefined,
       subject: `New ${label} — ${fields.name || "Website Visitor"}`,
       html,

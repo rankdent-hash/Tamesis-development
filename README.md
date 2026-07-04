@@ -57,15 +57,18 @@ The homepage hero and all 20 individual service pages now have a compact quote-r
 
 ## Admin panel — leads dashboard
 
-`/admin` (linked from the footer as "Admin Login") is a lightweight CRM for follow-up: every form submission shows date/time, form type, name, contact details, service requested, and full message, stored in Postgres.
+`/admin` (linked from the footer as "Admin Login") is a lightweight CRM for follow-up, redesigned as two tabs:
 
-**Follow-up features:**
-- **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded badge, changeable inline via dropdown, saved immediately.
-- **Filter tabs**: click a status (with live count) to filter the table, or "All".
-- **Follow-up notes**: click a row to expand it and add/edit a free-text note (e.g. "Called 3pm, follow up Thursday") — saved separately from the original submission fields.
-- **"Add Sample Leads"** button: inserts 7 realistic example submissions (one per form type, spread across the last week, with varied statuses) — useful for previewing the dashboard before real traffic comes in. Safe to click repeatedly; just adds more rows.
+**Leads tab**: card-based list (not a dense table) — each lead shows a status-color dot, name, relative time ("2h ago"), form type badge, contact details, service, and message preview at a glance; click a card to expand it into the full submission plus a follow-up notes field. Includes:
+- **Summary cards**: total leads, this week, new, won — at a glance without opening anything.
+- **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded, changeable inline, saved immediately.
+- **Filter tabs** (with live counts) and a **search box** (name/phone/email).
+- **Follow-up notes** per lead, saved separately from the original submission.
+- **"Add Sample Leads"** button: inserts 13 realistic example submissions across all form types (including quote requests and callback requests specifically) with varied statuses and dates — safe to click repeatedly.
 
-Requires two more environment variables in Vercel, plus attaching Postgres storage:
+**Settings tab**: change the email address that receives form-submission notifications, without touching Vercel or code — stored in the `settings` Postgres table and read by `api/submit-form.ts` at send time (falls back to the `NOTIFY_EMAIL` env var if nothing's been saved yet). The Resend API key itself stays as an env var, since that's a one-time technical setup step rather than something that changes day to day.
+
+Requires environment variables in Vercel, plus attaching Postgres storage:
 
 1. **Postgres storage**: uses whatever's attached via Vercel → Storage (currently a Supabase integration named `tamesisstorage`). Vercel's Supabase integration prefixes every variable with the storage resource's name (e.g. `tamesisstorage_POSTGRES_HOST`) rather than the plain `POSTGRES_URL` that `@vercel/postgres` expects by default — the API functions handle this themselves (see `getConnectionString()` near the top of `api/leads.ts`, `api/seed-leads.ts`, `api/submit-form.ts`): they try a few likely full-connection-string variable names first, then fall back to building one from the individual `tamesisstorage_POSTGRES_HOST` / `_DATABASE` / `_USER` / `_PASSWORD` variables. If you ever swap storage providers or the resource gets renamed, check that these still resolve (a `500 "Database not configured"` response means they didn't — check the function's logs for the exact error).
 2. **Set admin credentials** (Project → Settings → Environment Variables):

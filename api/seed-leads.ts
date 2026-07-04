@@ -69,8 +69,8 @@ function verifyToken(token: string | undefined | null): boolean {
 // Example submissions only, for demoing the admin dashboard — not real customers.
 const SAMPLE_LEADS: { formType: string; fields: Record<string, string>; status: string; daysAgo: number }[] = [
   {
-    formType: "hero-quote",
-    fields: { name: "Sarah Whitfield", phone: "07700 900123", service: "Bathroom Refurbishment" },
+    formType: "callback",
+    fields: { name: "Sarah Whitfield", phone: "07700 900123", service: "Bathroom Refurbishment", message: "Please call after 5pm, at work during the day." },
     status: "new",
     daysAgo: 0,
   },
@@ -139,10 +139,68 @@ const SAMPLE_LEADS: { formType: string; fields: Record<string, string>; status: 
     daysAgo: 3,
   },
   {
-    formType: "hero-quote",
-    fields: { name: "Grovewood Property Management", phone: "020 3488 1122", service: "Void Property Refurbishment" },
+    formType: "callback",
+    fields: { name: "Grovewood Property Management", phone: "020 3488 1122", service: "Void Property Refurbishment", message: "Portfolio of 8 units, would like a call to discuss a standing arrangement." },
     status: "lost",
     daysAgo: 7,
+  },
+  {
+    formType: "quote",
+    fields: {
+      name: "Amara Chukwu",
+      company: "",
+      phone: "07700 900987",
+      email: "amara.chukwu@example.com",
+      propertyType: "Residential — House",
+      sector: "Residential Homeowners",
+      service: "Painting & Decorating",
+      description: "Whole ground floor needs repainting after some water damage repairs, roughly 90sqm.",
+      preferredDate: "",
+    },
+    status: "new",
+    daysAgo: 0,
+  },
+  {
+    formType: "callback",
+    fields: { name: "Tom Bracewell", phone: "07700 900234", service: "Electrical Services", message: "Fuse box tripping intermittently, would like to talk through options before booking." },
+    status: "contacted",
+    daysAgo: 1,
+  },
+  {
+    formType: "contact",
+    fields: {
+      name: "Southbank Managing Agents",
+      phone: "020 3488 7766",
+      email: "ops@southbank-example.co.uk",
+      reason: "Contract / Sector Enquiry",
+      message: "We manage a portfolio of 6 buildings and are reviewing our current maintenance contractor. Keen to discuss.",
+    },
+    status: "quoted",
+    daysAgo: 6,
+  },
+  {
+    formType: "emergency",
+    fields: {
+      name: "Elena Vasquez",
+      phone: "07700 900567",
+      address: "9 Islington Green, London N1",
+      type: "Flooding / Burst Pipe",
+      details: "Burst pipe under the kitchen sink, water coming through into the flat below.",
+    },
+    status: "contacted",
+    daysAgo: 0,
+  },
+  {
+    formType: "report-repair",
+    fields: {
+      name: "Robert Kaminski",
+      phone: "07700 900345",
+      address: "31 Wandsworth Bridge Road, London SW6",
+      issue: "Bedroom window not closing properly, draught coming through.",
+      access: "Tenant will be home after 4pm",
+    },
+    status: "new",
+    daysAgo: 2,
   },
 ];
 

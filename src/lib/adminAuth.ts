@@ -103,3 +103,41 @@ export async function seedSampleLeads(): Promise<{ success: boolean; error?: str
     return { success: false, error: "Network error — please try again" };
   }
 }
+
+export async function fetchSettings(): Promise<{ success: boolean; notifyEmail?: string; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+
+  try {
+    const res = await fetch("/api/settings", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      return { success: false, error: data.error || "Failed to load settings" };
+    }
+    return { success: true, notifyEmail: data.settings?.notify_email || "" };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function updateNotifyEmail(notifyEmail: string): Promise<{ success: boolean; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+
+  try {
+    const res = await fetch("/api/settings", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ notifyEmail }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      return { success: false, error: data.error || "Failed to save settings" };
+    }
+    return { success: true };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}

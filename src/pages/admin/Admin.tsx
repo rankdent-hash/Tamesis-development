@@ -1,5 +1,19 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { LogOut, Mail, Lock, AlertCircle, RefreshCw, Inbox, KeyRound, Sparkles, Save } from "lucide-react";
+import {
+  LogOut,
+  Mail,
+  Lock,
+  AlertCircle,
+  RefreshCw,
+  Inbox,
+  KeyRound,
+  Sparkles,
+  Save,
+  Settings as SettingsIcon,
+  Users,
+  CheckCircle2,
+  TrendingUp,
+} from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
 import {
@@ -7,6 +21,8 @@ import {
   fetchLeads,
   updateLead,
   seedSampleLeads,
+  fetchSettings,
+  updateNotifyEmail,
   getAdminToken,
   clearAdminToken,
   type Lead,
@@ -14,20 +30,21 @@ import {
 import { cn } from "../../lib/utils";
 
 const FORM_LABELS: Record<string, string> = {
-  "hero-quote": "Hero Quote Form",
+  "hero-quote": "Quick Quote",
   quote: "Quote Request",
   contact: "Contact Form",
   "report-repair": "Report a Repair",
   emergency: "Emergency Callout",
   careers: "Careers Application",
+  callback: "Callback Request",
 };
 
-const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string }> = {
-  new: { label: "New", bg: "bg-blue-50", text: "text-blue-700" },
-  contacted: { label: "Contacted", bg: "bg-orange-50", text: "text-orange-700" },
-  quoted: { label: "Quoted", bg: "bg-navy-50", text: "text-navy-700" },
-  won: { label: "Won", bg: "bg-green-50", text: "text-green-700" },
-  lost: { label: "Lost", bg: "bg-red-50", text: "text-red-700" },
+const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string; dot: string }> = {
+  new: { label: "New", bg: "bg-blue-50", text: "text-blue-700", dot: "bg-blue-500" },
+  contacted: { label: "Contacted", bg: "bg-orange-50", text: "text-orange-700", dot: "bg-orange-500" },
+  quoted: { label: "Quoted", bg: "bg-navy-50", text: "text-navy-700", dot: "bg-navy-700" },
+  won: { label: "Won", bg: "bg-green-50", text: "text-green-700", dot: "bg-green-500" },
+  lost: { label: "Lost", bg: "bg-red-50", text: "text-red-700", dot: "bg-red-500" },
 };
 
 const STATUS_ORDER = ["new", "contacted", "quoted", "won", "lost"];
@@ -42,11 +59,20 @@ function getMessage(lead: Lead): string {
   return f.message || f.description || f.issue || f.details || f.experience || "";
 }
 
-function formatDate(iso: string): { date: string; time: string } {
+function formatDate(iso: string): { date: string; time: string; relative: string } {
   const d = new Date(iso);
+  const now = new Date();
+  const diffMs = now.getTime() - d.getTime();
+  const diffHrs = diffMs / (1000 * 60 * 60);
+  let relative = "";
+  if (diffHrs < 1) relative = "Just now";
+  else if (diffHrs < 24) relative = `${Math.floor(diffHrs)}h ago`;
+  else relative = `${Math.floor(diffHrs / 24)}d ago`;
+
   return {
     date: d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
     time: d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }),
+    relative,
   };
 }
 
@@ -56,7 +82,7 @@ export function Admin() {
   return (
     <div className="min-h-screen bg-navy-50">
       <Seo title="Admin" description="Tamesis Development Ltd admin panel." path="/admin" />
-      {authed ? <LeadsDashboard onLogout={() => setAuthed(false)} /> : <LoginForm onSuccess={() => setAuthed(true)} />}
+      {authed ? <Dashboard onLogout={() => setAuthed(false)} /> : <LoginForm onSuccess={() => setAuthed(true)} />}
     </div>
   );
 }
@@ -176,7 +202,155 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   );
 }
 
-function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
+function Dashboard({ onLogout }: { onLogout: () => void }) {
+  const [tab, setTab] = useState<"leads" | "settings">("leads");
+
+  const handleLogout = () => {
+    clearAdminToken();
+    onLogout();
+  };
+
+  return (
+    <div>
+      <header className="bg-navy-900 text-white sticky top-0 z-10">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-5 flex items-center justify-between flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-9 h-9 rounded-lg bg-white/10 text-orange-400 font-display font-bold flex items-center justify-center">
+              T
+            </span>
+            <div>
+              <h1 className="font-display font-bold text-lg leading-tight">Tamesis Admin</h1>
+              <p className="text-xs text-navy-100/60 font-accent">Customer follow-up</p>
+            </div>
+          </div>
+
+          <nav className="flex items-center gap-1 bg-white/5 rounded-full p-1">
+            <button
+              onClick={() => setTab("leads")}
+              className={cn(
+                "flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition-colors",
+                tab === "leads" ? "bg-orange-500 text-navy-950" : "text-navy-100/70 hover:text-white"
+              )}
+            >
+              <Users size={13} /> Leads
+            </button>
+            <button
+              onClick={() => setTab("settings")}
+              className={cn(
+                "flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition-colors",
+                tab === "settings" ? "bg-orange-500 text-navy-950" : "text-navy-100/70 hover:text-white"
+              )}
+            >
+              <SettingsIcon size={13} /> Settings
+            </button>
+          </nav>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors"
+          >
+            <LogOut size={13} /> Log Out
+          </button>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-[1400px] px-6 lg:px-8 py-8">
+        {tab === "leads" ? <LeadsTab /> : <SettingsTab />}
+      </main>
+    </div>
+  );
+}
+
+function SettingsTab() {
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchSettings().then((result) => {
+      setLoading(false);
+      if (result.success) {
+        setNotifyEmail(result.notifyEmail || "");
+      } else {
+        setError(result.error || "Failed to load settings");
+      }
+    });
+  }, []);
+
+  const handleSave = async (e: FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    setSaved(false);
+    setError(null);
+    const result = await updateNotifyEmail(notifyEmail);
+    setSaving(false);
+    if (result.success) {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } else {
+      setError(result.error || "Failed to save");
+    }
+  };
+
+  return (
+    <div className="max-w-xl">
+      <h2 className="font-display font-bold text-navy-900 text-2xl">Email Notifications</h2>
+      <p className="mt-2 text-sm text-slate">
+        Every form submission on the website (quote requests, contact enquiries, emergency callouts, etc.) sends an
+        email via Resend to the address below. Update it here any time — no need to touch code or Vercel settings.
+      </p>
+
+      {loading ? (
+        <p className="mt-6 text-sm text-slate">Loading...</p>
+      ) : (
+        <form onSubmit={handleSave} className="mt-6 rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-navy-800 mb-1.5">Notification Email</label>
+            <div className="relative">
+              <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="email"
+                required
+                value={notifyEmail}
+                onChange={(e) => setNotifyEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+              />
+            </div>
+          </div>
+
+          <Button type="submit" variant="primary" disabled={saving}>
+            <Save size={14} /> {saving ? "Saving..." : "Save Changes"}
+          </Button>
+
+          {saved && (
+            <p className="flex items-center gap-1.5 text-xs text-green-600">
+              <CheckCircle2 size={13} /> Saved — future submissions will be sent here.
+            </p>
+          )}
+          {error && (
+            <p className="flex items-center gap-1.5 text-xs text-red-600">
+              <AlertCircle size={13} /> {error}
+            </p>
+          )}
+        </form>
+      )}
+
+      <div className="mt-6 rounded-2xl border border-navy-100 bg-navy-50 p-5">
+        <p className="text-xs text-slate-light leading-relaxed">
+          <strong className="text-navy-700">Note:</strong> the Resend API key itself (which authorizes sending email
+          at all) is set separately as a <code className="text-navy-900">RESEND_API_KEY</code> environment variable
+          in Vercel, not here — that's a one-time technical setup step, whereas this email address is something
+          you're expected to change from time to time and shouldn't need a developer for.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function LeadsTab() {
   const [leads, setLeads] = useState<Lead[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -184,6 +358,7 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
   const [expanded, setExpanded] = useState<number | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
   const [filter, setFilter] = useState<string>("all");
+  const [search, setSearch] = useState("");
 
   const load = async () => {
     setLoading(true);
@@ -194,9 +369,6 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
       setLeads(result.leads || []);
     } else {
       setError(result.error || "Failed to load leads");
-      if (result.error === "Not logged in" || result.error === "Unauthorized") {
-        onLogout();
-      }
     }
   };
 
@@ -204,11 +376,6 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleLogout = () => {
-    clearAdminToken();
-    onLogout();
-  };
 
   const handleSeed = async () => {
     setSeeding(true);
@@ -240,61 +407,68 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
     return c;
   }, [leads]);
 
+  const thisWeekCount = useMemo(() => {
+    if (!leads) return 0;
+    const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    return leads.filter((l) => new Date(l.created_at).getTime() > weekAgo).length;
+  }, [leads]);
+
   const filteredLeads = useMemo(() => {
     if (!leads) return [];
-    if (filter === "all") return leads;
-    return leads.filter((l) => l.status === filter);
-  }, [leads, filter]);
+    let result = filter === "all" ? leads : leads.filter((l) => l.status === filter);
+    if (search.trim()) {
+      const q = search.trim().toLowerCase();
+      result = result.filter((l) => {
+        const name = (l.fields.name || l.fields.fullName || "").toLowerCase();
+        const phone = (l.fields.phone || "").toLowerCase();
+        const email = (l.fields.email || "").toLowerCase();
+        return name.includes(q) || phone.includes(q) || email.includes(q);
+      });
+    }
+    return result;
+  }, [leads, filter, search]);
 
   return (
     <div>
-      <header className="bg-navy-900 text-white">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-5 flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <span className="w-9 h-9 rounded-lg bg-white/10 text-orange-400 font-display font-bold flex items-center justify-center">
-              T
-            </span>
-            <div>
-              <h1 className="font-display font-bold text-lg leading-tight">Leads</h1>
-              <p className="text-xs text-navy-100/60 font-accent">Tamesis Development Ltd — Admin</p>
+      {/* Summary cards */}
+      {!loading && leads && leads.length > 0 && (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+          <div className="rounded-2xl border-2 border-navy-900 bg-white p-5">
+            <div className="flex items-center gap-2 text-slate-light">
+              <Inbox size={14} />
+              <span className="text-xs font-accent uppercase tracking-wide">Total Leads</span>
             </div>
+            <p className="mt-2 font-display font-bold text-navy-900 text-2xl">{counts.all}</p>
           </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleSeed}
-              disabled={seeding}
-              className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors disabled:opacity-60"
-            >
-              <Sparkles size={13} /> {seeding ? "Adding..." : "Add Sample Leads"}
-            </button>
-            <button
-              onClick={load}
-              className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors"
-            >
-              <RefreshCw size={13} /> Refresh
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors"
-            >
-              <LogOut size={13} /> Log Out
-            </button>
+          <div className="rounded-2xl border-2 border-navy-900 bg-white p-5">
+            <div className="flex items-center gap-2 text-slate-light">
+              <TrendingUp size={14} />
+              <span className="text-xs font-accent uppercase tracking-wide">This Week</span>
+            </div>
+            <p className="mt-2 font-display font-bold text-navy-900 text-2xl">{thisWeekCount}</p>
+          </div>
+          <div className="rounded-2xl border-2 border-navy-900 bg-white p-5">
+            <div className="flex items-center gap-2 text-blue-600">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+              <span className="text-xs font-accent uppercase tracking-wide">New</span>
+            </div>
+            <p className="mt-2 font-display font-bold text-navy-900 text-2xl">{counts.new}</p>
+          </div>
+          <div className="rounded-2xl border-2 border-navy-900 bg-white p-5">
+            <div className="flex items-center gap-2 text-green-600">
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
+              <span className="text-xs font-accent uppercase tracking-wide">Won</span>
+            </div>
+            <p className="mt-2 font-display font-bold text-navy-900 text-2xl">{counts.won}</p>
           </div>
         </div>
-      </header>
+      )}
 
-      <main className="mx-auto max-w-[1400px] px-6 lg:px-8 py-8">
-        {loading && <p className="text-sm text-slate">Loading leads...</p>}
-
-        {error && (
-          <p className="flex items-center gap-1.5 text-sm text-red-600 mb-4">
-            <AlertCircle size={14} /> {error}
-          </p>
-        )}
-
-        {!loading && leads && (
-          <div className="flex flex-wrap gap-2 mb-6">
-            {["all", ...STATUS_ORDER].map((s) => (
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div className="flex flex-wrap gap-2">
+          {!loading &&
+            leads &&
+            ["all", ...STATUS_ORDER].map((s) => (
               <button
                 key={s}
                 onClick={() => setFilter(s)}
@@ -308,165 +482,163 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
                 {s === "all" ? "All" : STATUS_CONFIG[s].label} ({counts[s] || 0})
               </button>
             ))}
-          </div>
-        )}
+        </div>
 
-        {!loading && leads && leads.length === 0 && (
-          <div className="rounded-2xl border-2 border-navy-100 bg-white p-12 text-center">
-            <Inbox size={32} className="mx-auto text-slate-light" />
-            <p className="mt-3 text-sm text-slate">
-              No leads yet. Submissions from the website's forms will appear here.
-            </p>
-            <Button variant="primary" className="mt-5" onClick={handleSeed} disabled={seeding}>
-              {seeding ? "Adding..." : "Add Sample Leads to Preview This Dashboard"}
-            </Button>
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {leads && leads.length > 0 && (
+            <input
+              type="text"
+              placeholder="Search name, phone, email..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="rounded-full border-2 border-navy-900 px-4 py-2 text-xs w-48 focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+            />
+          )}
+          <button
+            onClick={handleSeed}
+            disabled={seeding}
+            className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors disabled:opacity-60"
+          >
+            <Sparkles size={13} /> {seeding ? "Adding..." : "Add Sample Leads"}
+          </button>
+          <button
+            onClick={load}
+            className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors"
+          >
+            <RefreshCw size={13} /> Refresh
+          </button>
+        </div>
+      </div>
 
-        {!loading && leads && leads.length > 0 && (
-          <div className="rounded-2xl border-2 border-navy-900 bg-white shadow-card overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-navy-50 border-b-2 border-navy-900 text-left">
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Date &amp; Time</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Form</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Name</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Contact</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Service</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Message</th>
-                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-navy-100">
-                {filteredLeads.map((lead) => {
-                  const { date, time } = formatDate(lead.created_at);
-                  const message = getMessage(lead);
-                  const isExpanded = expanded === lead.id;
-                  const statusCfg = STATUS_CONFIG[lead.status] || STATUS_CONFIG.new;
-                  return (
-                    <tr key={lead.id} className="hover:bg-navy-50/50 align-top">
-                      <td
-                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        <div className="font-medium text-navy-900">{date}</div>
-                        <div className="text-xs text-slate-light font-accent">{time}</div>
-                      </td>
-                      <td
-                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        <span className="inline-flex rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-xs font-semibold">
-                          {FORM_LABELS[lead.form_type] || lead.form_type}
-                        </span>
-                      </td>
-                      <td
-                        className="px-4 py-3 font-medium text-navy-900 whitespace-nowrap cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        {lead.fields.name || lead.fields.fullName || "—"}
-                      </td>
-                      <td
-                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        {lead.fields.phone && <div>{lead.fields.phone}</div>}
-                        {lead.fields.email && <div className="text-xs text-slate">{lead.fields.email}</div>}
-                        {!lead.fields.phone && !lead.fields.email && "—"}
-                      </td>
-                      <td
-                        className="px-4 py-3 cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        {getService(lead)}
-                      </td>
-                      <td
-                        className="px-4 py-3 max-w-xs cursor-pointer"
-                        onClick={() => {
-                          setExpanded(isExpanded ? null : lead.id);
-                          setNoteDraft(lead.notes || "");
-                        }}
-                      >
-                        {isExpanded ? (
-                          <div className="space-y-1">
-                            {Object.entries(lead.fields).map(([k, v]) => (
-                              <div key={k}>
-                                <span className="text-xs text-slate-light capitalize">{k}: </span>
-                                <span className="text-navy-900">{v}</span>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <span className="line-clamp-2 text-slate">{message || "—"}</span>
-                        )}
-                      </td>
-                      <td className="px-4 py-3">
-                        <select
-                          value={lead.status}
-                          onChange={(e) => handleStatusChange(lead, e.target.value)}
-                          onClick={(e) => e.stopPropagation()}
-                          className={cn(
-                            "rounded-full px-3 py-1.5 text-xs font-semibold border-0 outline-none cursor-pointer",
-                            statusCfg.bg,
-                            statusCfg.text
-                          )}
-                        >
-                          {STATUS_ORDER.map((s) => (
-                            <option key={s} value={s}>
-                              {STATUS_CONFIG[s].label}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+      {loading && <p className="text-sm text-slate">Loading leads...</p>}
 
-            {expanded !== null && filteredLeads.some((l) => l.id === expanded) && (
-              <div className="border-t-2 border-navy-100 p-5 bg-navy-50/50">
-                <label className="block text-xs font-accent uppercase tracking-wide text-navy-700 mb-2">
-                  Follow-up Notes
-                </label>
-                <textarea
-                  value={noteDraft}
-                  onChange={(e) => setNoteDraft(e.target.value)}
-                  rows={3}
-                  placeholder="e.g. Called 3pm, left voicemail. Follow up Thursday."
-                  className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none bg-white"
-                />
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="mt-3"
+      {error && (
+        <p className="flex items-center gap-1.5 text-sm text-red-600 mb-4">
+          <AlertCircle size={14} /> {error}
+        </p>
+      )}
+
+      {!loading && leads && leads.length === 0 && (
+        <div className="rounded-2xl border-2 border-navy-100 bg-white p-12 text-center">
+          <Inbox size={32} className="mx-auto text-slate-light" />
+          <h3 className="mt-4 font-display font-semibold text-navy-900 text-lg">No leads yet</h3>
+          <p className="mt-2 text-sm text-slate max-w-sm mx-auto">
+            Submissions from the website's forms (quotes, contact enquiries, emergency callouts) will appear here
+            automatically. Add some examples to see how it looks first.
+          </p>
+          <Button variant="primary" className="mt-5" onClick={handleSeed} disabled={seeding}>
+            <Sparkles size={14} /> {seeding ? "Adding..." : "Add Sample Leads"}
+          </Button>
+        </div>
+      )}
+
+      {!loading && leads && leads.length > 0 && filteredLeads.length === 0 && (
+        <div className="rounded-2xl border-2 border-navy-100 bg-white p-10 text-center">
+          <p className="text-sm text-slate">No leads match this filter or search.</p>
+        </div>
+      )}
+
+      {!loading && filteredLeads.length > 0 && (
+        <div className="space-y-3">
+          {filteredLeads.map((lead) => {
+            const { relative } = formatDate(lead.created_at);
+            const message = getMessage(lead);
+            const service = getService(lead);
+            const isExpanded = expanded === lead.id;
+            const statusCfg = STATUS_CONFIG[lead.status] || STATUS_CONFIG.new;
+            const name = lead.fields.name || lead.fields.fullName || "Unknown";
+
+            return (
+              <div
+                key={lead.id}
+                className={cn(
+                  "rounded-2xl border-2 bg-white shadow-card transition-colors",
+                  isExpanded ? "border-orange-500" : "border-navy-900"
+                )}
+              >
+                <div
+                  className="flex flex-wrap items-center gap-4 p-5 cursor-pointer"
                   onClick={() => {
-                    const lead = filteredLeads.find((l) => l.id === expanded);
-                    if (lead) handleSaveNote(lead);
+                    setExpanded(isExpanded ? null : lead.id);
+                    setNoteDraft(lead.notes || "");
                   }}
                 >
-                  <Save size={13} /> Save Note
-                </Button>
+                  <span className={cn("w-2.5 h-2.5 rounded-full shrink-0", statusCfg.dot)} />
+
+                  <div className="min-w-[140px]">
+                    <p className="font-display font-semibold text-navy-900">{name}</p>
+                    <p className="text-xs text-slate-light">{relative}</p>
+                  </div>
+
+                  <span className="inline-flex rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-xs font-semibold shrink-0">
+                    {FORM_LABELS[lead.form_type] || lead.form_type}
+                  </span>
+
+                  <div className="text-sm text-slate min-w-[140px]">
+                    {lead.fields.phone && <div>{lead.fields.phone}</div>}
+                    {lead.fields.email && <div className="text-xs">{lead.fields.email}</div>}
+                  </div>
+
+                  <div className="text-sm text-navy-800 min-w-[120px]">{service}</div>
+
+                  <p className="flex-1 min-w-[160px] text-sm text-slate line-clamp-1">{message || "—"}</p>
+
+                  <select
+                    value={lead.status}
+                    onChange={(e) => handleStatusChange(lead, e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    className={cn(
+                      "rounded-full px-3 py-1.5 text-xs font-semibold border-0 outline-none cursor-pointer shrink-0",
+                      statusCfg.bg,
+                      statusCfg.text
+                    )}
+                  >
+                    {STATUS_ORDER.map((s) => (
+                      <option key={s} value={s}>
+                        {STATUS_CONFIG[s].label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {isExpanded && (
+                  <div className="border-t border-navy-100 p-5 bg-navy-50/50 rounded-b-2xl space-y-5">
+                    <div>
+                      <h4 className="text-xs font-accent uppercase tracking-wide text-navy-700 mb-2">
+                        Full Submission
+                      </h4>
+                      <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                        {Object.entries(lead.fields).map(([k, v]) => (
+                          <div key={k} className="text-sm">
+                            <span className="text-slate-light capitalize">{k}: </span>
+                            <span className="text-navy-900">{v || "—"}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-accent uppercase tracking-wide text-navy-700 mb-2">
+                        Follow-up Notes
+                      </label>
+                      <textarea
+                        value={noteDraft}
+                        onChange={(e) => setNoteDraft(e.target.value)}
+                        rows={2}
+                        placeholder="e.g. Called 3pm, left voicemail. Follow up Thursday."
+                        className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none bg-white"
+                      />
+                      <Button variant="primary" size="sm" className="mt-3" onClick={() => handleSaveNote(lead)}>
+                        <Save size={13} /> Save Note
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        )}
-      </main>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
