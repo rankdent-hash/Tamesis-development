@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { LogOut, Mail, Lock, AlertCircle, RefreshCw, Inbox } from "lucide-react";
+import { LogOut, Mail, Lock, AlertCircle, RefreshCw, Inbox, KeyRound } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
 import { adminLogin, fetchLeads, getAdminToken, clearAdminToken, type Lead } from "../../lib/adminAuth";
@@ -43,21 +43,30 @@ export function Admin() {
 }
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
+  const [step, setStep] = useState<"credentials" | "pin">("credentials");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pin, setPin] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleContinue = (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setStep("pin");
+  };
+
+  const handleFinalSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
-    const result = await adminLogin(email, password);
+    const result = await adminLogin(email, password, pin);
     setSubmitting(false);
     if (result.success) {
       onSuccess();
     } else {
       setError(result.error || "Login failed");
+      setPin("");
     }
   };
 
@@ -72,40 +81,77 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
           <p className="mt-1 text-sm text-slate">Tamesis Development Ltd</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
-          <div className="relative">
-            <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
-            />
-          </div>
-          <div className="relative">
-            <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
-            />
-          </div>
+        {step === "credentials" ? (
+          <form onSubmit={handleContinue} className="rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
+            <div className="relative">
+              <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+              />
+            </div>
+            <div className="relative">
+              <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+              />
+            </div>
 
-          <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>
-            {submitting ? "Signing in..." : "Sign In"}
-          </Button>
+            <Button type="submit" variant="primary" className="w-full justify-center">
+              Continue
+            </Button>
+          </form>
+        ) : (
+          <form onSubmit={handleFinalSubmit} className="rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
+            <div>
+              <p className="text-sm text-navy-800 mb-1">Enter your security PIN</p>
+              <p className="text-xs text-slate-light mb-3">Signing in as {email}</p>
+              <div className="relative">
+                <KeyRound size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+                <input
+                  type="password"
+                  inputMode="numeric"
+                  placeholder="PIN"
+                  required
+                  autoFocus
+                  value={pin}
+                  onChange={(e) => setPin(e.target.value)}
+                  className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm tracking-widest focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+                />
+              </div>
+            </div>
 
-          {error && (
-            <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
-              <AlertCircle size={13} /> {error}
-            </p>
-          )}
-        </form>
+            <Button type="submit" variant="primary" className="w-full justify-center" disabled={submitting}>
+              {submitting ? "Verifying..." : "Sign In"}
+            </Button>
+            <button
+              type="button"
+              onClick={() => {
+                setStep("credentials");
+                setError(null);
+              }}
+              className="w-full text-center text-xs text-slate hover:text-navy-900 transition-colors"
+            >
+              Back
+            </button>
+
+            {error && (
+              <p className="flex items-center gap-1.5 justify-center text-xs text-red-600">
+                <AlertCircle size={13} /> {error}
+              </p>
+            )}
+          </form>
+        )}
       </div>
     </div>
   );

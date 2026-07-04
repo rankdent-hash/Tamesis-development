@@ -12,12 +12,16 @@ export function clearAdminToken(): void {
   localStorage.removeItem(TOKEN_KEY);
 }
 
-export async function adminLogin(email: string, password: string): Promise<{ success: boolean; error?: string }> {
+export async function adminLogin(
+  email: string,
+  password: string,
+  pin: string
+): Promise<{ success: boolean; error?: string }> {
   try {
     const res = await fetch("/api/admin-login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, pin }),
     });
     const data = await res.json();
     if (!res.ok || !data.success) {

@@ -53,3 +53,12 @@ export function checkCredentials(email: string, password: string): boolean {
 
   return emailMatches && passMatches;
 }
+
+export function checkPin(pin: string): boolean {
+  const adminPin = process.env.ADMIN_PIN;
+  if (!adminPin) return false;
+
+  const pinBuf = Buffer.from(pin);
+  const expectedPinBuf = Buffer.from(adminPin);
+  return pinBuf.length === expectedPinBuf.length && timingSafeEqual(pinBuf, expectedPinBuf);
+}
