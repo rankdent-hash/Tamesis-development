@@ -1,9 +1,43 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { sql } from "@vercel/postgres";
+import { createPool } from "@vercel/postgres";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // NOTE: this auth logic is duplicated in api/admin-login.ts rather than
 // imported from a shared file — see the comment there for why.
+
+function getConnectionString(): string {
+  const candidateUrlVars = [
+    "POSTGRES_URL",
+    "tamesisstorage_POSTGRES_URL",
+    "tamesisstorage_POSTGRES_URL_NON_POOLING",
+    "tamesisstorage_DATABASE_URL",
+    "tamesisstorage_POSTGRES_PRISMA_URL",
+  ];
+  for (const key of candidateUrlVars) {
+    if (process.env[key]) return process.env[key] as string;
+  }
+
+  const host = process.env.tamesisstorage_POSTGRES_HOST;
+  const database = process.env.tamesisstorage_POSTGRES_DATABASE;
+  const password = process.env.tamesisstorage_POSTGRES_PASSWORD;
+  const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
+
+  if (host && database && password) {
+    return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
+  }
+
+  throw new Error(
+    "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
+  );
+}
+
+let pool: ReturnType<typeof createPool> | null = null;
+let poolInitError: string | null = null;
+try {
+  pool = createPool({ connectionString: getConnectionString() });
+} catch (err) {
+  poolInitError = err instanceof Error ? err.message : "Unknown database configuration error";
+}
 
 function getSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
@@ -126,8 +160,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(401).json({ success: false, error: "Unauthorized" });
   }
 
+  if (!pool) {
+    console.error("Postgres pool init error:", poolInitError);
+    return res.status(500).json({ success: false, error: "Database not configured" });
+  }
+
   try {
-    await sql`
+    await pool.sql`
       CREATE TABLE IF NOT EXISTS leads (
         id SERIAL PRIMARY KEY,
         form_type TEXT NOT NULL,
@@ -135,11 +174,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         created_at TIMESTAMPTZ NOT NULL DEFAULT now()
       );
     `;
-    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
-    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
+    await pool.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
+    await pool.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
 
     for (const lead of SAMPLE_LEADS) {
-      await sql`
+      await pool.sql`
         INSERT INTO leads (form_type, fields, status, created_at)
         VALUES (
           ${lead.formType},

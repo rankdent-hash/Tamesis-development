@@ -1,6 +1,45 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
-import { sql } from "@vercel/postgres";
+import { createPool } from "@vercel/postgres";
+
+// Vercel's Supabase marketplace integration prefixes every env var with the
+// storage resource's name (e.g. "tamesisstorage_") instead of the plain
+// POSTGRES_URL that @vercel/postgres looks for automatically. This tries a
+// handful of likely full-connection-string variable names first, then falls
+// back to building one from the individual host/database/user/password
+// variables, which the integration does expose with a consistent prefix.
+function getConnectionString(): string {
+  const candidateUrlVars = [
+    "POSTGRES_URL",
+    "tamesisstorage_POSTGRES_URL",
+    "tamesisstorage_POSTGRES_URL_NON_POOLING",
+    "tamesisstorage_DATABASE_URL",
+    "tamesisstorage_POSTGRES_PRISMA_URL",
+  ];
+  for (const key of candidateUrlVars) {
+    if (process.env[key]) return process.env[key] as string;
+  }
+
+  const host = process.env.tamesisstorage_POSTGRES_HOST;
+  const database = process.env.tamesisstorage_POSTGRES_DATABASE;
+  const password = process.env.tamesisstorage_POSTGRES_PASSWORD;
+  const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
+
+  if (host && database && password) {
+    return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
+  }
+
+  throw new Error(
+    "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
+  );
+}
+
+let pool: ReturnType<typeof createPool> | null = null;
+try {
+  pool = createPool({ connectionString: getConnectionString() });
+} catch (err) {
+  console.error("Postgres pool init error (lead storage will be skipped):", err);
+}
 
 // Where notification emails are sent. Update once a real inbox is confirmed.
 const NOTIFY_TO = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
@@ -87,7 +126,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Store the lead first — this should succeed even if email delivery has
     // an issue, so a submission is never silently lost.
     try {
-      await sql`
+      if (!pool) throw new Error("Postgres pool not initialized");
+      await pool.sql`
         CREATE TABLE IF NOT EXISTS leads (
           id SERIAL PRIMARY KEY,
           form_type TEXT NOT NULL,
@@ -95,7 +135,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         );
       `;
-      await sql`
+      await pool.sql`
         INSERT INTO leads (form_type, fields) VALUES (${formType}, ${JSON.stringify(fields)});
       `;
     } catch (dbErr) {

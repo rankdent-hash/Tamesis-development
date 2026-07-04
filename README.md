@@ -63,7 +63,7 @@ The homepage hero and all 20 individual service pages now have a compact quote-r
 
 Requires two more environment variables in Vercel, plus attaching Postgres storage:
 
-1. **Attach Vercel Postgres**: in the Vercel dashboard, go to the project → **Storage** tab → **Create Database** → **Postgres**. This auto-injects the `POSTGRES_URL` (and related) environment variables — no manual copying needed. The `leads` table is created automatically on first use.
+1. **Postgres storage**: uses whatever's attached via Vercel → Storage (currently a Supabase integration named `tamesisstorage`). Vercel's Supabase integration prefixes every variable with the storage resource's name (e.g. `tamesisstorage_POSTGRES_HOST`) rather than the plain `POSTGRES_URL` that `@vercel/postgres` expects by default — the API functions handle this themselves (see `getConnectionString()` near the top of `api/leads.ts`, `api/seed-leads.ts`, `api/submit-form.ts`): they try a few likely full-connection-string variable names first, then fall back to building one from the individual `tamesisstorage_POSTGRES_HOST` / `_DATABASE` / `_USER` / `_PASSWORD` variables. If you ever swap storage providers or the resource gets renamed, check that these still resolve (a `500 "Database not configured"` response means they didn't — check the function's logs for the exact error).
 2. **Set admin credentials** (Project → Settings → Environment Variables):
    - `ADMIN_EMAIL` — the login email
    - `ADMIN_PASSWORD` — the login password
