@@ -1,5 +1,53 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { checkCredentials, checkPin, createToken } from "../server/adminAuth";
+import { createHmac, timingSafeEqual } from "crypto";
+
+// NOTE: this auth logic is duplicated in api/leads.ts rather than imported
+// from a shared file. Vercel's serverless function bundler does not reliably
+// trace/include relative imports that live outside the /api directory
+// (confirmed via a real ERR_MODULE_NOT_FOUND at runtime), so each function
+// is kept fully self-contained instead.
+
+const TOKEN_LIFETIME_MS = 12 * 60 * 60 * 1000; // 12 hours
+
+function getSecret(): string {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) throw new Error("ADMIN_SESSION_SECRET is not set");
+  return secret;
+}
+
+function createToken(email: string): string {
+  const expires = Date.now() + TOKEN_LIFETIME_MS;
+  const payload = Buffer.from(`${email}:${expires}`).toString("base64url");
+  const signature = createHmac("sha256", getSecret()).update(payload).digest("hex");
+  return `${payload}.${signature}`;
+}
+
+function checkCredentials(email: string, password: string): boolean {
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminEmail || !adminPassword) return false;
+
+  const emailBuf = Buffer.from(email);
+  const expectedEmailBuf = Buffer.from(adminEmail);
+  const emailMatches =
+    emailBuf.length === expectedEmailBuf.length && timingSafeEqual(emailBuf, expectedEmailBuf);
+
+  const passBuf = Buffer.from(password);
+  const expectedPassBuf = Buffer.from(adminPassword);
+  const passMatches =
+    passBuf.length === expectedPassBuf.length && timingSafeEqual(passBuf, expectedPassBuf);
+
+  return emailMatches && passMatches;
+}
+
+function checkPin(pin: string): boolean {
+  const adminPin = process.env.ADMIN_PIN;
+  if (!adminPin) return false;
+
+  const pinBuf = Buffer.from(pin);
+  const expectedPinBuf = Buffer.from(adminPin);
+  return pinBuf.length === expectedPinBuf.length && timingSafeEqual(pinBuf, expectedPinBuf);
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");

@@ -1,6 +1,36 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { sql } from "@vercel/postgres";
-import { verifyToken } from "../server/adminAuth";
+import { createHmac, timingSafeEqual } from "crypto";
+
+// NOTE: this auth logic is duplicated in api/admin-login.ts rather than
+// imported from a shared file — see the comment there for why.
+
+function getSecret(): string {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) throw new Error("ADMIN_SESSION_SECRET is not set");
+  return secret;
+}
+
+function verifyToken(token: string | undefined | null): boolean {
+  if (!token) return false;
+  const [payload, signature] = token.split(".");
+  if (!payload || !signature) return false;
+
+  const expectedSignature = createHmac("sha256", getSecret()).update(payload).digest("hex");
+  const sigBuf = Buffer.from(signature);
+  const expectedBuf = Buffer.from(expectedSignature);
+  if (sigBuf.length !== expectedBuf.length || !timingSafeEqual(sigBuf, expectedBuf)) {
+    return false;
+  }
+
+  try {
+    const decoded = Buffer.from(payload, "base64url").toString("utf-8");
+    const expires = Number(decoded.split(":").pop());
+    return Number.isFinite(expires) && Date.now() < expires;
+  } catch {
+    return false;
+  }
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");

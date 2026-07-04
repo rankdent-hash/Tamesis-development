@@ -64,7 +64,7 @@ The homepage hero and all 20 individual service pages now have a compact quote-r
 
 **Important — these are not in the codebase.** Since this GitHub repo is public, credentials are never hardcoded anywhere; they only exist as environment variables in Vercel. Whoever has access to the Vercel project's environment variables can see/change them — that's the actual access boundary, so keep Vercel project access limited to who should be able to log into `/admin`.
 
-Sessions last 12 hours (`server/adminAuth.ts`), then require logging in again. The `/api/leads` endpoint validates every request server-side with a signed token — a stolen/guessed token can't be replayed without the `ADMIN_SESSION_SECRET`.
+Sessions last 12 hours (see `TOKEN_LIFETIME_MS` in `api/admin-login.ts`), then require logging in again. The `/api/leads` endpoint validates every request server-side with a signed token — a stolen/guessed token can't be replayed without the `ADMIN_SESSION_SECRET`. (The token-signing logic is duplicated identically in `api/admin-login.ts` and `api/leads.ts` rather than shared from one file — Vercel's serverless bundler doesn't reliably include relative imports from outside the `/api` folder, so each function is kept self-contained.)
 
 ## Structure
 
