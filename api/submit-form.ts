@@ -84,12 +84,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ success: false, error: "Method not allowed" });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("RESEND_API_KEY is not set");
-    return res.status(500).json({ success: false, error: "Email service not configured" });
-  }
-
   try {
     const { formType, fields: rawFields } = req.body as {
       formType?: string;
@@ -111,32 +105,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const label = FORM_LABELS[formType] || formType;
 
-    const rows = Object.entries(fields)
-      .filter(([, value]) => value)
-      .map(
-        ([key, value]) =>
-          `<tr><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#565F58;font-size:13px;text-transform:capitalize;white-space:nowrap;">${escapeHtml(
-            key
-          )}</td><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#16201A;font-size:14px;">${escapeHtml(
-            String(value)
-          )}</td></tr>`
-      )
-      .join("");
-
-    const html = `
-      <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
-        <div style="background:#0E1611;padding:20px 24px;border-radius:8px 8px 0 0;">
-          <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Tamesis Development Ltd</span>
-        </div>
-        <div style="border:1px solid #E6EAE7;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
-          <h2 style="margin:0 0 16px;color:#16201A;font-size:18px;">New ${escapeHtml(label)}</h2>
-          <table style="width:100%;border-collapse:collapse;">${rows}</table>
-        </div>
-      </div>
-    `;
-
-    // Store the lead first — this should succeed even if email delivery has
-    // an issue, so a submission is never silently lost.
+    // Saving the lead and emailing a notification are independent — one
+    // failing (e.g. Resend not configured yet) should never stop the other,
+    // and the submission only counts as failed if BOTH fail. That way a
+    // customer's enquiry is never silently lost just because, say, the email
+    // service has a hiccup.
+    let dbSaved = false;
     try {
       if (!pool) throw new Error("Postgres pool not initialized");
       await pool.sql`
@@ -150,26 +124,63 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       await pool.sql`
         INSERT INTO leads (form_type, fields) VALUES (${formType}, ${JSON.stringify(fields)});
       `;
+      dbSaved = true;
     } catch (dbErr) {
-      // Don't fail the whole submission just because the database isn't
-      // configured yet (e.g. Postgres storage not attached in Vercel) — the
-      // email notification below still works either way.
       console.error("Lead storage error (non-fatal):", dbErr);
     }
 
-    const notifyTo = await getNotifyEmail();
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from: FROM,
-      to: notifyTo,
-      replyTo: fields.email || undefined,
-      subject: `New ${label} — ${fields.name || "Website Visitor"}`,
-      html,
-    });
+    let emailSent = false;
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not set — skipping email notification (non-fatal)");
+    } else {
+      try {
+        const rows = Object.entries(fields)
+          .filter(([, value]) => value)
+          .map(
+            ([key, value]) =>
+              `<tr><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#565F58;font-size:13px;text-transform:capitalize;white-space:nowrap;">${escapeHtml(
+                key
+              )}</td><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#16201A;font-size:14px;">${escapeHtml(
+                String(value)
+              )}</td></tr>`
+          )
+          .join("");
 
-    if (error) {
-      console.error("Resend error:", error);
-      return res.status(502).json({ success: false, error: "Failed to send notification" });
+        const html = `
+          <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
+            <div style="background:#0E1611;padding:20px 24px;border-radius:8px 8px 0 0;">
+              <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Tamesis Development Ltd</span>
+            </div>
+            <div style="border:1px solid #E6EAE7;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
+              <h2 style="margin:0 0 16px;color:#16201A;font-size:18px;">New ${escapeHtml(label)}</h2>
+              <table style="width:100%;border-collapse:collapse;">${rows}</table>
+            </div>
+          </div>
+        `;
+
+        const notifyTo = await getNotifyEmail();
+        const resend = new Resend(apiKey);
+        const { error } = await resend.emails.send({
+          from: FROM,
+          to: notifyTo,
+          replyTo: fields.email || undefined,
+          subject: `New ${label} — ${fields.name || "Website Visitor"}`,
+          html,
+        });
+
+        if (error) {
+          console.error("Resend error (non-fatal):", error);
+        } else {
+          emailSent = true;
+        }
+      } catch (emailErr) {
+        console.error("Email send error (non-fatal):", emailErr);
+      }
+    }
+
+    if (!dbSaved && !emailSent) {
+      return res.status(500).json({ success: false, error: "Unable to process submission" });
     }
 
     return res.status(200).json({ success: true });

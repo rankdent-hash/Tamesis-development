@@ -41,13 +41,11 @@ subject matter).
 
 ## Form submissions → email
 
-All six forms (hero quote, `/quote`, `/contact`, `/report-repair`, `/emergency`, `/careers`) now POST to a Vercel serverless function at `api/submit-form.ts`, which emails the submission via [Resend](https://resend.com). Each form includes a hidden honeypot field for basic spam protection.
+All six forms (hero quote, `/quote`, `/contact`, `/report-repair`, `/emergency`, `/careers`) now POST to a Vercel serverless function at `api/submit-form.ts`, which saves the lead to Postgres **and** emails a notification via [Resend](https://resend.com) — these two things are fully independent; a submission only fails if *both* fail. So a missing/misconfigured `RESEND_API_KEY` no longer blocks leads from being saved to the admin panel (an earlier version of this function checked for the Resend key first and rejected the whole request before ever touching the database — fixed). Each form includes a hidden honeypot field for basic spam protection.
 
-**To activate this**, set two environment variables in the Vercel project (Project → Settings → Environment Variables):
+**To activate email notifications**, set in the Vercel project (Project → Settings → Environment Variables):
 - `RESEND_API_KEY` — from resend.com → API Keys
-- `NOTIFY_EMAIL` — the inbox that should receive submissions (falls back to `contact@tamesisdevelopment.co.uk` if unset)
-
-Until `RESEND_API_KEY` is set, form submissions will fail gracefully (each form shows "Something went wrong — please call us instead").
+- `NOTIFY_EMAIL` — fallback inbox if nothing's been saved in the admin panel's Settings tab yet (falls back further to `contact@tamesisdevelopment.co.uk` if both are unset)
 
 Currently sends from Resend's shared sandbox address (`onboarding@resend.dev`), which works immediately with no setup. Once a real domain is registered and verified with Resend (a few DNS records), update the `FROM` constant in `api/submit-form.ts` to send from that domain instead — looks more professional and improves deliverability.
 
