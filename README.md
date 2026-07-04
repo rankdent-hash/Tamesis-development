@@ -7,6 +7,10 @@ generating it with prompts — this avoids spending Lovable credits on
 layout/structure, and leaves credits for content edits, copy tweaks, and new
 pages afterwards.
 
+## Deployment config (`vercel.json`)
+
+This is a client-side SPA (React Router) combined with serverless API functions, which needs an explicit rewrite rule — otherwise directly visiting or refreshing a client route like `/admin` (or any page other than `/`) 404s, since there's no matching file for Vercel to serve. `vercel.json` rewrites everything except `/api/*` to `/index.html`, letting React Router take over; Vercel still serves real static files (JS/CSS/images) and API routes directly without hitting this rewrite, since it only applies when no matching file/function exists.
+
 ## Brand
 
 **Design direction**: heritage British property brand — deep racing-green-black,
