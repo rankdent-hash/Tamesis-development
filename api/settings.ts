@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createPool } from "@vercel/postgres";
+import { Pool } from "pg";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // NOTE: this auth logic is duplicated across the api/ functions rather than
@@ -32,6 +32,8 @@ function verifyToken(token: string | undefined | null): boolean {
   }
 }
 
+// See the comment in api/leads.ts about why this uses `pg` rather than
+// @vercel/postgres (that package doesn't actually work with Supabase).
 function getConnectionString(): string {
   const candidateUrlVars = [
     "POSTGRES_URL",
@@ -41,16 +43,7 @@ function getConnectionString(): string {
     "tamesisstorage_POSTGRES_PRISMA_URL",
   ];
   for (const key of candidateUrlVars) {
-    if (process.env[key]) {
-      const value = process.env[key] as string;
-      try {
-        const parsedHost = new URL(value.replace(/^postgres(ql)?:/, "http:")).hostname;
-        console.error(`[db] Using connection string from ${key}, host=${parsedHost}`);
-      } catch {
-        console.error(`[db] Using connection string from ${key} (could not parse host for logging)`);
-      }
-      return value;
-    }
+    if (process.env[key]) return process.env[key] as string;
   }
 
   const host = process.env.tamesisstorage_POSTGRES_HOST;
@@ -59,32 +52,29 @@ function getConnectionString(): string {
   const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
 
   if (host && database && password) {
-    console.error(`[db] Building connection string from parts: host=${host}, database=${database}, user=${user}`);
     return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
   }
 
-  const relevantKeys = Object.keys(process.env).filter((k) => /postgres|supabase|database/i.test(k));
-  console.error("No usable Postgres connection found. Relevant env var names present:", relevantKeys);
   throw new Error(
     "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
   );
 }
 
-let pool: ReturnType<typeof createPool> | null = null;
+let pool: Pool | null = null;
 let poolInitError: string | null = null;
 try {
-  pool = createPool({ connectionString: getConnectionString() });
+  pool = new Pool({ connectionString: getConnectionString(), ssl: { rejectUnauthorized: false } });
 } catch (err) {
   poolInitError = err instanceof Error ? err.message : "Unknown database configuration error";
 }
 
 async function ensureSchema() {
-  await pool!.sql`
+  await pool!.query(`
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
     );
-  `;
+  `);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -109,7 +99,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await ensureSchema();
 
     if (req.method === "GET") {
-      const { rows } = await pool.sql`SELECT key, value FROM settings;`;
+      const { rows } = await pool.query(`SELECT key, value FROM settings;`);
       const settings: Record<string, string> = {};
       for (const row of rows) settings[row.key] = row.value;
       return res.status(200).json({ success: true, settings });
@@ -121,10 +111,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (notifyEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(notifyEmail)) {
           return res.status(400).json({ success: false, error: "Invalid email address" });
         }
-        await pool.sql`
-          INSERT INTO settings (key, value) VALUES ('notify_email', ${notifyEmail})
-          ON CONFLICT (key) DO UPDATE SET value = ${notifyEmail};
-        `;
+        await pool.query(
+          `INSERT INTO settings (key, value) VALUES ('notify_email', $1)
+           ON CONFLICT (key) DO UPDATE SET value = $1;`,
+          [notifyEmail]
+        );
       }
       return res.status(200).json({ success: true });
     }

@@ -1,9 +1,11 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createPool } from "@vercel/postgres";
+import { Pool } from "pg";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // NOTE: this auth logic is duplicated in api/admin-login.ts rather than
 // imported from a shared file — see the comment there for why.
+// See the comment in api/leads.ts about why this uses `pg` rather than
+// @vercel/postgres (that package doesn't actually work with Supabase).
 
 function getConnectionString(): string {
   const candidateUrlVars = [
@@ -15,14 +17,7 @@ function getConnectionString(): string {
   ];
   for (const key of candidateUrlVars) {
     if (process.env[key]) {
-      const value = process.env[key] as string;
-      try {
-        const parsedHost = new URL(value.replace(/^postgres(ql)?:/, "http:")).hostname;
-        console.error(`[db] Using connection string from ${key}, host=${parsedHost}`);
-      } catch {
-        console.error(`[db] Using connection string from ${key} (could not parse host for logging)`);
-      }
-      return value;
+      return process.env[key] as string;
     }
   }
 
@@ -32,21 +27,18 @@ function getConnectionString(): string {
   const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
 
   if (host && database && password) {
-    console.error(`[db] Building connection string from parts: host=${host}, database=${database}, user=${user}`);
     return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
   }
 
-  const relevantKeys = Object.keys(process.env).filter((k) => /postgres|supabase|database/i.test(k));
-  console.error("No usable Postgres connection found. Relevant env var names present:", relevantKeys);
   throw new Error(
     "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
   );
 }
 
-let pool: ReturnType<typeof createPool> | null = null;
+let pool: Pool | null = null;
 let poolInitError: string | null = null;
 try {
-  pool = createPool({ connectionString: getConnectionString() });
+  pool = new Pool({ connectionString: getConnectionString(), ssl: { rejectUnauthorized: false } });
 } catch (err) {
   poolInitError = err instanceof Error ? err.message : "Unknown database configuration error";
 }
@@ -236,27 +228,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    await pool.sql`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS leads (
         id SERIAL PRIMARY KEY,
         form_type TEXT NOT NULL,
         fields JSONB NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT now()
       );
-    `;
-    await pool.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
-    await pool.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
+    `);
+    await pool.query(`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`);
+    await pool.query(`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`);
 
     for (const lead of SAMPLE_LEADS) {
-      await pool.sql`
-        INSERT INTO leads (form_type, fields, status, created_at)
-        VALUES (
-          ${lead.formType},
-          ${JSON.stringify(lead.fields)},
-          ${lead.status},
-          now() - (${lead.daysAgo} || ' days')::interval
-        );
-      `;
+      await pool.query(
+        `INSERT INTO leads (form_type, fields, status, created_at)
+         VALUES ($1, $2, $3, now() - ($4::text || ' days')::interval);`,
+        [lead.formType, JSON.stringify(lead.fields), lead.status, lead.daysAgo]
+      );
     }
 
     return res.status(200).json({ success: true, inserted: SAMPLE_LEADS.length });

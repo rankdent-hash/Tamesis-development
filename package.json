@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.23.0",
+    "pg": "^8.22.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^24.13.2",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vercel/node": "^5.8.22",

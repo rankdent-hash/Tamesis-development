@@ -1,13 +1,17 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
-import { createPool } from "@vercel/postgres";
+import { Pool } from "pg";
 
 // Vercel's Supabase marketplace integration prefixes every env var with the
 // storage resource's name (e.g. "tamesisstorage_") instead of the plain
-// POSTGRES_URL that @vercel/postgres looks for automatically. This tries a
-// handful of likely full-connection-string variable names first, then falls
-// back to building one from the individual host/database/user/password
-// variables, which the integration does expose with a consistent prefix.
+// POSTGRES_URL some tooling looks for automatically. This tries a handful of
+// likely full-connection-string variable names first, then falls back to
+// building one from the individual host/database/user/password variables.
+//
+// IMPORTANT: uses the standard `pg` driver, not @vercel/postgres — see the
+// longer explanation in api/leads.ts. Short version: @vercel/postgres is
+// built on Neon's serverless driver, which doesn't actually work correctly
+// against a non-Neon host like Supabase.
 function getConnectionString(): string {
   const candidateUrlVars = [
     "POSTGRES_URL",
@@ -17,16 +21,7 @@ function getConnectionString(): string {
     "tamesisstorage_POSTGRES_PRISMA_URL",
   ];
   for (const key of candidateUrlVars) {
-    if (process.env[key]) {
-      const value = process.env[key] as string;
-      try {
-        const parsedHost = new URL(value.replace(/^postgres(ql)?:/, "http:")).hostname;
-        console.error(`[db] Using connection string from ${key}, host=${parsedHost}`);
-      } catch {
-        console.error(`[db] Using connection string from ${key} (could not parse host for logging)`);
-      }
-      return value;
-    }
+    if (process.env[key]) return process.env[key] as string;
   }
 
   const host = process.env.tamesisstorage_POSTGRES_HOST;
@@ -35,20 +30,17 @@ function getConnectionString(): string {
   const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
 
   if (host && database && password) {
-    console.error(`[db] Building connection string from parts: host=${host}, database=${database}, user=${user}`);
     return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
   }
 
-  const relevantKeys = Object.keys(process.env).filter((k) => /postgres|supabase|database/i.test(k));
-  console.error("No usable Postgres connection found. Relevant env var names present:", relevantKeys);
   throw new Error(
     "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
   );
 }
 
-let pool: ReturnType<typeof createPool> | null = null;
+let pool: Pool | null = null;
 try {
-  pool = createPool({ connectionString: getConnectionString() });
+  pool = new Pool({ connectionString: getConnectionString(), ssl: { rejectUnauthorized: false } });
 } catch (err) {
   console.error("Postgres pool init error (lead storage will be skipped):", err);
 }
@@ -59,8 +51,8 @@ const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.
 async function getNotifyEmail(): Promise<string> {
   if (!pool) return NOTIFY_FALLBACK;
   try {
-    await pool.sql`CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);`;
-    const { rows } = await pool.sql`SELECT value FROM settings WHERE key = 'notify_email';`;
+    await pool.query(`CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);`);
+    const { rows } = await pool.query(`SELECT value FROM settings WHERE key = 'notify_email';`);
     if (rows[0]?.value) return rows[0].value as string;
   } catch (err) {
     console.error("Could not read notify_email setting (using fallback):", err);
@@ -125,17 +117,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let dbSaved = false;
     try {
       if (!pool) throw new Error("Postgres pool not initialized");
-      await pool.sql`
+      await pool.query(`
         CREATE TABLE IF NOT EXISTS leads (
           id SERIAL PRIMARY KEY,
           form_type TEXT NOT NULL,
           fields JSONB NOT NULL,
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         );
-      `;
-      await pool.sql`
-        INSERT INTO leads (form_type, fields) VALUES (${formType}, ${JSON.stringify(fields)});
-      `;
+      `);
+      await pool.query(`INSERT INTO leads (form_type, fields) VALUES ($1, $2);`, [formType, JSON.stringify(fields)]);
       dbSaved = true;
     } catch (dbErr) {
       console.error("Lead storage error (non-fatal):", dbErr);

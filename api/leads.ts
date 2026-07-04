@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createPool } from "@vercel/postgres";
+import { Pool } from "pg";
 import { createHmac, timingSafeEqual } from "crypto";
 
 // NOTE: this auth logic is duplicated in api/admin-login.ts and
@@ -35,10 +35,18 @@ function verifyToken(token: string | undefined | null): boolean {
 
 // Vercel's Supabase marketplace integration prefixes every env var with the
 // storage resource's name (e.g. "tamesisstorage_") instead of the plain
-// POSTGRES_URL that @vercel/postgres looks for automatically. This tries a
-// handful of likely full-connection-string variable names first, then falls
-// back to building one from the individual host/database/user/password
-// variables, which the integration does expose with a consistent prefix.
+// POSTGRES_URL some tooling looks for automatically. This tries a handful of
+// likely full-connection-string variable names first, then falls back to
+// building one from the individual host/database/user/password variables,
+// which the integration does expose with a consistent prefix.
+//
+// IMPORTANT: uses the standard `pg` driver, not @vercel/postgres — that
+// package is built on Neon's serverless driver, which is specifically wired
+// for Neon-hosted databases and silently rewrites the connection host when
+// pointed at a non-Neon Postgres instance (confirmed via diagnostic logging:
+// it substituted a hardcoded Neon-internal host even when given a correct,
+// working Supabase connection string). `pg` makes a normal TCP connection to
+// whatever host you give it, which works correctly with Supabase.
 function getConnectionString(): string {
   const candidateUrlVars = [
     "POSTGRES_URL",
@@ -48,16 +56,7 @@ function getConnectionString(): string {
     "tamesisstorage_POSTGRES_PRISMA_URL",
   ];
   for (const key of candidateUrlVars) {
-    if (process.env[key]) {
-      const value = process.env[key] as string;
-      try {
-        const parsedHost = new URL(value.replace(/^postgres(ql)?:/, "http:")).hostname;
-        console.error(`[db] Using connection string from ${key}, host=${parsedHost}`);
-      } catch {
-        console.error(`[db] Using connection string from ${key} (could not parse host for logging)`);
-      }
-      return value;
-    }
+    if (process.env[key]) return process.env[key] as string;
   }
 
   const host = process.env.tamesisstorage_POSTGRES_HOST;
@@ -66,21 +65,18 @@ function getConnectionString(): string {
   const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
 
   if (host && database && password) {
-    console.error(`[db] Building connection string from parts: host=${host}, database=${database}, user=${user}`);
     return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
   }
 
-  const relevantKeys = Object.keys(process.env).filter((k) => /postgres|supabase|database/i.test(k));
-  console.error("No usable Postgres connection found. Relevant env var names present:", relevantKeys);
   throw new Error(
     "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
   );
 }
 
-let pool: ReturnType<typeof createPool> | null = null;
+let pool: Pool | null = null;
 let poolInitError: string | null = null;
 try {
-  pool = createPool({ connectionString: getConnectionString() });
+  pool = new Pool({ connectionString: getConnectionString(), ssl: { rejectUnauthorized: false } });
 } catch (err) {
   poolInitError = err instanceof Error ? err.message : "Unknown database configuration error";
 }
@@ -88,16 +84,16 @@ try {
 const VALID_STATUSES = ["new", "contacted", "quoted", "won", "lost"];
 
 async function ensureSchema() {
-  await pool!.sql`
+  await pool!.query(`
     CREATE TABLE IF NOT EXISTS leads (
       id SERIAL PRIMARY KEY,
       form_type TEXT NOT NULL,
       fields JSONB NOT NULL,
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     );
-  `;
-  await pool!.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
-  await pool!.sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
+  `);
+  await pool!.query(`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`);
+  await pool!.query(`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -123,12 +119,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     await ensureSchema();
 
     if (req.method === "GET") {
-      const { rows } = await pool.sql`
+      const { rows } = await pool.query(`
         SELECT id, form_type, fields, status, notes, created_at
         FROM leads
         ORDER BY created_at DESC
         LIMIT 500;
-      `;
+      `);
       return res.status(200).json({ success: true, leads: rows });
     }
 
@@ -141,10 +137,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       if (status !== undefined) {
-        await pool.sql`UPDATE leads SET status = ${status} WHERE id = ${id};`;
+        await pool.query(`UPDATE leads SET status = $1 WHERE id = $2;`, [status, id]);
       }
       if (notes !== undefined) {
-        await pool.sql`UPDATE leads SET notes = ${notes} WHERE id = ${id};`;
+        await pool.query(`UPDATE leads SET notes = $1 WHERE id = $2;`, [notes, id]);
       }
 
       return res.status(200).json({ success: true });
