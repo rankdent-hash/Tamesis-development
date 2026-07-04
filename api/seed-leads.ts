@@ -1,0 +1,158 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { sql } from "@vercel/postgres";
+import { createHmac, timingSafeEqual } from "crypto";
+
+// NOTE: this auth logic is duplicated in api/admin-login.ts rather than
+// imported from a shared file — see the comment there for why.
+
+function getSecret(): string {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) throw new Error("ADMIN_SESSION_SECRET is not set");
+  return secret;
+}
+
+function verifyToken(token: string | undefined | null): boolean {
+  if (!token) return false;
+  const [payload, signature] = token.split(".");
+  if (!payload || !signature) return false;
+
+  const expectedSignature = createHmac("sha256", getSecret()).update(payload).digest("hex");
+  const sigBuf = Buffer.from(signature);
+  const expectedBuf = Buffer.from(expectedSignature);
+  if (sigBuf.length !== expectedBuf.length || !timingSafeEqual(sigBuf, expectedBuf)) {
+    return false;
+  }
+
+  try {
+    const decoded = Buffer.from(payload, "base64url").toString("utf-8");
+    const expires = Number(decoded.split(":").pop());
+    return Number.isFinite(expires) && Date.now() < expires;
+  } catch {
+    return false;
+  }
+}
+
+// Example submissions only, for demoing the admin dashboard — not real customers.
+const SAMPLE_LEADS: { formType: string; fields: Record<string, string>; status: string; daysAgo: number }[] = [
+  {
+    formType: "hero-quote",
+    fields: { name: "Sarah Whitfield", phone: "07700 900123", service: "Bathroom Refurbishment" },
+    status: "new",
+    daysAgo: 0,
+  },
+  {
+    formType: "quote",
+    fields: {
+      name: "James Okonkwo",
+      company: "",
+      phone: "07700 900456",
+      email: "james.okonkwo@example.com",
+      propertyType: "Residential — Flat",
+      sector: "Landlords",
+      service: "Leak Detection",
+      description: "Water stain appearing on the ceiling below the upstairs bathroom, needs investigating urgently.",
+      preferredDate: "",
+    },
+    status: "contacted",
+    daysAgo: 1,
+  },
+  {
+    formType: "contact",
+    fields: {
+      name: "Riverside Housing Association",
+      phone: "020 7946 0958",
+      email: "maintenance@riversidehousing-example.co.uk",
+      reason: "Contract / Sector Enquiry",
+      message: "Looking to discuss a planned maintenance contract across our Croydon estate, approximately 120 units.",
+    },
+    status: "quoted",
+    daysAgo: 2,
+  },
+  {
+    formType: "report-repair",
+    fields: {
+      name: "Priya Anand",
+      phone: "07700 900789",
+      address: "14 Fulham Park Road, London SW6",
+      issue: "Kitchen tap dripping constantly and washer needs replacing.",
+      access: "Key held by neighbour at number 16",
+    },
+    status: "won",
+    daysAgo: 4,
+  },
+  {
+    formType: "emergency",
+    fields: {
+      name: "Michael Torres",
+      phone: "07700 900321",
+      address: "22 Camden High Street, London NW1",
+      type: "No Heating or Hot Water",
+      details: "Boiler stopped working overnight, no heating or hot water in the property.",
+    },
+    status: "won",
+    daysAgo: 5,
+  },
+  {
+    formType: "careers",
+    fields: {
+      fullName: "Daniel Osei",
+      phone: "07700 900654",
+      email: "daniel.osei@example.com",
+      experience: "5 years as a multi-trade engineer, previously with a housing association contractor in East London.",
+      role: "Multi-Trade Engineer",
+    },
+    status: "new",
+    daysAgo: 3,
+  },
+  {
+    formType: "hero-quote",
+    fields: { name: "Grovewood Property Management", phone: "020 3488 1122", service: "Void Property Refurbishment" },
+    status: "lost",
+    daysAgo: 7,
+  },
+];
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST") return res.status(405).json({ success: false, error: "Method not allowed" });
+
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
+  if (!verifyToken(token)) {
+    return res.status(401).json({ success: false, error: "Unauthorized" });
+  }
+
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS leads (
+        id SERIAL PRIMARY KEY,
+        form_type TEXT NOT NULL,
+        fields JSONB NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+      );
+    `;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
+
+    for (const lead of SAMPLE_LEADS) {
+      await sql`
+        INSERT INTO leads (form_type, fields, status, created_at)
+        VALUES (
+          ${lead.formType},
+          ${JSON.stringify(lead.fields)},
+          ${lead.status},
+          now() - (${lead.daysAgo} || ' days')::interval
+        );
+      `;
+    }
+
+    return res.status(200).json({ success: true, inserted: SAMPLE_LEADS.length });
+  } catch (err) {
+    console.error("Seed leads error:", err);
+    return res.status(500).json({ success: false, error: "Unexpected server error" });
+  }
+}

@@ -2,8 +2,9 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { sql } from "@vercel/postgres";
 import { createHmac, timingSafeEqual } from "crypto";
 
-// NOTE: this auth logic is duplicated in api/admin-login.ts rather than
-// imported from a shared file — see the comment there for why.
+// NOTE: this auth logic is duplicated in api/admin-login.ts and
+// api/seed-leads.ts rather than imported from a shared file — see the
+// comment in api/admin-login.ts for why.
 
 function getSecret(): string {
   const secret = process.env.ADMIN_SESSION_SECRET;
@@ -32,13 +33,27 @@ function verifyToken(token: string | undefined | null): boolean {
   }
 }
 
+const VALID_STATUSES = ["new", "contacted", "quoted", "won", "lost"];
+
+async function ensureSchema() {
+  await sql`
+    CREATE TABLE IF NOT EXISTS leads (
+      id SERIAL PRIMARY KEY,
+      form_type TEXT NOT NULL,
+      fields JSONB NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+  `;
+  await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'new';`;
+  await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT NOT NULL DEFAULT '';`;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, PATCH, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "GET") return res.status(405).json({ success: false, error: "Method not allowed" });
 
   const authHeader = req.headers.authorization;
   const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
@@ -48,25 +63,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    await sql`
-      CREATE TABLE IF NOT EXISTS leads (
-        id SERIAL PRIMARY KEY,
-        form_type TEXT NOT NULL,
-        fields JSONB NOT NULL,
-        created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-      );
-    `;
+    await ensureSchema();
 
-    const { rows } = await sql`
-      SELECT id, form_type, fields, created_at
-      FROM leads
-      ORDER BY created_at DESC
-      LIMIT 500;
-    `;
+    if (req.method === "GET") {
+      const { rows } = await sql`
+        SELECT id, form_type, fields, status, notes, created_at
+        FROM leads
+        ORDER BY created_at DESC
+        LIMIT 500;
+      `;
+      return res.status(200).json({ success: true, leads: rows });
+    }
 
-    return res.status(200).json({ success: true, leads: rows });
+    if (req.method === "PATCH") {
+      const { id, status, notes } = req.body as { id?: number; status?: string; notes?: string };
+      if (!id) return res.status(400).json({ success: false, error: "Lead id required" });
+
+      if (status !== undefined && !VALID_STATUSES.includes(status)) {
+        return res.status(400).json({ success: false, error: "Invalid status" });
+      }
+
+      if (status !== undefined) {
+        await sql`UPDATE leads SET status = ${status} WHERE id = ${id};`;
+      }
+      if (notes !== undefined) {
+        await sql`UPDATE leads SET notes = ${notes} WHERE id = ${id};`;
+      }
+
+      return res.status(200).json({ success: true });
+    }
+
+    return res.status(405).json({ success: false, error: "Method not allowed" });
   } catch (err) {
-    console.error("Leads fetch error:", err);
+    console.error("Leads error:", err);
     return res.status(500).json({ success: false, error: "Unexpected server error" });
   }
 }

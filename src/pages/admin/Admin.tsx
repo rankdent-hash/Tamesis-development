@@ -1,8 +1,17 @@
-import { useEffect, useState, type FormEvent } from "react";
-import { LogOut, Mail, Lock, AlertCircle, RefreshCw, Inbox, KeyRound } from "lucide-react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { LogOut, Mail, Lock, AlertCircle, RefreshCw, Inbox, KeyRound, Sparkles, Save } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
-import { adminLogin, fetchLeads, getAdminToken, clearAdminToken, type Lead } from "../../lib/adminAuth";
+import {
+  adminLogin,
+  fetchLeads,
+  updateLead,
+  seedSampleLeads,
+  getAdminToken,
+  clearAdminToken,
+  type Lead,
+} from "../../lib/adminAuth";
+import { cn } from "../../lib/utils";
 
 const FORM_LABELS: Record<string, string> = {
   "hero-quote": "Hero Quote Form",
@@ -12,6 +21,16 @@ const FORM_LABELS: Record<string, string> = {
   emergency: "Emergency Callout",
   careers: "Careers Application",
 };
+
+const STATUS_CONFIG: Record<string, { label: string; bg: string; text: string }> = {
+  new: { label: "New", bg: "bg-blue-50", text: "text-blue-700" },
+  contacted: { label: "Contacted", bg: "bg-orange-50", text: "text-orange-700" },
+  quoted: { label: "Quoted", bg: "bg-navy-50", text: "text-navy-700" },
+  won: { label: "Won", bg: "bg-green-50", text: "text-green-700" },
+  lost: { label: "Lost", bg: "bg-red-50", text: "text-red-700" },
+};
+
+const STATUS_ORDER = ["new", "contacted", "quoted", "won", "lost"];
 
 function getService(lead: Lead): string {
   const f = lead.fields;
@@ -161,7 +180,10 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
   const [leads, setLeads] = useState<Lead[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [noteDraft, setNoteDraft] = useState("");
+  const [filter, setFilter] = useState<string>("all");
 
   const load = async () => {
     setLoading(true);
@@ -188,10 +210,46 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
     onLogout();
   };
 
+  const handleSeed = async () => {
+    setSeeding(true);
+    const result = await seedSampleLeads();
+    setSeeding(false);
+    if (result.success) {
+      load();
+    } else {
+      setError(result.error || "Failed to add sample leads");
+    }
+  };
+
+  const handleStatusChange = async (lead: Lead, status: string) => {
+    setLeads((prev) => (prev ? prev.map((l) => (l.id === lead.id ? { ...l, status } : l)) : prev));
+    await updateLead(lead.id, { status });
+  };
+
+  const handleSaveNote = async (lead: Lead) => {
+    setLeads((prev) => (prev ? prev.map((l) => (l.id === lead.id ? { ...l, notes: noteDraft } : l)) : prev));
+    await updateLead(lead.id, { notes: noteDraft });
+  };
+
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { all: leads?.length || 0 };
+    for (const status of STATUS_ORDER) c[status] = 0;
+    leads?.forEach((l) => {
+      c[l.status] = (c[l.status] || 0) + 1;
+    });
+    return c;
+  }, [leads]);
+
+  const filteredLeads = useMemo(() => {
+    if (!leads) return [];
+    if (filter === "all") return leads;
+    return leads.filter((l) => l.status === filter);
+  }, [leads, filter]);
+
   return (
     <div>
       <header className="bg-navy-900 text-white">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-5 flex items-center justify-between">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-5 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <span className="w-9 h-9 rounded-lg bg-white/10 text-orange-400 font-display font-bold flex items-center justify-center">
               T
@@ -202,6 +260,13 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={handleSeed}
+              disabled={seeding}
+              className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors disabled:opacity-60"
+            >
+              <Sparkles size={13} /> {seeding ? "Adding..." : "Add Sample Leads"}
+            </button>
             <button
               onClick={load}
               className="flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold hover:bg-white/10 transition-colors"
@@ -227,12 +292,34 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
           </p>
         )}
 
+        {!loading && leads && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {["all", ...STATUS_ORDER].map((s) => (
+              <button
+                key={s}
+                onClick={() => setFilter(s)}
+                className={cn(
+                  "rounded-full px-4 py-2 text-xs font-semibold border transition-colors",
+                  filter === s
+                    ? "bg-navy-900 text-white border-navy-900"
+                    : "bg-white text-navy-700 border-navy-200 hover:border-navy-900"
+                )}
+              >
+                {s === "all" ? "All" : STATUS_CONFIG[s].label} ({counts[s] || 0})
+              </button>
+            ))}
+          </div>
+        )}
+
         {!loading && leads && leads.length === 0 && (
           <div className="rounded-2xl border-2 border-navy-100 bg-white p-12 text-center">
             <Inbox size={32} className="mx-auto text-slate-light" />
             <p className="mt-3 text-sm text-slate">
               No leads yet. Submissions from the website's forms will appear here.
             </p>
+            <Button variant="primary" className="mt-5" onClick={handleSeed} disabled={seeding}>
+              {seeding ? "Adding..." : "Add Sample Leads to Preview This Dashboard"}
+            </Button>
           </div>
         )}
 
@@ -247,38 +334,74 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
                   <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Contact</th>
                   <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Service</th>
                   <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Message</th>
+                  <th className="px-4 py-3 font-accent text-xs uppercase tracking-wide text-navy-700">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-navy-100">
-                {leads.map((lead) => {
+                {filteredLeads.map((lead) => {
                   const { date, time } = formatDate(lead.created_at);
                   const message = getMessage(lead);
                   const isExpanded = expanded === lead.id;
+                  const statusCfg = STATUS_CONFIG[lead.status] || STATUS_CONFIG.new;
                   return (
-                    <tr
-                      key={lead.id}
-                      className="hover:bg-navy-50/50 cursor-pointer align-top"
-                      onClick={() => setExpanded(isExpanded ? null : lead.id)}
-                    >
-                      <td className="px-4 py-3 whitespace-nowrap">
+                    <tr key={lead.id} className="hover:bg-navy-50/50 align-top">
+                      <td
+                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
                         <div className="font-medium text-navy-900">{date}</div>
                         <div className="text-xs text-slate-light font-accent">{time}</div>
                       </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
+                      <td
+                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
                         <span className="inline-flex rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-xs font-semibold">
                           {FORM_LABELS[lead.form_type] || lead.form_type}
                         </span>
                       </td>
-                      <td className="px-4 py-3 font-medium text-navy-900 whitespace-nowrap">
+                      <td
+                        className="px-4 py-3 font-medium text-navy-900 whitespace-nowrap cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
                         {lead.fields.name || lead.fields.fullName || "—"}
                       </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
+                      <td
+                        className="px-4 py-3 whitespace-nowrap cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
                         {lead.fields.phone && <div>{lead.fields.phone}</div>}
                         {lead.fields.email && <div className="text-xs text-slate">{lead.fields.email}</div>}
                         {!lead.fields.phone && !lead.fields.email && "—"}
                       </td>
-                      <td className="px-4 py-3">{getService(lead)}</td>
-                      <td className="px-4 py-3 max-w-xs">
+                      <td
+                        className="px-4 py-3 cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
+                        {getService(lead)}
+                      </td>
+                      <td
+                        className="px-4 py-3 max-w-xs cursor-pointer"
+                        onClick={() => {
+                          setExpanded(isExpanded ? null : lead.id);
+                          setNoteDraft(lead.notes || "");
+                        }}
+                      >
                         {isExpanded ? (
                           <div className="space-y-1">
                             {Object.entries(lead.fields).map(([k, v]) => (
@@ -292,11 +415,55 @@ function LeadsDashboard({ onLogout }: { onLogout: () => void }) {
                           <span className="line-clamp-2 text-slate">{message || "—"}</span>
                         )}
                       </td>
+                      <td className="px-4 py-3">
+                        <select
+                          value={lead.status}
+                          onChange={(e) => handleStatusChange(lead, e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                          className={cn(
+                            "rounded-full px-3 py-1.5 text-xs font-semibold border-0 outline-none cursor-pointer",
+                            statusCfg.bg,
+                            statusCfg.text
+                          )}
+                        >
+                          {STATUS_ORDER.map((s) => (
+                            <option key={s} value={s}>
+                              {STATUS_CONFIG[s].label}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
+
+            {expanded !== null && filteredLeads.some((l) => l.id === expanded) && (
+              <div className="border-t-2 border-navy-100 p-5 bg-navy-50/50">
+                <label className="block text-xs font-accent uppercase tracking-wide text-navy-700 mb-2">
+                  Follow-up Notes
+                </label>
+                <textarea
+                  value={noteDraft}
+                  onChange={(e) => setNoteDraft(e.target.value)}
+                  rows={3}
+                  placeholder="e.g. Called 3pm, left voicemail. Follow up Thursday."
+                  className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none bg-white"
+                />
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="mt-3"
+                  onClick={() => {
+                    const lead = filteredLeads.find((l) => l.id === expanded);
+                    if (lead) handleSaveNote(lead);
+                  }}
+                >
+                  <Save size={13} /> Save Note
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </main>

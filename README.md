@@ -53,7 +53,15 @@ The homepage hero and all 20 individual service pages now have a compact quote-r
 
 ## Admin panel — leads dashboard
 
-`/admin` (linked from the footer as "Admin Login") shows every form submission — date/time, form type, name, contact details, service requested, and full message — stored in Postgres. Requires two more environment variables in Vercel, plus attaching Postgres storage:
+`/admin` (linked from the footer as "Admin Login") is a lightweight CRM for follow-up: every form submission shows date/time, form type, name, contact details, service requested, and full message, stored in Postgres.
+
+**Follow-up features:**
+- **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded badge, changeable inline via dropdown, saved immediately.
+- **Filter tabs**: click a status (with live count) to filter the table, or "All".
+- **Follow-up notes**: click a row to expand it and add/edit a free-text note (e.g. "Called 3pm, follow up Thursday") — saved separately from the original submission fields.
+- **"Add Sample Leads"** button: inserts 7 realistic example submissions (one per form type, spread across the last week, with varied statuses) — useful for previewing the dashboard before real traffic comes in. Safe to click repeatedly; just adds more rows.
+
+Requires two more environment variables in Vercel, plus attaching Postgres storage:
 
 1. **Attach Vercel Postgres**: in the Vercel dashboard, go to the project → **Storage** tab → **Create Database** → **Postgres**. This auto-injects the `POSTGRES_URL` (and related) environment variables — no manual copying needed. The `leads` table is created automatically on first use.
 2. **Set admin credentials** (Project → Settings → Environment Variables):
