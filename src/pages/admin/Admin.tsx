@@ -28,7 +28,7 @@ import {
   updateLead,
   seedSampleLeads,
   fetchSettings,
-  updateNotifyEmail,
+  updateEmailSettings,
   getAdminToken,
   clearAdminToken,
   type Lead,
@@ -367,6 +367,11 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
 function SettingsPanel() {
   const [notifyEmail, setNotifyEmail] = useState("");
+  const [resendApiKey, setResendApiKey] = useState("");
+  const [resendMasked, setResendMasked] = useState("");
+  const [web3formsApiKey, setWeb3formsApiKey] = useState("");
+  const [web3formsMasked, setWeb3formsMasked] = useState("");
+  const [emailProvider, setEmailProvider] = useState("resend");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -375,8 +380,11 @@ function SettingsPanel() {
   useEffect(() => {
     fetchSettings().then((result) => {
       setLoading(false);
-      if (result.success) {
-        setNotifyEmail(result.notifyEmail || "");
+      if (result.success && result.data) {
+        setNotifyEmail(result.data.notifyEmail);
+        setResendMasked(result.data.resendApiKeyMasked);
+        setWeb3formsMasked(result.data.web3formsApiKeyMasked);
+        setEmailProvider(result.data.emailProvider);
       } else {
         setError(result.error || "Failed to load settings");
       }
@@ -388,11 +396,26 @@ function SettingsPanel() {
     setSaving(true);
     setSaved(false);
     setError(null);
-    const result = await updateNotifyEmail(notifyEmail);
+    const result = await updateEmailSettings({
+      notifyEmail,
+      emailProvider,
+      // Only send a new key if the user actually typed one — otherwise
+      // leave whatever's already saved untouched.
+      ...(resendApiKey ? { resendApiKey } : {}),
+      ...(web3formsApiKey ? { web3formsApiKey } : {}),
+    });
     setSaving(false);
     if (result.success) {
       setSaved(true);
+      setResendApiKey("");
+      setWeb3formsApiKey("");
       setTimeout(() => setSaved(false), 3000);
+      fetchSettings().then((r) => {
+        if (r.success && r.data) {
+          setResendMasked(r.data.resendApiKeyMasked);
+          setWeb3formsMasked(r.data.web3formsApiKeyMasked);
+        }
+      });
     } else {
       setError(result.error || "Failed to save");
     }
@@ -401,14 +424,15 @@ function SettingsPanel() {
   return (
     <div className="max-w-xl">
       <p className="text-sm text-slate">
-        Every form submission on the website (quote requests, contact enquiries, emergency callouts, etc.) sends an
-        email via Resend to the address below. Update it here any time — no need to touch code or Vercel settings.
+        Every form submission on the website (quote requests, contact enquiries, emergency callouts, etc.) sends a
+        notification email using whichever provider is selected below. Manage everything here — no need to touch
+        code or Vercel settings.
       </p>
 
       {loading ? (
         <p className="mt-6 text-sm text-slate">Loading...</p>
       ) : (
-        <form onSubmit={handleSave} className="mt-6 rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
+        <form onSubmit={handleSave} className="mt-6 rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-5">
           <div>
             <label className="block text-sm font-medium text-navy-800 mb-1.5">Notification Email</label>
             <div className="relative">
@@ -422,6 +446,54 @@ function SettingsPanel() {
                 className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
               />
             </div>
+            <p className="mt-1.5 text-xs text-slate-light">Where form submissions get sent.</p>
+          </div>
+
+          <div className="pt-1 border-t border-navy-100">
+            <label className="block text-sm font-medium text-navy-800 mb-1.5 mt-4">Email Provider</label>
+            <select
+              value={emailProvider}
+              onChange={(e) => setEmailProvider(e.target.value)}
+              className="w-full rounded-lg border-2 border-navy-900 px-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
+            >
+              <option value="resend">Resend only</option>
+              <option value="web3forms">Web3Forms only</option>
+              <option value="both">Both (send via both, for redundancy)</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-navy-800 mb-1.5">Resend API Key</label>
+            <div className="relative">
+              <KeyRound size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="password"
+                value={resendApiKey}
+                onChange={(e) => setResendApiKey(e.target.value)}
+                placeholder={resendMasked ? `Currently set (${resendMasked})` : "re_..."}
+                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+              />
+            </div>
+            <p className="mt-1.5 text-xs text-slate-light">
+              From resend.com → API Keys. Leave blank to keep the current key.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-navy-800 mb-1.5">Web3Forms API Key</label>
+            <div className="relative">
+              <KeyRound size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="password"
+                value={web3formsApiKey}
+                onChange={(e) => setWeb3formsApiKey(e.target.value)}
+                placeholder={web3formsMasked ? `Currently set (${web3formsMasked})` : "Access key from web3forms.com"}
+                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+              />
+            </div>
+            <p className="mt-1.5 text-xs text-slate-light">
+              From web3forms.com — free, no account required to generate a key. Leave blank to keep the current key.
+            </p>
           </div>
 
           <Button type="submit" variant="primary" disabled={saving}>
@@ -430,7 +502,7 @@ function SettingsPanel() {
 
           {saved && (
             <p className="flex items-center gap-1.5 text-xs text-green-600">
-              <CheckCircle2 size={13} /> Saved — future submissions will be sent here.
+              <CheckCircle2 size={13} /> Saved.
             </p>
           )}
           {error && (
@@ -443,10 +515,9 @@ function SettingsPanel() {
 
       <div className="mt-6 rounded-2xl border border-navy-100 bg-navy-50 p-5">
         <p className="text-xs text-slate-light leading-relaxed">
-          <strong className="text-navy-700">Note:</strong> the Resend API key itself (which authorizes sending email
-          at all) is set separately as a <code className="text-navy-900">RESEND_API_KEY</code> environment variable
-          in Vercel, not here — that's a one-time technical setup step, whereas this email address is something
-          you're expected to change from time to time and shouldn't need a developer for.
+          <strong className="text-navy-700">Note:</strong> API keys entered here are stored in the database, only
+          ever shown back to you masked (e.g. ••••••••ab12), and only readable through this authenticated admin
+          panel — the same protection as everything else on this page.
         </p>
       </div>
     </div>

@@ -67,16 +67,66 @@ try {
 // Fallback notification email if no setting has been saved in the admin panel yet.
 const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
 
-async function getNotifyEmail(): Promise<string> {
-  if (!pool) return NOTIFY_FALLBACK;
+interface EmailSettings {
+  notifyEmail: string;
+  resendApiKey: string | null;
+  web3formsApiKey: string | null;
+  provider: "resend" | "web3forms" | "both";
+}
+
+async function getEmailSettings(): Promise<EmailSettings> {
+  const defaults: EmailSettings = {
+    notifyEmail: NOTIFY_FALLBACK,
+    resendApiKey: process.env.RESEND_API_KEY || null,
+    web3formsApiKey: process.env.WEB3FORMS_API_KEY || null,
+    provider: "resend",
+  };
+  if (!pool) return defaults;
   try {
     await pool.query(`CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);`);
-    const { rows } = await pool.query(`SELECT value FROM settings WHERE key = 'notify_email';`);
-    if (rows[0]?.value) return rows[0].value as string;
+    const { rows } = await pool.query(
+      `SELECT key, value FROM settings WHERE key IN ('notify_email', 'resend_api_key', 'web3forms_api_key', 'email_provider');`
+    );
+    const map: Record<string, string> = {};
+    for (const row of rows) map[row.key] = row.value;
+    return {
+      notifyEmail: map.notify_email || defaults.notifyEmail,
+      resendApiKey: map.resend_api_key || defaults.resendApiKey,
+      web3formsApiKey: map.web3forms_api_key || defaults.web3formsApiKey,
+      provider: (map.email_provider as EmailSettings["provider"]) || defaults.provider,
+    };
   } catch (err) {
-    console.error("Could not read notify_email setting (using fallback):", err);
+    console.error("Could not read email settings (using fallback):", err);
+    return defaults;
   }
-  return NOTIFY_FALLBACK;
+}
+
+async function sendViaWeb3Forms(
+  apiKey: string,
+  label: string,
+  fields: Record<string, string>
+): Promise<boolean> {
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: apiKey,
+        subject: `New ${label} — ${fields.name || fields.fullName || "Website Visitor"}`,
+        from_name: "Tamesis Development Ltd Website",
+        ...fields,
+      }),
+    });
+    const data = await res.json();
+    if (!data.success) {
+      console.error("Web3Forms error (non-fatal):", data);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("Web3Forms send error (non-fatal):", err);
+    return false;
+  }
 }
 
 // Resend's shared sandbox sender — works immediately with no setup, but reads
@@ -91,6 +141,7 @@ const FORM_LABELS: Record<string, string> = {
   "report-repair": "Report a Repair",
   emergency: "Emergency Callout",
   careers: "Careers Application",
+  callback: "Callback Request",
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -151,52 +202,65 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     let emailSent = false;
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error("RESEND_API_KEY is not set — skipping email notification (non-fatal)");
-    } else {
-      try {
-        const rows = Object.entries(fields)
-          .filter(([, value]) => value)
-          .map(
-            ([key, value]) =>
-              `<tr><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#565F58;font-size:13px;text-transform:capitalize;white-space:nowrap;">${escapeHtml(
-                key
-              )}</td><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#16201A;font-size:14px;">${escapeHtml(
-                String(value)
-              )}</td></tr>`
-          )
-          .join("");
+    const emailSettings = await getEmailSettings();
+    const useResend = emailSettings.provider === "resend" || emailSettings.provider === "both";
+    const useWeb3Forms = emailSettings.provider === "web3forms" || emailSettings.provider === "both";
 
-        const html = `
-          <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
-            <div style="background:#0E1611;padding:20px 24px;border-radius:8px 8px 0 0;">
-              <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Tamesis Development Ltd</span>
+    if (useResend) {
+      if (!emailSettings.resendApiKey) {
+        console.error("No Resend API key configured — skipping Resend notification (non-fatal)");
+      } else {
+        try {
+          const rows = Object.entries(fields)
+            .filter(([, value]) => value)
+            .map(
+              ([key, value]) =>
+                `<tr><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#565F58;font-size:13px;text-transform:capitalize;white-space:nowrap;">${escapeHtml(
+                  key
+                )}</td><td style="padding:8px 12px;border-bottom:1px solid #E6EAE7;color:#16201A;font-size:14px;">${escapeHtml(
+                  String(value)
+                )}</td></tr>`
+            )
+            .join("");
+
+          const html = `
+            <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
+              <div style="background:#0E1611;padding:20px 24px;border-radius:8px 8px 0 0;">
+                <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Tamesis Development Ltd</span>
+              </div>
+              <div style="border:1px solid #E6EAE7;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
+                <h2 style="margin:0 0 16px;color:#16201A;font-size:18px;">New ${escapeHtml(label)}</h2>
+                <table style="width:100%;border-collapse:collapse;">${rows}</table>
+              </div>
             </div>
-            <div style="border:1px solid #E6EAE7;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
-              <h2 style="margin:0 0 16px;color:#16201A;font-size:18px;">New ${escapeHtml(label)}</h2>
-              <table style="width:100%;border-collapse:collapse;">${rows}</table>
-            </div>
-          </div>
-        `;
+          `;
 
-        const notifyTo = await getNotifyEmail();
-        const resend = new Resend(apiKey);
-        const { error } = await resend.emails.send({
-          from: FROM,
-          to: notifyTo,
-          replyTo: fields.email || undefined,
-          subject: `New ${label} — ${fields.name || "Website Visitor"}`,
-          html,
-        });
+          const resend = new Resend(emailSettings.resendApiKey);
+          const { error } = await resend.emails.send({
+            from: FROM,
+            to: emailSettings.notifyEmail,
+            replyTo: fields.email || undefined,
+            subject: `New ${label} — ${fields.name || "Website Visitor"}`,
+            html,
+          });
 
-        if (error) {
-          console.error("Resend error (non-fatal):", error);
-        } else {
-          emailSent = true;
+          if (error) {
+            console.error("Resend error (non-fatal):", error);
+          } else {
+            emailSent = true;
+          }
+        } catch (emailErr) {
+          console.error("Resend send error (non-fatal):", emailErr);
         }
-      } catch (emailErr) {
-        console.error("Email send error (non-fatal):", emailErr);
+      }
+    }
+
+    if (useWeb3Forms) {
+      if (!emailSettings.web3formsApiKey) {
+        console.error("No Web3Forms API key configured — skipping Web3Forms notification (non-fatal)");
+      } else {
+        const sent = await sendViaWeb3Forms(emailSettings.web3formsApiKey, label, fields);
+        if (sent) emailSent = true;
       }
     }
 

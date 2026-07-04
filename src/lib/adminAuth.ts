@@ -104,7 +104,14 @@ export async function seedSampleLeads(): Promise<{ success: boolean; error?: str
   }
 }
 
-export async function fetchSettings(): Promise<{ success: boolean; notifyEmail?: string; error?: string }> {
+export interface EmailSettingsData {
+  notifyEmail: string;
+  resendApiKeyMasked: string;
+  web3formsApiKeyMasked: string;
+  emailProvider: string;
+}
+
+export async function fetchSettings(): Promise<{ success: boolean; data?: EmailSettingsData; error?: string }> {
   const token = getAdminToken();
   if (!token) return { success: false, error: "Not logged in" };
 
@@ -116,13 +123,26 @@ export async function fetchSettings(): Promise<{ success: boolean; notifyEmail?:
     if (!res.ok || !data.success) {
       return { success: false, error: data.error || "Failed to load settings" };
     }
-    return { success: true, notifyEmail: data.settings?.notify_email || "" };
+    return {
+      success: true,
+      data: {
+        notifyEmail: data.settings?.notify_email || "",
+        resendApiKeyMasked: data.settings?.resend_api_key || "",
+        web3formsApiKeyMasked: data.settings?.web3forms_api_key || "",
+        emailProvider: data.settings?.email_provider || "resend",
+      },
+    };
   } catch {
     return { success: false, error: "Network error — please try again" };
   }
 }
 
-export async function updateNotifyEmail(notifyEmail: string): Promise<{ success: boolean; error?: string }> {
+export async function updateEmailSettings(updates: {
+  notifyEmail?: string;
+  resendApiKey?: string;
+  web3formsApiKey?: string;
+  emailProvider?: string;
+}): Promise<{ success: boolean; error?: string }> {
   const token = getAdminToken();
   if (!token) return { success: false, error: "Not logged in" };
 
@@ -130,7 +150,7 @@ export async function updateNotifyEmail(notifyEmail: string): Promise<{ success:
     const res = await fetch("/api/settings", {
       method: "PATCH",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ notifyEmail }),
+      body: JSON.stringify(updates),
     });
     const data = await res.json();
     if (!res.ok || !data.success) {

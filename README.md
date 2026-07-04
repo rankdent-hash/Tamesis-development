@@ -66,7 +66,10 @@ Each leads view includes:
 - **Filter tabs** (with live counts) and a **search box** (name/phone/email).
 - **"Add Sample Leads"** button: inserts 13 realistic example submissions across all form types (including quote requests and callback requests specifically) with varied statuses and dates — safe to click repeatedly.
 
-**Email Settings** section: change the email address that receives form-submission notifications, without touching Vercel or code — stored in the `settings` Postgres table and read by `api/submit-form.ts` at send time (falls back to the `NOTIFY_EMAIL` env var if nothing's been saved yet). The Resend API key itself stays as an env var, since that's a one-time technical setup step rather than something that changes day to day.
+**Email Settings** section: manage everything about form-submission notifications directly in the admin panel, no Vercel/code access needed:
+- **Notification email** — where submissions get sent.
+- **Resend API key** and **Web3Forms API key** — both can be entered and saved here (stored in the `settings` Postgres table), each shown back only as a masked hint (e.g. `••••••••ab12`) once saved, never round-tripped in plaintext. Leaving a key field blank on save keeps whatever's already stored.
+- **Email provider** — choose Resend only, Web3Forms only, or both (sends via both for redundancy). Falls back to the `RESEND_API_KEY`/`WEB3FORMS_API_KEY` env vars if nothing's been saved in the panel yet.
 
 Requires environment variables in Vercel, plus attaching Postgres storage:
 

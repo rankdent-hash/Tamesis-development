@@ -121,11 +121,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const { rows } = await pool.query(`SELECT key, value FROM settings;`);
       const settings: Record<string, string> = {};
       for (const row of rows) settings[row.key] = row.value;
+
+      // Never send secret values back to the browser in plaintext — just
+      // indicate whether one is set, plus a masked hint of the last 4 chars.
+      for (const secretKey of ["resend_api_key", "web3forms_api_key"]) {
+        const value = settings[secretKey];
+        if (value) {
+          settings[secretKey] = `••••••••${value.slice(-4)}`;
+        }
+      }
+
       return res.status(200).json({ success: true, settings });
     }
 
     if (req.method === "PATCH") {
-      const { notifyEmail } = req.body as { notifyEmail?: string };
+      const { notifyEmail, resendApiKey, web3formsApiKey, emailProvider } = req.body as {
+        notifyEmail?: string;
+        resendApiKey?: string;
+        web3formsApiKey?: string;
+        emailProvider?: string;
+      };
+
       if (notifyEmail !== undefined) {
         if (notifyEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(notifyEmail)) {
           return res.status(400).json({ success: false, error: "Invalid email address" });
@@ -136,6 +152,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           [notifyEmail]
         );
       }
+
+      if (resendApiKey !== undefined) {
+        await pool.query(
+          `INSERT INTO settings (key, value) VALUES ('resend_api_key', $1)
+           ON CONFLICT (key) DO UPDATE SET value = $1;`,
+          [resendApiKey]
+        );
+      }
+
+      if (web3formsApiKey !== undefined) {
+        await pool.query(
+          `INSERT INTO settings (key, value) VALUES ('web3forms_api_key', $1)
+           ON CONFLICT (key) DO UPDATE SET value = $1;`,
+          [web3formsApiKey]
+        );
+      }
+
+      if (emailProvider !== undefined) {
+        if (!["resend", "web3forms", "both"].includes(emailProvider)) {
+          return res.status(400).json({ success: false, error: "Invalid email provider" });
+        }
+        await pool.query(
+          `INSERT INTO settings (key, value) VALUES ('email_provider', $1)
+           ON CONFLICT (key) DO UPDATE SET value = $1;`,
+          [emailProvider]
+        );
+      }
+
       return res.status(200).json({ success: true });
     }
 
