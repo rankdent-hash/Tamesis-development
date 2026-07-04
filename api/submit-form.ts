@@ -17,7 +17,16 @@ function getConnectionString(): string {
     "tamesisstorage_POSTGRES_PRISMA_URL",
   ];
   for (const key of candidateUrlVars) {
-    if (process.env[key]) return process.env[key] as string;
+    if (process.env[key]) {
+      const value = process.env[key] as string;
+      try {
+        const parsedHost = new URL(value.replace(/^postgres(ql)?:/, "http:")).hostname;
+        console.error(`[db] Using connection string from ${key}, host=${parsedHost}`);
+      } catch {
+        console.error(`[db] Using connection string from ${key} (could not parse host for logging)`);
+      }
+      return value;
+    }
   }
 
   const host = process.env.tamesisstorage_POSTGRES_HOST;
@@ -26,9 +35,12 @@ function getConnectionString(): string {
   const user = process.env.tamesisstorage_POSTGRES_USER || "postgres";
 
   if (host && database && password) {
+    console.error(`[db] Building connection string from parts: host=${host}, database=${database}, user=${user}`);
     return `postgres://${encodeURIComponent(user)}:${encodeURIComponent(password)}@${host}/${database}?sslmode=require`;
   }
 
+  const relevantKeys = Object.keys(process.env).filter((k) => /postgres|supabase|database/i.test(k));
+  console.error("No usable Postgres connection found. Relevant env var names present:", relevantKeys);
   throw new Error(
     "No Postgres connection string or host/database/user/password env vars found (checked tamesisstorage_ prefixed variables)"
   );

@@ -55,16 +55,18 @@ The homepage hero and all 20 individual service pages now have a compact quote-r
 
 ## Admin panel — leads dashboard
 
-`/admin` (linked from the footer as "Admin Login") is a lightweight CRM for follow-up, redesigned as two tabs:
+`/admin` (linked from the footer as "Admin Login") is a lightweight CRM for follow-up, laid out as a left sidebar + main content area:
 
-**Leads tab**: card-based list (not a dense table) — each lead shows a status-color dot, name, relative time ("2h ago"), form type badge, contact details, service, and message preview at a glance; click a card to expand it into the full submission plus a follow-up notes field. Includes:
-- **Summary cards**: total leads, this week, new, won — at a glance without opening anything.
+**Sidebar sections**: Dashboard (overview + all leads), All Leads, Quote Requests, Callback Requests, Contact Enquiries, Emergency Callouts, Repair Requests, Careers, and Email Settings — each of the form-type sections shows only leads of that type, so e.g. clicking "Emergency Callouts" only shows emergency submissions. All share the same underlying leads data (fetched once) filtered client-side, so switching sections is instant with no extra network calls.
+
+Each leads view includes:
+- **Summary cards**: total, this week, new, won — scoped to whatever section you're viewing.
+- **Card-based list** — status dot, name, relative time, form type badge, contact, service, message preview; click to expand into the full submission plus a follow-up notes field.
 - **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded, changeable inline, saved immediately.
 - **Filter tabs** (with live counts) and a **search box** (name/phone/email).
-- **Follow-up notes** per lead, saved separately from the original submission.
 - **"Add Sample Leads"** button: inserts 13 realistic example submissions across all form types (including quote requests and callback requests specifically) with varied statuses and dates — safe to click repeatedly.
 
-**Settings tab**: change the email address that receives form-submission notifications, without touching Vercel or code — stored in the `settings` Postgres table and read by `api/submit-form.ts` at send time (falls back to the `NOTIFY_EMAIL` env var if nothing's been saved yet). The Resend API key itself stays as an env var, since that's a one-time technical setup step rather than something that changes day to day.
+**Email Settings** section: change the email address that receives form-submission notifications, without touching Vercel or code — stored in the `settings` Postgres table and read by `api/submit-form.ts` at send time (falls back to the `NOTIFY_EMAIL` env var if nothing's been saved yet). The Resend API key itself stays as an env var, since that's a one-time technical setup step rather than something that changes day to day.
 
 Requires environment variables in Vercel, plus attaching Postgres storage:
 
