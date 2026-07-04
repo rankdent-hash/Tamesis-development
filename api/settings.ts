@@ -60,10 +60,29 @@ function getConnectionString(): string {
   );
 }
 
+// The connection string from Supabase/Vercel includes "?sslmode=require",
+// which newer versions of pg-connection-string treat as an alias for
+// "verify-full" (strict certificate chain + hostname verification) —
+// overriding any explicit `ssl` option passed separately, and causing a
+// SELF_SIGNED_CERT_IN_CHAIN error against Supabase's cert chain. Stripping
+// sslmode from the URL and relying purely on the explicit ssl object below
+// avoids that.
+function buildPool(connectionString: string): Pool {
+  let cleaned = connectionString;
+  try {
+    const url = new URL(connectionString);
+    url.searchParams.delete("sslmode");
+    cleaned = url.toString();
+  } catch {
+    // Leave as-is if it doesn't parse as a standard URL.
+  }
+  return new Pool({ connectionString: cleaned, ssl: { rejectUnauthorized: false } });
+}
+
 let pool: Pool | null = null;
 let poolInitError: string | null = null;
 try {
-  pool = new Pool({ connectionString: getConnectionString(), ssl: { rejectUnauthorized: false } });
+  pool = buildPool(getConnectionString());
 } catch (err) {
   poolInitError = err instanceof Error ? err.message : "Unknown database configuration error";
 }
