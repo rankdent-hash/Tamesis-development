@@ -97,6 +97,21 @@ export function ServiceTemplate({ service }: { service: Service }) {
           </div>
         </section>
 
+        {/* Reviews */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Reviews</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                What Clients Say About Our {service.name}
+              </h2>
+            </AnimateIn>
+            <div className="mt-12">
+              <ReviewsCarousel />
+            </div>
+          </div>
+        </section>
+
         {/* Common issues */}
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
@@ -165,21 +180,6 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <span className="pt-2.5 font-display font-semibold text-navy-900 text-base leading-snug">{item.name}</span>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Reviews */}
-        <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
-            <AnimateIn className="max-w-2xl">
-              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Reviews</span>
-              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
-                What Clients Say About Our {service.name}
-              </h2>
-            </AnimateIn>
-            <div className="mt-12">
-              <ReviewsCarousel />
             </div>
           </div>
         </section>

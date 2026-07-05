@@ -23,6 +23,7 @@ export function Home() {
       <Header />
       <main>
         <Hero />
+        <Reviews />
         <TrustBar />
         <About />
         <Services />
@@ -30,7 +31,6 @@ export function Home() {
         <WhyChoose />
         <Projects />
         <Process />
-        <Reviews />
         <Coverage />
         <EmergencyCallout />
         <News />
