@@ -19,7 +19,6 @@ import {
   Briefcase,
   MessageSquare,
   X,
-  Trash2,
 } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
@@ -27,7 +26,6 @@ import {
   adminLogin,
   fetchLeads,
   updateLead,
-  cleanupSampleLeads,
   fetchSettings,
   updateEmailSettings,
   getAdminToken,
@@ -224,7 +222,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [leads, setLeads] = useState<Lead[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [cleaning, setCleaning] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -246,18 +243,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const handleLogout = () => {
     clearAdminToken();
     onLogout();
-  };
-
-  const handleCleanup = async () => {
-    if (!confirm("Remove the sample/test leads added during development? This can't be undone.")) return;
-    setCleaning(true);
-    const result = await cleanupSampleLeads();
-    setCleaning(false);
-    if (result.success) {
-      load();
-    } else {
-      setError(result.error || "Failed to remove sample leads");
-    }
   };
 
   const activeNav = NAV_SECTIONS.find((n) => n.key === section);
@@ -324,14 +309,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           </h2>
           {section !== "settings" && (
             <div className="flex items-center gap-2">
-              <button
-                onClick={handleCleanup}
-                disabled={cleaning}
-                title="Removes the known test leads inserted during development — safe to click, only matches exact placeholder data and never touches real customer leads."
-                className="flex items-center gap-1.5 rounded-full border-2 border-red-200 text-red-600 px-4 py-2 text-xs font-semibold hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors disabled:opacity-60"
-              >
-                <Trash2 size={13} /> {cleaning ? "Removing..." : "Remove Sample Leads"}
-              </button>
               <button
                 onClick={load}
                 className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors"
