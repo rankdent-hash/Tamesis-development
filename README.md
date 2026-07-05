@@ -65,6 +65,7 @@ Each leads view includes:
 - **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded, changeable inline, saved immediately.
 - **Filter tabs** (with live counts) and a **search box** (name/phone/email).
 - **"Add Sample Leads"** button: inserts 13 realistic example submissions across all form types (including quote requests and callback requests specifically) with varied statuses and dates — safe to click repeatedly.
+- **Contact field helpers**: phone numbers are larger and bold with a copy-to-clipboard icon; email and address also get a copy icon. Hovering (or clicking, for touch/tablet) a phone number shows a popover with QR codes generated **entirely client-side** (via the `qrcode` package — phone numbers are never sent to a third-party QR API): "Scan to Call" always, plus "Scan to Text" and "Scan WhatsApp" if the number looks like a UK mobile (starts with 07/+447). See `src/components/admin/PhoneField.tsx`.
 
 **Email Settings** section: manage everything about form-submission notifications directly in the admin panel, no Vercel/code access needed:
 - **Notification email** — where submissions get sent.

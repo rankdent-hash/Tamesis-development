@@ -34,6 +34,8 @@ import {
   type Lead,
 } from "../../lib/adminAuth";
 import { cn } from "../../lib/utils";
+import { PhoneField } from "../../components/admin/PhoneField";
+import { CopyableText } from "../../components/admin/CopyableText";
 
 const FORM_LABELS: Record<string, string> = {
   "hero-quote": "Quick Quote",
@@ -720,9 +722,11 @@ function LeadsView({
                     {FORM_LABELS[lead.form_type] || lead.form_type}
                   </span>
 
-                  <div className="text-sm text-slate min-w-[140px]">
-                    {lead.fields.phone && <div>{lead.fields.phone}</div>}
-                    {lead.fields.email && <div className="text-xs">{lead.fields.email}</div>}
+                  <div className="flex flex-col gap-1 min-w-[160px]" onClick={(e) => e.stopPropagation()}>
+                    {lead.fields.phone && <PhoneField phone={lead.fields.phone} />}
+                    {lead.fields.email && (
+                      <CopyableText value={lead.fields.email} label="email" className="text-xs" />
+                    )}
                   </div>
 
                   <div className="text-sm text-navy-800 min-w-[120px]">{service}</div>
@@ -753,11 +757,19 @@ function LeadsView({
                       <h4 className="text-xs font-accent uppercase tracking-wide text-navy-700 mb-2">
                         Full Submission
                       </h4>
-                      <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                      <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
                         {Object.entries(lead.fields).map(([k, v]) => (
                           <div key={k} className="text-sm">
-                            <span className="text-slate-light capitalize">{k}: </span>
-                            <span className="text-navy-900">{v || "—"}</span>
+                            <span className="text-slate-light capitalize block mb-0.5">{k}</span>
+                            {!v ? (
+                              <span className="text-navy-900">—</span>
+                            ) : k === "phone" ? (
+                              <PhoneField phone={v} />
+                            ) : k === "email" || k === "address" ? (
+                              <CopyableText value={v} label={k} />
+                            ) : (
+                              <span className="text-navy-900">{v}</span>
+                            )}
                           </div>
                         ))}
                       </div>
