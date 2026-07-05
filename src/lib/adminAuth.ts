@@ -85,20 +85,20 @@ export async function updateLead(
   }
 }
 
-export async function seedSampleLeads(): Promise<{ success: boolean; error?: string }> {
+export async function cleanupSampleLeads(): Promise<{ success: boolean; deleted?: number; error?: string }> {
   const token = getAdminToken();
   if (!token) return { success: false, error: "Not logged in" };
 
   try {
-    const res = await fetch("/api/seed-leads", {
+    const res = await fetch("/api/cleanup-sample-leads", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     if (!res.ok || !data.success) {
-      return { success: false, error: data.error || "Failed to add sample leads" };
+      return { success: false, error: data.error || "Failed to remove sample leads" };
     }
-    return { success: true };
+    return { success: true, deleted: data.deleted };
   } catch {
     return { success: false, error: "Network error — please try again" };
   }

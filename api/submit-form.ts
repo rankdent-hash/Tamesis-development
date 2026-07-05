@@ -104,7 +104,8 @@ async function getEmailSettings(): Promise<EmailSettings> {
 async function sendViaWeb3Forms(
   apiKey: string,
   label: string,
-  fields: Record<string, string>
+  fields: Record<string, string>,
+  recipients: string[]
 ): Promise<boolean> {
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
@@ -114,6 +115,10 @@ async function sendViaWeb3Forms(
         access_key: apiKey,
         subject: `New ${label} — ${fields.name || fields.fullName || "Website Visitor"}`,
         from_name: "Tamesis Development Ltd Website",
+        // Web3Forms always sends to the address registered with the access
+        // key; additional addresses are cc'd. If only one address is
+        // configured, cc is simply omitted.
+        ...(recipients.length > 1 ? { cc: recipients.slice(1).join(",") } : {}),
         ...fields,
       }),
     });
@@ -236,9 +241,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           `;
 
           const resend = new Resend(emailSettings.resendApiKey);
+          const recipients = emailSettings.notifyEmail
+            .split(",")
+            .map((e) => e.trim())
+            .filter(Boolean);
           const { error } = await resend.emails.send({
             from: FROM,
-            to: emailSettings.notifyEmail,
+            to: recipients,
             replyTo: fields.email || undefined,
             subject: `New ${label} — ${fields.name || "Website Visitor"}`,
             html,
@@ -259,7 +268,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (!emailSettings.web3formsApiKey) {
         console.error("No Web3Forms API key configured — skipping Web3Forms notification (non-fatal)");
       } else {
-        const sent = await sendViaWeb3Forms(emailSettings.web3formsApiKey, label, fields);
+        const recipients = emailSettings.notifyEmail
+          .split(",")
+          .map((e) => e.trim())
+          .filter(Boolean);
+        const sent = await sendViaWeb3Forms(emailSettings.web3formsApiKey, label, fields, recipients);
         if (sent) emailSent = true;
       }
     }

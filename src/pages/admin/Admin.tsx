@@ -18,6 +18,8 @@ import {
   Wrench,
   Briefcase,
   MessageSquare,
+  X,
+  Trash2,
 } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
@@ -25,6 +27,7 @@ import {
   adminLogin,
   fetchLeads,
   updateLead,
+  cleanupSampleLeads,
   fetchSettings,
   updateEmailSettings,
   getAdminToken,
@@ -221,6 +224,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [leads, setLeads] = useState<Lead[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [cleaning, setCleaning] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -242,6 +246,18 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const handleLogout = () => {
     clearAdminToken();
     onLogout();
+  };
+
+  const handleCleanup = async () => {
+    if (!confirm("Remove the sample/test leads added during development? This can't be undone.")) return;
+    setCleaning(true);
+    const result = await cleanupSampleLeads();
+    setCleaning(false);
+    if (result.success) {
+      load();
+    } else {
+      setError(result.error || "Failed to remove sample leads");
+    }
   };
 
   const activeNav = NAV_SECTIONS.find((n) => n.key === section);
@@ -309,6 +325,14 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           {section !== "settings" && (
             <div className="flex items-center gap-2">
               <button
+                onClick={handleCleanup}
+                disabled={cleaning}
+                title="Removes the known test leads inserted during development — safe to click, only matches exact placeholder data and never touches real customer leads."
+                className="flex items-center gap-1.5 rounded-full border-2 border-red-200 text-red-600 px-4 py-2 text-xs font-semibold hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors disabled:opacity-60"
+              >
+                <Trash2 size={13} /> {cleaning ? "Removing..." : "Remove Sample Leads"}
+              </button>
+              <button
                 onClick={load}
                 className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors"
               >
@@ -345,7 +369,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 }
 
 function SettingsPanel() {
-  const [notifyEmail, setNotifyEmail] = useState("");
+  const [emailList, setEmailList] = useState<string[]>([]);
+  const [emailInput, setEmailInput] = useState("");
   const [resendApiKey, setResendApiKey] = useState("");
   const [resendMasked, setResendMasked] = useState("");
   const [web3formsApiKey, setWeb3formsApiKey] = useState("");
@@ -356,11 +381,28 @@ function SettingsPanel() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const addEmail = () => {
+    const value = emailInput.trim().replace(/,$/, "");
+    if (!value) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setError(`"${value}" doesn't look like a valid email address`);
+      return;
+    }
+    setError(null);
+    setEmailList((list) => (list.includes(value) ? list : [...list, value]));
+    setEmailInput("");
+  };
+
   useEffect(() => {
     fetchSettings().then((result) => {
       setLoading(false);
       if (result.success && result.data) {
-        setNotifyEmail(result.data.notifyEmail);
+        setEmailList(
+          result.data.notifyEmail
+            .split(",")
+            .map((e) => e.trim())
+            .filter(Boolean)
+        );
         setResendMasked(result.data.resendApiKeyMasked);
         setWeb3formsMasked(result.data.web3formsApiKeyMasked);
         setEmailProvider(result.data.emailProvider);
@@ -376,7 +418,7 @@ function SettingsPanel() {
     setSaved(false);
     setError(null);
     const result = await updateEmailSettings({
-      notifyEmail,
+      notifyEmail: emailList.join(", "),
       emailProvider,
       // Only send a new key if the user actually typed one — otherwise
       // leave whatever's already saved untouched.
@@ -413,19 +455,44 @@ function SettingsPanel() {
       ) : (
         <form onSubmit={handleSave} className="mt-6 rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-5">
           <div>
-            <label className="block text-sm font-medium text-navy-800 mb-1.5">Notification Email</label>
-            <div className="relative">
-              <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+            <label className="block text-sm font-medium text-navy-800 mb-1.5">Notification Emails</label>
+            <div className="rounded-lg border-2 border-navy-900 p-2.5 flex flex-wrap gap-2 focus-within:border-orange-500 focus-within:ring-1 focus-within:ring-orange-400">
+              {emailList.map((email) => (
+                <span
+                  key={email}
+                  className="flex items-center gap-1.5 rounded-full bg-blue-50 text-blue-700 pl-3 pr-1.5 py-1 text-sm"
+                >
+                  {email}
+                  <button
+                    type="button"
+                    onClick={() => setEmailList((list) => list.filter((e) => e !== email))}
+                    aria-label={`Remove ${email}`}
+                    className="flex items-center justify-center w-5 h-5 rounded-full hover:bg-blue-100 transition-colors"
+                  >
+                    <X size={12} />
+                  </button>
+                </span>
+              ))}
               <input
                 type="email"
-                required
-                value={notifyEmail}
-                onChange={(e) => setNotifyEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-3 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === "," || e.key === "Tab") {
+                    e.preventDefault();
+                    addEmail();
+                  } else if (e.key === "Backspace" && !emailInput && emailList.length > 0) {
+                    setEmailList((list) => list.slice(0, -1));
+                  }
+                }}
+                onBlur={addEmail}
+                placeholder={emailList.length ? "Add another..." : "you@example.com"}
+                className="flex-1 min-w-[140px] py-1.5 px-1 text-sm outline-none"
               />
             </div>
-            <p className="mt-1.5 text-xs text-slate-light">Where form submissions get sent.</p>
+            <p className="mt-1.5 text-xs text-slate-light">
+              Where form submissions get sent — press Enter or comma to add more than one.
+            </p>
           </div>
 
           <div className="pt-1 border-t border-navy-100">

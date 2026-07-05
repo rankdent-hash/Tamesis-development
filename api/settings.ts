@@ -143,13 +143,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       };
 
       if (notifyEmail !== undefined) {
-        if (notifyEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(notifyEmail)) {
-          return res.status(400).json({ success: false, error: "Invalid email address" });
+        const emailList = notifyEmail
+          .split(",")
+          .map((e) => e.trim())
+          .filter(Boolean);
+        const invalid = emailList.find((e) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+        if (invalid) {
+          return res.status(400).json({ success: false, error: `Invalid email address: ${invalid}` });
         }
         await pool.query(
           `INSERT INTO settings (key, value) VALUES ('notify_email', $1)
            ON CONFLICT (key) DO UPDATE SET value = $1;`,
-          [notifyEmail]
+          [emailList.join(", ")]
         );
       }
 

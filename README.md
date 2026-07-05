@@ -64,8 +64,10 @@ Each leads view includes:
 - **Card-based list** — status dot, name, relative time, form type badge, contact, service, message preview; click to expand into the full submission plus a follow-up notes field.
 - **Status per lead**: New / Contacted / Quoted / Won / Lost — color-coded, changeable inline, saved immediately.
 - **Filter tabs** (with live counts) and a **search box** (name/phone/email).
-- **"Add Sample Leads"** button: inserts 13 realistic example submissions across all form types (including quote requests and callback requests specifically) with varied statuses and dates — safe to click repeatedly.
+- **"Remove Sample Leads"** button (Dashboard header, with a confirmation prompt): calls `api/cleanup-sample-leads.ts`, which deletes only rows matching the exact fake phone numbers used by the old sample-data seeder (now removed) — it can never touch a real customer's lead, even by coincidence, since it matches on those specific fabricated values rather than names or dates.
 - **Contact field helpers**: phone numbers are larger and bold with a copy-to-clipboard icon; email and address also get a copy icon. Hovering (or clicking, for touch/tablet) a phone number shows a popover with QR codes generated **entirely client-side** (via the `qrcode` package — phone numbers are never sent to a third-party QR API): "Scan to Call" always, plus "Scan to Text" and "Scan WhatsApp" if the number looks like a UK mobile (starts with 07/+447). See `src/components/admin/PhoneField.tsx`.
+
+**Multiple notification emails**: the Email Settings notification field is a chip-style multi-email input — press Enter or comma after typing an address to add it, click the × on a chip to remove it. Stored as a comma-separated list in the `notify_email` setting. Resend sends to all of them natively (its `to` field accepts an array); Web3Forms sends to its account-registered address plus any extras via its `cc` parameter.
 
 **Email Settings** section: manage everything about form-submission notifications directly in the admin panel, no Vercel/code access needed:
 - **Notification email** — where submissions get sent.
