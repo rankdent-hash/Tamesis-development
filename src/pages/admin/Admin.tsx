@@ -7,7 +7,6 @@ import {
   RefreshCw,
   Inbox,
   KeyRound,
-  Sparkles,
   Save,
   Settings as SettingsIcon,
   CheckCircle2,
@@ -26,7 +25,6 @@ import {
   adminLogin,
   fetchLeads,
   updateLead,
-  seedSampleLeads,
   fetchSettings,
   updateEmailSettings,
   getAdminToken,
@@ -223,7 +221,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [leads, setLeads] = useState<Lead[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [seeding, setSeeding] = useState(false);
 
   const load = async () => {
     setLoading(true);
@@ -241,17 +238,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleSeed = async () => {
-    setSeeding(true);
-    const result = await seedSampleLeads();
-    setSeeding(false);
-    if (result.success) {
-      load();
-    } else {
-      setError(result.error || "Failed to add sample leads");
-    }
-  };
 
   const handleLogout = () => {
     clearAdminToken();
@@ -323,13 +309,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           {section !== "settings" && (
             <div className="flex items-center gap-2">
               <button
-                onClick={handleSeed}
-                disabled={seeding}
-                className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors disabled:opacity-60"
-              >
-                <Sparkles size={13} /> {seeding ? "Adding..." : "Add Sample Leads"}
-              </button>
-              <button
                 onClick={load}
                 className="flex items-center gap-1.5 rounded-full border-2 border-navy-900 px-4 py-2 text-xs font-semibold hover:bg-navy-900 hover:text-white transition-colors"
               >
@@ -347,8 +326,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
               leads={leads}
               loading={loading}
               error={error}
-              onSeed={handleSeed}
-              seeding={seeding}
               typeFilter={activeNav?.types ?? "all"}
               showDashboardStats={section === "dashboard"}
               onStatusChange={(lead, status) => {
@@ -530,8 +507,6 @@ function LeadsView({
   leads,
   loading,
   error,
-  onSeed,
-  seeding,
   typeFilter,
   showDashboardStats,
   onStatusChange,
@@ -540,8 +515,6 @@ function LeadsView({
   leads: Lead[] | null;
   loading: boolean;
   error: string | null;
-  onSeed: () => void;
-  seeding: boolean;
   typeFilter: "all" | readonly string[];
   showDashboardStats: boolean;
   onStatusChange: (lead: Lead, status: string) => void;
@@ -669,14 +642,9 @@ function LeadsView({
           </h3>
           <p className="mt-2 text-sm text-slate max-w-sm mx-auto">
             {showDashboardStats
-              ? "Submissions from the website's forms will appear here automatically. Add some examples to see how it looks first."
+              ? "Submissions from the website's forms will appear here automatically."
               : "Submissions of this type will show up here as they come in."}
           </p>
-          {showDashboardStats && (
-            <Button variant="primary" className="mt-5" onClick={onSeed} disabled={seeding}>
-              <Sparkles size={14} /> {seeding ? "Adding..." : "Add Sample Leads"}
-            </Button>
-          )}
         </div>
       )}
 
