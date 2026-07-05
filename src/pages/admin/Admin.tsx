@@ -245,6 +245,19 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     onLogout();
   };
 
+  const newCounts = useMemo(() => {
+    const counts: Record<string, number> = { dashboard: 0 };
+    if (!leads) return counts;
+    for (const item of NAV_SECTIONS) {
+      if (item.key === "dashboard") continue;
+      const scoped =
+        item.types === "all" ? leads : leads.filter((l) => (item.types as readonly string[]).includes(l.form_type));
+      counts[item.key] = scoped.filter((l) => l.status === "new").length;
+    }
+    counts.dashboard = leads.filter((l) => l.status === "new").length;
+    return counts;
+  }, [leads]);
+
   const activeNav = NAV_SECTIONS.find((n) => n.key === section);
 
   return (
@@ -272,7 +285,12 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
               )}
             >
               <item.icon size={16} className="shrink-0" />
-              {item.label}
+              <span className="flex-1">{item.label}</span>
+              {!!newCounts[item.key] && (
+                <span className="flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-red-500 text-white text-[11px] font-bold shrink-0">
+                  {newCounts[item.key]}
+                </span>
+              )}
             </button>
           ))}
 
