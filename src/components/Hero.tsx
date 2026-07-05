@@ -37,14 +37,11 @@ export function Hero() {
           </div>
 
           <h1 className="font-display font-extrabold text-white text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.08] text-balance">
-            London&rsquo;s Trusted Property Maintenance, Repairs &amp; Refurbishment Specialists
+            London Property Repairs &amp; Maintenance — Done Right, First Time
           </h1>
 
           <p className="mt-5 lg:mt-6 text-base sm:text-lg text-navy-100/80 max-w-2xl leading-relaxed">
-            Delivering responsive repairs, planned maintenance, refurbishment and construction services across London since 2014.
-          </p>
-          <p className="mt-3 lg:mt-4 text-sm sm:text-base text-navy-100/60 max-w-2xl leading-relaxed">
-            Serving housing associations, local authorities, managing agents, commercial organisations, landlords and homeowners with professionalism, reliability and exceptional workmanship.
+            Fast response, fixed-price quotes and directly employed engineers — not subcontractors — trusted since 2014 by housing associations, local authorities, landlords and homeowners across London.
           </p>
 
           <div className="mt-8 lg:mt-10 flex flex-wrap gap-4">
@@ -52,7 +49,7 @@ export function Hero() {
               href="/quote"
               className="rounded-full bg-orange-500 text-navy-950 px-8 py-4 text-sm font-bold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
             >
-              Request a Quote
+              Get a Free Quote
             </a>
             <a
               href="/report-repair"

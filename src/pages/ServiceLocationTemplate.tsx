@@ -54,7 +54,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
               <p className="mt-6 text-slate leading-relaxed">{content.overview}</p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button variant="primary" onClick={() => (navigate("/quote"))}>
-                  Request a Quote
+                  Get a Free Quote
                 </Button>
                 <a
                   href={`/services/${service.slug}`}
@@ -120,7 +120,7 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
-                Request a Quote
+                Get a Free Quote
               </Button>
               <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us

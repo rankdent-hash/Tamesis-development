@@ -57,7 +57,7 @@ export function Coverage() {
 
               <div className="mt-9">
                 <Button variant="primary" onClick={() => (navigate("/quote"))}>
-                  Request a Quote
+                  Get a Free Quote
                 </Button>
               </div>
             </AnimateIn>

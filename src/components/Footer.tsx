@@ -73,7 +73,7 @@ export function Footer() {
               href="/quote"
               className="shrink-0 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 py-3.5 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
             >
-              Request a Quote
+              Get a Free Quote
             </a>
           </div>
         </div>

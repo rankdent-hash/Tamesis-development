@@ -8,6 +8,7 @@ import { servicePhotos, unsplashUrl } from "../data/photos";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Faq } from "../components/Faq";
+import { ReviewsCarousel } from "../components/ReviewsCarousel";
 import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
 import { services, whyChoose, process, getServiceContent, type Service } from "../data/content";
@@ -52,7 +53,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
               <p className="mt-6 text-slate leading-relaxed">{content.overview}</p>
               <div className="mt-8">
                 <Button variant="primary" onClick={() => (navigate("/quote"))}>
-                  Request a Quote
+                  Get a Free Quote
                 </Button>
               </div>
             </AnimateIn>
@@ -168,6 +169,21 @@ export function ServiceTemplate({ service }: { service: Service }) {
           </div>
         </section>
 
+        {/* Reviews */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Reviews</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                What Clients Say About Our {service.name}
+              </h2>
+            </AnimateIn>
+            <div className="mt-12">
+              <ReviewsCarousel />
+            </div>
+          </div>
+        </section>
+
         {/* FAQs */}
         <section className="py-24 lg:py-32 bg-navy-50">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
@@ -225,7 +241,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
-                Request a Quote
+                Get a Free Quote
               </Button>
               <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us

@@ -65,7 +65,7 @@ export function News() {
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button variant="primary" size="lg" onClick={() => (navigate("/quote"))}>
-                Request a Quote
+                Get a Free Quote
               </Button>
               <Button variant="outlineLight" size="lg" onClick={() => (navigate("/contact"))}>
                 Contact Us

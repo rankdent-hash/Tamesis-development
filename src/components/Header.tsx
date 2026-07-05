@@ -42,7 +42,7 @@ export function Header() {
             </a>
           </div>
           <div className="flex items-center gap-4 font-medium">
-            <a href="/quote" className="hover:text-orange-400 transition-colors">Request a Quote</a>
+            <a href="/quote" className="hover:text-orange-400 transition-colors">Get a Free Quote</a>
             <span className="opacity-30">/</span>
             <a href="/report-repair" className="hover:text-orange-400 transition-colors">Report a Repair</a>
             <span className="opacity-30">/</span>
@@ -156,7 +156,7 @@ export function Header() {
               href="/quote"
               className="rounded-full bg-orange-500 text-navy-950 px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
             >
-              Request a Quote
+              Get a Free Quote
             </a>
           </div>
 
@@ -187,7 +187,7 @@ export function Header() {
                 Job Booking {company.phoneJobBooking}
               </a>
               <a href="/quote" className="rounded-full bg-orange-500 text-navy-950 px-6 py-3 text-sm font-semibold text-center">
-                Request a Quote
+                Get a Free Quote
               </a>
             </div>
           </div>

@@ -137,6 +137,16 @@ Images use Unsplash's `auto=format` parameter, which automatically serves WebP/A
 
 Every other image slot on the site (Sectors, Coverage/Contact maps on inner pages, Projects/News fallback) still uses `src/components/Illustration.tsx` — an original, on-brand SVG composition rather than stock photography. See below for details.
 
+## Reviews carousel
+
+`src/components/ReviewsCarousel.tsx` — a sliding carousel (4 cards visible on desktop, 2 on tablet, ~1.2 on mobile with a peek of the next card) showing up to 15 reviews from the `reviews` array in `content.ts`, with prev/next buttons plus native touch/swipe scrolling. Used on the homepage and on every service page.
+
+**Important**: the current 15 reviews are the same placeholder-style testimonials used elsewhere on the site (not fabricated to look like specific real customers, no invented names presented as verified reviewers) — genuine reviews (e.g. from Ninja Plumbers' Google Business Profile, if that's the intended source) need to be supplied as actual text (not a Google share link — those are blocked from automated fetching, and reviews shouldn't be scraped/fabricated at scale regardless) before publishing. Swap the `reviews` array contents once real reviews are provided; no component changes needed.
+
+## Copywriting pass
+
+Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
+
 ## Local development
 
 ```

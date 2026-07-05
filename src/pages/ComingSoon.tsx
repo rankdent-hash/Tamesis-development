@@ -19,7 +19,7 @@ export function ComingSoon({ title }: { title: string }) {
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Button variant="primary" onClick={() => (navigate("/quote"))}>
-              Request a Quote
+              Get a Free Quote
             </Button>
             <Button variant="outline" onClick={() => (navigate("/"))}>
               Back to Home

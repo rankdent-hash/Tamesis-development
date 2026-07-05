@@ -129,3 +129,11 @@ body {
   outline: 2px solid var(--color-blue-400);
   outline-offset: 2px;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

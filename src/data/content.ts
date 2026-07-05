@@ -65,10 +65,10 @@ export function getServiceContent(service: Service) {
   const lower = name.toLowerCase();
 
   return {
-    overview: `Our ${lower} service is delivered by directly employed, experienced engineers — not a loose network of subcontractors. From a single reported issue to a portfolio-wide programme of works, we assess, quote and carry out ${lower} to a consistent standard across every London borough.`,
+    overview: `Need reliable ${lower} in London? Our directly employed engineers — not a loose network of subcontractors — assess the job, give you a clear fixed-price quote, and get it done properly, first time. From a single reported issue to a portfolio-wide programme of works, we deliver ${lower} to a consistent standard across every London borough.`,
     whatWeDo: [
-      `Initial assessment and diagnosis of the ${lower} issue or requirement`,
-      "A clear, itemised quotation before any work begins",
+      `Fast initial assessment and diagnosis of the ${lower} issue or requirement`,
+      "A clear, fixed-price quotation before any work begins — no surprise costs",
       "Work carried out by our own directly employed engineers, not subcontractors",
       "Protection of the property and a full clean-up on completion",
       "A quality check and sign-off before we consider the job complete",
@@ -83,15 +83,15 @@ export function getServiceContent(service: Service) {
     faqs: [
       {
         q: `How quickly can you respond for ${lower}?`,
-        a: `Response times depend on urgency. Emergency ${lower} requests are prioritised and are typically actioned within hours; non-urgent work is scheduled with you in advance.`,
+        a: `Response times depend on urgency. Emergency ${lower} requests are prioritised and are typically actioned within hours; non-urgent work is scheduled with you in advance at a time that suits you.`,
       },
       {
         q: `Do you provide a fixed quote before starting ${lower} work?`,
-        a: "Yes. We assess the work first and provide a clear, itemised quotation before anything begins, so there are no surprises.",
+        a: "Yes. We assess the work first and provide a clear, fixed-price quotation before anything begins, so you know the full cost upfront with no surprises.",
       },
       {
         q: "Are your engineers directly employed?",
-        a: "Yes — all work is carried out by our own directly employed, experienced teams, not ad-hoc subcontractors, so you get a consistent standard of work.",
+        a: "Yes — all work is carried out by our own directly employed, experienced teams, not ad-hoc subcontractors, so you get a consistent standard of work every time.",
       },
       {
         q: `Do you work with housing associations and local authorities on ${lower}?`,
@@ -225,6 +225,48 @@ export const reviews = [
     rating: 5,
     project: "Estate Planned Maintenance",
     review: "One of the few contractors who consistently hit their SLA targets across a large portfolio. Reporting is thorough and reliable.",
+  },
+  {
+    name: "H. Fitzgerald",
+    rating: 5,
+    project: "Boiler & Heating Repair",
+    review: "No heating on the coldest week of the year and they had someone out the same afternoon. Sorted it first visit, no drama.",
+  },
+  {
+    name: "D. Nowak",
+    rating: 5,
+    project: "Painting & Decorating",
+    review: "Whole flat repainted in three days, dust sheets everywhere and furniture properly protected. Finish was excellent.",
+  },
+  {
+    name: "Wandsworth Lettings Agency",
+    rating: 5,
+    project: "Void Turnaround",
+    review: "We use Tamesis across most of our managed properties now. Quotes are clear and jobs are rarely delayed.",
+  },
+  {
+    name: "L. Barbosa",
+    rating: 4,
+    project: "Electrical Repairs",
+    review: "Fuse box fault sorted quickly and the electrician talked me through what had actually gone wrong. Good value.",
+  },
+  {
+    name: "T. Reeves-Osei",
+    rating: 5,
+    project: "Insurance Reinstatement",
+    review: "Water damage after a burst pipe — Tamesis handled the whole reinstatement and liaised directly with our insurer, which took a lot off our plate.",
+  },
+  {
+    name: "Islington Block Management",
+    rating: 5,
+    project: "Communal Area Refurbishment",
+    review: "Managed a full communal refurbishment across three blocks with minimal disruption to residents. Would recommend for larger contracts.",
+  },
+  {
+    name: "F. Ahmadi",
+    rating: 5,
+    project: "General Repairs",
+    review: "Small jobs list I'd been putting off for months, all sorted in a single visit. Engineer was on time and easy to deal with.",
   },
 ] as const;
 
