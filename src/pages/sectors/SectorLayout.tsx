@@ -2,7 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { PageHero } from "../../components/PageHero";
+import { SectorHero } from "../../components/SectorHero";
 import { Illustration } from "../../components/Illustration";
 import { AnimateIn } from "../../components/AnimateIn";
 import { Icon } from "../../components/Icon";
@@ -11,6 +11,7 @@ import { Button } from "../../components/ui/button";
 import { services, sectors, type Service } from "../../data/content";
 import { breadcrumbJsonLd } from "../../lib/seo";
 import { CtaPhoneLine } from "../../components/CtaPhoneLine";
+import { sectorPhotos } from "../../data/photos";
 
 export function SectorLayout({
   name,
@@ -52,7 +53,13 @@ export function SectorLayout({
       />
       <Header />
       <main>
-        <PageHero eyebrow="Sectors" title={name} subtitle={heroSubtitle} breadcrumb={name} />
+        <SectorHero
+          title={name}
+          subtitle={heroSubtitle}
+          breadcrumb={name}
+          breadcrumbParent={{ name: "Sectors", path: "/sectors" }}
+          photo={sectorPhotos[slug]}
+        />
 
         {/* Intro */}
         <section className="py-24 lg:py-32">

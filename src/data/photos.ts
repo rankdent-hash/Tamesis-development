@@ -17,6 +17,17 @@ export const aboutPhoto = "photo-1672748341520-6a839e6c05bb"; // engineer in har
 
 export const coveragePhoto = "photo-1513635269975-59663e0ac1ad"; // aerial London skyline (The Shard)
 
+export const sectorsIndexPhoto = "photo-1524813686514-a57563d77965"; // top-view of houses, general overview
+
+export const sectorPhotos: Record<string, string> = {
+  "housing-associations": "photo-1516156008625-3a9d6067fab5", // aerial suburban neighbourhood/estate
+  "local-authorities": "photo-1632110978105-b71604c2cd2e", // civic building with clock tower
+  "property-management-companies": "photo-1665230800102-2a09f6ae2cd7", // managed apartment block with balconies
+  "commercial-clients": "photo-1589927725301-dda06a332802", // aerial city/business district
+  landlords: "photo-1621983209352-c2880ac507b2", // rental property building
+  "residential-homeowners": "photo-1702441831852-669adb6e762f", // family home with garden
+};
+
 // Keyed by exact project title (from `projects` in content.ts)
 export const projectPhotos: Record<string, string> = {
   "Void Turnaround Programme": "photo-1516216628859-9bccecab13ca",

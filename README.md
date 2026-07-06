@@ -138,6 +138,10 @@ Images use Unsplash's `auto=format` parameter, which automatically serves WebP/A
 
 Every other image slot on the site (Sectors, Coverage/Contact maps on inner pages, Projects/News fallback) still uses `src/components/Illustration.tsx` — an original, on-brand SVG composition rather than stock photography. See below for details.
 
+## Sector pages as landing pages
+
+Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual sector pages (Housing Associations, Local Authorities, Property Management Companies, Commercial Clients, Landlords, Residential Homeowners) now use `src/components/SectorHero.tsx` — a real photo background (see `sectorPhotos` in `src/data/photos.ts`, one distinct free Unsplash photo per sector, e.g. a civic building with a clock tower for Local Authorities, an aerial suburban estate for Housing Associations), breadcrumb, and the same compact lead-capture form used on service pages (not locked to a specific service via `presetService`, since sectors aren't 1:1 with services — visitors pick from the full dropdown).
+
 ## Reviews carousel
 
 `src/components/ReviewsCarousel.tsx` — a sliding carousel (4 cards visible on desktop, 2 on tablet, ~1.2 on mobile with a peek of the next card) showing up to 15 reviews from the `reviews` array in `content.ts`, with prev/next buttons plus native touch/swipe scrolling. Used on the homepage and on every service page.

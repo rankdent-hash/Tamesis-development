@@ -4,11 +4,12 @@ import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
-import { PageHero } from "../components/PageHero";
+import { SectorHero } from "../components/SectorHero";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Button } from "../components/ui/button";
 import { sectors } from "../data/content";
+import { sectorsIndexPhoto } from "../data/photos";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
 export function SectorsPage() {
@@ -18,11 +19,11 @@ export function SectorsPage() {
       <Seo title={seoMeta.sectors.title} description={seoMeta.sectors.description} path="/sectors" />
       <Header />
       <main>
-        <PageHero
-          eyebrow="Sectors"
+        <SectorHero
           title="A Single Reliable Contractor, Whatever the Sector"
           subtitle="From housing association contracts to individual homeowner repairs, we bring the same directly managed teams and the same standard of workmanship to every sector we serve."
           breadcrumb="Sectors"
+          photo={sectorsIndexPhoto}
         />
 
         <section className="py-24 lg:py-32">
