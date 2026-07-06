@@ -219,84 +219,88 @@ export function Header() {
             </button>
           </div>
         </div>
+      </header>
 
-        {/* Mobile menu — full-screen app-style overlay */}
-        {menuOpen && (
-          <div className="lg:hidden fixed top-16 inset-x-0 bottom-0 bg-paper overflow-y-auto">
-            <nav className="px-5 py-4">
-              {navLinks.map((link) => {
-                const Icon = MOBILE_NAV_ICONS[link.label] ?? HomeIcon;
-                const active = isActive(link.href);
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    aria-current={active ? "page" : undefined}
-                    onClick={() => setMenuOpen(false)}
+      {/* Mobile menu — full-screen app-style overlay. Deliberately placed
+          outside <header>: that element has backdrop-blur-md applied,
+          and backdrop-filter creates a new CSS containing block, which
+          would make this fixed-position overlay position itself relative
+          to the (64px-tall) header instead of the viewport. */}
+      {menuOpen && (
+        <div className="lg:hidden fixed top-16 inset-x-0 bottom-0 bg-paper overflow-y-auto z-40">
+          <nav className="px-5 py-4">
+            {navLinks.map((link) => {
+              const Icon = MOBILE_NAV_ICONS[link.label] ?? HomeIcon;
+              const active = isActive(link.href);
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => setMenuOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 rounded-xl px-3.5 py-3 text-[15px] font-medium transition-colors",
+                    active ? "bg-orange-50 text-orange-600" : "text-navy-800 hover:bg-navy-50"
+                  )}
+                >
+                  <span
                     className={cn(
-                      "flex items-center gap-3 rounded-xl px-3.5 py-3 text-[15px] font-medium transition-colors",
-                      active ? "bg-orange-50 text-orange-600" : "text-navy-800 hover:bg-navy-50"
+                      "flex w-9 h-9 shrink-0 items-center justify-center rounded-lg",
+                      active ? "bg-orange-500 text-white" : "bg-navy-50 text-navy-700"
                     )}
                   >
-                    <span
-                      className={cn(
-                        "flex w-9 h-9 shrink-0 items-center justify-center rounded-lg",
-                        active ? "bg-orange-500 text-white" : "bg-navy-50 text-navy-700"
-                      )}
-                    >
-                      <Icon size={17} strokeWidth={1.75} />
-                    </span>
-                    <span className="flex-1">{link.label}</span>
-                    <ChevronRight size={16} className="text-slate-light" />
-                  </a>
-                );
-              })}
-            </nav>
+                    <Icon size={17} strokeWidth={1.75} />
+                  </span>
+                  <span className="flex-1">{link.label}</span>
+                  <ChevronRight size={16} className="text-slate-light" />
+                </a>
+              );
+            })}
+          </nav>
 
-            <div className="px-5 pb-6 pt-2">
+          <div className="px-5 pb-6 pt-2">
+            <a
+              href="/quote"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center justify-center gap-2 rounded-xl bg-orange-500 text-navy-950 px-5 py-3.5 text-sm font-bold shadow-card"
+            >
+              Get a Free Quote
+            </a>
+
+            <div className="mt-3 grid grid-cols-3 gap-2.5">
               <a
-                href="/quote"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl bg-orange-500 text-navy-950 px-5 py-3.5 text-sm font-bold shadow-card"
+                href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+                className="flex flex-col items-center gap-1.5 rounded-xl border border-navy-100 bg-white py-3 text-navy-800"
               >
-                Get a Free Quote
+                <Phone size={18} className="text-orange-600" />
+                <span className="text-[11px] font-semibold">Call Now</span>
               </a>
+              <a
+                href="/report-repair"
+                onClick={() => setMenuOpen(false)}
+                className="flex flex-col items-center gap-1.5 rounded-xl border border-navy-100 bg-white py-3 text-navy-800"
+              >
+                <FileWarning size={18} className="text-orange-600" />
+                <span className="text-[11px] font-semibold text-center leading-tight">Book a Repair</span>
+              </a>
+              <a
+                href="/emergency"
+                onClick={() => setMenuOpen(false)}
+                className="flex flex-col items-center gap-1.5 rounded-xl border border-red-100 bg-red-50 py-3 text-red-700"
+              >
+                <AlertTriangle size={18} />
+                <span className="text-[11px] font-semibold">Emergency</span>
+              </a>
+            </div>
 
-              <div className="mt-3 grid grid-cols-3 gap-2.5">
-                <a
-                  href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-                  className="flex flex-col items-center gap-1.5 rounded-xl border border-navy-100 bg-white py-3 text-navy-800"
-                >
-                  <Phone size={18} className="text-orange-600" />
-                  <span className="text-[11px] font-semibold">Call Now</span>
-                </a>
-                <a
-                  href="/report-repair"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex flex-col items-center gap-1.5 rounded-xl border border-navy-100 bg-white py-3 text-navy-800"
-                >
-                  <FileWarning size={18} className="text-orange-600" />
-                  <span className="text-[11px] font-semibold text-center leading-tight">Book a Repair</span>
-                </a>
-                <a
-                  href="/emergency"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex flex-col items-center gap-1.5 rounded-xl border border-red-100 bg-red-50 py-3 text-red-700"
-                >
-                  <AlertTriangle size={18} />
-                  <span className="text-[11px] font-semibold">Emergency</span>
-                </a>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-navy-100 text-center">
-                <span className="font-accent text-xs text-slate-light">
-                  Management: {company.phoneManagement}
-                </span>
-              </div>
+            <div className="mt-5 pt-4 border-t border-navy-100 text-center">
+              <span className="font-accent text-xs text-slate-light">
+                Management: {company.phoneManagement}
+              </span>
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
     </div>
   );
 }
