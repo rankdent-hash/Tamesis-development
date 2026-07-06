@@ -17,7 +17,7 @@ export function SiteSchema() {
       email: company.email,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "48 Fulham High Street, First Floor",
+        streetAddress: "48 Fulham High Street, Upper Level",
         addressLocality: "London",
         postalCode: "SW6 3LQ",
         addressCountry: "GB",

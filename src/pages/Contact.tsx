@@ -48,46 +48,13 @@ export function Contact() {
           title="Get in Touch"
           subtitle="Whether it's a quote request, a repair to book, or a question about a contract, our team is ready to help."
           breadcrumb="Contact"
+          compact
         />
 
-        <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-[1fr_1.1fr] gap-14">
-            {/* Details */}
-            <AnimateIn>
-              <div className="space-y-4">
-                {[
-                  { icon: MapPin, label: "Office", value: company.addressLines.join(", ") },
-                  { icon: Phone, label: "Management", value: company.phoneManagement, href: `tel:${company.phoneManagement.replace(/\s/g, "")}` },
-                  { icon: Phone, label: "Job Booking", value: company.phoneJobBooking, href: `tel:${company.phoneJobBooking.replace(/\s/g, "")}` },
-                  { icon: MessageCircle, label: "WhatsApp", value: company.whatsapp, href: `https://wa.me/44${company.whatsapp.replace(/\s/g, "").replace(/^0/, "")}` },
-                  { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
-                  { icon: Clock, label: "Opening Hours", value: "Mon–Fri: 8:00–17:30 · Emergency callout available 24/7" },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
-                    <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                      <item.icon size={20} strokeWidth={1.75} />
-                    </span>
-                    <div>
-                      <span className="block text-xs font-accent uppercase tracking-widest text-slate-light font-semibold">{item.label}</span>
-                      {item.href ? (
-                        <a href={item.href} className="mt-1 block font-display font-semibold text-navy-900 hover:text-orange-600 transition-colors">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <span className="mt-1 block font-display font-semibold text-navy-900">{item.value}</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 corner-marks">
-                <Illustration icon="MapPin" label="Office location map" className="aspect-[16/10] rounded-2xl" />
-              </div>
-            </AnimateIn>
-
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-[1.1fr_1fr] gap-14">
             {/* Form */}
-            <AnimateIn delay={0.1}>
+            <AnimateIn>
                 <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
@@ -143,6 +110,40 @@ export function Contact() {
                     </p>
                   )}
                 </form>
+            </AnimateIn>
+
+            {/* Details */}
+            <AnimateIn delay={0.1}>
+              <div className="space-y-4">
+                {[
+                  { icon: MapPin, label: "Office", value: company.addressLines.join(", ") },
+                  { icon: Phone, label: "Management", value: company.phoneManagement, href: `tel:${company.phoneManagement.replace(/\s/g, "")}` },
+                  { icon: Phone, label: "Job Booking", value: company.phoneJobBooking, href: `tel:${company.phoneJobBooking.replace(/\s/g, "")}` },
+                  { icon: MessageCircle, label: "WhatsApp", value: company.whatsapp, href: `https://wa.me/44${company.whatsapp.replace(/\s/g, "").replace(/^0/, "")}` },
+                  { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
+                  { icon: Clock, label: "Opening Hours", value: "Mon–Fri: 8:00–17:30 · Emergency callout available 24/7" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-4 rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
+                    <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                      <item.icon size={20} strokeWidth={1.75} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <span className="block text-xs font-accent uppercase tracking-widest text-slate-light font-semibold">{item.label}</span>
+                      {item.href ? (
+                        <a href={item.href} className="mt-1 block font-display font-semibold text-navy-900 hover:text-orange-600 transition-colors break-words">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <span className="mt-1 block font-display font-semibold text-navy-900 break-words">{item.value}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 corner-marks">
+                <Illustration icon="MapPin" label="Office location map" className="aspect-[16/10] rounded-2xl" />
+              </div>
             </AnimateIn>
           </div>
         </section>
