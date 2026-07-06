@@ -108,20 +108,36 @@ async function sendViaWeb3Forms(
   recipients: string[]
 ): Promise<boolean> {
   try {
+    const formData = new FormData();
+    formData.append("access_key", apiKey);
+    formData.append("subject", `New ${label} — ${fields.name || fields.fullName || "Website Visitor"}`);
+    formData.append("from_name", "Tamesis Development Ltd Website");
+    // Web3Forms always sends to the address registered with the access key;
+    // additional addresses are cc'd. If only one address is configured, cc
+    // is simply omitted.
+    if (recipients.length > 1) {
+      formData.append("cc", recipients.slice(1).join(","));
+    }
+    for (const [key, value] of Object.entries(fields)) {
+      if (value) formData.append(key, String(value));
+    }
+
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        access_key: apiKey,
-        subject: `New ${label} — ${fields.name || fields.fullName || "Website Visitor"}`,
-        from_name: "Tamesis Development Ltd Website",
-        // Web3Forms always sends to the address registered with the access
-        // key; additional addresses are cc'd. If only one address is
-        // configured, cc is simply omitted.
-        ...(recipients.length > 1 ? { cc: recipients.slice(1).join(",") } : {}),
-        ...fields,
-      }),
+      headers: { Accept: "application/json" },
+      body: formData,
     });
+
+    const contentType = res.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      const text = await res.text();
+      console.error(
+        `Web3Forms returned non-JSON response (status ${res.status}, content-type "${contentType}"). First 200 chars:`,
+        text.slice(0, 200)
+      );
+      return false;
+    }
+
     const data = await res.json();
     if (!data.success) {
       console.error("Web3Forms error (non-fatal):", data);
