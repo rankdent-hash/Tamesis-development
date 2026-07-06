@@ -70,7 +70,9 @@ try {
 }
 
 const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
-const FROM = "Tamesis Website <onboarding@resend.dev>";
+// tamesisdevelopment.co.uk is verified with Resend - see the matching
+// comment in api/submit-form.ts.
+const FROM = "Tamesis Development Ltd <notifications@tamesisdevelopment.co.uk>";
 
 interface EmailSettings {
   notifyEmail: string;

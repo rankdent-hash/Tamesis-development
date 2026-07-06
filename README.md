@@ -50,7 +50,7 @@ All six forms (hero quote, `/quote`, `/contact`, `/report-repair`, `/emergency`,
 - `RESEND_API_KEY` — from resend.com → API Keys
 - `NOTIFY_EMAIL` — fallback inbox if nothing's been saved in the admin panel's Settings tab yet (falls back further to `contact@tamesisdevelopment.co.uk` if both are unset)
 
-Currently sends from Resend's shared sandbox address (`onboarding@resend.dev`), which works immediately with no setup. Once a real domain is registered and verified with Resend (a few DNS records), update the `FROM` constant in `api/submit-form.ts` to send from that domain instead — looks more professional and improves deliverability.
+`tamesisdevelopment.co.uk` is verified with Resend, so mail sends from `notifications@tamesisdevelopment.co.uk` (see the `FROM` constant in `api/submit-form.ts` and `api/test-email.ts`) rather than Resend's shared sandbox address. This matters beyond looking professional: Resend's sandbox sender can *only* deliver to the account owner's own email — sending to any other address returned a `403 validation_error` in production, which is exactly what happened before the domain was verified. If the domain's verification ever lapses (e.g. DNS records get removed), that same error will reappear in the logs.
 
 ## Lead capture
 

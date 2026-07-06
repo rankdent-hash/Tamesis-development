@@ -150,10 +150,11 @@ async function sendViaWeb3Forms(
   }
 }
 
-// Resend's shared sandbox sender — works immediately with no setup, but reads
-// as generic. Once a real domain is verified with Resend, change this to
-// something like "Tamesis Development <notifications@tamesisdevelopment.co.uk>".
-const FROM = "Tamesis Website <onboarding@resend.dev>";
+// tamesisdevelopment.co.uk is verified with Resend, so we send from the real
+// domain rather than Resend's shared sandbox address — this also lifts the
+// sandbox restriction of only being able to deliver to the account owner's
+// own email.
+const FROM = "Tamesis Development Ltd <notifications@tamesisdevelopment.co.uk>";
 
 const FORM_LABELS: Record<string, string> = {
   "hero-quote": "Hero Quote Form",
