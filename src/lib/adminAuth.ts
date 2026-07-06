@@ -192,3 +192,109 @@ export async function sendTestEmail(): Promise<{
     return { success: false, error: "Network error — please try again" };
   }
 }
+
+export interface AdminBlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  cover_photo: string | null;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  published_at: string | null;
+}
+
+export async function fetchAdminBlogPosts(): Promise<{ success: boolean; posts?: AdminBlogPost[]; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/admin-blog-posts", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to load posts" };
+    return { success: true, posts: data.posts };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function createBlogPost(post: {
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  coverPhoto?: string;
+  status: string;
+}): Promise<{ success: boolean; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/admin-blog-posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify(post),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to create post" };
+    return { success: true };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function updateBlogPost(
+  id: number,
+  updates: { title?: string; excerpt?: string; content?: string; category?: string; coverPhoto?: string; status?: string }
+): Promise<{ success: boolean; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/admin-blog-posts", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ id, ...updates }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to update post" };
+    return { success: true };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function deleteBlogPost(id: number): Promise<{ success: boolean; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/admin-blog-posts", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ id }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to delete post" };
+    return { success: true };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function seedBlogPosts(): Promise<{ success: boolean; inserted?: number; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/seed-blog-posts", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to add starter posts" };
+    return { success: true, inserted: data.inserted };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}

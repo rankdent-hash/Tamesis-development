@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, HardHat, Star, CalendarCheck, ShieldCheck, MapPinned } from "lucide-react";
 import { company, londonRegions, boroughLinkMap } from "../data/content";
 import logo from "../assets/logo.png";
 
@@ -27,6 +27,7 @@ const columns = [
       { label: "About", href: "/about" },
       { label: "Careers", href: "/careers" },
       { label: "Projects", href: "/projects" },
+      { label: "Blog", href: "/blog" },
     ],
   },
   {
@@ -59,9 +60,29 @@ const columns = [
 ];
 
 export function Footer() {
+  const trustItems = [
+    { icon: HardHat, label: "Directly Employed Engineers" },
+    { icon: Star, label: "4.6★ from 520+ Reviews" },
+    { icon: CalendarCheck, label: "Trusted Since 2014" },
+    { icon: ShieldCheck, label: "Fully Insured & Compliant" },
+    { icon: MapPinned, label: "London-Wide Coverage" },
+  ];
+
   return (
     <footer className="relative bg-navy-950 text-navy-100 overflow-hidden">
       <div className="absolute inset-0 blueprint-grid opacity-40" />
+
+      {/* Prefooter trust bar */}
+      <div className="relative border-b border-navy-800">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-wrap items-center justify-center lg:justify-between gap-x-8 gap-y-3">
+          {trustItems.map((item) => (
+            <span key={item.label} className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-navy-100/80">
+              <item.icon size={15} className="text-orange-400 shrink-0" />
+              {item.label}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Brand statement */}
       <div className="relative border-b border-navy-800">

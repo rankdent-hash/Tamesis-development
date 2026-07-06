@@ -20,8 +20,10 @@ import {
   MessageSquare,
   X,
   Send,
+  FileEdit,
 } from "lucide-react";
 import { Seo } from "../../components/Seo";
+import { BlogAdmin } from "./BlogAdmin";
 import { Button } from "../../components/ui/button";
 import {
   adminLogin,
@@ -252,7 +254,17 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             </button>
           ))}
 
-          <div className="pt-3 mt-3 border-t border-navy-800">
+          <div className="pt-3 mt-3 border-t border-navy-800 space-y-1">
+            <button
+              onClick={() => setSection("blog")}
+              className={cn(
+                "w-full flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors text-left",
+                section === "blog" ? "bg-orange-500 text-navy-950" : "text-navy-100/75 hover:bg-white/5 hover:text-white"
+              )}
+            >
+              <FileEdit size={16} className="shrink-0" />
+              Blog
+            </button>
             <button
               onClick={() => setSection("settings")}
               className={cn(
@@ -281,9 +293,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       <div className="flex-1 min-w-0">
         <header className="bg-white border-b-2 border-navy-900 px-8 py-5 flex items-center justify-between flex-wrap gap-4">
           <h2 className="font-display font-bold text-navy-900 text-xl">
-            {section === "settings" ? "Email Settings" : activeNav?.label || "Dashboard"}
+            {section === "settings" ? "Email Settings" : section === "blog" ? "Blog" : activeNav?.label || "Dashboard"}
           </h2>
-          {section !== "settings" && (
+          {section !== "settings" && section !== "blog" && (
             <div className="flex items-center gap-2">
               <button
                 onClick={load}
@@ -298,6 +310,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         <main className="p-8">
           {section === "settings" ? (
             <SettingsPanel />
+          ) : section === "blog" ? (
+            <BlogAdmin />
           ) : (
             <LeadsView
               leads={leads}

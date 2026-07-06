@@ -28,6 +28,7 @@ export function SitemapPage() {
     { label: "Services", href: "/services" },
     { label: "Sectors", href: "/sectors" },
     { label: "Coverage Areas", href: "/coverage" },
+    { label: "Blog", href: "/blog" },
     { label: "Projects", href: "/projects" },
     { label: "Reviews", href: "/reviews" },
     { label: "News", href: "/news" },

@@ -86,6 +86,11 @@
     <priority>0.2</priority>
   </url>
   <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/responsive-repairs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

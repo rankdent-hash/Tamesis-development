@@ -1,4 +1,9 @@
 export const seoMeta = {
+  blog: {
+    title: "Blog — Property Maintenance Advice & Guides",
+    description:
+      "Practical advice on property maintenance, repairs and refurbishment from Tamesis Development Ltd — for London homeowners, landlords and housing associations.",
+  },
   home: {
     title: "Property Maintenance & Refurbishment Contractor in London",
     description:
