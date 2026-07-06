@@ -93,7 +93,7 @@ export function Header() {
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-16 lg:h-24">
           <a href="/" className="flex items-center shrink-0">
-            <img src={logo} alt="Tamesis Development Ltd" className="h-9 lg:h-11 w-auto" />
+            <img src={logo} alt="Tamesis Development Ltd" className="h-[45px] lg:h-[55px] w-auto" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">
