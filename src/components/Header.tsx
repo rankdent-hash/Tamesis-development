@@ -19,6 +19,7 @@ import {
 import { company, navLinks } from "../data/content";
 import { cn } from "../lib/utils";
 import { ServicesMegaMenu } from "./ServicesMegaMenu";
+import logo from "../assets/logo.png";
 
 const MOBILE_NAV_ICONS: Record<string, typeof HomeIcon> = {
   Home: HomeIcon,
@@ -91,16 +92,8 @@ export function Header() {
         )}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-16 lg:h-24">
-          <a href="/" className="flex items-center gap-2.5 lg:gap-3 shrink-0">
-            <span className="w-9 h-9 lg:w-10 lg:h-10 rounded-lg bg-navy-900 text-orange-400 font-display font-bold text-base lg:text-lg flex items-center justify-center shrink-0">
-              T
-            </span>
-            <span className="font-display font-bold text-base lg:text-lg leading-tight tracking-tight text-navy-900">
-              Tamesis
-              <span className="block text-[9px] lg:text-[10px] font-accent font-medium tracking-[0.22em] uppercase text-slate">
-                Development Ltd
-              </span>
-            </span>
+          <a href="/" className="flex items-center shrink-0">
+            <img src={logo} alt="Tamesis Development Ltd" className="h-9 lg:h-11 w-auto" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">

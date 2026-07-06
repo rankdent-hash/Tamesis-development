@@ -13,6 +13,9 @@ This is a client-side SPA (React Router) combined with serverless API functions,
 
 ## Brand
 
+**Logo**: `src/assets/logo.png` (the client's actual logo — house/roof mark with "TAMESIS DEVELOPMENT" wordmark, black line art on transparent background). Used in the header as-is (black reads well on the always-light header); in the footer it's shown with a CSS `invert` filter to render white against the dark navy background, rather than needing a second exported file. If the source logo is ever replaced, drop the new file in at the same path and both spots update automatically.
+
+
 **Design direction**: heritage British property brand — deep racing-green-black,
 antique brass, warm ivory paper — rather than a generic navy/corporate-SaaS
 palette. Signature motif is the blueprint-grid + corner-bracket treatment

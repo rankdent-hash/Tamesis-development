@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { company } from "../data/content";
+import logo from "../assets/logo.png";
 
 // lucide-react no longer ships brand/logo icons — simple inline marks instead.
 const socialLinks = [
@@ -81,11 +82,8 @@ export function Footer() {
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-6 gap-12">
         <div className="lg:col-span-2">
-          <a href="/" className="flex items-center gap-3">
-            <span className="w-10 h-10 rounded-lg bg-navy-800 border border-navy-700 text-orange-400 font-display font-bold text-lg flex items-center justify-center">
-              T
-            </span>
-            <span className="font-display font-bold text-white text-lg">Tamesis Development Ltd</span>
+          <a href="/" className="flex items-center">
+            <img src={logo} alt="Tamesis Development Ltd" className="h-11 w-auto invert" />
           </a>
 
           <div className="mt-7 space-y-3.5 text-sm text-navy-100/70 font-accent">
