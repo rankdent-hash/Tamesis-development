@@ -19,6 +19,7 @@ import {
   Briefcase,
   MessageSquare,
   X,
+  Send,
 } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
@@ -28,6 +29,8 @@ import {
   updateLead,
   fetchSettings,
   updateEmailSettings,
+  sendTestEmail,
+  type TestEmailResult,
   getAdminToken,
   clearAdminToken,
   type Lead,
@@ -330,6 +333,9 @@ function SettingsPanel() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [testing, setTesting] = useState(false);
+  const [testResults, setTestResults] = useState<TestEmailResult[] | null>(null);
+  const [testError, setTestError] = useState<string | null>(null);
 
   const addEmail = () => {
     const value = emailInput.trim().replace(/,$/, "");
@@ -389,6 +395,19 @@ function SettingsPanel() {
       });
     } else {
       setError(result.error || "Failed to save");
+    }
+  };
+
+  const handleTestEmail = async () => {
+    setTesting(true);
+    setTestResults(null);
+    setTestError(null);
+    const result = await sendTestEmail();
+    setTesting(false);
+    if (result.results) {
+      setTestResults(result.results);
+    } else {
+      setTestError(result.error || "Failed to send test email");
     }
   };
 
@@ -508,6 +527,46 @@ function SettingsPanel() {
           )}
         </form>
       )}
+
+      <div className="mt-6 rounded-2xl border-2 border-navy-900 bg-white p-6 shadow-card">
+        <h3 className="font-display font-semibold text-navy-900 text-sm">Send a Test Email</h3>
+        <p className="mt-1.5 text-xs text-slate leading-relaxed">
+          Sends a real test email right now, using whichever provider and address are currently saved above —
+          the quickest way to confirm notifications are actually arriving.
+        </p>
+        <Button type="button" variant="outline" size="sm" className="mt-4" onClick={handleTestEmail} disabled={testing}>
+          <Send size={13} /> {testing ? "Sending..." : "Send Test Email"}
+        </Button>
+
+        {testResults && (
+          <div className="mt-4 space-y-2">
+            {testResults.map((r) => (
+              <div
+                key={r.provider}
+                className={cn(
+                  "flex items-start gap-2 rounded-lg p-3 text-xs",
+                  r.success ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"
+                )}
+              >
+                {r.success ? (
+                  <CheckCircle2 size={14} className="shrink-0 mt-0.5" />
+                ) : (
+                  <AlertCircle size={14} className="shrink-0 mt-0.5" />
+                )}
+                <div>
+                  <span className="font-semibold">{r.provider}: </span>
+                  {r.success ? "Sent successfully." : r.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {testError && (
+          <p className="mt-4 flex items-center gap-1.5 text-xs text-red-600">
+            <AlertCircle size={13} /> {testError}
+          </p>
+        )}
+      </div>
 
       <div className="mt-6 rounded-2xl border border-navy-100 bg-navy-50 p-5">
         <p className="text-xs text-slate-light leading-relaxed">

@@ -72,6 +72,8 @@ Each leads view includes:
 
 **Multiple notification emails**: the Email Settings notification field is a chip-style multi-email input — press Enter or comma after typing an address to add it, click the × on a chip to remove it. Stored as a comma-separated list in the `notify_email` setting. Resend sends to all of them natively (its `to` field accepts an array); Web3Forms sends to its account-registered address plus any extras via its `cc` parameter.
 
+**Send Test Email** button (Email Settings, `api/test-email.ts`): sends a real test email right now using whatever provider/address is currently saved, and shows per-provider success/failure with the actual error detail if it fails — the fastest way to confirm notifications are genuinely arriving without needing to fill out a whole form on the live site. Useful any time email delivery is in doubt, not just during initial setup.
+
 **Email Settings** section: manage everything about form-submission notifications directly in the admin panel, no Vercel/code access needed:
 - **Notification email** — where submissions get sent.
 - **Resend API key** and **Web3Forms API key** — both can be entered and saved here (stored in the `settings` Postgres table), each shown back only as a masked hint (e.g. `••••••••ab12`) once saved, never round-tripped in plaintext. Leaving a key field blank on save keeps whatever's already stored.

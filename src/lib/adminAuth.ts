@@ -160,3 +160,35 @@ export async function updateEmailSettings(updates: {
     return { success: false, error: "Network error — please try again" };
   }
 }
+
+export interface TestEmailResult {
+  provider: string;
+  success: boolean;
+  detail: string;
+}
+
+export async function sendTestEmail(): Promise<{
+  success: boolean;
+  notifyEmail?: string;
+  results?: TestEmailResult[];
+  error?: string;
+}> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+
+  try {
+    const res = await fetch("/api/test-email", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return {
+      success: !!data.success,
+      notifyEmail: data.notifyEmail,
+      results: data.results,
+      error: data.error,
+    };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
