@@ -8,7 +8,7 @@ import { LocationHero } from "../components/LocationHero";
 import { AnimateIn } from "../components/AnimateIn";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
 import { Button } from "../components/ui/button";
-import { locations, londonRegions, boroughLinkMap } from "../data/content";
+import { locations, londonRegions } from "../data/content";
 import { coveragePhoto } from "../data/photos";
 
 export function Coverage() {
@@ -52,18 +52,29 @@ export function Coverage() {
                     <Compass size={16} />
                     <span className="text-xs font-accent uppercase tracking-widest font-semibold">{group.region}</span>
                   </span>
-                  <ul className="mt-5 space-y-2.5">
+                  <ul className="mt-5 space-y-4">
                     {group.boroughs.map((borough) => {
-                      const slug = boroughLinkMap[borough];
+                      const boroughLocations = locations.filter((l) => l.borough === borough);
                       return (
-                        <li key={borough} className="flex items-center gap-2 text-sm text-navy-800 font-medium">
-                          <MapPin size={13} className="text-slate-light shrink-0" />
-                          {slug ? (
-                            <a href={`/property-maintenance/${slug}`} className="hover:text-orange-600 transition-colors">
-                              {borough}
-                            </a>
-                          ) : (
-                            borough
+                        <li key={borough}>
+                          <div className="flex items-center gap-2 text-sm text-navy-900 font-semibold">
+                            <MapPin size={13} className="text-orange-500 shrink-0" />
+                            {borough}
+                          </div>
+                          {boroughLocations.length > 0 && (
+                            <p className="mt-1.5 ml-[21px] text-xs text-slate leading-relaxed">
+                              {boroughLocations.map((loc, i) => (
+                                <span key={loc.slug}>
+                                  <a
+                                    href={`/property-maintenance/${loc.slug}`}
+                                    className="hover:text-orange-600 hover:underline transition-colors"
+                                  >
+                                    {loc.name}
+                                  </a>
+                                  {i < boroughLocations.length - 1 ? ", " : ""}
+                                </span>
+                              ))}
+                            </p>
                           )}
                         </li>
                       );
@@ -86,7 +97,7 @@ export function Coverage() {
             </AnimateIn>
 
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {locations.map((location) => (
+              {locations.filter((l) => l.hasServiceCombos).map((location) => (
                 <a
                   key={location.slug}
                   href={`/property-maintenance/${location.slug}`}

@@ -316,15 +316,145 @@ export const boroughLinkMap: Record<string, string> = {
   "Kensington & Chelsea": "kensington",
 };
 
+// hasServiceCombos: true only for the original 8 areas, which also have
+// dedicated /services/:service/:location combo pages. The newer neighbourhood
+// entries deliberately don't get combo pages — a large volume of thin,
+// near-identical templated pages (60 areas × 20 services) risks Google
+// treating the site as generating "doorway pages" rather than helping it
+// rank; these areas still get a full, genuinely useful area page, just
+// without the combo-page multiplication.
 export const locations = [
-  { name: "Fulham", slug: "fulham", note: "Home to our Fulham High Street office, so Fulham is where we can respond fastest." },
-  { name: "Chelsea", slug: "chelsea", note: "Regular work in Chelsea's period conversions and high-spec residential properties." },
-  { name: "Westminster", slug: "westminster", note: "Experience with both residential blocks and commercial premises across Westminster." },
-  { name: "Kensington", slug: "kensington", note: "Repairs and refurbishment for Kensington homeowners, landlords and managing agents." },
-  { name: "Hammersmith", slug: "hammersmith", note: "Close to our Fulham base, with fast response times across Hammersmith." },
-  { name: "Camden", slug: "camden", note: "Planned maintenance and repairs for Camden's mix of residential and commercial stock." },
-  { name: "Islington", slug: "islington", note: "Regular work across Islington's period properties and managed developments." },
-  { name: "Wandsworth", slug: "wandsworth", note: "Repairs, refurbishment and planned maintenance across Wandsworth." },
+  { name: "Fulham", slug: "fulham", borough: "Hammersmith & Fulham", hasServiceCombos: true, note: "Home to our Fulham High Street office, so Fulham is where we can respond fastest." },
+  { name: "Chelsea", slug: "chelsea", borough: "Kensington & Chelsea", hasServiceCombos: true, note: "Regular work in Chelsea's period conversions and high-spec residential properties." },
+  { name: "Westminster", slug: "westminster", borough: "Westminster", hasServiceCombos: true, note: "Experience with both residential blocks and commercial premises across Westminster." },
+  { name: "Kensington", slug: "kensington", borough: "Kensington & Chelsea", hasServiceCombos: true, note: "Repairs and refurbishment for Kensington homeowners, landlords and managing agents." },
+  { name: "Hammersmith", slug: "hammersmith", borough: "Hammersmith & Fulham", hasServiceCombos: true, note: "Close to our Fulham base, with fast response times across Hammersmith." },
+  { name: "Camden", slug: "camden", borough: "Camden", hasServiceCombos: true, note: "Planned maintenance and repairs for Camden's mix of residential and commercial stock." },
+  { name: "Islington", slug: "islington", borough: "Islington", hasServiceCombos: true, note: "Regular work across Islington's period properties and managed developments." },
+  { name: "Wandsworth", slug: "wandsworth", borough: "Wandsworth", hasServiceCombos: true, note: "Repairs, refurbishment and planned maintenance across Wandsworth." },
+
+  // City of London
+  { name: "Barbican", slug: "barbican", borough: "City of London", hasServiceCombos: false, note: "Maintenance for the Barbican's mix of residential estates and commercial premises." },
+
+  // Westminster (additional)
+  { name: "Mayfair", slug: "mayfair", borough: "Westminster", hasServiceCombos: false, note: "High-spec repairs and refurbishment for Mayfair's period townhouses and managed apartments." },
+  { name: "Pimlico", slug: "pimlico", borough: "Westminster", hasServiceCombos: false, note: "Regular work across Pimlico's garden squares and period conversions." },
+
+  // Kensington & Chelsea (additional)
+  { name: "Notting Hill", slug: "notting-hill", borough: "Kensington & Chelsea", hasServiceCombos: false, note: "Repairs and refurbishment for Notting Hill's period terraces and communal buildings." },
+
+  // Camden (additional)
+  { name: "Primrose Hill", slug: "primrose-hill", borough: "Camden", hasServiceCombos: false, note: "Property maintenance for Primrose Hill's period homes and managed blocks." },
+
+  // Islington (additional)
+  { name: "Angel", slug: "angel", borough: "Islington", hasServiceCombos: false, note: "Repairs and planned maintenance across Angel's mix of period and modern developments." },
+
+  // Lambeth
+  { name: "Brixton", slug: "brixton", borough: "Lambeth", hasServiceCombos: false, note: "Property maintenance across Brixton's mix of Victorian terraces and modern developments." },
+  { name: "Clapham", slug: "clapham", borough: "Lambeth", hasServiceCombos: false, note: "Repairs and refurbishment for Clapham's period conversions and family homes." },
+
+  // Southwark
+  { name: "Peckham", slug: "peckham", borough: "Southwark", hasServiceCombos: false, note: "Planned maintenance and repairs across Peckham's residential estates and terraces." },
+  { name: "London Bridge", slug: "london-bridge", borough: "Southwark", hasServiceCombos: false, note: "Maintenance for London Bridge's mix of commercial premises and residential developments." },
+
+  // Barnet
+  { name: "Finchley", slug: "finchley", borough: "Barnet", hasServiceCombos: false, note: "Repairs and maintenance across Finchley's suburban family housing." },
+  { name: "Hendon", slug: "hendon", borough: "Barnet", hasServiceCombos: false, note: "Property maintenance for Hendon's mix of houses and managed apartment blocks." },
+
+  // Enfield
+  { name: "Enfield Town", slug: "enfield-town", borough: "Enfield", hasServiceCombos: false, note: "Repairs and planned maintenance across Enfield Town's residential streets." },
+  { name: "Southgate", slug: "southgate", borough: "Enfield", hasServiceCombos: false, note: "Property maintenance for Southgate's suburban family homes." },
+
+  // Haringey
+  { name: "Wood Green", slug: "wood-green", borough: "Haringey", hasServiceCombos: false, note: "Maintenance and repairs across Wood Green's mix of terraces and flats." },
+  { name: "Crouch End", slug: "crouch-end", borough: "Haringey", hasServiceCombos: false, note: "Repairs and refurbishment for Crouch End's period conversions and family homes." },
+
+  // Waltham Forest
+  { name: "Walthamstow", slug: "walthamstow", borough: "Waltham Forest", hasServiceCombos: false, note: "Property maintenance across Walthamstow's Victorian terraces and new developments." },
+  { name: "Chingford", slug: "chingford", borough: "Waltham Forest", hasServiceCombos: false, note: "Repairs and maintenance for Chingford's suburban family housing." },
+
+  // Hackney
+  { name: "Hackney Central", slug: "hackney-central", borough: "Hackney", hasServiceCombos: false, note: "Maintenance for Hackney Central's mix of period terraces and modern flats." },
+  { name: "Dalston", slug: "dalston", borough: "Hackney", hasServiceCombos: false, note: "Repairs and refurbishment across Dalston's residential and commercial stock." },
+
+  // Tower Hamlets
+  { name: "Canary Wharf", slug: "canary-wharf", borough: "Tower Hamlets", hasServiceCombos: false, note: "Maintenance for Canary Wharf's managed apartment towers and commercial premises." },
+  { name: "Bethnal Green", slug: "bethnal-green", borough: "Tower Hamlets", hasServiceCombos: false, note: "Repairs and planned maintenance across Bethnal Green's estates and terraces." },
+
+  // Newham
+  { name: "Stratford", slug: "stratford", borough: "Newham", hasServiceCombos: false, note: "Property maintenance for Stratford's mix of new developments and older housing stock." },
+  { name: "East Ham", slug: "east-ham", borough: "Newham", hasServiceCombos: false, note: "Repairs and maintenance across East Ham's residential terraces." },
+
+  // Redbridge
+  { name: "Ilford", slug: "ilford", borough: "Redbridge", hasServiceCombos: false, note: "Property maintenance across Ilford's mix of family housing and managed flats." },
+  { name: "Woodford", slug: "woodford", borough: "Redbridge", hasServiceCombos: false, note: "Repairs and refurbishment for Woodford's suburban family homes." },
+
+  // Barking & Dagenham
+  { name: "Barking", slug: "barking", borough: "Barking & Dagenham", hasServiceCombos: false, note: "Maintenance and repairs across Barking's residential estates." },
+  { name: "Dagenham", slug: "dagenham", borough: "Barking & Dagenham", hasServiceCombos: false, note: "Property maintenance for Dagenham's family housing stock." },
+
+  // Havering
+  { name: "Romford", slug: "romford", borough: "Havering", hasServiceCombos: false, note: "Repairs and planned maintenance across Romford's residential streets." },
+  { name: "Hornchurch", slug: "hornchurch", borough: "Havering", hasServiceCombos: false, note: "Property maintenance for Hornchurch's suburban family homes." },
+
+  // Bexley
+  { name: "Bexleyheath", slug: "bexleyheath", borough: "Bexley", hasServiceCombos: false, note: "Maintenance and repairs across Bexleyheath's residential estates." },
+  { name: "Sidcup", slug: "sidcup", borough: "Bexley", hasServiceCombos: false, note: "Property maintenance for Sidcup's suburban family housing." },
+
+  // Greenwich
+  { name: "Greenwich", slug: "greenwich", borough: "Greenwich", hasServiceCombos: false, note: "Repairs and refurbishment across Greenwich's period properties and riverside developments." },
+  { name: "Blackheath", slug: "blackheath", borough: "Greenwich", hasServiceCombos: false, note: "Property maintenance for Blackheath's period homes and managed buildings." },
+
+  // Lewisham
+  { name: "Lewisham", slug: "lewisham", borough: "Lewisham", hasServiceCombos: false, note: "Maintenance and repairs across Lewisham's mix of terraces and estates." },
+  { name: "Catford", slug: "catford", borough: "Lewisham", hasServiceCombos: false, note: "Property maintenance for Catford's residential streets." },
+
+  // Croydon
+  { name: "Croydon", slug: "croydon", borough: "Croydon", hasServiceCombos: false, note: "Repairs and planned maintenance across Croydon's mix of residential and commercial stock." },
+  { name: "Purley", slug: "purley", borough: "Croydon", hasServiceCombos: false, note: "Property maintenance for Purley's suburban family homes." },
+
+  // Bromley
+  { name: "Bromley", slug: "bromley", borough: "Bromley", hasServiceCombos: false, note: "Maintenance and repairs across Bromley's residential streets." },
+  { name: "Beckenham", slug: "beckenham", borough: "Bromley", hasServiceCombos: false, note: "Property maintenance for Beckenham's period and suburban housing." },
+
+  // Sutton
+  { name: "Sutton", slug: "sutton", borough: "Sutton", hasServiceCombos: false, note: "Repairs and planned maintenance across Sutton's residential estates." },
+  { name: "Cheam", slug: "cheam", borough: "Sutton", hasServiceCombos: false, note: "Property maintenance for Cheam's suburban family homes." },
+
+  // Merton
+  { name: "Wimbledon", slug: "wimbledon", borough: "Merton", hasServiceCombos: false, note: "Repairs and refurbishment across Wimbledon's period homes and managed developments." },
+  { name: "Mitcham", slug: "mitcham", borough: "Merton", hasServiceCombos: false, note: "Property maintenance for Mitcham's residential streets." },
+
+  // Kingston upon Thames
+  { name: "Kingston upon Thames", slug: "kingston", borough: "Kingston upon Thames", hasServiceCombos: false, note: "Maintenance and repairs across Kingston's mix of riverside and residential properties." },
+  { name: "Surbiton", slug: "surbiton", borough: "Kingston upon Thames", hasServiceCombos: false, note: "Property maintenance for Surbiton's period and suburban homes." },
+
+  // Wandsworth (additional)
+  { name: "Putney", slug: "putney", borough: "Wandsworth", hasServiceCombos: false, note: "Repairs and refurbishment for Putney's riverside developments and period homes." },
+
+  // Hounslow
+  { name: "Hounslow", slug: "hounslow", borough: "Hounslow", hasServiceCombos: false, note: "Maintenance and repairs across Hounslow's residential estates." },
+  { name: "Chiswick", slug: "chiswick", borough: "Hounslow", hasServiceCombos: false, note: "Property maintenance for Chiswick's period homes and riverside developments." },
+
+  // Richmond upon Thames
+  { name: "Richmond", slug: "richmond", borough: "Richmond upon Thames", hasServiceCombos: false, note: "Repairs and refurbishment across Richmond's period properties and managed buildings." },
+  { name: "Twickenham", slug: "twickenham", borough: "Richmond upon Thames", hasServiceCombos: false, note: "Property maintenance for Twickenham's residential streets." },
+
+  // Ealing
+  { name: "Ealing", slug: "ealing", borough: "Ealing", hasServiceCombos: false, note: "Maintenance and repairs across Ealing's mix of period terraces and modern flats." },
+  { name: "Acton", slug: "acton", borough: "Ealing", hasServiceCombos: false, note: "Property maintenance for Acton's residential streets." },
+
+  // Brent
+  { name: "Wembley", slug: "wembley", borough: "Brent", hasServiceCombos: false, note: "Repairs and planned maintenance across Wembley's residential and commercial stock." },
+  { name: "Willesden", slug: "willesden", borough: "Brent", hasServiceCombos: false, note: "Property maintenance for Willesden's residential streets." },
+
+  // Harrow
+  { name: "Harrow", slug: "harrow", borough: "Harrow", hasServiceCombos: false, note: "Maintenance and repairs across Harrow's suburban family housing." },
+  { name: "Pinner", slug: "pinner", borough: "Harrow", hasServiceCombos: false, note: "Property maintenance for Pinner's period and suburban homes." },
+
+  // Hillingdon
+  { name: "Uxbridge", slug: "uxbridge", borough: "Hillingdon", hasServiceCombos: false, note: "Repairs and planned maintenance across Uxbridge's residential estates." },
+  { name: "Hayes", slug: "hayes", borough: "Hillingdon", hasServiceCombos: false, note: "Property maintenance for Hayes's residential streets." },
 ] as const;
 
 export type Location = (typeof locations)[number];

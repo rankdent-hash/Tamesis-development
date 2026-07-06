@@ -11,7 +11,7 @@ import { Faq } from "../components/Faq";
 import { ReviewsCarousel } from "../components/ReviewsCarousel";
 import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
-import { services, whyChoose, process, getServiceContent, type Service } from "../data/content";
+import { services, sectors, locations, whyChoose, process, getServiceContent, type Service } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
 
@@ -233,6 +233,55 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 </a>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Sectors this service is delivered for */}
+        <section className="py-24 lg:py-32 bg-navy-50">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Sectors</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl leading-tight text-balance">
+                Who We Deliver {service.name} For
+              </h2>
+            </AnimateIn>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {sectors.map((sector) => (
+                <a
+                  key={sector.slug}
+                  href={`/sectors/${sector.slug}`}
+                  className="rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                >
+                  {sector.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Areas this service is available in */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Coverage</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl leading-tight text-balance">
+                {service.name} Available Across London
+              </h2>
+            </AnimateIn>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {locations.filter((l) => l.hasServiceCombos).map((location) => (
+                <a
+                  key={location.slug}
+                  href={`/services/${service.slug}/${location.slug}`}
+                  className="rounded-full border border-navy-200 px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                >
+                  {location.name}
+                </a>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-slate">
+              Don't see your area? <a href="/coverage" className="text-orange-600 font-semibold hover:underline">View our full London coverage</a>.
+            </p>
           </div>
         </section>
 

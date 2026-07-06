@@ -157,6 +157,23 @@ The overview/intro photo on all 20 service pages and all 6 sector pages now has:
 
 **Deliberately left as `alt=""`**: the hero background photos (`ServiceHero`, `SectorHero`, `LocationHero`) stay decorative with empty alt text — that's correct accessibility practice, not an oversight. They sit behind a text overlay that already conveys the meaningful content, so adding descriptive alt text to the background image itself would just add screen-reader noise without SEO benefit.
 
+## Neighbourhood-level area pages (67 total)
+
+Expanded from the original 8 areas to 67 — every one of the 32 London boroughs (+ City of London) now has 1-3 well-known neighbourhoods with a full area page (`/property-maintenance/:slug`), grouped by borough on `/coverage`. Each `locations` entry in `content.ts` has a `borough` field (for grouping) and a `hasServiceCombos` flag.
+
+**Deliberate scope limit — agreed with the client before building**: `hasServiceCombos` is `true` only for the original 8 areas, which also get `/services/:service/:location` combo pages (160 of them). The 59 new neighbourhoods do **not** get combo pages — 59 areas × 20 services would be ~1,200 near-identical templated pages, which risks Google treating the site as generating "doorway pages" rather than helping it rank. The new areas still get a genuinely substantial page (overview, services grid, sectors grid, FAQs, nearby areas) via the shared `LocationTemplate`, just without the combo-page multiplication. `ServiceLocationRoute` and the services-grid links in `LocationTemplate` both check this flag; if combos are wanted for more areas later, just flip the flag and add photos.
+
+`/coverage` now shows each borough with its neighbourhoods listed and linked underneath (previously a flat, unlinked 32-item list). The footer's borough-level list was intentionally left as-is per the client's direction — no neighbourhood-level detail there.
+
+## Internal linking pass
+
+Added cross-links between the three page types so they form a proper mesh rather than isolated silos (each direction was previously missing at least one link type):
+- **Service pages** → now link to relevant **sectors** (who the service is delivered for) and to their own **location combo pages** (the 8 flagship areas), plus a link to `/coverage` for everywhere else.
+- **Sector pages** → now link to **areas covered** (the 8 flagship areas + `/coverage` link) in addition to the services they already linked to.
+- **Location pages** → already linked to services, sectors, and nearby areas from the earlier landing-page work.
+
+Kept deliberately modest — one well-labelled link section per relationship, descriptive anchor text (area/service/sector names, not "click here"), not link-stuffing every page with every other page on the site.
+
 ## Sector pages as landing pages
 
 Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual sector pages (Housing Associations, Local Authorities, Property Management Companies, Commercial Clients, Landlords, Residential Homeowners) now use `src/components/SectorHero.tsx` — a real photo background (see `sectorPhotos` in `src/data/photos.ts`, one distinct free Unsplash photo per sector, e.g. a civic building with a clock tower for Local Authorities, an aerial suburban estate for Housing Associations), breadcrumb, and the same compact lead-capture form used on service pages (not locked to a specific service via `presetService`, since sectors aren't 1:1 with services — visitors pick from the full dropdown).

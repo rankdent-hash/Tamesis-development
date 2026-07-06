@@ -139,6 +139,6 @@ export function ServiceLocationRoute() {
   const { serviceSlug, locationSlug } = useParams();
   const service = services.find((s) => s.slug === serviceSlug);
   const location = locations.find((l) => l.slug === locationSlug);
-  if (!service || !location) return <Navigate to="/services" replace />;
+  if (!service || !location || !location.hasServiceCombos) return <Navigate to="/services" replace />;
   return <ServiceLocationTemplate service={service} location={location} />;
 }

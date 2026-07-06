@@ -8,7 +8,7 @@ import { AnimateIn } from "../../components/AnimateIn";
 import { Icon } from "../../components/Icon";
 import { Seo } from "../../components/Seo";
 import { Button } from "../../components/ui/button";
-import { services, sectors, type Service } from "../../data/content";
+import { services, sectors, locations, type Service } from "../../data/content";
 import { breadcrumbJsonLd } from "../../lib/seo";
 import { CtaPhoneLine } from "../../components/CtaPhoneLine";
 import { sectorPhotos, unsplashUrl } from "../../data/photos";
@@ -151,6 +151,32 @@ export function SectorLayout({
                 </a>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Areas covered for this sector */}
+        <section className="py-24 lg:py-32 bg-navy-50">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Coverage</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl leading-tight text-balance">
+                Serving {name} Across London
+              </h2>
+            </AnimateIn>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {locations.filter((l) => l.hasServiceCombos).map((location) => (
+                <a
+                  key={location.slug}
+                  href={`/property-maintenance/${location.slug}`}
+                  className="rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                >
+                  {location.name}
+                </a>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-slate">
+              Don't see your area? <a href="/coverage" className="text-orange-600 font-semibold hover:underline">View our full London coverage</a>.
+            </p>
           </div>
         </section>
 

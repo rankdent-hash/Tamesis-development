@@ -86,7 +86,7 @@ export function LocationTemplate({ location }: { location: Location }) {
               {services.map((service) => (
                 <a
                   key={service.slug}
-                  href={`/services/${service.slug}/${location.slug}`}
+                  href={location.hasServiceCombos ? `/services/${service.slug}/${location.slug}` : `/services/${service.slug}`}
                   className="corner-marks group rounded-2xl bg-white border border-navy-100 p-5 shadow-card hover:shadow-card-hover transition-all"
                 >
                   <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
