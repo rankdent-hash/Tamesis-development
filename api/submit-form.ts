@@ -65,7 +65,7 @@ try {
 }
 
 // Fallback notification email if no setting has been saved in the admin panel yet.
-const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "contact@tamesisdevelopment.co.uk";
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
 
 interface EmailSettings {
   notifyEmail: string;
