@@ -97,6 +97,17 @@ export function Footer() {
             <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2.5 hover:text-orange-400 transition-colors">
               <Phone size={15} className="text-orange-400" /> Job Booking {company.phoneJobBooking}
             </a>
+            <a
+              href={`https://wa.me/44${company.whatsapp.replace(/\s/g, "").replace(/^0/, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 hover:text-orange-400 transition-colors"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="text-orange-400 shrink-0">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.13c-.24.68-1.42 1.32-1.96 1.4-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.66-.6-2.92-1.26-4.83-4.2-4.98-4.4-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.43.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.27-.12.53.15.26.68 1.13 1.47 1.83 1.01.9 1.87 1.18 2.13 1.31.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.21.57-.13.24.09 1.5.71 1.76.84.26.13.43.19.49.3.06.11.06.63-.18 1.31Z" />
+              </svg>
+              WhatsApp {company.whatsapp}
+            </a>
             <a href={`mailto:${company.email}`} className="flex items-center gap-2.5 hover:text-orange-400 transition-colors">
               <Mail size={15} className="text-orange-400" /> {company.email}
             </a>

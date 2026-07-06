@@ -5,6 +5,7 @@ export const company = {
   addressLines: ["First Floor", "48 Fulham High Street", "London", "SW6 3LQ"],
   phoneManagement: "020 3592 0042",
   phoneJobBooking: "020 3488 3737",
+  whatsapp: "07379 021500",
   email: "contact@tamesisdevelopment.co.uk",
 };
 

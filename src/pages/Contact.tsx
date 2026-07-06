@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle, User, MessageSquare, HelpCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle, User, MessageSquare, HelpCircle, MessageCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -58,6 +58,7 @@ export function Contact() {
                   { icon: MapPin, label: "Office", value: company.addressLines.join(", ") },
                   { icon: Phone, label: "Management", value: company.phoneManagement, href: `tel:${company.phoneManagement.replace(/\s/g, "")}` },
                   { icon: Phone, label: "Job Booking", value: company.phoneJobBooking, href: `tel:${company.phoneJobBooking.replace(/\s/g, "")}` },
+                  { icon: MessageCircle, label: "WhatsApp", value: company.whatsapp, href: `https://wa.me/44${company.whatsapp.replace(/\s/g, "").replace(/^0/, "")}` },
                   { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
                   { icon: Clock, label: "Opening Hours", value: "Mon–Fri: 8:00–17:30 · Emergency callout available 24/7" },
                 ].map((item) => (
