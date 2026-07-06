@@ -16,7 +16,7 @@ export function StickyMobileCall() {
   return (
     <>
       <div
-        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 px-3 pt-2.5 bg-paper/98 backdrop-blur-md shadow-[0_-4px_16px_rgba(11,31,58,0.14)]"
+        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 px-3 pt-2.5 border-t-2 border-white"
         style={{ paddingBottom: "calc(0.625rem + env(safe-area-inset-bottom))" }}
       >
         <a
