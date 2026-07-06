@@ -57,7 +57,8 @@ export function About() {
               </h2>
               <div className="mt-6 space-y-5 text-slate leading-relaxed">
                 <p>
-                  Tamesis Development Ltd was founded in 2014 with a straightforward aim — bring a genuinely
+                  <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> was
+                  founded in 2014 with a straightforward aim — bring a genuinely
                   professional standard of property maintenance to London, delivered by directly managed teams rather
                   than a loose network of subcontractors.
                 </p>
@@ -172,6 +173,11 @@ export function About() {
               </div>
             ))}
           </div>
+          <p className="mx-auto max-w-[1400px] px-6 lg:px-8 mt-8 text-sm text-slate">
+            Want to discuss a project or contract?{" "}
+            <a href="/contact" className="text-orange-600 font-semibold hover:underline">Contact our team</a> and
+            we'll get back to you within one working day.
+          </p>
         </section>
 
         {/* CTA */}

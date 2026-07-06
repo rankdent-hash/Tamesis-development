@@ -74,6 +74,10 @@ export function SectorLayout({
                 {introParagraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
+                <p>
+                  <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> has
+                  delivered work across every London borough since 2014.
+                </p>
               </div>
               <div className="mt-8">
                 <Button variant="primary" onClick={() => (navigate("/quote"))}>
@@ -124,6 +128,11 @@ export function SectorLayout({
                 </div>
               ))}
             </div>
+
+            <p className="mt-10 text-sm text-slate">
+              Want to know more about the team behind the work? Visit our{" "}
+              <a href="/about" className="text-orange-600 font-semibold hover:underline">About Us page</a>.
+            </p>
           </div>
         </section>
 
@@ -176,6 +185,8 @@ export function SectorLayout({
             </div>
             <p className="mt-6 text-sm text-slate">
               Don't see your area? <a href="/coverage" className="text-orange-600 font-semibold hover:underline">View our full London coverage</a>.
+              Have a question specific to your organisation?{" "}
+              <a href="/contact" className="text-orange-600 font-semibold hover:underline">Contact our team</a> directly.
             </p>
           </div>
         </section>

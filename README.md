@@ -176,6 +176,17 @@ Added cross-links between the three page types so they form a proper mesh rather
 
 Kept deliberately modest — one well-labelled link section per relationship, descriptive anchor text (area/service/sector names, not "click here"), not link-stuffing every page with every other page on the site.
 
+## Contextual Home / About / Contact links
+
+A second, more targeted pass, grounded in Google's own Search Central guidance plus current SEO sources (see the anchor-text and contextual-linking principles cited): **repeated nav/footer links carry less weight than unique in-body contextual links** — every page already links to Home/About/Contact via the header and footer, but none of the service pages, sector pages, or the About page had a genuine contextual link to these three anywhere in their actual content before this pass. Audited first (`grep` for `href="/"` etc. inside each page's body) rather than assumed.
+
+- **All 20 service pages** (`ServiceTemplate.tsx`, one shared template): a branded Home link in the "Why Choose Us" intro ("Since founding in 2014, **Tamesis Development Ltd** has grown into..."), an About Us link after that section's grid, and a Contact link closing out the FAQ section ("Still have a question? **Get in touch**...").
+- **All 6 sector pages** (`SectorLayout.tsx`, one shared template): the same branded Home link in the intro, an About Us link after the "What Sets Us Apart" grid, and a Contact link added alongside the existing coverage-areas line.
+- **About page**: the very first mention of the company name in "Our Story" now links Home (the most natural kind of branded anchor — Google's guidance and multiple sources agree self-referencing a business by name is normal, not manipulative), plus a new genuine Contact link after the credentials grid.
+- **Home page**: audited, found it already had both — a real `<a href="/about">` in the homepage's About teaser section and a real `<a href="/contact">` in the final CTA — so no changes were needed there.
+
+**One finding worth flagging**: several existing CTA buttons across the site (e.g. "Contact Us" / "Get a Free Quote" in various CTA sections) are built with `<button onClick={() => navigate(...)}>` rather than `<a href="...">`. Per Google's own crawlable-links documentation, **Google cannot reliably extract URLs from links that work via JavaScript click handlers on a `<button>` element** — only real `<a href>` elements are guaranteed crawlable. This wasn't in scope to fix everywhere (it's a much larger sitewide pattern), but it's worth knowing: those particular buttons still work fine for human visitors, they just don't contribute to Google's internal link graph the way a plain `<a>` does. All of the new links added in this pass are genuine `<a href>` elements specifically because of this.
+
 ## Sector pages as landing pages
 
 Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual sector pages (Housing Associations, Local Authorities, Property Management Companies, Commercial Clients, Landlords, Residential Homeowners) now use `src/components/SectorHero.tsx` — a real photo background (see `sectorPhotos` in `src/data/photos.ts`, one distinct free Unsplash photo per sector, e.g. a civic building with a clock tower for Local Authorities, an aerial suburban estate for Housing Associations), breadcrumb, and the same compact lead-capture form used on service pages (not locked to a specific service via `presetService`, since sectors aren't 1:1 with services — visitors pick from the full dropdown).

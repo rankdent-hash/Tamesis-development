@@ -176,6 +176,10 @@ export function ServiceTemplate({ service }: { service: Service }) {
               <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
                 Why Choose Us for {service.name}
               </h2>
+              <p className="mt-4 text-slate leading-relaxed">
+                Since founding in 2014, <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> has
+                grown into one of London's trusted property maintenance contractors — directly employed teams, not agency labour.
+              </p>
             </AnimateIn>
 
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
@@ -188,6 +192,11 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 </div>
               ))}
             </div>
+
+            <p className="mt-10 text-sm text-slate">
+              Read more about our history, values and approach on our{" "}
+              <a href="/about" className="text-orange-600 font-semibold hover:underline">About Us page</a>.
+            </p>
           </div>
         </section>
 
@@ -203,6 +212,10 @@ export function ServiceTemplate({ service }: { service: Service }) {
             <div className="mt-10">
               <Faq items={content.faqs} />
             </div>
+            <p className="mt-8 text-center text-sm text-slate">
+              Still have a question about {service.name.toLowerCase()}?{" "}
+              <a href="/contact" className="text-orange-600 font-semibold hover:underline">Get in touch</a> with our team and we'll help.
+            </p>
           </div>
         </section>
 
