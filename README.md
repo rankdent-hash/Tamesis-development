@@ -188,6 +188,12 @@ Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual 
 
 Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
 
+## Sitemap
+
+Two different things, both called "sitemap," worth distinguishing:
+- **`/sitemap.xml`** (`public/sitemap.xml`) — the machine-readable file Google Search Console actually reads. Already referenced in `robots.txt` (`Sitemap: https://www.tamesisdevelopment.co.uk/sitemap.xml`), so Google discovers it automatically without needing a link anywhere — this was already working correctly before this change.
+- **`/sitemap`** (`src/pages/SitemapPage.tsx`) — a human-browsable page listing every page on the site (main pages, all 20 services, all 6 sectors, all 67 coverage areas grouped by region, legal pages), linked from the footer's bottom bar next to Privacy Policy/Terms. This is for visitors (and adds another set of internal links for crawlers), not something Search Console itself needs — it can't be "submitted" as a sitemap the way the XML file can.
+
 ## Local development
 
 ```
