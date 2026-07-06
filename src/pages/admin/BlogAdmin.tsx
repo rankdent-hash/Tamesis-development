@@ -39,6 +39,7 @@ export function BlogAdmin() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
   const [seeding, setSeeding] = useState(false);
+  const [seedMessage, setSeedMessage] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -103,9 +104,15 @@ export function BlogAdmin() {
 
   const handleSeed = async () => {
     setSeeding(true);
+    setSeedMessage(null);
     const result = await seedBlogPosts();
     setSeeding(false);
     if (result.success) {
+      setSeedMessage(
+        result.inserted && result.inserted > 0
+          ? `Added ${result.inserted} new article${result.inserted === 1 ? "" : "s"}.`
+          : "No new articles to add — everything's already published."
+      );
       load();
     } else {
       setError(result.error || "Failed to add starter posts");
@@ -204,12 +211,23 @@ export function BlogAdmin() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <p className="text-sm text-slate">Write and manage blog articles — published posts appear at /blog immediately.</p>
-        <Button variant="primary" size="sm" onClick={openNew}>
-          <Plus size={14} /> New Post
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={handleSeed} disabled={seeding}>
+            <Sparkles size={13} /> {seeding ? "Checking..." : "Publish Starter Articles"}
+          </Button>
+          <Button variant="primary" size="sm" onClick={openNew}>
+            <Plus size={14} /> New Post
+          </Button>
+        </div>
       </div>
+
+      {seedMessage && (
+        <p className="flex items-center gap-1.5 text-xs text-green-700 bg-green-50 rounded-lg px-3 py-2 mb-4">
+          <CheckCircle2 size={13} /> {seedMessage}
+        </p>
+      )}
 
       {loading && <p className="text-sm text-slate">Loading posts...</p>}
 
@@ -222,14 +240,11 @@ export function BlogAdmin() {
       {!loading && posts && posts.length === 0 && (
         <div className="rounded-2xl border-2 border-navy-100 bg-white p-12 text-center">
           <p className="text-sm text-slate max-w-sm mx-auto">
-            No blog posts yet. Write your first one, or publish 3 ready-made starter articles to see how it looks.
+            No blog posts yet. Write your first one, or use "Publish Starter Articles" above to add some ready-made ones.
           </p>
-          <div className="mt-5 flex flex-wrap justify-center gap-3">
+          <div className="mt-5 flex justify-center">
             <Button variant="primary" onClick={openNew}>
               <Plus size={14} /> Write a Post
-            </Button>
-            <Button variant="outline" onClick={handleSeed} disabled={seeding}>
-              <Sparkles size={14} /> {seeding ? "Adding..." : "Publish 3 Starter Articles"}
             </Button>
           </div>
         </div>

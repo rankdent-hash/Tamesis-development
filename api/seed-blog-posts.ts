@@ -187,6 +187,107 @@ For context: a straightforward refresh might take 3-5 days. A full refit is typi
 
 When comparing quotes, make sure each one covers the same scope — same category (refresh/refit/reconfiguration), same fittings specification, and confirmation that waterproofing and ventilation are included rather than assumed. [Request a free quote](/quote) from our team and we'll talk you through exactly what's included before any work begins, and you're welcome to browse [some of our recent bathroom projects](/projects) for a sense of the standard of finish.`,
   },
+  {
+    slug: "awaabs-law-what-housing-associations-need-to-do-now",
+    title: "Awaab's Law: What Housing Associations and Local Authorities Need to Do Now",
+    excerpt:
+      "Since October 2025, social landlords in England face strict legal timeframes for damp, mould and emergency hazards — with more hazard types added through 2026 and 2027. Here's what's actually required.",
+    category: "Housing Associations & Local Authorities",
+    coverPhoto: "photo-1517646287270-a5a9ca602e5c",
+    content: `Named after two-year-old Awaab Ishak, who died in 2020 after prolonged exposure to mould in his family's housing association home, Awaab's Law came into force for the social rented sector in England on 27 October 2025. It sets out, for the first time, fixed legal timeframes within which social landlords must investigate and fix damp, mould, and emergency hazards — and the requirements are already being expanded.
+
+## What the Law Actually Requires (Phase 1)
+
+Under the current phase, when a social landlord becomes aware of a potential damp or mould hazard, they must investigate within **10 working days** to establish whether a hazard actually exists. Once the investigation concludes, tenants must receive a **written summary of the findings within 3 working days**. If the investigation confirms a significant risk to health or safety, the landlord must make the property safe — using temporary measures if needed — within **5 working days** of that finding.
+
+Emergency hazards are treated even more urgently: anything posing an immediate and significant risk of harm (a dangerous electrical fault, a major leak, a failed external door) must be investigated and made safe within **24 hours** of the landlord being notified.
+
+If a property genuinely can't be made safe within these timeframes, the landlord must arrange suitable alternative accommodation, at their own expense, until it's safe for residents to return.
+
+## Documentation Is Not Optional
+
+Landlords are required to keep clear records of every stage — correspondence with the resident, communication with contractors, and (where relevant) evidence of why a timeframe couldn't be met for reasons outside the landlord's control. This is a meaningful shift from informal repair logs to something closer to an audit trail, and it changes what a maintenance contractor needs to deliver alongside the physical work itself: dated reports, clear written findings, and a paper trail that would hold up if a case were escalated to the Housing Ombudsman.
+
+## The Law Is Getting Wider, Not Staying Still
+
+Phase 1 covers damp, mould, and emergency hazards specifically. From 2026, the government has confirmed the scope will expand to include excess cold and excess heat, falls, structural collapse and explosions, fire and electrical hazards, and domestic hygiene and food safety issues. A further phase in 2027 is expected to bring in the remaining hazard categories under the Housing Health and Safety Rating System (HHSRS). In practical terms, this means the fixed-timeframe approach that currently applies to damp and mould will soon apply across most of what a [planned maintenance](/services/planned-maintenance) programme already covers — so the assessment and reporting processes being built now are worth building properly the first time.
+
+## What This Means for Contracting Relationships
+
+A repair logged in a spreadsheet and actioned "when a slot comes free" doesn't fit this framework. What does fit: a contractor who can commit to genuinely fast response for anything flagged as urgent, who documents findings in writing as a matter of course, and who reports back to the housing association or local authority in a format that can be handed to a regulator or ombudsman without extra work. This is the operating model we already use for [housing associations](/sectors/housing-associations) and [local authorities](/sectors/local-authorities) — not something we'd need to bolt on to comply with a new law, since fast, well-documented response has always been part of how we work.
+
+## Getting Ready for the Next Phase
+
+If your current repairs process was built around older, softer timeframes, now is the point to review it — before the 2026 expansion brings more hazard categories into the same strict-deadline framework. [Get in touch](/contact) if you'd like to talk through what your stock and current contractor arrangements would need to look like to meet these requirements comfortably rather than reactively.`,
+  },
+  {
+    slug: "mees-2030-energy-efficiency-rules-london-landlords",
+    title: "MEES 2030: What the New Energy Efficiency Rules Mean for London Landlords",
+    excerpt:
+      "The government has confirmed EPC C will be required for all private rented tenancies from October 2030 — with a completely new dual-metric standard. Here's what's actually changing.",
+    category: "Landlords",
+    coverPhoto: "photo-1621983209352-c2880ac507b2",
+    content: `After a lengthy consultation process, the government confirmed its final position on Minimum Energy Efficiency Standards (MEES) for the private rented sector in January 2026. If you let property in London, this is worth understanding now rather than in 2029 — the improvement work involved often isn't quick to schedule.
+
+## Where the Standard Stands Today
+
+Right now, the rule is straightforward: since April 2020, landlords cannot let or continue letting a property with an EPC rating of F or G, unless a valid exemption is registered. The current cost cap for required improvements is £3,500 (including VAT), and non-compliance can carry a penalty of up to £5,000.
+
+## What's Changing, and When
+
+The confirmed new requirement is an **EPC C rating for all tenancies — new and existing — from a single date: 1 October 2030.** This is a change from the government's original proposal of a phased approach (new tenancies by 2028, existing by 2030) — landlords now have one deadline to work towards rather than two.
+
+The bigger shift is in how compliance will actually be measured. Rather than a single EPC band, the new standard uses a **dual-metric approach**: a fabric performance metric (how thermally efficient the building envelope itself is) as the primary measure, followed by a second metric — either a smart-readiness metric or a heating-system metric, landlord's choice — once the fabric standard is met. You won't be forced into a heating system upgrade if smart-technology improvements aren't practical for the property, which matters for older or harder-to-treat buildings common across London.
+
+Enforcement is also getting sharper teeth: the maximum fine per breach is being increased to £30,000, and a new Private Rented Sector Database (being introduced separately, under the Renters' Rights Act) is expected to make it considerably easier for local authorities to identify non-compliant properties.
+
+## What Actually Counts as "Fabric Performance"
+
+In practice, fabric performance improvements are things like loft and cavity wall insulation, floor insulation, and — for solid-wall properties common in period London housing — internal or external wall insulation, though a specific exemption route exists where solid wall insulation genuinely isn't suitable. This is where the work tends to be more disruptive and take longer to plan than, say, a boiler swap, which is exactly why landlords with older housing stock benefit from starting the assessment conversation years rather than months ahead of 2030.
+
+## Transitional Protection for Existing Ratings
+
+If your property already holds a valid EPC showing a C rating (under the current methodology) before the new EPC framework comes in, the government has confirmed this will be recognised as compliant until that certificate expires — you won't be forced to immediately requalify under the new metrics. New EPCs issued between 2026 and 2030 will show both the old and new methodology side by side, specifically so no landlord is caught out by the transition.
+
+## Where This Overlaps With Other Compliance Work
+
+Energy efficiency improvements rarely happen in isolation — insulation work often coincides with damp investigations (poor insulation is a common contributing factor to condensation and mould), and both tie into wider [planned maintenance](/services/planned-maintenance) scheduling across a portfolio. If you're a [landlord](/sectors/landlords) with EPC D, E, F, or G rated property in London, it's worth getting a realistic assessment of what fabric performance work would actually involve well before 2030 pressure sets in on contractor availability.
+
+[Get a free quote](/quote) for an initial assessment, or [contact us](/contact) to talk through a whole portfolio rather than a single property.`,
+  },
+  {
+    slug: "renters-rights-act-what-london-landlords-need-to-know",
+    title: "The Renters' Rights Act Is Now in Force: What Every London Landlord Needs to Know",
+    excerpt:
+      "Section 21 'no-fault' evictions ended on 1 May 2026. Here's what actually changed for landlords, and where property condition and maintenance now matter more than ever.",
+    category: "Landlords",
+    coverPhoto: "photo-1702441831852-669adb6e762f",
+    content: `The Renters' Rights Act 2025 received Royal Assent in October 2025, and its central reforms took effect on 1 May 2026 — meaning the biggest change to the private rented sector since the late 1980s is no longer coming, it's here. If you let residential property in London, here's what's actually changed in practice.
+
+## Section 21 Is Gone
+
+From 1 May 2026, landlords can no longer serve new Section 21 "no-fault" eviction notices. Any Section 21 notice served before that date remains usable, but only if court proceedings were started by 31 July 2026 — after that cut-off, an unused notice is simply void. Going forward, ending a tenancy requires a Section 8 notice citing one of the legal grounds for possession, with the specific grounds having been expanded and, in several cases, given longer required notice periods than before.
+
+## Fixed-Term Tenancies Have Effectively Ended
+
+Assured Shorthold Tenancies have converted to open-ended **Assured Periodic Tenancies**. There's no fixed term to renew or negotiate at expiry — tenants can stay indefinitely, subject to rent being paid and no grounds for possession arising, and can themselves leave at any point by giving two months' notice. Existing tenancy agreements didn't need to be reissued, but every landlord with a tenancy that predates 1 May 2026 was required to give tenants a copy of the government's official Information Sheet by 31 May 2026 — a straightforward step, but one that carries a civil penalty of up to £7,000 if missed.
+
+## Rent Increases Now Follow a Formal Process
+
+Rent can only be increased once every 12 months, and only via a Section 13 notice, which gives tenants a defined route to challenge an increase they consider excessive. The days of an informal rent conversation followed by an updated figure on the next invoice are over — the process now needs to be followed correctly to hold up.
+
+## What's Still to Come
+
+This is phase one. Local authorities already gained expanded investigatory powers — the ability to inspect properties, demand documents, and access third-party data — from December 2025. A mandatory Private Rented Sector Database is rolling out from late 2026, which registered landlords will need to be on to use certain Section 8 possession grounds. A new PRS Ombudsman service is expected around 2028, and a Decent Homes Standard for the private rented sector — plus a possible future extension of Awaab's Law beyond social housing — are both still working through consultation.
+
+## Why Property Condition Now Carries More Weight
+
+With no-fault eviction off the table and the sector heading toward mandatory minimum standards and a landlord database, the practical reality is that a well-maintained property is doing more work for a landlord than it used to. Grounds for possession, rent challenges, and future Ombudsman complaints are all situations where a documented history of prompt, professional repairs is a genuine asset — not just a compliance checkbox. This connects directly to the other major change in the pipeline: [Minimum Energy Efficiency Standards](/blog/mees-2030-energy-efficiency-rules-london-landlords) are tightening on broadly the same timeline, and a Decent Homes Standard for the private rented sector is very likely on its way after that.
+
+## Getting Your Portfolio in Good Shape
+
+If you manage rental property across London and want a realistic picture of what condition your stock is actually in — before a tenant dispute, a database registration, or a future Decent Homes Standard forces the question — [get in touch](/contact) for a straightforward conversation, or [request a free quote](/quote) for specific work you already know is needed. We work with [landlords](/sectors/landlords) across every London borough, from single properties to larger portfolios.`,
+  },
 ];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
