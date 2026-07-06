@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MapPin, Phone, Clock, CheckCircle2, AlertCircle, User, MessageSquare, HelpCircle, MessageCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Mail, MapPin, Phone, Clock, AlertCircle, User, MessageSquare, HelpCircle, MessageCircle } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -12,7 +13,7 @@ import { company } from "../data/content";
 import { submitForm } from "../lib/submitForm";
 
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
 
@@ -31,7 +32,7 @@ export function Contact() {
     });
     setSubmitting(false);
     if (ok) {
-      setSubmitted(true);
+      navigate("/thank-you");
     } else {
       setError(true);
     }
@@ -87,15 +88,6 @@ export function Contact() {
 
             {/* Form */}
             <AnimateIn delay={0.1}>
-              {submitted ? (
-                <div className="rounded-2xl border border-blue-100 bg-blue-50 p-10 text-center h-full flex flex-col items-center justify-center">
-                  <CheckCircle2 size={36} className="text-blue-600" />
-                  <h3 className="mt-4 font-display font-semibold text-navy-900 text-xl">Message Sent</h3>
-                  <p className="mt-2 text-sm text-slate max-w-sm">
-                    Thanks for getting in touch — a member of our team will respond shortly.
-                  </p>
-                </div>
-              ) : (
                 <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
@@ -151,7 +143,6 @@ export function Contact() {
                     </p>
                   )}
                 </form>
-              )}
             </AnimateIn>
           </div>
         </section>

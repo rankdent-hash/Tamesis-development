@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { MapPin, Clock, CheckCircle2, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { MapPin, Clock, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -12,8 +13,8 @@ import { vacancies, benefits } from "../data/content";
 import { submitForm } from "../lib/submitForm";
 
 export function Careers() {
+  const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState<string>(vacancies[0].title);
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
 
@@ -32,7 +33,7 @@ export function Careers() {
     });
     setSubmitting(false);
     if (ok) {
-      setSubmitted(true);
+      navigate("/thank-you");
     } else {
       setError(true);
     }
@@ -98,7 +99,6 @@ export function Careers() {
                     size="sm"
                     onClick={() => {
                       setSelectedRole(role.title);
-                      setSubmitted(false);
                       document.getElementById("application-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
                   >
@@ -121,16 +121,7 @@ export function Careers() {
               <p className="mt-3 text-slate">Applying for: <span className="font-semibold text-navy-900">{selectedRole}</span></p>
             </div>
 
-            {submitted ? (
-              <div className="mt-10 rounded-2xl border border-blue-100 bg-blue-50 p-8 text-center">
-                <CheckCircle2 size={32} className="mx-auto text-blue-600" />
-                <h3 className="mt-4 font-display font-semibold text-navy-900 text-lg">Application Received</h3>
-                <p className="mt-2 text-sm text-slate">
-                  Thanks — a member of our team will be in touch about the {selectedRole} role shortly.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="mt-10 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
+            <form onSubmit={handleSubmit} className="mt-10 space-y-5 rounded-2xl border border-navy-100 bg-white p-8 shadow-card">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="fullName" className="block text-sm font-medium text-navy-800 mb-1.5">Full Name</label>
@@ -171,7 +162,6 @@ export function Careers() {
                   </p>
                 )}
               </form>
-            )}
           </div>
         </section>
       </main>

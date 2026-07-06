@@ -188,6 +188,14 @@ Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual 
 
 Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
 
+## Thank-you page / Google Ads conversion tracking
+
+`/thank-you` (`src/pages/ThankYou.tsx`) — a dedicated confirmation page, `noindex`'d (see `noindex` prop on `Seo.tsx`, since thank-you pages have no organic search value and shouldn't be indexed) so it never shows up in search results or the sitemap.
+
+**The 5 dedicated form pages** — Quote, Contact, Report a Repair, Emergency, Careers — now redirect here via `navigate("/thank-you")` on a successful submission, instead of showing an inline "submitted" message on the same page. This is what makes Google Ads conversion tracking possible: Google Ads conversions are normally fired by a snippet that loads once, on a specific URL reached only after a real conversion — an inline success message on the same page/URL can't be tracked that way. The component has detailed comments explaining exactly where the `gtag` conversion event should go once you have the tracking ID/label from Google Ads — ask me to wire it in at that point and I'll add it properly (loading `gtag.js` once sitewide, firing the conversion event on this page only).
+
+**Deliberately NOT redirected**: `HeroQuoteForm` (the compact form used in every hero section, and in the sticky mobile bar's bottom-sheet) still shows its inline success state rather than navigating away. Redirecting someone mid-browse (e.g. reading a service page, or using the quick mobile popup) to a completely different page felt like worse UX for a lightweight capture widget than for a dedicated form page. The tradeoff: submissions through that specific form won't be counted by a `/thank-you`-based Google Ads tag. Worth flagging in case you want full conversion coverage — that would mean either accepting the redirect there too, or using a different tracking method (e.g. firing the conversion event directly in the submit handler instead of on a dedicated page) for that one form specifically.
+
 ## Sitemap
 
 Two different things, both called "sitemap," worth distinguishing:

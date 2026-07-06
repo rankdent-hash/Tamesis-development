@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { Phone, AlertTriangle, CheckCircle2, AlertCircle, User, MessageSquare, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Phone, AlertTriangle, AlertCircle, User, MessageSquare, MapPin } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -19,7 +20,7 @@ const emergencyTypes = [
 ];
 
 export function Emergency() {
-  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
 
@@ -38,7 +39,7 @@ export function Emergency() {
     });
     setSubmitting(false);
     if (ok) {
-      setSubmitted(true);
+      navigate("/thank-you");
     } else {
       setError(true);
     }
@@ -78,16 +79,7 @@ export function Emergency() {
               team will call you back.
             </p>
 
-            {submitted ? (
-              <div className="rounded-2xl border border-blue-100 bg-blue-50 p-10 text-center">
-                <CheckCircle2 size={36} className="mx-auto text-blue-600" />
-                <h2 className="mt-4 font-display font-bold text-navy-900 text-2xl">Request Received</h2>
-                <p className="mt-2 text-slate max-w-sm mx-auto">
-                  We've logged your request as urgent — a member of our team will call you back shortly.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
+            <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="e-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
@@ -140,7 +132,6 @@ export function Emergency() {
                   </p>
                 )}
               </form>
-            )}
           </div>
         </section>
       </main>

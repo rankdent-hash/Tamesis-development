@@ -33,6 +33,7 @@ const News = lazy(() => import("./pages/News").then((m) => ({ default: m.News })
 const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy").then((m) => ({ default: m.PrivacyPolicy })));
 const CookiePolicy = lazy(() => import("./pages/legal/CookiePolicy").then((m) => ({ default: m.CookiePolicy })));
 const SitemapPage = lazy(() => import("./pages/SitemapPage").then((m) => ({ default: m.SitemapPage })));
+const ThankYou = lazy(() => import("./pages/ThankYou").then((m) => ({ default: m.ThankYou })));
 const Admin = lazy(() => import("./pages/admin/Admin").then((m) => ({ default: m.Admin })));
 const Terms = lazy(() => import("./pages/legal/Terms").then((m) => ({ default: m.Terms })));
 const ComingSoon = lazy(() => import("./pages/ComingSoon").then((m) => ({ default: m.ComingSoon })));
@@ -72,6 +73,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/sitemap" element={<SitemapPage />} />
+          <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<ComingSoon title="Page Not Found" />} />

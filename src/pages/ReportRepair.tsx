@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Phone, AlertCircle, User, MessageSquare, MapPin, KeyRound } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Phone, AlertCircle, User, MessageSquare, MapPin, KeyRound } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -10,7 +11,7 @@ import { company } from "../data/content";
 import { submitForm } from "../lib/submitForm";
 
 export function ReportRepair() {
-  const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
 
@@ -29,7 +30,7 @@ export function ReportRepair() {
     });
     setSubmitting(false);
     if (ok) {
-      setSubmitted(true);
+      navigate("/thank-you");
     } else {
       setError(true);
     }
@@ -63,16 +64,7 @@ export function ReportRepair() {
               </p>
             </div>
 
-            {submitted ? (
-              <div className="rounded-2xl border border-blue-100 bg-blue-50 p-10 text-center">
-                <CheckCircle2 size={36} className="mx-auto text-blue-600" />
-                <h2 className="mt-4 font-display font-bold text-navy-900 text-2xl">Repair Reported</h2>
-                <p className="mt-2 text-slate max-w-sm mx-auto">
-                  Thanks — our job booking team will review this and get in touch to schedule the work.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
+            <form onSubmit={handleSubmit} className="rounded-2xl border border-navy-100 bg-white p-8 shadow-card space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="r-name" className="block text-sm font-medium text-navy-800 mb-1.5">Name</label>
@@ -120,7 +112,6 @@ export function ReportRepair() {
                   </p>
                 )}
               </form>
-            )}
           </div>
         </section>
       </main>

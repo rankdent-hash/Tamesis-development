@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowLeft, ArrowRight, AlertCircle, User, Building2, Phone, Mail, Home, Briefcase, Wrench, MessageSquare, Calendar, type LucideIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft, ArrowRight, AlertCircle, User, Building2, Phone, Mail, Home, Briefcase, Wrench, MessageSquare, Calendar, type LucideIcon } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -13,8 +14,8 @@ import { submitForm } from "../lib/submitForm";
 const steps = ["Your Details", "Property & Sector", "The Work", "Review & Submit"];
 
 export function Quote() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
@@ -41,7 +42,7 @@ export function Quote() {
     const ok = await submitForm("quote", { ...form });
     setSubmitting(false);
     if (ok) {
-      setSubmitted(true);
+      navigate("/thank-you");
     } else {
       setError(true);
     }
@@ -61,16 +62,6 @@ export function Quote() {
 
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
-            {submitted ? (
-              <div className="rounded-2xl border border-blue-100 bg-blue-50 p-10 text-center">
-                <CheckCircle2 size={36} className="mx-auto text-blue-600" />
-                <h2 className="mt-4 font-display font-bold text-navy-900 text-2xl">Quote Request Received</h2>
-                <p className="mt-2 text-slate max-w-sm mx-auto">
-                  Thanks, {form.name || "there"} — our team will review the details and come back to you shortly.
-                </p>
-              </div>
-            ) : (
-              <>
                 {/* Progress bar */}
                 <div className="mb-10">
                   <div className="flex justify-between mb-2">
@@ -239,8 +230,6 @@ export function Quote() {
                     </p>
                   )}
                 </form>
-              </>
-            )}
           </div>
         </section>
       </main>

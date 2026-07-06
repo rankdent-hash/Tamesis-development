@@ -6,11 +6,13 @@ export function Seo({
   description,
   path,
   jsonLd,
+  noindex = false,
 }: {
   title: string;
   description: string;
   path: string;
   jsonLd?: object | object[];
+  noindex?: boolean;
 }) {
   useEffect(() => {
     const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
@@ -36,6 +38,18 @@ export function Seo({
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
 
+    let robots = document.head.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (noindex) {
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.setAttribute("name", "robots");
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute("content", "noindex, nofollow");
+    } else if (robots) {
+      robots.remove();
+    }
+
     let canonical = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonical) {
       canonical = document.createElement("link");
@@ -58,7 +72,7 @@ export function Seo({
 
     window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path]);
+  }, [title, description, path, noindex]);
 
   return null;
 }
