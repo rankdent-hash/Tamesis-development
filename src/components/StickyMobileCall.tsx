@@ -16,19 +16,19 @@ export function StickyMobileCall() {
   return (
     <>
       <div
-        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 px-3 pt-2.5 border-t-2 border-white"
+        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 px-3 pt-2.5"
         style={{ paddingBottom: "calc(0.625rem + env(safe-area-inset-bottom))" }}
       >
         <a
           href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-navy-900 text-white py-3 text-sm font-bold"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-navy-900 text-white py-3 text-sm font-bold"
         >
           <Phone size={16} /> Call Now
         </a>
         <button
           type="button"
           onClick={() => setContactOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-orange-500 text-navy-950 py-3 text-sm font-bold"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-orange-500 text-navy-950 py-3 text-sm font-bold"
         >
           <MessageCircle size={16} /> Contact Us
         </button>
