@@ -40,15 +40,6 @@ function checkCredentials(email: string, password: string): boolean {
   return emailMatches && passMatches;
 }
 
-function checkPin(pin: string): boolean {
-  const adminPin = process.env.ADMIN_PIN;
-  if (!adminPin) return false;
-
-  const pinBuf = Buffer.from(pin);
-  const expectedPinBuf = Buffer.from(adminPin);
-  return pinBuf.length === expectedPinBuf.length && timingSafeEqual(pinBuf, expectedPinBuf);
-}
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -58,14 +49,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") return res.status(405).json({ success: false, error: "Method not allowed" });
 
   try {
-    const { email, password, pin } = req.body as { email?: string; password?: string; pin?: string };
-    if (!email || !password || !pin) {
-      return res.status(400).json({ success: false, error: "Email, password and PIN required" });
+    const { email, password } = req.body as { email?: string; password?: string };
+    if (!email || !password) {
+      return res.status(400).json({ success: false, error: "Email and password required" });
     }
 
-    // Generic message on any failure — don't reveal which factor was wrong.
-    if (!checkCredentials(email, password) || !checkPin(pin)) {
-      return res.status(401).json({ success: false, error: "Invalid credentials" });
+    if (!checkCredentials(email, password)) {
+      return res.status(401).json({ success: false, error: "Invalid email or password" });
     }
 
     const token = createToken(email);

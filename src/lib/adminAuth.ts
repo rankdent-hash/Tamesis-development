@@ -14,14 +14,13 @@ export function clearAdminToken(): void {
 
 export async function adminLogin(
   email: string,
-  password: string,
-  pin: string
+  password: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const res = await fetch("/api/admin-login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, pin }),
+      body: JSON.stringify({ email, password }),
     });
     const data = await res.json();
     if (!res.ok || !data.success) {
