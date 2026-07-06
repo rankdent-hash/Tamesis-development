@@ -1,17 +1,17 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, AlertCircle, User, Building2, Phone, Mail, Home, Briefcase, Wrench, MessageSquare, Calendar, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, AlertCircle, User, Building2, Phone, Mail, Home, MessageSquare, Calendar, type LucideIcon } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
-import { services, sectors } from "../data/content";
+import { ServiceSelect } from "../components/ServiceSelect";
 import { cn } from "../lib/utils";
 import { submitForm } from "../lib/submitForm";
 
-const steps = ["Your Details", "Property & Sector", "The Work", "Review & Submit"];
+const steps = ["Your Details", "The Work", "Review & Submit"];
 
 export function Quote() {
   const navigate = useNavigate();
@@ -24,7 +24,6 @@ export function Quote() {
     phone: "",
     email: "",
     propertyType: "",
-    sector: "",
     service: "",
     description: "",
     preferredDate: "",
@@ -121,43 +120,8 @@ export function Quote() {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy-800 mb-1.5">Sector</label>
-                        <div className="relative">
-                          <Briefcase size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                          <select
-                            value={form.sector}
-                            onChange={(e) => update("sector", e.target.value)}
-                            required
-                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
-                          >
-                            <option value="" disabled>Select sector</option>
-                            {sectors.map((s) => (
-                              <option key={s.name}>{s.name}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {step === 2 && (
-                    <div className="space-y-5">
-                      <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Service Required</label>
-                        <div className="relative">
-                          <Wrench size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                          <select
-                            value={form.service}
-                            onChange={(e) => update("service", e.target.value)}
-                            required
-                            className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
-                          >
-                            <option value="" disabled>Select a service</option>
-                            {services.map((s) => (
-                              <option key={s.slug}>{s.name}</option>
-                            ))}
-                          </select>
-                        </div>
+                        <ServiceSelect value={form.service} onChange={(v) => update("service", v)} />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-navy-800 mb-1.5">Description of Work</label>
@@ -168,6 +132,11 @@ export function Quote() {
                             onChange={(e) => update("description", e.target.value)}
                             rows={4}
                             required
+                            placeholder={
+                              form.service === "Other"
+                                ? "Please describe the service you need — we'll match you with the right team"
+                                : undefined
+                            }
                             className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
                           />
                         </div>
@@ -182,7 +151,7 @@ export function Quote() {
                     </div>
                   )}
 
-                  {step === 3 && (
+                  {step === 2 && (
                     <div className="space-y-4">
                       <h3 className="font-display font-semibold text-navy-900">Review Your Request</h3>
                       <dl className="divide-y divide-navy-100 text-sm">
@@ -192,7 +161,6 @@ export function Quote() {
                           ["Phone", form.phone],
                           ["Email", form.email],
                           ["Property Type", form.propertyType],
-                          ["Sector", form.sector],
                           ["Service", form.service],
                           ["Description", form.description],
                           ["Preferred Date", form.preferredDate || "No preference"],

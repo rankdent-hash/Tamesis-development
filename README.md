@@ -201,6 +201,16 @@ Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual 
 
 Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
 
+## Service picker with icons + "Other" option
+
+Native HTML `<select>`/`<option>` elements can't render icons per-option — that's a real browser limitation, not a styling choice, so `src/components/ServiceSelect.tsx` replaces the plain dropdown everywhere a service is chosen (the compact `HeroQuoteForm` used across every hero section, and the Quote form): a custom button+panel widget showing each service's icon, grouped by the same categories used in the header mega menu, plus a "General Enquiry" option at the top and an "Other (please describe below)" option at the bottom. Includes a hidden `<input>` so `FormData`-based submission (`HeroQuoteForm`) still picks up the value automatically.
+
+Selecting **"Other"** reveals a short required textarea ("Briefly describe what you need") in `HeroQuoteForm` — that form has no description field otherwise. In the Quote form, "Other" doesn't need a new field since it already has a "Description of Work" textarea; its placeholder just changes to prompt for detail when "Other" is selected.
+
+## Quote form: 4 steps → 3
+
+Removed the "Sector" question entirely (client decision — no longer collected) and merged "Property Type" into the "The Work" step, eliminating what was a standalone "Property & Sector" step. New flow: **Your Details → The Work (property type, service, description, preferred date) → Review & Submit**. `sector` was also removed from the form's data model, not just hidden from the UI.
+
 ## Thank-you page / Google Ads conversion tracking
 
 `/thank-you` (`src/pages/ThankYou.tsx`) — a dedicated confirmation page, `noindex`'d (see `noindex` prop on `Seo.tsx`, since thank-you pages have no organic search value and shouldn't be indexed) so it never shows up in search results or the sitemap.
