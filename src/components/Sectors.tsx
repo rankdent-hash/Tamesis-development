@@ -27,7 +27,7 @@ export function Sectors() {
               <h3 className="mt-6 font-display font-semibold text-navy-900 text-lg">{sector.name}</h3>
               <p className="mt-2 text-sm text-slate leading-relaxed">{sector.description}</p>
               <a
-                href="/sectors"
+                href={`/sectors/${sector.slug}`}
                 className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
               >
                 Learn More

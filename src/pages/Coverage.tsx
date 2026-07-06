@@ -1,24 +1,15 @@
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight, Compass } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
-import { PageHero } from "../components/PageHero";
-import { Illustration } from "../components/Illustration";
+import { LocationHero } from "../components/LocationHero";
 import { AnimateIn } from "../components/AnimateIn";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
 import { Button } from "../components/ui/button";
-import { locations } from "../data/content";
-
-const boroughs = [
-  "Westminster", "Camden", "Islington", "Hackney", "Tower Hamlets", "Greenwich",
-  "Lewisham", "Southwark", "Lambeth", "Wandsworth", "Hammersmith & Fulham", "Kensington & Chelsea",
-  "Brent", "Ealing", "Hounslow", "Richmond upon Thames", "Kingston upon Thames", "Merton",
-  "Sutton", "Croydon", "Bromley", "Bexley", "Barking & Dagenham", "Redbridge",
-  "Newham", "Waltham Forest", "Haringey", "Enfield", "Barnet", "Harrow",
-  "Hillingdon", "Havering",
-];
+import { locations, londonRegions, boroughLinkMap } from "../data/content";
+import { coveragePhoto } from "../data/photos";
 
 export function Coverage() {
   const navigate = useNavigate();
@@ -27,44 +18,60 @@ export function Coverage() {
       <Seo title={seoMeta.coverage.title} description={seoMeta.coverage.description} path="/coverage" />
       <Header />
       <main>
-        <PageHero
-          eyebrow="Coverage"
-          title="Coverage Across Every London Borough"
-          subtitle="Our ten operational teams mean we can respond quickly wherever you are in Greater London — from responsive repairs to planned, portfolio-wide maintenance."
+        <LocationHero
+          title="Covering All of London — North, South, East and West"
+          subtitle="Our operational teams are positioned to reach every one of London's 32 boroughs, from a single reported repair to a portfolio-wide planned maintenance contract."
           breadcrumb="Coverage Areas"
+          photo={coveragePhoto}
         />
 
         <section className="py-24 lg:py-32">
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-start">
-            <AnimateIn>
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
               <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Service Area</span>
               <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
-                All 32 London Boroughs
+                Every London Borough, All 32 of Them
               </h2>
-              <p className="mt-5 text-slate leading-relaxed max-w-lg">
-                Whether it's a single property or a portfolio spread across multiple boroughs, our teams are
-                positioned to cover the whole of Greater London for both emergency repairs and planned works.
+              <p className="mt-5 text-slate leading-relaxed">
+                Whether it's a single property or a portfolio spread across multiple boroughs, our teams cover the
+                whole of Greater London — north to south, east to west — for both emergency repairs and planned,
+                ongoing works. Areas with a dedicated page below are linked; get in touch about any other borough
+                and we can very likely help.
               </p>
-
-              <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3">
-                {boroughs.map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-sm text-navy-800 font-medium">
-                    <MapPin size={14} className="text-orange-500 shrink-0" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-9">
+              <div className="mt-8">
                 <Button variant="primary" onClick={() => (navigate("/quote"))}>
                   Get a Free Quote
                 </Button>
               </div>
             </AnimateIn>
 
-            <AnimateIn delay={0.1} className="corner-marks lg:sticky lg:top-32">
-              <Illustration icon="MapPin" label="Greater London coverage map" className="aspect-square rounded-2xl shadow-card-hover" />
-            </AnimateIn>
+            <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {londonRegions.map((group) => (
+                <AnimateIn key={group.region} className="corner-marks rounded-2xl border border-navy-100 bg-white p-7 shadow-card">
+                  <span className="flex items-center gap-2 text-orange-600">
+                    <Compass size={16} />
+                    <span className="text-xs font-accent uppercase tracking-widest font-semibold">{group.region}</span>
+                  </span>
+                  <ul className="mt-5 space-y-2.5">
+                    {group.boroughs.map((borough) => {
+                      const slug = boroughLinkMap[borough];
+                      return (
+                        <li key={borough} className="flex items-center gap-2 text-sm text-navy-800 font-medium">
+                          <MapPin size={13} className="text-slate-light shrink-0" />
+                          {slug ? (
+                            <a href={`/property-maintenance/${slug}`} className="hover:text-orange-600 transition-colors">
+                              {borough}
+                            </a>
+                          ) : (
+                            borough
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </AnimateIn>
+              ))}
+            </div>
           </div>
         </section>
 

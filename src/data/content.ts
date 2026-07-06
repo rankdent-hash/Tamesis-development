@@ -102,31 +102,37 @@ export function getServiceContent(service: Service) {
 export const sectors = [
   {
     name: "Housing Associations",
+    slug: "housing-associations",
     icon: "Home",
     description: "Responsive repairs and planned maintenance delivered at scale, with full compliance reporting.",
   },
   {
     name: "Local Authorities",
+    slug: "local-authorities",
     icon: "Landmark",
     description: "Framework-ready contracting for council housing stock and public buildings.",
   },
   {
     name: "Property Management Companies",
+    slug: "property-management-companies",
     icon: "Building2",
     description: "A single reliable contractor across your entire managed portfolio.",
   },
   {
     name: "Commercial Clients",
+    slug: "commercial-clients",
     icon: "Briefcase",
     description: "Refurbishment and maintenance that keeps commercial premises trading.",
   },
   {
     name: "Landlords",
+    slug: "landlords",
     icon: "KeySquare",
     description: "Fast turnarounds on void works, repairs and compliance certificates.",
   },
   {
     name: "Residential Homeowners",
+    slug: "residential-homeowners",
     icon: "House",
     description: "The same professional standard, brought to individual family homes.",
   },
@@ -269,6 +275,47 @@ export const reviews = [
   },
 ] as const;
 
+// All 32 London boroughs + the City of London, grouped by a practical
+// north/south/east/west/central split for "areas we cover" content. This is
+// an informal, commonly-used marketing grouping (adapted from a published
+// London-areas breakdown), not an official government designation — several
+// boroughs straddle boundaries and different sources group them differently.
+export const londonRegions = [
+  {
+    region: "Central London",
+    boroughs: ["City of London", "Westminster", "Kensington & Chelsea", "Camden", "Islington", "Lambeth", "Southwark"],
+  },
+  {
+    region: "North London",
+    boroughs: ["Barnet", "Enfield", "Haringey", "Waltham Forest", "Hackney"],
+  },
+  {
+    region: "East London",
+    boroughs: ["Tower Hamlets", "Newham", "Redbridge", "Barking & Dagenham", "Havering", "Bexley"],
+  },
+  {
+    region: "South London",
+    boroughs: ["Greenwich", "Lewisham", "Croydon", "Bromley", "Sutton", "Merton", "Kingston upon Thames", "Wandsworth"],
+  },
+  {
+    region: "West London",
+    boroughs: ["Hammersmith & Fulham", "Hounslow", "Richmond upon Thames", "Ealing", "Brent", "Harrow", "Hillingdon"],
+  },
+] as const;
+
+// Boroughs that already have a dedicated area page (from `locations` below)
+// — the borough name doesn't always exactly match the location slug (one
+// borough can cover two of our existing area pages), so it's mapped
+// explicitly rather than guessed.
+export const boroughLinkMap: Record<string, string> = {
+  Westminster: "westminster",
+  Camden: "camden",
+  Islington: "islington",
+  Wandsworth: "wandsworth",
+  "Hammersmith & Fulham": "fulham",
+  "Kensington & Chelsea": "kensington",
+};
+
 export const locations = [
   { name: "Fulham", slug: "fulham", note: "Home to our Fulham High Street office, so Fulham is where we can respond fastest." },
   { name: "Chelsea", slug: "chelsea", note: "Regular work in Chelsea's period conversions and high-spec residential properties." },
@@ -290,6 +337,24 @@ export function getLocationContent(location: Location) {
       "Directly employed engineers, not ad-hoc subcontractors",
       "Work for housing associations, local authorities, managing agents, landlords and homeowners",
       "Clear, fixed quotes before any work begins",
+    ],
+    faqs: [
+      {
+        q: `Do you cover all of ${location.name}?`,
+        a: `Yes — ${location.name} is within our regular working area and we take on both one-off repairs and ongoing planned maintenance contracts here.`,
+      },
+      {
+        q: `How quickly can you respond to a job in ${location.name}?`,
+        a: `Emergency requests in ${location.name} are prioritised and typically actioned within hours; non-urgent work is scheduled with you in advance at a time that suits you.`,
+      },
+      {
+        q: `Do you work with housing associations and managing agents in ${location.name}?`,
+        a: `Yes — alongside individual homeowner and landlord jobs, we deliver planned maintenance contracts in ${location.name} for housing associations, local authorities, managing agents and commercial clients.`,
+      },
+      {
+        q: "Do you provide a fixed quote before starting work?",
+        a: "Yes. We assess the work first and provide a clear, fixed-price quotation before anything begins, so you know the full cost upfront.",
+      },
     ],
   };
 }

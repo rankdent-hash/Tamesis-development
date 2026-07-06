@@ -2,15 +2,17 @@ import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { PageHero } from "../components/PageHero";
+import { LocationHero } from "../components/LocationHero";
 import { Illustration } from "../components/Illustration";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
+import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
 import { Button } from "../components/ui/button";
-import { services, locations, getLocationContent, type Location } from "../data/content";
-import { breadcrumbJsonLd } from "../lib/seo";
+import { services, sectors, locations, getLocationContent, type Location } from "../data/content";
+import { breadcrumbJsonLd, faqJsonLd } from "../lib/seo";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
+import { locationPhotos } from "../data/photos";
 
 export function LocationTemplate({ location }: { location: Location }) {
   const content = getLocationContent(location);
@@ -24,19 +26,22 @@ export function LocationTemplate({ location }: { location: Location }) {
         title={`Property Maintenance in ${location.name}`}
         description={metaDescription}
         path={path}
-        jsonLd={breadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Coverage", path: "/coverage" },
-          { name: location.name, path },
-        ])}
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Coverage", path: "/coverage" },
+            { name: location.name, path },
+          ]),
+          faqJsonLd(content.faqs),
+        ]}
       />
       <Header />
       <main>
-        <PageHero
-          eyebrow="Coverage"
+        <LocationHero
           title={`Property Maintenance in ${location.name}`}
           subtitle={`Responsive repairs, planned maintenance, refurbishment and construction services across ${location.name}, delivered by directly employed engineers.`}
           breadcrumb={location.name}
+          photo={locationPhotos[location.slug]}
         />
 
         <section className="py-24 lg:py-32">
@@ -97,6 +102,55 @@ export function LocationTemplate({ location }: { location: Location }) {
           </div>
         </section>
 
+        {/* Sectors served in this location */}
+        <section className="py-24 lg:py-32">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+            <AnimateIn className="max-w-2xl">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Sectors</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                Who We Work With in {location.name}
+              </h2>
+              <p className="mt-4 text-slate leading-relaxed">
+                From individual homeowners to portfolio-wide contracts, we deliver the same standard of work for
+                every sector we serve in {location.name}.
+              </p>
+            </AnimateIn>
+
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {sectors.map((sector) => (
+                <a
+                  key={sector.slug}
+                  href={`/sectors/${sector.slug}`}
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-orange-50 text-orange-600 group-hover:bg-navy-900 group-hover:text-white transition-colors">
+                    <Icon name={sector.icon} size={18} strokeWidth={1.75} />
+                  </span>
+                  <span className="mt-4 flex items-center justify-between gap-2">
+                    <span className="font-display font-semibold text-navy-900 text-sm">{sector.name}</span>
+                    <ArrowUpRight size={14} className="shrink-0 text-slate-light group-hover:text-orange-500 transition-colors" />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="py-24 lg:py-32 bg-navy-50">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-8 max-w-3xl">
+            <AnimateIn>
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">FAQs</span>
+              <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
+                Common Questions About {location.name}
+              </h2>
+              <div className="mt-10">
+                <Faq items={content.faqs} />
+              </div>
+            </AnimateIn>
+          </div>
+        </section>
+
         {/* Other locations */}
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
@@ -119,6 +173,9 @@ export function LocationTemplate({ location }: { location: Location }) {
                   </a>
                 ))}
             </div>
+            <p className="mt-6 text-sm text-slate">
+              Don't see your area listed? <a href="/coverage" className="text-orange-600 font-semibold hover:underline">View our full coverage across all of London</a>.
+            </p>
           </div>
         </section>
 

@@ -19,6 +19,14 @@ export const coveragePhoto = "photo-1513635269975-59663e0ac1ad"; // aerial Londo
 
 export const sectorsIndexPhoto = "photo-1524813686514-a57563d77965"; // top-view of houses, general overview
 
+// Fulham gets its own genuine photo (residential street, matches the office
+// location); the other 7 existing location pages share the London skyline
+// photo as a placeholder until each gets its own dedicated image when scaled
+// out further.
+export const locationPhotos: Record<string, string> = {
+  fulham: "photo-1510265119258-db115b0e8172",
+};
+
 export const sectorPhotos: Record<string, string> = {
   "housing-associations": "photo-1516156008625-3a9d6067fab5", // aerial suburban neighbourhood/estate
   "local-authorities": "photo-1632110978105-b71604c2cd2e", // civic building with clock tower

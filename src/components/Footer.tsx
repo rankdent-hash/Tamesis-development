@@ -1,5 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
-import { company } from "../data/content";
+import { company, londonRegions, boroughLinkMap } from "../data/content";
 import logo from "../assets/logo.png";
 
 // lucide-react no longer ships brand/logo icons — simple inline marks instead.
@@ -132,6 +132,42 @@ export function Footer() {
             </ul>
           </div>
         ))}
+      </div>
+
+      {/* Areas we cover — all 32 London boroughs + City of London */}
+      <div className="relative border-t border-navy-800">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-10">
+          <h3 className="font-accent font-semibold text-white/90 text-xs uppercase tracking-[0.14em]">
+            Areas We Cover — All of London, North to South, East to West
+          </h3>
+          <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-4">
+            {londonRegions.map((group) => (
+              <div key={group.region}>
+                <span className="text-xs font-semibold text-orange-400/90">{group.region}</span>
+                <p className="mt-2 text-xs text-navy-100/60 leading-relaxed">
+                  {group.boroughs.map((borough, i) => {
+                    const slug = boroughLinkMap[borough];
+                    return (
+                      <span key={borough}>
+                        {slug ? (
+                          <a href={`/property-maintenance/${slug}`} className="hover:text-orange-400 transition-colors">
+                            {borough}
+                          </a>
+                        ) : (
+                          borough
+                        )}
+                        {i < group.boroughs.length - 1 ? ", " : ""}
+                      </span>
+                    );
+                  })}
+                </p>
+              </div>
+            ))}
+          </div>
+          <a href="/coverage" className="mt-6 inline-block text-xs font-semibold text-orange-400 hover:text-orange-300 transition-colors">
+            View full coverage details &rarr;
+          </a>
+        </div>
       </div>
 
       <div className="relative border-t border-navy-800">

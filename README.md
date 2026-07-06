@@ -141,6 +141,16 @@ Images use Unsplash's `auto=format` parameter, which automatically serves WebP/A
 
 Every other image slot on the site (Sectors, Coverage/Contact maps on inner pages, Projects/News fallback) still uses `src/components/Illustration.tsx` — an original, on-brand SVG composition rather than stock photography. See below for details.
 
+## Area / location coverage
+
+Researched and grouped all 32 London boroughs + the City of London into a practical North/South/East/West/Central split (`londonRegions` in `src/data/content.ts` — an informal marketing grouping adapted from a published London-areas breakdown, not an official government designation, since several boroughs genuinely straddle regions depending on the source).
+
+- **`/coverage`** rebuilt with a landing-page hero (photo + compact form) and the full 32-borough list reorganized into the 5 regions (previously a flat, ungrouped list) — boroughs that already have a dedicated area page are linked (see `boroughLinkMap`), the rest are listed as plain text pending their own page later.
+- **Footer**: new "Areas We Cover" band (below the main link columns) listing every borough by region, same linking rule as `/coverage`.
+- **`LocationTemplate.tsx`** — the shared template behind all individual area pages (`/property-maintenance/:slug`) — is the "theme" for scaling to more areas: it now has the same landing-page hero, plus a new **Sectors** section (who we work with in that area) and a new **FAQs** section (with `FAQPage` JSON-LD) alongside the existing Services grid. Improving this one shared file updates all 8 existing area pages at once, and any new area added later (just a new entry in `locations` + a photo) automatically gets the identical treatment.
+- **Fulham** is the flagship example — genuinely photographed rather than using the shared fallback (see `locationPhotos` in `src/data/photos.ts`), since it's already the most differentiated of the 8 (office location, fastest response). The other 7 share the London skyline photo as a placeholder until each gets its own dedicated image.
+- To add a new area later: add an entry to `locations` in `content.ts`, optionally add a dedicated photo to `locationPhotos`, and a new route — the template handles the rest (hero, services, sectors, FAQs, nearby areas, CTA) automatically.
+
 ## Sector pages as landing pages
 
 Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual sector pages (Housing Associations, Local Authorities, Property Management Companies, Commercial Clients, Landlords, Residential Homeowners) now use `src/components/SectorHero.tsx` — a real photo background (see `sectorPhotos` in `src/data/photos.ts`, one distinct free Unsplash photo per sector, e.g. a civic building with a clock tower for Local Authorities, an aerial suburban estate for Housing Associations), breadcrumb, and the same compact lead-capture form used on service pages (not locked to a specific service via `presetService`, since sectors aren't 1:1 with services — visitors pick from the full dropdown).
