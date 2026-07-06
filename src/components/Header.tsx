@@ -37,10 +37,6 @@ export function Header() {
   const { pathname } = useLocation();
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  // Desktop still gets the transparent-over-hero effect; mobile is always
-  // solid/light — small screens need a consistently legible header more
-  // than the hero-reveal effect, and it reads more like a native app.
-  const solid = scrolled || menuOpen;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -50,11 +46,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -62,13 +54,11 @@ export function Header() {
 
   return (
     <div className="fixed top-0 inset-x-0 z-50">
-      {/* Top utility bar — desktop only, transparent over hero, fades to a hairline-bordered strip on scroll */}
-      <div
-        className={cn(
-          "hidden lg:flex text-sm transition-colors duration-300",
-          solid ? "bg-navy-950 text-navy-100" : "bg-transparent text-white/75"
-        )}
-      >
+      {/* Top utility bar — desktop only. Always solid: a transparent bar over
+          a photo hero can't guarantee WCAG-AA contrast (photos have
+          unpredictable bright/dark patches), so this is deliberately never
+          see-through. */}
+      <div className="hidden lg:flex bg-navy-950 text-navy-100 text-sm">
         <div className="mx-auto max-w-[1400px] w-full px-8 flex items-center justify-between py-2.5 font-accent text-xs tracking-wide">
           <div className="flex items-center gap-6">
             <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-orange-400 transition-colors">
@@ -90,13 +80,14 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main nav — always light on mobile; transparent-over-hero on desktop, solidifies on scroll */}
+      {/* Main nav — always a solid, high-contrast background on every
+          breakpoint and at every scroll position. Only the shadow deepens
+          slightly on scroll, as a subtle "you've moved" cue, per sticky-header
+          best practice, without ever risking illegible text. */}
       <header
         className={cn(
-          "transition-all duration-300 bg-paper/98 backdrop-blur-md shadow-[0_1px_0_rgba(14,22,17,0.08)]",
-          solid
-            ? "lg:bg-paper/95 lg:backdrop-blur-md lg:shadow-[0_1px_0_rgba(14,22,17,0.08)]"
-            : "lg:bg-transparent lg:backdrop-blur-none lg:shadow-none"
+          "bg-paper/98 backdrop-blur-md transition-shadow duration-300",
+          scrolled ? "shadow-[0_2px_12px_rgba(14,22,17,0.10)]" : "shadow-[0_1px_0_rgba(14,22,17,0.08)]"
         )}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-16 lg:h-24">
@@ -104,30 +95,15 @@ export function Header() {
             <span className="w-9 h-9 lg:w-10 lg:h-10 rounded-lg bg-navy-900 text-orange-400 font-display font-bold text-base lg:text-lg flex items-center justify-center shrink-0">
               T
             </span>
-            <span
-              className={cn(
-                "font-display font-bold text-base lg:text-lg leading-tight tracking-tight transition-colors duration-300 text-navy-900",
-                !solid && "lg:text-white"
-              )}
-            >
+            <span className="font-display font-bold text-base lg:text-lg leading-tight tracking-tight text-navy-900">
               Tamesis
-              <span
-                className={cn(
-                  "block text-[9px] lg:text-[10px] font-accent font-medium tracking-[0.22em] uppercase transition-colors duration-300 text-slate",
-                  !solid && "lg:text-white/60"
-                )}
-              >
+              <span className="block text-[9px] lg:text-[10px] font-accent font-medium tracking-[0.22em] uppercase text-slate">
                 Development Ltd
               </span>
             </span>
           </a>
 
-          <nav
-            className={cn(
-              "hidden lg:flex items-center gap-8 font-medium text-sm transition-colors duration-300",
-              solid ? "text-navy-800" : "text-white/85"
-            )}
-          >
+          <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">
             {navLinks.map((link) =>
               link.label === "Services" ? (
                 <div
@@ -141,9 +117,8 @@ export function Header() {
                     aria-current={isActive(link.href) ? "page" : undefined}
                     aria-expanded={servicesOpen}
                     className={cn(
-                      "relative py-2 flex items-center gap-1 transition-colors group",
-                      solid ? "hover:text-navy-900" : "hover:text-white",
-                      isActive(link.href) && (solid ? "text-navy-900" : "text-white")
+                      "relative py-2 flex items-center gap-1 transition-colors group hover:text-navy-900",
+                      isActive(link.href) && "text-navy-900"
                     )}
                   >
                     {link.label}
@@ -163,9 +138,8 @@ export function Header() {
                   href={link.href}
                   aria-current={isActive(link.href) ? "page" : undefined}
                   className={cn(
-                    "relative py-2 transition-colors group",
-                    solid ? "hover:text-navy-900" : "hover:text-white",
-                    isActive(link.href) && (solid ? "text-navy-900" : "text-white")
+                    "relative py-2 transition-colors group hover:text-navy-900",
+                    isActive(link.href) && "text-navy-900"
                   )}
                 >
                   {link.label}
@@ -184,12 +158,7 @@ export function Header() {
             <a
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
               aria-label={`Call Job Booking on ${company.phoneJobBooking}`}
-              className={cn(
-                "flex items-center justify-center w-11 h-11 rounded-full border transition-colors shrink-0",
-                solid
-                  ? "border-navy-200 text-navy-900 hover:bg-navy-900 hover:text-white hover:border-navy-900"
-                  : "border-white/30 text-white hover:bg-white/10"
-              )}
+              className="flex items-center justify-center w-11 h-11 rounded-full border border-navy-200 text-navy-900 hover:bg-navy-900 hover:text-white hover:border-navy-900 transition-colors shrink-0"
             >
               <Phone size={17} strokeWidth={2} />
             </a>
