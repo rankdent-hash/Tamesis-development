@@ -11,7 +11,7 @@ import { Button } from "../../components/ui/button";
 import { services, sectors, type Service } from "../../data/content";
 import { breadcrumbJsonLd } from "../../lib/seo";
 import { CtaPhoneLine } from "../../components/CtaPhoneLine";
-import { sectorPhotos } from "../../data/photos";
+import { sectorPhotos, unsplashUrl } from "../../data/photos";
 
 export function SectorLayout({
   name,
@@ -35,7 +35,8 @@ export function SectorLayout({
   ctaHeading: string;
 }) {
   const relevantServices: Service[] = services.filter((s) => relevantServiceSlugs.includes(s.slug));
-  const sectorIcon = sectors.find((s) => s.name === name)?.icon ?? "Building2";
+  const sectorData = sectors.find((s) => s.name === name);
+  const sectorIcon = sectorData?.icon ?? "Building2";
   const path = `/sectors/${slug}`;
 
   const navigate = useNavigate();
@@ -80,8 +81,24 @@ export function SectorLayout({
                 </Button>
               </div>
             </AnimateIn>
-            <AnimateIn delay={0.1} className="corner-marks">
-              <Illustration icon={sectorIcon} label={`${name} works`} className="aspect-[4/3] rounded-2xl shadow-card-hover" />
+            <AnimateIn delay={0.1}>
+              {sectorPhotos[slug] ? (
+                <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+                  <img
+                    src={unsplashUrl(sectorPhotos[slug])}
+                    alt={`Property maintenance and repairs for ${name} in London — Tamesis Development Ltd`}
+                    className="aspect-[4/3] w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+                    {sectorData?.description ?? `Property maintenance and repairs delivered for ${name} across London.`}
+                  </figcaption>
+                </figure>
+              ) : (
+                <div className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+                  <Illustration icon={sectorIcon} label={`${name} works`} className="aspect-[4/3]" />
+                </div>
+              )}
             </AnimateIn>
           </div>
         </section>

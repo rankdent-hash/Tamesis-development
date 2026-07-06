@@ -151,6 +151,12 @@ Researched and grouped all 32 London boroughs + the City of London into a practi
 - **Fulham** is the flagship example — genuinely photographed rather than using the shared fallback (see `locationPhotos` in `src/data/photos.ts`), since it's already the most differentiated of the 8 (office location, fastest response). The other 7 share the London skyline photo as a placeholder until each gets its own dedicated image.
 - To add a new area later: add an entry to `locations` in `content.ts`, optionally add a dedicated photo to `locationPhotos`, and a new route — the template handles the rest (hero, services, sectors, FAQs, nearby areas, CTA) automatically.
 
+## Image SEO (service & sector pages)
+
+The overview/intro photo on all 20 service pages and all 6 sector pages now has: a descriptive `alt` attribute (names the specific service/sector + "in London" + the company name, rather than the previous generic "{name} in progress"), and a **visible caption** underneath via `<figcaption>` — visible on-page text near an image is a stronger SEO signal than alt text alone, since search engines index it as regular page content, not just an image-only signal. Sector captions reuse the existing `description` field from the `sectors` array in `content.ts` for consistency rather than duplicating copy.
+
+**Deliberately left as `alt=""`**: the hero background photos (`ServiceHero`, `SectorHero`, `LocationHero`) stay decorative with empty alt text — that's correct accessibility practice, not an oversight. They sit behind a text overlay that already conveys the meaningful content, so adding descriptive alt text to the background image itself would just add screen-reader noise without SEO benefit.
+
 ## Sector pages as landing pages
 
 Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual sector pages (Housing Associations, Local Authorities, Property Management Companies, Commercial Clients, Landlords, Residential Homeowners) now use `src/components/SectorHero.tsx` — a real photo background (see `sectorPhotos` in `src/data/photos.ts`, one distinct free Unsplash photo per sector, e.g. a civic building with a clock tower for Local Authorities, an aerial suburban estate for Housing Associations), breadcrumb, and the same compact lead-capture form used on service pages (not locked to a specific service via `presetService`, since sectors aren't 1:1 with services — visitors pick from the full dropdown).

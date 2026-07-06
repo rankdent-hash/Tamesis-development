@@ -57,20 +57,27 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 </Button>
               </div>
             </AnimateIn>
-            <AnimateIn delay={0.1} className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+            <AnimateIn delay={0.1}>
               {servicePhotos[service.slug] ? (
-                <img
-                  src={unsplashUrl(servicePhotos[service.slug])}
-                  alt={`${service.name} in progress`}
-                  className="aspect-[4/3] w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+                  <img
+                    src={unsplashUrl(servicePhotos[service.slug])}
+                    alt={`${service.name} carried out by a Tamesis Development Ltd engineer in London`}
+                    className="aspect-[4/3] w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+                    Professional {service.name.toLowerCase()} delivered across London by our directly employed engineers.
+                  </figcaption>
+                </figure>
               ) : (
-                <Illustration
-                  icon={service.icon}
-                  label={`${service.name} in progress`}
-                  className="aspect-[4/3]"
-                />
+                <div className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+                  <Illustration
+                    icon={service.icon}
+                    label={`${service.name} in progress`}
+                    className="aspect-[4/3]"
+                  />
+                </div>
               )}
             </AnimateIn>
           </div>
