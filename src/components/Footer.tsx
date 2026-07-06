@@ -172,7 +172,7 @@ export function Footer() {
 
       <div className="relative border-t border-navy-800">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-accent text-navy-100/50">
-          <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. XXXXXXXX.</span>
+          <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. 12210539.</span>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
             <a href="/cookie-policy" className="hover:text-orange-400 transition-colors">Cookie Policy</a>
