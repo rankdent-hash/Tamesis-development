@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { marked } from "marked";
-import { Calendar, ChevronRight, ArrowRight } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Seo } from "../components/Seo";
+import { Icon } from "../components/Icon";
 import { unsplashUrl } from "../data/photos";
 import { SITE_URL, SITE_NAME } from "../lib/seo";
+import { services } from "../data/content";
 import { fetchBlogPost, type BlogPost } from "../lib/blog";
-
-function formatDate(iso: string | null): string {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-}
 
 export function BlogPostPage() {
   const { slug } = useParams();
@@ -62,6 +59,9 @@ export function BlogPostPage() {
   }
 
   const path = `/blog/${post.slug}`;
+  const relatedService = post.related_service_slug
+    ? services.find((s) => s.slug === post.related_service_slug)
+    : null;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -96,9 +96,6 @@ export function BlogPostPage() {
             <h1 className="mt-3 font-display font-extrabold text-white text-2xl sm:text-3xl lg:text-4xl leading-tight text-balance">
               {post.title}
             </h1>
-            <span className="mt-5 flex items-center gap-1.5 text-xs text-navy-100/60">
-              <Calendar size={12} /> {formatDate(post.published_at)}
-            </span>
           </div>
         </section>
 
@@ -118,6 +115,28 @@ export function BlogPostPage() {
             dangerouslySetInnerHTML={{ __html: marked.parse(post.content, { async: false }) as string }}
           />
         </article>
+
+        {relatedService && (
+          <section className="pb-16">
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+              <a
+                href={`/services/${relatedService.slug}`}
+                className="corner-marks group flex items-center gap-5 rounded-2xl bg-navy-50 border border-navy-100 p-6 hover:shadow-card transition-all"
+              >
+                <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-xl bg-white text-orange-600 shadow-card">
+                  <Icon name={relatedService.icon} size={18} strokeWidth={1.75} />
+                </span>
+                <div className="flex-1">
+                  <span className="text-[11px] font-accent uppercase tracking-widest text-orange-600 font-semibold">
+                    Related Service
+                  </span>
+                  <p className="mt-0.5 font-display font-semibold text-navy-900">{relatedService.name}</p>
+                </div>
+                <ArrowRight size={16} className="shrink-0 text-slate-light group-hover:text-orange-500 transition-colors" />
+              </a>
+            </div>
+          </section>
+        )}
 
         <section className="py-16 border-t border-navy-100">
           <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">

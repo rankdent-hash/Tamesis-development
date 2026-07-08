@@ -63,6 +63,7 @@ async function ensureSchema() {
       published_at TIMESTAMPTZ
     );
   `);
+  await pool!.query(`ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS related_service_slug TEXT;`);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -81,11 +82,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     await ensureSchema();
 
-    const { slug } = req.query as { slug?: string };
+    const { slug, service } = req.query as { slug?: string; service?: string };
 
     if (slug) {
       const { rows } = await pool.query(
-        `SELECT id, slug, title, excerpt, content, category, cover_photo, published_at
+        `SELECT id, slug, title, excerpt, content, category, cover_photo, related_service_slug, published_at
          FROM blog_posts WHERE slug = $1 AND status = 'published' LIMIT 1;`,
         [slug]
       );
@@ -95,8 +96,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(200).json({ success: true, post: rows[0] });
     }
 
+    if (service) {
+      const { rows } = await pool.query(
+        `SELECT id, slug, title, excerpt, category, cover_photo, related_service_slug, published_at
+         FROM blog_posts WHERE status = 'published' AND related_service_slug = $1
+         ORDER BY published_at DESC NULLS LAST, created_at DESC LIMIT 1;`,
+        [service]
+      );
+      return res.status(200).json({ success: true, posts: rows });
+    }
+
     const { rows } = await pool.query(
-      `SELECT id, slug, title, excerpt, category, cover_photo, published_at
+      `SELECT id, slug, title, excerpt, category, cover_photo, related_service_slug, published_at
        FROM blog_posts WHERE status = 'published' ORDER BY published_at DESC NULLS LAST, created_at DESC;`
     );
     return res.status(200).json({ success: true, posts: rows });

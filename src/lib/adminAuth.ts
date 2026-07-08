@@ -201,6 +201,7 @@ export interface AdminBlogPost {
   content: string;
   category: string;
   cover_photo: string | null;
+  related_service_slug: string | null;
   status: string;
   created_at: string;
   updated_at: string;
@@ -228,6 +229,7 @@ export async function createBlogPost(post: {
   content: string;
   category: string;
   coverPhoto?: string;
+  relatedServiceSlug?: string;
   status: string;
 }): Promise<{ success: boolean; error?: string }> {
   const token = getAdminToken();
@@ -248,7 +250,15 @@ export async function createBlogPost(post: {
 
 export async function updateBlogPost(
   id: number,
-  updates: { title?: string; excerpt?: string; content?: string; category?: string; coverPhoto?: string; status?: string }
+  updates: {
+    title?: string;
+    excerpt?: string;
+    content?: string;
+    category?: string;
+    coverPhoto?: string;
+    relatedServiceSlug?: string;
+    status?: string;
+  }
 ): Promise<{ success: boolean; error?: string }> {
   const token = getAdminToken();
   if (!token) return { success: false, error: "Not logged in" };

@@ -1,4 +1,5 @@
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { CheckCircle2, ArrowRight, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -14,10 +15,19 @@ import { Button } from "../components/ui/button";
 import { services, sectors, locations, whyChoose, process, getServiceContent, type Service } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
+import { fetchBlogPostForService, type BlogPostSummary } from "../lib/blog";
 
 export function ServiceTemplate({ service }: { service: Service }) {
   const content = getServiceContent(service);
   const related = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const [relatedPost, setRelatedPost] = useState<BlogPostSummary | null>(null);
+
+  useEffect(() => {
+    setRelatedPost(null);
+    fetchBlogPostForService(service.slug).then((result) => {
+      if (result.success && result.post) setRelatedPost(result.post);
+    });
+  }, [service.slug]);
   const path = `/services/${service.slug}`;
   const metaDescription = `Professional ${service.name.toLowerCase()} across London from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
@@ -218,6 +228,32 @@ export function ServiceTemplate({ service }: { service: Service }) {
             </p>
           </div>
         </section>
+
+        {/* Related blog post, if one exists for this service */}
+        {relatedPost && (
+          <section className="py-16 lg:py-20 bg-navy-50">
+            <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+              <a
+                href={`/blog/${relatedPost.slug}`}
+                className="corner-marks group flex flex-col sm:flex-row items-start sm:items-center gap-5 rounded-2xl bg-white border border-navy-100 p-7 shadow-card hover:shadow-card-hover transition-all"
+              >
+                <span className="flex w-12 h-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+                  <BookOpen size={20} strokeWidth={1.75} />
+                </span>
+                <div className="flex-1">
+                  <span className="text-[11px] font-accent uppercase tracking-widest text-orange-600 font-semibold">
+                    From Our Blog
+                  </span>
+                  <h3 className="mt-1 font-display font-semibold text-navy-900 text-lg leading-snug">
+                    {relatedPost.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed line-clamp-2">{relatedPost.excerpt}</p>
+                </div>
+                <ArrowRight size={18} className="shrink-0 text-slate-light group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all" />
+              </a>
+            </div>
+          </section>
+        )}
 
         {/* Related services */}
         <section className="py-24 lg:py-32">

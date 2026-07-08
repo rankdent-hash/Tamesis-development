@@ -5,6 +5,7 @@ export interface BlogPostSummary {
   excerpt: string;
   category: string;
   cover_photo: string | null;
+  related_service_slug: string | null;
   published_at: string | null;
 }
 
@@ -20,6 +21,21 @@ export async function fetchBlogPosts(): Promise<{ success: boolean; posts?: Blog
       return { success: false, error: data.error || "Failed to load blog posts" };
     }
     return { success: true, posts: data.posts };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
+export async function fetchBlogPostForService(
+  serviceSlug: string
+): Promise<{ success: boolean; post?: BlogPostSummary; error?: string }> {
+  try {
+    const res = await fetch(`/api/blog-posts?service=${encodeURIComponent(serviceSlug)}`);
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      return { success: false, error: data.error || "Failed to load" };
+    }
+    return { success: true, post: data.posts?.[0] };
   } catch {
     return { success: false, error: "Network error — please try again" };
   }

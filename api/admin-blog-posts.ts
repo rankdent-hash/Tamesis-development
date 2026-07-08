@@ -85,6 +85,7 @@ async function ensureSchema() {
       published_at TIMESTAMPTZ
     );
   `);
+  await pool!.query(`ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS related_service_slug TEXT;`);
 }
 
 function slugify(title: string): string {
@@ -119,19 +120,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (req.method === "GET") {
       const { rows } = await pool.query(
-        `SELECT id, slug, title, excerpt, content, category, cover_photo, status, created_at, updated_at, published_at
+        `SELECT id, slug, title, excerpt, content, category, cover_photo, related_service_slug, status, created_at, updated_at, published_at
          FROM blog_posts ORDER BY created_at DESC;`
       );
       return res.status(200).json({ success: true, posts: rows });
     }
 
     if (req.method === "POST") {
-      const { title, excerpt, content, category, coverPhoto, status } = req.body as {
+      const { title, excerpt, content, category, coverPhoto, relatedServiceSlug, status } = req.body as {
         title?: string;
         excerpt?: string;
         content?: string;
         category?: string;
         coverPhoto?: string;
+        relatedServiceSlug?: string;
         status?: string;
       };
       if (!title || !excerpt || !content) {
@@ -149,22 +151,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       const finalStatus = status === "published" ? "published" : "draft";
       const { rows } = await pool.query(
-        `INSERT INTO blog_posts (slug, title, excerpt, content, category, cover_photo, status, published_at)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, ${finalStatus === "published" ? "now()" : "NULL"})
+        `INSERT INTO blog_posts (slug, title, excerpt, content, category, cover_photo, related_service_slug, status, published_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, ${finalStatus === "published" ? "now()" : "NULL"})
          RETURNING id, slug;`,
-        [slug, title, excerpt, content, category || "General", coverPhoto || null, finalStatus]
+        [slug, title, excerpt, content, category || "General", coverPhoto || null, relatedServiceSlug || null, finalStatus]
       );
       return res.status(200).json({ success: true, id: rows[0].id, slug: rows[0].slug });
     }
 
     if (req.method === "PATCH") {
-      const { id, title, excerpt, content, category, coverPhoto, status } = req.body as {
+      const { id, title, excerpt, content, category, coverPhoto, relatedServiceSlug, status } = req.body as {
         id?: number;
         title?: string;
         excerpt?: string;
         content?: string;
         category?: string;
         coverPhoto?: string;
+        relatedServiceSlug?: string;
         status?: string;
       };
       if (!id) return res.status(400).json({ success: false, error: "Post id required" });
@@ -185,11 +188,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
            content = COALESCE($3, content),
            category = COALESCE($4, category),
            cover_photo = COALESCE($5, cover_photo),
+           related_service_slug = COALESCE($9, related_service_slug),
            status = COALESCE($6, status),
            updated_at = now(),
            published_at = CASE WHEN $7 THEN now() ELSE published_at END
          WHERE id = $8;`,
-        [title, excerpt, content, category, coverPhoto, status, nowPublishing, id]
+        [title, excerpt, content, category, coverPhoto, status, nowPublishing, id, relatedServiceSlug]
       );
       return res.status(200).json({ success: true });
     }

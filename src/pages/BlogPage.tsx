@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
@@ -8,11 +8,6 @@ import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { unsplashUrl } from "../data/photos";
 import { fetchBlogPosts, type BlogPostSummary } from "../lib/blog";
-
-function formatDate(iso: string | null): string {
-  if (!iso) return "";
-  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-}
 
 export function BlogPage() {
   const [posts, setPosts] = useState<BlogPostSummary[] | null>(null);
@@ -76,10 +71,7 @@ export function BlogPage() {
                           {post.title}
                         </h2>
                         <p className="mt-2.5 text-sm text-slate leading-relaxed line-clamp-3">{post.excerpt}</p>
-                        <div className="mt-5 flex items-center justify-between">
-                          <span className="flex items-center gap-1.5 text-xs text-slate-light">
-                            <Calendar size={12} /> {formatDate(post.published_at)}
-                          </span>
+                        <div className="mt-5 flex items-center justify-end">
                           <ArrowRight size={16} className="text-slate-light group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all" />
                         </div>
                       </div>

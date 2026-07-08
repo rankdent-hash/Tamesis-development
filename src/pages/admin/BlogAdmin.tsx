@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../lib/utils";
+import { services } from "../../data/content";
 import {
   fetchAdminBlogPosts,
   createBlogPost,
@@ -27,6 +28,7 @@ const EMPTY_FORM = {
   content: "",
   category: "",
   coverPhoto: "",
+  relatedServiceSlug: "",
   status: "draft",
 };
 
@@ -70,6 +72,7 @@ export function BlogAdmin() {
       content: post.content,
       category: post.category,
       coverPhoto: post.cover_photo || "",
+      relatedServiceSlug: post.related_service_slug || "",
       status: post.status,
     });
     setEditingId(post.id);
@@ -164,6 +167,24 @@ export function BlogAdmin() {
                 className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none font-mono text-xs"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-navy-800 mb-1.5">
+              Related Service <span className="text-slate-light font-normal">(optional — shows a link to this post on that service's page, and links back to it)</span>
+            </label>
+            <select
+              value={form.relatedServiceSlug}
+              onChange={(e) => setForm((f) => ({ ...f, relatedServiceSlug: e.target.value }))}
+              className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none bg-white"
+            >
+              <option value="">None</option>
+              {services.map((s) => (
+                <option key={s.slug} value={s.slug}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>
