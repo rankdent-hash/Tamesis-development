@@ -35,8 +35,8 @@ export function PropertyManagement() {
         "responsive-repairs",
         "leak-detection",
         "painting-decorating",
-        "drain-unblocking",
-        "bathroom-repairs",
+        "plumbing",
+        "bathroom-refurbishment",
       ]}
       ctaHeading="Simplify Maintenance Across Your Managed Portfolio"
     />

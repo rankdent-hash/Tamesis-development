@@ -34,8 +34,8 @@ const columns = [
     title: "Services",
     links: [
       { label: "Responsive Repairs", href: "/services/responsive-repairs" },
-      { label: "Planned Maintenance", href: "/services/planned-maintenance" },
-      { label: "Refurbishment", href: "/services/void-refurbishment" },
+      { label: "Building Maintenance", href: "/services/general-building-maintenance" },
+      { label: "Void Refurbishment", href: "/services/void-refurbishment" },
       { label: "Construction", href: "/services/construction" },
     ],
   },

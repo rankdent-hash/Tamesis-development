@@ -35,7 +35,7 @@ export function CommercialClients() {
         "commercial-refurbishment",
         "electrical",
         "construction",
-        "planned-maintenance",
+        "general-building-maintenance",
         "painting-decorating",
       ]}
       ctaHeading="Plan a Commercial Refurbishment or Maintenance Contract"

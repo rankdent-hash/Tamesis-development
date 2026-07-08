@@ -30,33 +30,249 @@ export const stats = [
 export const serviceCategories = [
   "Repairs & Maintenance",
   "Plumbing & Drainage",
-  "Bathrooms",
-  "Interiors & Finishing",
-  "Building & Construction",
+  "Bathrooms & Interiors",
+  "Building & Specialist",
 ] as const;
 
 export const services = [
-  { name: "Responsive Repairs", slug: "responsive-repairs", icon: "Wrench", category: "Repairs & Maintenance" },
-  { name: "Property Maintenance", slug: "property-maintenance", icon: "Building2", category: "Repairs & Maintenance" },
-  { name: "Planned Maintenance", slug: "planned-maintenance", icon: "CalendarCheck2", category: "Repairs & Maintenance" },
-  { name: "Void Property Refurbishment", slug: "void-refurbishment", icon: "KeyRound", category: "Repairs & Maintenance" },
-  { name: "Plumbing", slug: "plumbing", icon: "Droplets", category: "Plumbing & Drainage" },
-  { name: "Leak Detection", slug: "leak-detection", icon: "Search", category: "Plumbing & Drainage" },
-  { name: "Drain Unblocking", slug: "drain-unblocking", icon: "Waves", category: "Plumbing & Drainage" },
-  { name: "Drain Repairs", slug: "drain-repairs", icon: "GitBranch", category: "Plumbing & Drainage" },
-  { name: "Bathroom Repairs", slug: "bathroom-repairs", icon: "ShowerHead", category: "Bathrooms" },
-  { name: "Bathroom Installation", slug: "bathroom-installation", icon: "Bath", category: "Bathrooms" },
-  { name: "Bathroom Refurbishment", slug: "bathroom-refurbishment", icon: "Hammer", category: "Bathrooms" },
-  { name: "Flooring Repairs", slug: "flooring-repairs", icon: "LayoutGrid", category: "Interiors & Finishing" },
-  { name: "Wall & Floor Tiling", slug: "tiling", icon: "Grid3x3", category: "Interiors & Finishing" },
-  { name: "Carpentry & Joinery", slug: "carpentry-joinery", icon: "Ruler", category: "Interiors & Finishing" },
-  { name: "Painting & Decorating", slug: "painting-decorating", icon: "PaintRoller", category: "Interiors & Finishing" },
-  { name: "Electrical Services", slug: "electrical", icon: "Zap", category: "Building & Construction" },
-  { name: "Damp & Mould Treatment", slug: "damp-mould", icon: "CloudRain", category: "Building & Construction" },
-  { name: "Insurance Reinstatement", slug: "insurance-reinstatement", icon: "ShieldCheck", category: "Building & Construction" },
-  { name: "Commercial Refurbishment", slug: "commercial-refurbishment", icon: "Building", category: "Building & Construction" },
-  { name: "General Construction", slug: "construction", icon: "HardHat", category: "Building & Construction" },
+  {
+    name: "Responsive Property Repairs",
+    slug: "responsive-repairs",
+    icon: "Wrench",
+    category: "Repairs & Maintenance",
+    overview:
+      "At Tamesis Development Ltd, we provide fast, reliable, and high-quality responsive repair services across London. Our experienced teams attend emergency and routine maintenance issues promptly, ensuring properties are restored safely and efficiently while minimising disruption to residents. We understand the importance of meeting service level agreements (SLAs) and maintaining excellent resident satisfaction.",
+    whatWeDo: [
+      "Emergency and routine repairs",
+      "Internal and external property maintenance",
+      "Building fabric repairs",
+      "Minor structural repairs",
+      "Health and safety remedial works",
+      "Planned follow-on repairs",
+    ],
+  },
+  {
+    name: "General Building Maintenance",
+    slug: "general-building-maintenance",
+    icon: "Building2",
+    category: "Repairs & Maintenance",
+    overview:
+      "Tamesis Development Ltd offers complete building maintenance services designed to keep residential properties safe, compliant, and in excellent condition. Our experienced multi-trade teams deliver planned and reactive maintenance across all aspects of building fabric and internal finishes.",
+    whatWeDo: [
+      "Multi-trade maintenance",
+      "Planned preventative maintenance",
+      "Building fabric repairs",
+      "Minor building works",
+      "Internal and external maintenance",
+      "Property inspections",
+      "General repair works",
+    ],
+  },
+  {
+    name: "Void Property Refurbishments",
+    slug: "void-refurbishment",
+    icon: "KeyRound",
+    category: "Repairs & Maintenance",
+    overview:
+      "We provide comprehensive void property refurbishment services to prepare homes for new tenants quickly and efficiently. Our coordinated approach reduces turnaround times while ensuring properties meet required standards.",
+    whatWeDo: [
+      "Full property refurbishment",
+      "Repairs following tenancy termination",
+      "Decorating",
+      "Flooring replacement",
+      "Kitchen and bathroom repairs",
+      "Plumbing and electrical works",
+      "Final cleaning and handover preparation",
+    ],
+  },
+  {
+    name: "General Construction",
+    slug: "construction",
+    icon: "HardHat",
+    category: "Repairs & Maintenance",
+  },
+  {
+    name: "Plumbing and Drainage",
+    slug: "plumbing",
+    icon: "Droplets",
+    category: "Plumbing & Drainage",
+    overview:
+      "Our qualified plumbers and drainage specialists deliver comprehensive plumbing and drainage solutions for residential and social housing properties. From minor repairs to complete system replacements, we ensure all works are completed to the highest standard with minimal disruption.",
+    whatWeDo: [
+      "Plumbing repairs and installations",
+      "WC, basin, bath and sink repairs",
+      "Pipework repairs and replacements",
+      "Drain unblocking and cleaning",
+      "Waste pipe repairs",
+      "Soil stack repairs",
+      "Water supply pipe repairs",
+    ],
+  },
+  {
+    name: "Leak Detection and Investigations",
+    slug: "leak-detection",
+    icon: "Search",
+    category: "Plumbing & Drainage",
+    overview:
+      "Water leaks can cause significant damage if left unresolved. Our experienced engineers use proven investigation techniques to accurately identify the source of leaks, allowing effective repairs to be carried out quickly and efficiently.",
+    whatWeDo: [
+      "Leak investigations",
+      "Internal water leak detection",
+      "Hidden pipework inspections",
+      "Roof and external water ingress investigations",
+      "Moisture assessments",
+      "Repair recommendations and reporting",
+    ],
+  },
+  {
+    name: "Bathroom and Kitchen Repairs & Installations",
+    slug: "bathroom-refurbishment",
+    icon: "Bath",
+    category: "Bathrooms & Interiors",
+    overview:
+      "We undertake all aspects of bathroom and kitchen repairs, upgrades, and installations. Whether replacing individual components or carrying out complete refurbishments, our skilled tradespeople deliver durable, high-quality finishes.",
+    whatWeDo: [
+      "Bathroom repairs and refurbishment",
+      "Kitchen repairs and upgrades",
+      "Bath, shower and sanitaryware replacement",
+      "Kitchen sink and worktop replacement",
+      "Tap and waste replacements",
+      "Silicone sealing and finishing",
+    ],
+  },
+  {
+    name: "Flooring and Subfloor Repairs",
+    slug: "flooring-repairs",
+    icon: "LayoutGrid",
+    category: "Bathrooms & Interiors",
+    overview:
+      "Our flooring specialists install and repair a wide range of floor finishes for residential and commercial properties. We also repair damaged subfloors to ensure a solid, level foundation before new flooring is installed.",
+    whatWeDo: [
+      "Safety vinyl flooring",
+      "Domestic vinyl flooring",
+      "Laminate flooring",
+      "Floor preparation",
+      "Subfloor repairs",
+      "Self-levelling compounds",
+      "Floor covering replacements",
+    ],
+  },
+  {
+    name: "Wall and Floor Tiling",
+    slug: "tiling",
+    icon: "Grid3x3",
+    category: "Bathrooms & Interiors",
+    overview:
+      "We provide professional wall and floor tiling services for kitchens, bathrooms, wet rooms, and communal areas. From isolated tile repairs to complete retiling projects, we deliver a durable and attractive finish.",
+    whatWeDo: [
+      "Wall tiling",
+      "Floor tiling",
+      "Tile replacement",
+      "Grouting and regrouting",
+      "Silicone sealing",
+      "Wet room tiling",
+    ],
+  },
+  {
+    name: "Carpentry and Joinery",
+    slug: "carpentry-joinery",
+    icon: "Hammer",
+    category: "Bathrooms & Interiors",
+    overview:
+      "Our experienced carpenters undertake a wide range of first and second fix carpentry works, delivering high-quality workmanship across responsive repairs, maintenance, and refurbishment projects.",
+    whatWeDo: [
+      "Door repairs and replacements",
+      "Skirting boards and architraves",
+      "Kitchen unit repairs",
+      "Boxing-in pipework",
+      "Shelving installation",
+      "Timber repairs",
+      "General joinery works",
+    ],
+  },
+  {
+    name: "Painting and Decorating",
+    slug: "painting-decorating",
+    icon: "PaintRoller",
+    category: "Bathrooms & Interiors",
+    overview:
+      "Our decorating teams provide high-quality internal and external painting services for occupied and void properties, helping maintain attractive, durable, and well-presented homes.",
+    whatWeDo: [
+      "Internal decorating",
+      "External painting",
+      "Wall and ceiling preparation",
+      "Woodwork painting",
+      "Staining and varnishing",
+      "Making good damaged surfaces",
+      "Void property redecoration",
+    ],
+  },
+  {
+    name: "Damp and Mould Remedial Works",
+    slug: "damp-mould",
+    icon: "CloudRain",
+    category: "Bathrooms & Interiors",
+    overview:
+      "We help landlords and housing providers address damp and mould issues by identifying contributing factors and carrying out effective remedial works to improve living conditions and protect properties.",
+    whatWeDo: [
+      "Damp inspections",
+      "Mould treatment",
+      "Anti-mould coatings",
+      "Plaster repairs",
+      "Ventilation improvements",
+      "Moisture damage repairs",
+      "Internal redecorations following treatment",
+    ],
+  },
+  {
+    name: "Fencing and External Repairs",
+    slug: "fencing-external-repairs",
+    icon: "Fence",
+    category: "Building & Specialist",
+    overview:
+      "We carry out a wide range of external repair works to improve security, safety, and the appearance of residential properties and communal areas.",
+    whatWeDo: [
+      "Fence repairs and replacement",
+      "Gate installation and repairs",
+      "Timber fencing",
+      "Garden boundary repairs",
+      "External timber structures",
+      "Minor external maintenance",
+      "Path and access repairs",
+    ],
+  },
+  {
+    name: "Electrical Services",
+    slug: "electrical",
+    icon: "Zap",
+    category: "Building & Specialist",
+  },
+  {
+    name: "Insurance Reinstatement",
+    slug: "insurance-reinstatement",
+    icon: "ShieldCheck",
+    category: "Building & Specialist",
+  },
+  {
+    name: "Commercial Refurbishment",
+    slug: "commercial-refurbishment",
+    icon: "Building",
+    category: "Building & Specialist",
+  },
 ] as const;
+
+// Old slugs that no longer have their own page after the services
+// restructuring — each redirects (client-side) to the new consolidated
+// service that now covers it, so old links/bookmarks/search results don't
+// just 404.
+export const retiredServiceRedirects: Record<string, string> = {
+  "property-maintenance": "general-building-maintenance",
+  "planned-maintenance": "general-building-maintenance",
+  "drain-unblocking": "plumbing",
+  "drain-repairs": "plumbing",
+  "bathroom-repairs": "bathroom-refurbishment",
+  "bathroom-installation": "bathroom-refurbishment",
+};
 
 export type Service = (typeof services)[number];
 
@@ -64,9 +280,18 @@ export function getServiceContent(service: Service) {
   const name = service.name;
   const lower = name.toLowerCase();
 
+  // 12 of the 16 services now have real, client-authored overview/whatWeDo
+  // copy directly on the service object (see `services` above) rather than
+  // the generated boilerplate below — the 4 retained legacy services
+  // (Electrical, Insurance Reinstatement, Commercial Refurbishment, General
+  // Construction) don't have custom copy yet, so they still fall back to it.
+  const custom = service as { overview?: string; whatWeDo?: readonly string[] };
+
   return {
-    overview: `Need reliable ${lower} in London? Our directly employed engineers — not a loose network of subcontractors — assess the job, give you a clear fixed-price quote, and get it done properly, first time. From a single reported issue to a portfolio-wide programme of works, we deliver ${lower} to a consistent standard across every London borough.`,
-    whatWeDo: [
+    overview:
+      custom.overview ??
+      `Need reliable ${lower} in London? Our directly employed engineers — not a loose network of subcontractors — assess the job, give you a clear fixed-price quote, and get it done properly, first time. From a single reported issue to a portfolio-wide programme of works, we deliver ${lower} to a consistent standard across every London borough.`,
+    whatWeDo: custom.whatWeDo ?? [
       `Fast initial assessment and diagnosis of the ${lower} issue or requirement`,
       "A clear, fixed-price quotation before any work begins — no surprise costs",
       "Work carried out by our own directly employed engineers, not subcontractors",

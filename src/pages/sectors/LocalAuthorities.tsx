@@ -32,7 +32,7 @@ export function LocalAuthorities() {
         },
       ]}
       relevantServiceSlugs={[
-        "planned-maintenance",
+        "general-building-maintenance",
         "void-refurbishment",
         "construction",
         "commercial-refurbishment",

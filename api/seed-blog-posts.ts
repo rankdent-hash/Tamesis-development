@@ -93,7 +93,7 @@ If you smell gas, this isn't a "book an appointment" situation. Turn off the gas
 
 ## 4. A Blocked Drain That's Backing Up
 
-A slow-draining sink can usually wait for a scheduled visit. A drain that's backing up — water coming back up through a different fixture, or sewage smells inside the property — is a different matter, both for hygiene and for potential damage. Our [drain unblocking](/services/drain-unblocking) team treats backed-up drainage as a priority job.
+A slow-draining sink can usually wait for a scheduled visit. A drain that's backing up — water coming back up through a different fixture, or sewage smells inside the property — is a different matter, both for hygiene and for potential damage. Our [drain unblocking](/services/plumbing) team treats backed-up drainage as a priority job.
 
 ## 5. A Leak You Can't Locate
 
@@ -115,7 +115,7 @@ Whatever the issue, if you'd rather just get a straightforward quote for non-urg
     excerpt:
       "Reactive repairs feel cheaper in the moment. Over a full year of stock, planned maintenance almost always works out less expensive — here's why.",
     category: "Housing Associations & Planned Maintenance",
-    relatedServiceSlug: "planned-maintenance",
+    relatedServiceSlug: "general-building-maintenance",
     coverPhoto: "photo-1516216628859-9bccecab13ca",
     content: `Every housing association eventually faces the same question: is it better to fix things as they break, or to plan the work in advance? The honest answer is that a purely reactive approach almost always costs more over time — it just doesn't always look that way on a month-by-month budget.
 
@@ -123,7 +123,7 @@ Whatever the issue, if you'd rather just get a straightforward quote for non-urg
 
 A reactive repair almost always costs more than the same job done as planned maintenance, for a few consistent reasons: emergency callout rates, the knock-on damage that happens while a problem goes unnoticed (a small roof leak becomes a ceiling replacement), and the disruption of an unplanned visit compared to a scheduled one that residents were told about in advance.
 
-Multiply that across hundreds or thousands of units, and the difference between a reactive-only approach and a proper [planned maintenance](/services/planned-maintenance) programme becomes a genuinely large number over a financial year — not just a theoretical one.
+Multiply that across hundreds or thousands of units, and the difference between a reactive-only approach and a proper [planned maintenance](/services/general-building-maintenance) programme becomes a genuinely large number over a financial year — not just a theoretical one.
 
 ## Compliance Is Easier to Demonstrate
 
@@ -164,7 +164,7 @@ Before thinking about tile colours, it's worth being honest about what's actuall
 Broadly, most bathroom projects fall into one of three categories:
 
 - **A refresh** — new tiles, a repainted ceiling, updated fittings, keeping the existing layout and suite. Fastest and least disruptive.
-- **A full refit** — new suite, new tiling, same basic layout (bath where the bath was, toilet where the toilet was). This is where most [bathroom installation](/services/bathroom-installation) work sits.
+- **A full refit** — new suite, new tiling, same basic layout (bath where the bath was, toilet where the toilet was). This is where most [bathroom installation](/services/bathroom-refurbishment) work sits.
 - **A reconfiguration** — moving the toilet, converting a bath to a walk-in shower, sometimes borrowing space from an adjacent room. This is the most involved option, since it usually means moving waste pipes and can involve building control depending on what's changing.
 
 Being clear on which of these you actually want before getting quotes will make the quotes far more comparable — a refresh quote and a full reconfiguration quote aren't the same job, even if both get called "bathroom refurbishment."
@@ -212,7 +212,7 @@ Landlords are required to keep clear records of every stage — correspondence w
 
 ## The Law Is Getting Wider, Not Staying Still
 
-Phase 1 covers damp, mould, and emergency hazards specifically. From 2026, the government has confirmed the scope will expand to include excess cold and excess heat, falls, structural collapse and explosions, fire and electrical hazards, and domestic hygiene and food safety issues. A further phase in 2027 is expected to bring in the remaining hazard categories under the Housing Health and Safety Rating System (HHSRS). In practical terms, this means the fixed-timeframe approach that currently applies to damp and mould will soon apply across most of what a [planned maintenance](/services/planned-maintenance) programme already covers — so the assessment and reporting processes being built now are worth building properly the first time.
+Phase 1 covers damp, mould, and emergency hazards specifically. From 2026, the government has confirmed the scope will expand to include excess cold and excess heat, falls, structural collapse and explosions, fire and electrical hazards, and domestic hygiene and food safety issues. A further phase in 2027 is expected to bring in the remaining hazard categories under the Housing Health and Safety Rating System (HHSRS). In practical terms, this means the fixed-timeframe approach that currently applies to damp and mould will soon apply across most of what a [planned maintenance](/services/general-building-maintenance) programme already covers — so the assessment and reporting processes being built now are worth building properly the first time.
 
 ## What This Means for Contracting Relationships
 
@@ -253,7 +253,7 @@ If your property already holds a valid EPC showing a C rating (under the current
 
 ## Where This Overlaps With Other Compliance Work
 
-Energy efficiency improvements rarely happen in isolation — insulation work often coincides with damp investigations (poor insulation is a common contributing factor to condensation and mould), and both tie into wider [planned maintenance](/services/planned-maintenance) scheduling across a portfolio. If you're a [landlord](/sectors/landlords) with EPC D, E, F, or G rated property in London, it's worth getting a realistic assessment of what fabric performance work would actually involve well before 2030 pressure sets in on contractor availability.
+Energy efficiency improvements rarely happen in isolation — insulation work often coincides with damp investigations (poor insulation is a common contributing factor to condensation and mould), and both tie into wider [planned maintenance](/services/general-building-maintenance) scheduling across a portfolio. If you're a [landlord](/sectors/landlords) with EPC D, E, F, or G rated property in London, it's worth getting a realistic assessment of what fabric performance work would actually involve well before 2030 pressure sets in on contractor availability.
 
 [Get a free quote](/quote) for an initial assessment, or [contact us](/contact) to talk through a whole portfolio rather than a single property.`,
   },
@@ -320,13 +320,13 @@ If your current repairs process is generating repeat visits or slow first respon
     excerpt:
       "\"Property maintenance\" gets used as a catch-all term. Here's what a genuinely comprehensive contract should cover, and what to check before signing one.",
     category: "Repairs & Maintenance",
-    relatedServiceSlug: "property-maintenance",
+    relatedServiceSlug: "general-building-maintenance",
     coverPhoto: "photo-1690473768476-44b5cebb7d80",
     content: `Ask five contractors what "property maintenance" includes and you'll likely get five different answers. For anyone managing property — whether it's a single let or a large portfolio — knowing what should genuinely be covered makes comparing quotes far easier.
 
 ## The Core Trades
 
-A proper [property maintenance](/services/property-maintenance) service should cover the trades that come up repeatedly across any property: basic plumbing, electrical fault-finding, carpentry, general building repairs, and painting and decorating touch-ups. If a contract only covers one or two of these, you'll end up managing multiple separate contractors for the rest — which defeats much of the point of having a maintenance contract in the first place.
+A proper [property maintenance](/services/general-building-maintenance) service should cover the trades that come up repeatedly across any property: basic plumbing, electrical fault-finding, carpentry, general building repairs, and painting and decorating touch-ups. If a contract only covers one or two of these, you'll end up managing multiple separate contractors for the rest — which defeats much of the point of having a maintenance contract in the first place.
 
 ## Response Times Should Be Specified, Not Implied
 
@@ -436,13 +436,13 @@ A water bill that's crept up with no change in usage, a damp patch that reappear
     excerpt:
       "A drain that blocks repeatedly usually has a specific, fixable cause. Here's how to tell a one-off blockage from a recurring structural issue.",
     category: "Plumbing",
-    relatedServiceSlug: "drain-unblocking",
+    relatedServiceSlug: "plumbing",
     coverPhoto: "photo-1521207418485-99c705420785",
     content: `A single blocked drain is usually just bad luck — fat, wipes, hair, or tree roots doing what they do. A drain that blocks repeatedly, though, almost always has an underlying cause that a one-off clearance won't fix.
 
 ## The Usual Suspects for a One-Off Blockage
 
-Cooking fat poured down a sink and solidifying further along the pipe, wipes and sanitary products flushed despite not being genuinely flushable, and hair building up in bathroom drains are the most common causes of an isolated blockage. [Drain unblocking](/services/drain-unblocking) for these is usually straightforward and the drain runs clear afterwards with no further issue.
+Cooking fat poured down a sink and solidifying further along the pipe, wipes and sanitary products flushed despite not being genuinely flushable, and hair building up in bathroom drains are the most common causes of an isolated blockage. [Drain unblocking](/services/plumbing) for these is usually straightforward and the drain runs clear afterwards with no further issue.
 
 ## When It's Actually a Structural Problem
 
@@ -456,7 +456,7 @@ For a drain that blocks more than once with no obvious cause (like a one-off dis
 
 For kitchens: no fat down the sink, ever, even small amounts add up. For bathrooms: a simple drain guard catches hair before it becomes a problem. For anything else: if a drain has blocked more than twice in a year, it's worth investigating rather than just calling for another clearance each time.
 
-[Get a free quote](/quote) for drain unblocking, or read about our [drain repairs service](/services/drain-repairs) if you suspect there's an underlying structural issue.`,
+[Get a free quote](/quote) for drain unblocking, or read about our [drain repairs service](/services/plumbing) if you suspect there's an underlying structural issue.`,
   },
   {
     slug: "drain-repairs-cctv-surveys-relining-explained",
@@ -464,9 +464,9 @@ For kitchens: no fat down the sink, ever, even small amounts add up. For bathroo
     excerpt:
       "Modern drain repair often doesn't require digging up your garden or driveway. Here's what the options actually are, and when each one applies.",
     category: "Plumbing",
-    relatedServiceSlug: "drain-repairs",
+    relatedServiceSlug: "plumbing",
     coverPhoto: "photo-1530124566582-a618bc2615dc",
-    content: `Drain problems have a reputation for meaning disruptive, expensive excavation work — and sometimes that's genuinely necessary, but modern [drain repair](/services/drain-repairs) techniques mean it's often not the first option, or even needed at all.
+    content: `Drain problems have a reputation for meaning disruptive, expensive excavation work — and sometimes that's genuinely necessary, but modern [drain repair](/services/plumbing) techniques mean it's often not the first option, or even needed at all.
 
 ## Step One Is Always a Proper Survey
 
@@ -492,9 +492,9 @@ If you've had a recurring drain issue or a survey has flagged a problem, [get a 
     excerpt:
       "Not every bathroom issue needs a full refurbishment. Here's how to tell the difference, and what a straightforward repair can realistically achieve.",
     category: "Bathrooms",
-    relatedServiceSlug: "bathroom-repairs",
+    relatedServiceSlug: "bathroom-refurbishment",
     coverPhoto: "photo-1631889993959-41b4e9c6e3c5",
-    content: `A cracked tile, a leaking seal, a toilet that won't stop running — these are all genuine [bathroom repair](/services/bathroom-repairs) jobs, and none of them require pulling the whole room apart. Knowing where the line sits between "repair" and "refurbishment" saves both money and unnecessary disruption.
+    content: `A cracked tile, a leaking seal, a toilet that won't stop running — these are all genuine [bathroom repair](/services/bathroom-refurbishment) jobs, and none of them require pulling the whole room apart. Knowing where the line sits between "repair" and "refurbishment" saves both money and unnecessary disruption.
 
 ## Repairs That Are Usually Straightforward
 
@@ -520,9 +520,9 @@ A good repair visit should tell you clearly if what looks like a simple fix is a
     excerpt:
       "Choosing bathroom fittings is the fun part. Here's what actually matters for installation quality that you won't see once the room is finished.",
     category: "Bathrooms",
-    relatedServiceSlug: "bathroom-installation",
+    relatedServiceSlug: "bathroom-refurbishment",
     coverPhoto: "photo-1695002817411-203c7f19dfa3",
-    content: `Picking taps, tiles, and a suite is the enjoyable part of a [bathroom installation](/services/bathroom-installation) — but the things that determine whether it still looks and works well in five years mostly happen before any of that's visible.
+    content: `Picking taps, tiles, and a suite is the enjoyable part of a [bathroom installation](/services/bathroom-refurbishment) — but the things that determine whether it still looks and works well in five years mostly happen before any of that's visible.
 
 ## Check the Waste and Supply Positions First
 

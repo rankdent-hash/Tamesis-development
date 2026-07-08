@@ -1,10 +1,10 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SiteSchema } from "./components/SiteSchema";
 import { StickyMobileCall } from "./components/StickyMobileCall";
 import { InternalLinkInterceptor } from "./components/InternalLinkInterceptor";
 import { PageLoader } from "./components/PageLoader";
-import { services } from "./data/content";
+import { services, retiredServiceRedirects } from "./data/content";
 
 // Every route is code-split into its own chunk so the initial load only
 // fetches what's needed for the page the visitor actually lands on.
@@ -53,6 +53,9 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           {services.map((s) => (
             <Route key={s.slug} path={`/services/${s.slug}`} element={<ServiceTemplate service={s} />} />
+          ))}
+          {Object.entries(retiredServiceRedirects).map(([oldSlug, newSlug]) => (
+            <Route key={oldSlug} path={`/services/${oldSlug}`} element={<Navigate to={`/services/${newSlug}`} replace />} />
           ))}
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />

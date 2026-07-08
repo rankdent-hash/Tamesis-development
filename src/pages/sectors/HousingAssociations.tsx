@@ -35,7 +35,7 @@ export function HousingAssociations() {
         "responsive-repairs",
         "void-refurbishment",
         "damp-mould",
-        "planned-maintenance",
+        "general-building-maintenance",
         "bathroom-refurbishment",
       ]}
       ctaHeading="Looking for a Repairs & Maintenance Partner for Your Stock?"

@@ -96,37 +96,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/plumbing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/leak-detection</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -162,11 +137,6 @@
   </url>
   <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/damp-mould</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -596,46 +566,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/property-maintenance/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/plumbing/fulham</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -712,166 +642,6 @@
   </url>
   <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/leak-detection/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-unblocking/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/drain-repairs/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-repairs/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/bathroom-installation/wandsworth</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1156,46 +926,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/fulham</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/chelsea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/westminster</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/kensington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/hammersmith</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/camden</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/islington</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.tamesisdevelopment.co.uk/services/planned-maintenance/wandsworth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/void-refurbishment/fulham</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -1352,6 +1082,96 @@
   </url>
   <url>
     <loc>https://www.tamesisdevelopment.co.uk/services/construction/wandsworth</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/fulham</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/chelsea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/westminster</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/kensington</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/hammersmith</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/camden</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/islington</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/general-building-maintenance/wandsworth</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/fulham</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/chelsea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/westminster</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/kensington</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/hammersmith</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/camden</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/islington</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/fencing-external-repairs/wandsworth</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
