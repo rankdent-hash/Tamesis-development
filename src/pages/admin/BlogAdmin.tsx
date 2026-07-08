@@ -111,11 +111,14 @@ export function BlogAdmin() {
     const result = await seedBlogPosts();
     setSeeding(false);
     if (result.success) {
-      setSeedMessage(
-        result.inserted && result.inserted > 0
-          ? `Added ${result.inserted} new article${result.inserted === 1 ? "" : "s"}.`
-          : "No new articles to add — everything's already published."
-      );
+      const parts: string[] = [];
+      if (result.inserted && result.inserted > 0) {
+        parts.push(`Added ${result.inserted} new article${result.inserted === 1 ? "" : "s"}.`);
+      }
+      if (result.migrated && result.migrated > 0) {
+        parts.push(`Fixed ${result.migrated} outdated service link${result.migrated === 1 ? "" : "s"} on existing posts.`);
+      }
+      setSeedMessage(parts.length > 0 ? parts.join(" ") : "Everything's already up to date — no changes needed.");
       load();
     } else {
       setError(result.error || "Failed to add starter posts");

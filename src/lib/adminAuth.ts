@@ -293,7 +293,7 @@ export async function deleteBlogPost(id: number): Promise<{ success: boolean; er
   }
 }
 
-export async function seedBlogPosts(): Promise<{ success: boolean; inserted?: number; error?: string }> {
+export async function seedBlogPosts(): Promise<{ success: boolean; inserted?: number; migrated?: number; error?: string }> {
   const token = getAdminToken();
   if (!token) return { success: false, error: "Not logged in" };
   try {
@@ -303,7 +303,7 @@ export async function seedBlogPosts(): Promise<{ success: boolean; inserted?: nu
     });
     const data = await res.json();
     if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to add starter posts" };
-    return { success: true, inserted: data.inserted };
+    return { success: true, inserted: data.inserted, migrated: data.migrated };
   } catch {
     return { success: false, error: "Network error — please try again" };
   }

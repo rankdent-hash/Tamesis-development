@@ -872,6 +872,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `);
     await pool.query(`ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS related_service_slug TEXT;`);
 
+    // Repair any posts still pointing at a service slug retired in the
+    // services restructuring (e.g. seeded before that change went live) —
+    // safe to run every time, only touches rows that still hold an old value.
+    const RETIRED_SLUG_MAP: Record<string, string> = {
+      "property-maintenance": "general-building-maintenance",
+      "planned-maintenance": "general-building-maintenance",
+      "drain-unblocking": "plumbing",
+      "drain-repairs": "plumbing",
+      "bathroom-repairs": "bathroom-refurbishment",
+      "bathroom-installation": "bathroom-refurbishment",
+    };
+    let migrated = 0;
+    for (const [oldSlug, newSlug] of Object.entries(RETIRED_SLUG_MAP)) {
+      const { rowCount } = await pool.query(
+        `UPDATE blog_posts SET related_service_slug = $1 WHERE related_service_slug = $2;`,
+        [newSlug, oldSlug]
+      );
+      migrated += rowCount || 0;
+    }
+
     let inserted = 0;
     for (const post of POSTS) {
       const { rows: existing } = await pool.query(`SELECT id FROM blog_posts WHERE slug = $1;`, [post.slug]);
@@ -884,7 +904,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       inserted++;
     }
 
-    return res.status(200).json({ success: true, inserted, skipped: POSTS.length - inserted });
+    return res.status(200).json({ success: true, inserted, skipped: POSTS.length - inserted, migrated });
   } catch (err) {
     console.error("Seed blog posts error:", err);
     return res.status(500).json({ success: false, error: "Unexpected server error" });
