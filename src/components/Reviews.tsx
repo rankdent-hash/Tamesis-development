@@ -16,7 +16,7 @@ export function Reviews() {
                 <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
               ))}
             </div>
-            <span className="text-sm font-semibold text-navy-900">4.6 average &middot; 520+ Google reviews</span>
+            <span className="text-sm font-semibold text-navy-900">4.6 average &middot; 535+ Google reviews</span>
           </div>
         </div>
 

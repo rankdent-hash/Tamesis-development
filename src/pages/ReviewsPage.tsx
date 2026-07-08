@@ -28,7 +28,7 @@ export function ReviewsPage() {
         <PageHero
           eyebrow="Reviews"
           title="What Our Clients Say"
-          subtitle="520+ verified reviews from housing associations, commercial clients, landlords and homeowners across London."
+          subtitle="535+ verified reviews from housing associations, commercial clients, landlords and homeowners across London."
           breadcrumb="Reviews"
         />
 
@@ -43,7 +43,7 @@ export function ReviewsPage() {
                     <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
                   ))}
                 </div>
-                <p className="mt-2 text-sm text-slate font-medium">Based on 520+ Google reviews</p>
+                <p className="mt-2 text-sm text-slate font-medium">Based on 535+ Google reviews</p>
               </AnimateIn>
 
               <AnimateIn delay={0.1} className="space-y-2.5">

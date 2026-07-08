@@ -31,7 +31,7 @@ export function SiteSchema() {
         ratingValue: "4.6",
         reviewCount: "520",
       },
-      foundingDate: "2014",
+      foundingDate: "2019",
     });
     document.head.appendChild(script);
     return () => {

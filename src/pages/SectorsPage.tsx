@@ -69,9 +69,9 @@ export function SectorsPage() {
             </AnimateIn>
             <AnimateIn delay={0.1} className="grid grid-cols-2 gap-4">
               {[
-                { label: "Operational Teams", value: "10" },
-                { label: "Completed Projects", value: "3,200+" },
-                { label: "Years Experience", value: "12+" },
+                { label: "Operational Teams", value: "17" },
+                { label: "Completed Projects", value: "3,500+" },
+                { label: "Years Experience", value: "7+" },
                 { label: "Average Rating", value: "4.6+" },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl bg-white border border-navy-100 p-6 text-center shadow-card">

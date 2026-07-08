@@ -20,8 +20,8 @@ export function About() {
       <main>
         <PageHero
           eyebrow="About Tamesis"
-          title="London Property Maintenance, Built on Trust Since 2014"
-          subtitle="From a small responsive repairs team to ten operational teams covering the whole of London, our focus has never changed: reliable, professional work delivered by people who show up."
+          title="London Property Maintenance, Built on Trust Since 2019"
+          subtitle="From a small responsive repairs team to seventeen operational teams covering the whole of London, our focus has never changed: reliable, professional work delivered by people who show up."
           breadcrumb="About Us"
         />
 
@@ -58,7 +58,7 @@ export function About() {
               <div className="mt-6 space-y-5 text-slate leading-relaxed">
                 <p>
                   <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> was
-                  founded in 2014 with a straightforward aim — bring a genuinely
+                  founded in 2019 with a straightforward aim — bring a genuinely
                   professional standard of property maintenance to London, delivered by directly managed teams rather
                   than a loose network of subcontractors.
                 </p>
@@ -68,7 +68,7 @@ export function About() {
                   construction projects across every London borough.
                 </p>
                 <p>
-                  Today, ten operational teams and a dedicated job booking function mean we can respond quickly,
+                  Today, seventeen operational teams and a dedicated job booking function mean we can respond quickly,
                   scale to large contracts, and still give every client — from a homeowner with a leak to a housing
                   association managing thousands of units — the same level of attention.
                 </p>

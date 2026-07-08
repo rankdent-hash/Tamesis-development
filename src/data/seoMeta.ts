@@ -7,12 +7,12 @@ export const seoMeta = {
   home: {
     title: "Property Maintenance & Refurbishment Contractor in London",
     description:
-      "Tamesis Development Ltd delivers responsive repairs, planned maintenance, refurbishment and construction across London since 2014. Trusted by housing associations, local authorities and homeowners.",
+      "Tamesis Development Ltd delivers responsive repairs, planned maintenance, refurbishment and construction across London since 2019. Trusted by housing associations, local authorities and homeowners.",
   },
   about: {
-    title: "About Us — London Property Maintenance Since 2014",
+    title: "About Us — London Property Maintenance Since 2019",
     description:
-      "Founded in 2014, Tamesis Development Ltd is a trusted London property maintenance and refurbishment contractor. Learn our story, values and growth across the capital.",
+      "Founded in 2019, Tamesis Development Ltd is a trusted London property maintenance and refurbishment contractor. Learn our story, values and growth across the capital.",
   },
   services: {
     title: "Property Maintenance & Refurbishment Services",
@@ -30,7 +30,7 @@ export const seoMeta = {
       "Browse completed property maintenance, repair, refurbishment and construction projects delivered by Tamesis Development Ltd across London.",
   },
   reviews: {
-    title: "Customer Reviews — 4.6+ Rating from 520+ Clients",
+    title: "Customer Reviews — 4.6+ Rating from 535+ Clients",
     description:
       "Read verified reviews from housing associations, commercial clients, landlords and homeowners who have used Tamesis Development Ltd's property maintenance services.",
   },

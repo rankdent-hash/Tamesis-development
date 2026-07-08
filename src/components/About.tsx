@@ -22,7 +22,7 @@ export function About() {
 
           <div className="mt-6 space-y-5 text-slate leading-relaxed">
             <p>
-              Founded in 2014, Tamesis Development Ltd has become one of London&rsquo;s trusted property maintenance and
+              Founded in 2019, Tamesis Development Ltd has become one of London&rsquo;s trusted property maintenance and
               refurbishment contractors.
             </p>
             <p>

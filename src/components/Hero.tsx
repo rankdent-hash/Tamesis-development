@@ -4,11 +4,11 @@ import { heroPhoto, unsplashUrl } from "../data/photos";
 import { HeroQuoteForm } from "./HeroQuoteForm";
 
 const badges = [
-  "Established 2014",
+  "Established 2019",
   "London Wide Coverage",
-  "3,200+ Completed Projects",
-  "520+ Customer Reviews",
-  "10 Operational Teams",
+  "3,500+ Completed Projects",
+  "535+ Customer Reviews",
+  "17 Operational Teams",
 ];
 
 export function Hero() {
@@ -33,7 +33,7 @@ export function Hero() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-1.5 text-xs font-accent uppercase tracking-widest text-blue-300 mb-6 lg:mb-8">
-            Property Maintenance &amp; Refurbishment · Since 2014
+            Property Maintenance &amp; Refurbishment · Since 2019
           </div>
 
           <h1 className="font-display font-extrabold text-white text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.08] text-balance">
@@ -41,7 +41,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 lg:mt-6 text-base sm:text-lg text-navy-100/80 max-w-2xl leading-relaxed">
-            Fast response, fixed-price quotes and directly employed engineers — not subcontractors — trusted since 2014 by housing associations, local authorities, landlords and homeowners across London.
+            Fast response, fixed-price quotes and directly employed engineers — not subcontractors — trusted since 2019 by housing associations, local authorities, landlords and homeowners across London.
           </p>
 
           <div className="mt-8 lg:mt-10 flex flex-row flex-nowrap gap-3 sm:gap-4">

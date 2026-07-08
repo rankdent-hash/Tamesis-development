@@ -10,7 +10,7 @@ export function HousingAssociations() {
       introHeading="Delivering Repairs and Maintenance at Portfolio Scale"
       introParagraphs={[
         "Housing associations need a contractor who can handle high volumes of works orders without the quality or communication slipping — whether that's a single reported repair or a rolling planned maintenance programme across an estate.",
-        "Our ten operational teams and dedicated job booking function mean works orders are logged, actioned and tracked from first report through to sign-off, with clear status updates available throughout.",
+        "Our seventeen operational teams and dedicated job booking function mean works orders are logged, actioned and tracked from first report through to sign-off, with clear status updates available throughout.",
         "We understand that housing association work comes with a duty of care to residents. Our engineers are trained to work respectfully and communicate clearly in occupied homes, and our reporting gives your team the visibility needed for audits and resident satisfaction tracking.",
       ]}
       keyPoints={[

@@ -62,8 +62,8 @@ const columns = [
 export function Footer() {
   const trustItems = [
     { icon: HardHat, label: "Directly Employed Engineers" },
-    { icon: Star, label: "4.6★ from 520+ Reviews" },
-    { icon: CalendarCheck, label: "Trusted Since 2014" },
+    { icon: Star, label: "4.6★ from 535+ Reviews" },
+    { icon: CalendarCheck, label: "Trusted Since 2019" },
     { icon: ShieldCheck, label: "Fully Insured & Compliant" },
     { icon: MapPinned, label: "London-Wide Coverage" },
   ];
@@ -89,7 +89,7 @@ export function Footer() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <h2 className="font-display font-bold text-white text-3xl lg:text-4xl leading-tight max-w-xl text-balance">
-              London&rsquo;s trusted property maintenance partner, since 2014.
+              London&rsquo;s trusted property maintenance partner, since 2019.
             </h2>
             <a
               href="/quote"

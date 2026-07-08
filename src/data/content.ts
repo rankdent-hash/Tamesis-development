@@ -1,7 +1,7 @@
 export const company = {
   name: "Tamesis Development Ltd",
   shortName: "Tamesis",
-  founded: 2014,
+  founded: 2019,
   addressLines: ["Upper Level", "48 Fulham High Street", "London", "SW6 3LQ"],
   phoneManagement: "020 3592 0042",
   phoneJobBooking: "020 3488 3737",
@@ -20,11 +20,11 @@ export const navLinks = [
 ];
 
 export const stats = [
-  { value: 3200, suffix: "+", label: "Completed Repairs" },
-  { value: 520, suffix: "+", label: "Verified Reviews" },
+  { value: 3500, suffix: "+", label: "Completed Repairs" },
+  { value: 535, suffix: "+", label: "Verified Reviews" },
   { value: 4.6, suffix: "", label: "Average Rating", decimals: 1 },
-  { value: 10, suffix: "", label: "Operational Teams" },
-  { value: 12, suffix: "+", label: "Years Serving London" },
+  { value: 17, suffix: "", label: "Operational Teams" },
+  { value: 7, suffix: "+", label: "Years Serving London" },
 ];
 
 export const serviceCategories = [
@@ -140,7 +140,7 @@ export const sectors = [
 ] as const;
 
 export const whyChoose = [
-  { name: "Established Since 2014", icon: "CalendarClock" },
+  { name: "Established Since 2019", icon: "CalendarClock" },
   { name: "Experienced Teams", icon: "Users" },
   { name: "Fast Response Times", icon: "Timer" },
   { name: "Fully Insured", icon: "ShieldCheck" },
@@ -541,11 +541,11 @@ export const values = [
 ] as const;
 
 export const timeline = [
-  { year: "2014", title: "Tamesis Founded", description: "Started delivering responsive repairs across South West London." },
-  { year: "2017", title: "First Housing Association Contract", description: "Secured our first multi-year planned maintenance contract." },
-  { year: "2019", title: "10 Operational Teams", description: "Grew to ten directly managed teams covering all of Greater London." },
-  { year: "2022", title: "3,000th Completed Job", description: "Passed 3,000 completed projects across repairs, refurbishment and construction." },
-  { year: "2026", title: "London Wide Coverage", description: "Now serving housing associations, local authorities, commercial clients and homeowners across every London borough." },
+  { year: "2019", title: "Tamesis Founded", description: "Started delivering responsive repairs across South West London." },
+  { year: "2020", title: "First Housing Association Contract", description: "Secured our first multi-year planned maintenance contract." },
+  { year: "2022", title: "10 Operational Teams", description: "Grew to ten directly managed teams covering all of Greater London." },
+  { year: "2025", title: "3,000th Completed Job", description: "Passed 3,000 completed projects across repairs, refurbishment and construction." },
+  { year: "2026", title: "London Wide Coverage", description: "Now serving housing associations, local authorities, commercial clients and homeowners across every London borough, with 17 operational teams." },
 ] as const;
 
 export const vacancies = [
