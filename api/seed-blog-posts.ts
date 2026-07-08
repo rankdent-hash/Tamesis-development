@@ -115,6 +115,7 @@ Whatever the issue, if you'd rather just get a straightforward quote for non-urg
     excerpt:
       "Reactive repairs feel cheaper in the moment. Over a full year of stock, planned maintenance almost always works out less expensive — here's why.",
     category: "Housing Associations & Planned Maintenance",
+    relatedServiceSlug: "planned-maintenance",
     coverPhoto: "photo-1516216628859-9bccecab13ca",
     content: `Every housing association eventually faces the same question: is it better to fix things as they break, or to plan the work in advance? The honest answer is that a purely reactive approach almost always costs more over time — it just doesn't always look that way on a month-by-month budget.
 
@@ -150,6 +151,7 @@ If you're currently managing stock reactively and want to understand what a plan
     excerpt:
       "A bathroom refurbishment is one of the most disruptive jobs to get wrong and one of the most satisfying to get right. Here's how to plan it properly.",
     category: "Home Improvement",
+    relatedServiceSlug: "bathroom-refurbishment",
     coverPhoto: "photo-1620626011761-996317b8d101",
     content: `A bathroom is one of the smallest rooms in most London homes, but refurbishing one properly touches almost every trade — plumbing, electrics, tiling, carpentry, sometimes structural work if you're moving anything. Getting the planning right up front makes a real difference to how smoothly it goes.
 
@@ -288,6 +290,550 @@ With no-fault eviction off the table and the sector heading toward mandatory min
 
 If you manage rental property across London and want a realistic picture of what condition your stock is actually in — before a tenant dispute, a database registration, or a future Decent Homes Standard forces the question — [get in touch](/contact) for a straightforward conversation, or [request a free quote](/quote) for specific work you already know is needed. We work with [landlords](/sectors/landlords) across every London borough, from single properties to larger portfolios.`,
   },
+  {
+    slug: "what-counts-as-a-responsive-repair",
+    title: "What Counts as a Responsive Repair? A Practical Guide",
+    excerpt:
+      "Not every repair needs the same urgency. Here's how a well-run responsive repairs service actually triages and handles reported issues.",
+    category: "Repairs & Maintenance",
+    relatedServiceSlug: "responsive-repairs",
+    coverPhoto: "photo-1621905252507-b35492cc74b4",
+    content: `"Responsive repairs" is the term used across property management for work carried out in reaction to a reported issue, as opposed to planned or preventative maintenance. In practice, it covers everything from a sticking door to a failed light fitting — and how well it's handled depends on decent triage, not just fast vans.
+
+## Triage Comes First
+
+A good [responsive repairs](/services/responsive-repairs) service starts by properly categorising what's been reported: is it urgent (a safety issue, a security failure, something actively getting worse) or routine (cosmetic, minor, can be scheduled)? Getting this right matters — treating everything as urgent burns resource on low-priority jobs and slows down genuinely urgent ones, while treating everything as routine risks small issues becoming bigger, more expensive ones.
+
+## What Should Happen After a Repair Is Reported
+
+A clear acknowledgment, a realistic timeframe based on the triage category, and — critically — a single engineer visit that actually resolves the issue rather than requiring a second visit to "actually fix it now." Repeat visits are the single biggest driver of tenant and resident dissatisfaction with repairs services, and usually point to either poor initial diagnosis or engineers without the right materials on the first visit.
+
+## Why This Matters for Housing Associations and Landlords
+
+Responsive repairs performance is one of the most visible measures of contractor quality to residents and tenants — far more visible than a planned maintenance schedule most people never see directly. It's also increasingly tied to formal compliance, particularly for [housing associations](/sectors/housing-associations) working within Awaab's Law timeframes.
+
+If your current repairs process is generating repeat visits or slow first response, [get a free quote](/quote) or [contact us](/contact) to talk through what a properly triaged responsive repairs service should look like for your properties.`,
+  },
+  {
+    slug: "what-does-a-property-maintenance-contract-actually-include",
+    title: "What Does a Property Maintenance Contract Actually Include?",
+    excerpt:
+      "\"Property maintenance\" gets used as a catch-all term. Here's what a genuinely comprehensive contract should cover, and what to check before signing one.",
+    category: "Repairs & Maintenance",
+    relatedServiceSlug: "property-maintenance",
+    coverPhoto: "photo-1690473768476-44b5cebb7d80",
+    content: `Ask five contractors what "property maintenance" includes and you'll likely get five different answers. For anyone managing property — whether it's a single let or a large portfolio — knowing what should genuinely be covered makes comparing quotes far easier.
+
+## The Core Trades
+
+A proper [property maintenance](/services/property-maintenance) service should cover the trades that come up repeatedly across any property: basic plumbing, electrical fault-finding, carpentry, general building repairs, and painting and decorating touch-ups. If a contract only covers one or two of these, you'll end up managing multiple separate contractors for the rest — which defeats much of the point of having a maintenance contract in the first place.
+
+## Response Times Should Be Specified, Not Implied
+
+A genuinely useful contract states response time commitments by category (emergency, urgent, routine) rather than a vague "we'll get to it promptly." Vague commitments are the first thing to slip once a contractor is stretched across multiple clients.
+
+## Reporting Is Part of the Service, Not an Extra
+
+For any managed portfolio — [housing associations](/sectors/housing-associations), [local authorities](/sectors/local-authorities), or [property management companies](/sectors/property-management-companies) — you should expect job-by-job reporting as standard: what was found, what was done, and photographic evidence where relevant. If this isn't included by default, it's worth asking why before signing.
+
+## Single Contractor vs. Multiple Specialists
+
+There's a genuine trade-off here. Multiple specialist contractors can mean deeper expertise per trade, but it also means more contracts to manage, more invoices to reconcile, and more inconsistency in reporting standards. A single contractor with directly employed, multi-skilled engineers avoids that fragmentation — which is the model we work to.
+
+[Get a free quote](/quote) for your property or portfolio, or [contact us](/contact) to talk through what should realistically be included for your specific situation.`,
+  },
+  {
+    slug: "void-property-refurbishment-reducing-relet-times",
+    title: "Void Property Refurbishment: How to Reduce Re-Let Times Without Cutting Corners",
+    excerpt:
+      "Every extra day a property sits empty is lost rent. Here's how a well-run void refurbishment process balances speed against genuine quality.",
+    category: "Housing Associations & Landlords",
+    relatedServiceSlug: "void-refurbishment",
+    coverPhoto: "photo-1587582423116-ec07293f0395",
+    content: `A void property — one that's empty between tenancies — costs money every single day it stays empty. For housing associations and landlords alike, [void property refurbishment](/services/void-refurbishment) speed is a genuine financial metric, not just an operational nicety. The challenge is cutting turnaround time without cutting the standard of work.
+
+## Start With an Honest Inspection, Not an Assumption
+
+The biggest cause of void refurbishment delays is discovering additional problems partway through the job — damp behind a unit that wasn't visible until it was removed, wiring that doesn't meet current standards once inspected properly. A thorough initial inspection, done properly rather than rushed, actually speeds up the overall process by avoiding these mid-job surprises.
+
+## Sequence the Work to Avoid Waiting
+
+Void refurbishments that run long are usually ones where trades aren't properly sequenced — painters waiting on electricians, electricians waiting on plasterers. A well-managed void job runs multiple trades in a planned sequence with minimal dead time between them, which is where having one contractor managing directly employed multi-trade teams (rather than juggling separate subcontractors) makes a genuine difference to turnaround time.
+
+## Decide What "Ready to Let" Actually Means Upfront
+
+Is the target a fully refreshed property, or the minimum standard needed to legally and reasonably re-let? Being clear about this before work starts — rather than mid-job — avoids scope creep that extends the timeline. For [housing associations](/sectors/housing-associations) managing many voids simultaneously, having a consistent, agreed standard across the whole portfolio also makes budgeting far more predictable.
+
+## Compliance Checks Shouldn't Be an Afterthought
+
+Gas safety, electrical certification, and any required fire safety checks should be built into the void process as standard steps, not squeezed in at the end when a new tenant is already waiting to move in.
+
+[Request a free quote](/quote) for void turnaround work, or [contact us](/contact) to discuss a standing arrangement across a wider portfolio.`,
+  },
+  {
+    slug: "common-plumbing-problems-in-older-london-properties",
+    title: "Common Plumbing Problems in Older London Properties (And What Actually Fixes Them)",
+    excerpt:
+      "London's period housing stock brings specific plumbing quirks. Here's what comes up most often, and what a proper fix looks like versus a temporary patch.",
+    category: "Plumbing",
+    relatedServiceSlug: "plumbing",
+    coverPhoto: "photo-1749532125405-70950966b0e5",
+    content: `London's mix of Victorian terraces, converted flats, and post-war housing means [plumbing](/services/plumbing) issues here often differ from newer-build housing stock elsewhere. Knowing what's actually causing a problem — rather than just treating the symptom — makes a real difference to whether a fix lasts.
+
+## Low Water Pressure in Converted Flats
+
+Properties split into multiple flats often share original pipework never designed for multiple independent water systems. Low pressure on upper floors is frequently a pipework sizing or shared-supply issue rather than something a new tap or shower head will meaningfully fix — worth diagnosing properly before spending money on fixtures that won't solve the actual problem.
+
+## Noisy Pipes ("Water Hammer")
+
+That banging sound when a tap shuts off is usually air in the system or a loose pipe run, and while it's not usually dangerous, it can indicate pipework that's not properly secured and is wearing at contact points over time.
+
+## Old Lead or Galvanised Pipework
+
+Many older London properties still have sections of original lead or galvanised steel pipework, which degrades from the inside and gradually restricts flow — this shows up as pressure that gradually drops over months or years, easily written off as "just how the building is" when it's actually a specific, fixable issue.
+
+## Boiler and Heating System Age Mismatches
+
+It's common to find a modern combi boiler connected to old radiator pipework sized for a very different heating system — this often shows up as some rooms heating properly and others staying cold, which isn't a boiler fault but a compatibility issue between old and new parts of the system.
+
+## When a Patch Isn't Enough
+
+A quick fix can be the right call for a genuine emergency, but repeated patch jobs on the same recurring issue usually cost more over a few years than one proper repair. If something's been "fixed" more than once, it's worth a proper diagnostic visit rather than another patch.
+
+[Get a free quote](/quote) for a proper diagnosis, or read about our [leak detection service](/services/leak-detection) if you suspect a hidden leak specifically.`,
+  },
+  {
+    slug: "how-professional-leak-detection-actually-works",
+    title: "How Professional Leak Detection Actually Works (Without Ripping Up Your Floors)",
+    excerpt:
+      "A hidden leak doesn't have to mean guesswork and unnecessary damage. Here's what proper leak detection equipment actually does differently.",
+    category: "Plumbing",
+    relatedServiceSlug: "leak-detection",
+    coverPhoto: "photo-1669920282730-ab422e592f97",
+    content: `A damp patch with no obvious source, an unexplained rise in your water bill, a musty smell that won't go away — these are all classic signs of a hidden leak, and the instinct is often to start opening up walls or floors to find it. Proper [leak detection](/services/leak-detection) avoids most of that guesswork entirely.
+
+## Why Guessing Is Expensive
+
+Opening up a wall or lifting flooring to search for a leak is disruptive and, if you guess wrong about the location, needs repeating — sometimes more than once. Beyond the direct cost of unnecessary repair work, incorrect diagnosis means the actual leak keeps causing damage the whole time it goes unaddressed.
+
+## What Actual Diagnostic Equipment Does
+
+Acoustic listening devices can pick up the specific sound signature of water escaping under pressure through pipework, even through walls and floors, narrowing the search area significantly before any invasive work happens. Thermal imaging can reveal temperature differences caused by damp or by hot water pipes, which often shows the path of a leak across a surface rather than just a single point. For trickier cases, tracer gas can be introduced into a pipe system and detected at the point where it escapes — useful where acoustic and thermal methods don't give a clear enough picture on their own.
+
+## What Happens After the Leak Is Found
+
+Proper leak detection identifies the source, not just "somewhere in this general area" — meaning any opening-up work that follows is targeted and minimal, rather than exploratory. This matters as much for cost as it does for disruption, particularly in occupied properties where minimising damage to finishes is a real priority.
+
+## Signs Worth Getting Checked
+
+A water bill that's crept up with no change in usage, a damp patch that reappears after redecorating, a persistent musty smell, or damp reappearing after a previous "repair" are all worth a proper diagnostic visit rather than continued guessing.
+
+[Get a free quote](/quote) for a leak detection visit, or read more about [signs you need an emergency plumber](/blog/signs-you-need-an-emergency-plumber-in-london) if the situation feels urgent.`,
+  },
+  {
+    slug: "why-drains-keep-blocking-and-how-to-actually-stop-it",
+    title: "Why Your Drains Keep Blocking (And How to Actually Stop It Happening Again)",
+    excerpt:
+      "A drain that blocks repeatedly usually has a specific, fixable cause. Here's how to tell a one-off blockage from a recurring structural issue.",
+    category: "Plumbing",
+    relatedServiceSlug: "drain-unblocking",
+    coverPhoto: "photo-1521207418485-99c705420785",
+    content: `A single blocked drain is usually just bad luck — fat, wipes, hair, or tree roots doing what they do. A drain that blocks repeatedly, though, almost always has an underlying cause that a one-off clearance won't fix.
+
+## The Usual Suspects for a One-Off Blockage
+
+Cooking fat poured down a sink and solidifying further along the pipe, wipes and sanitary products flushed despite not being genuinely flushable, and hair building up in bathroom drains are the most common causes of an isolated blockage. [Drain unblocking](/services/drain-unblocking) for these is usually straightforward and the drain runs clear afterwards with no further issue.
+
+## When It's Actually a Structural Problem
+
+If the same drain blocks repeatedly despite normal use, common underlying causes include a partial collapse in the pipe run (creating a ledge where debris catches), tree root ingress at a joint (very common in older London properties with mature trees nearby), or a section of pipe with the wrong fall — meaning it doesn't slope correctly to let water flow away properly, allowing solids to settle rather than clear each time.
+
+## Why a CCTV Drain Survey Is Worth It for Recurring Problems
+
+For a drain that blocks more than once with no obvious cause (like a one-off disposal mistake), a camera survey down the drain line will usually show exactly what's happening — root ingress, a cracked section, a misaligned joint — rather than continuing to clear the symptom every few months without addressing the cause.
+
+## Prevention That Actually Works
+
+For kitchens: no fat down the sink, ever, even small amounts add up. For bathrooms: a simple drain guard catches hair before it becomes a problem. For anything else: if a drain has blocked more than twice in a year, it's worth investigating rather than just calling for another clearance each time.
+
+[Get a free quote](/quote) for drain unblocking, or read about our [drain repairs service](/services/drain-repairs) if you suspect there's an underlying structural issue.`,
+  },
+  {
+    slug: "drain-repairs-cctv-surveys-relining-explained",
+    title: "Drain Repairs Explained: CCTV Surveys, Relining, and When You Actually Need Excavation",
+    excerpt:
+      "Modern drain repair often doesn't require digging up your garden or driveway. Here's what the options actually are, and when each one applies.",
+    category: "Plumbing",
+    relatedServiceSlug: "drain-repairs",
+    coverPhoto: "photo-1530124566582-a618bc2615dc",
+    content: `Drain problems have a reputation for meaning disruptive, expensive excavation work — and sometimes that's genuinely necessary, but modern [drain repair](/services/drain-repairs) techniques mean it's often not the first option, or even needed at all.
+
+## Step One Is Always a Proper Survey
+
+A CCTV drain survey — a camera run through the pipe on a flexible rod — shows exactly what's wrong: a cracked section, root ingress, a misaligned joint, or a partial collapse. This is the single most useful step before agreeing to any repair method, since it tells you precisely what you're actually dealing with rather than guessing from symptoms alone.
+
+## Relining: Fixing a Pipe Without Digging It Up
+
+For cracks, small root intrusions, and joint misalignment, relining — inserting a resin-coated liner into the existing pipe that cures in place to form a new internal pipe wall — can fix the problem without any excavation at all. This is usually faster, less disruptive, and often more cost-effective than digging up a driveway, garden, or floor to access the pipe directly.
+
+## When Excavation Genuinely Is Necessary
+
+A full pipe collapse, severe structural damage, or a section that's shifted significantly out of alignment usually can't be fixed by relining and does need direct access. In these cases, a proper survey beforehand at least means the excavation is targeted to the specific section that needs it, rather than guesswork digging along the whole run.
+
+## Root Ingress Specifically
+
+Established trees near drain runs — common across London's older residential streets — are a frequent cause of root ingress at pipe joints. Depending on severity, this can sometimes be treated with a root cutting and relining combination rather than full excavation, though a survey is needed to confirm this is viable for the specific situation.
+
+If you've had a recurring drain issue or a survey has flagged a problem, [get a free quote](/quote) for the right repair approach, or [contact us](/contact) to talk through the options before committing to a method.`,
+  },
+  {
+    slug: "bathroom-repairs-worth-fixing-vs-refurbishment",
+    title: "Bathroom Repairs: What's Worth Fixing vs. When It's Time for a Refurbishment",
+    excerpt:
+      "Not every bathroom issue needs a full refurbishment. Here's how to tell the difference, and what a straightforward repair can realistically achieve.",
+    category: "Bathrooms",
+    relatedServiceSlug: "bathroom-repairs",
+    coverPhoto: "photo-1631889993959-41b4e9c6e3c5",
+    content: `A cracked tile, a leaking seal, a toilet that won't stop running — these are all genuine [bathroom repair](/services/bathroom-repairs) jobs, and none of them require pulling the whole room apart. Knowing where the line sits between "repair" and "refurbishment" saves both money and unnecessary disruption.
+
+## Repairs That Are Usually Straightforward
+
+Re-sealing around a bath or shower tray, replacing a cracked tile or two (assuming matching tiles are available), fixing a running or leaking toilet, replacing a tap or shower valve, and addressing minor grout deterioration are all jobs that can typically be handled as standalone repairs without touching the rest of the room.
+
+## When a "Repair" Signals a Bigger Issue
+
+Recurring seal failure around the same bath or shower often points to movement in the structure beneath — worth investigating rather than just resealing again. Tiles cracking in a pattern (rather than a single impact-damaged tile) can indicate movement in the wall or floor behind them. Persistent mould despite cleaning, especially if it returns quickly, usually means a ventilation problem rather than a cleaning problem.
+
+## The Genuine Cost Difference
+
+A standalone repair is, unsurprisingly, far cheaper than a full [bathroom refurbishment](/services/bathroom-refurbishment) — but repairing around an underlying issue repeatedly (the reseal-and-recrack cycle) can end up costing more over a couple of years than addressing the actual cause once.
+
+## Getting an Honest Assessment
+
+A good repair visit should tell you clearly if what looks like a simple fix is actually a symptom of something bigger — not just complete the visible repair and leave the underlying cause for you to discover again in six months.
+
+[Get a free quote](/quote) for a bathroom repair, and we'll be straightforward with you about whether it's a standalone fix or something that points to a bigger job.`,
+  },
+  {
+    slug: "bathroom-installation-what-to-check-before-you-commit",
+    title: "Bathroom Installation: What to Check Before You Commit to a Suite",
+    excerpt:
+      "Choosing bathroom fittings is the fun part. Here's what actually matters for installation quality that you won't see once the room is finished.",
+    category: "Bathrooms",
+    relatedServiceSlug: "bathroom-installation",
+    coverPhoto: "photo-1695002817411-203c7f19dfa3",
+    content: `Picking taps, tiles, and a suite is the enjoyable part of a [bathroom installation](/services/bathroom-installation) — but the things that determine whether it still looks and works well in five years mostly happen before any of that's visible.
+
+## Check the Waste and Supply Positions First
+
+Before committing to a specific suite layout, confirm where the existing waste pipes and water supplies actually run. Moving them is entirely possible, but it adds cost and time — knowing this upfront means the layout decision is made with full information, not as a surprise once installation starts.
+
+## Not All "Standard" Sizes Are Actually Standard
+
+Toilet pan-to-wall dimensions, bath lengths, and shower tray sizes vary more between manufacturers than people expect. If you've already chosen fittings, it's worth confirming compatibility with the existing room dimensions and waste positions before they're ordered, rather than after delivery.
+
+## Tap and Valve Quality Matters More Than It Looks
+
+Two taps can look almost identical while having very different internal mechanisms — cheaper cartridge valves tend to wear and drip within a few years, while better-quality valves last considerably longer. This is genuinely one area where spending a bit more upfront avoids a repeat repair job later.
+
+## Ventilation Should Be Part of the Installation Conversation
+
+An extractor fan's specification and ducting route are far easier to sort out during installation planning than retrofitted afterward. A beautifully installed suite in a poorly ventilated room will develop condensation and mould issues regardless of fitting quality.
+
+## Getting It Installed Properly the First Time
+
+A rushed installation shows up later as movement, minor leaks at joints, or uneven fittings — problems that are avoidable with careful, unhurried installation work rather than a race to finish.
+
+[Request a free quote](/quote) for a new bathroom installation, and see [some of our recent bathroom projects](/projects) for a sense of finished quality.`,
+  },
+  {
+    slug: "flooring-repairs-what-causes-most-floor-problems",
+    title: "Flooring Repairs: What Actually Causes Most Floor Problems in London Homes",
+    excerpt:
+      "Squeaky boards, uneven floors, and lifting flooring usually have a specific cause. Here's what to look for before deciding on a fix.",
+    category: "Interiors & Finishing",
+    relatedServiceSlug: "flooring-repairs",
+    coverPhoto: "photo-1659930087003-2d64e33181f7",
+    content: `A squeaking floorboard is annoying but rarely serious. Uneven or lifting flooring, on the other hand, is often a sign of something worth investigating properly rather than just patching over. [Flooring repairs](/services/flooring-repairs) work best when they address the actual cause.
+
+## Squeaking and Creaking
+
+Usually caused by boards that have loosened from their joists over time, or friction between boards that have dried and shrunk slightly. A straightforward, targeted fix — refixing the board properly rather than just adding more nails on top of the problem — usually resolves this permanently.
+
+## Uneven or Sloping Floors
+
+In older London properties, some settlement is normal and not necessarily a structural concern — but a sudden change, or a slope that's got noticeably worse recently, is worth having assessed rather than assumed to be "just an old house."
+
+## Lifting or Bubbling Laminate and Vinyl
+
+Almost always caused by moisture getting underneath the flooring, either from a spill that's worked its way under an edge, or from moisture rising through a concrete subfloor without adequate damp-proofing. Replacing the visible flooring without addressing the moisture source means the same problem returns.
+
+## Damaged Sections of Solid or Engineered Wood
+
+A localised repair — replacing individual damaged boards while matching the existing finish — is usually possible and considerably less disruptive than replacing an entire floor, provided matching material is available.
+
+## When to Repair vs. Replace
+
+If the damage or wear is localised and the rest of the floor is in good condition, a repair is usually the sensible option. If problems are appearing across multiple areas, it's often more cost-effective to address the whole floor properly in one job rather than repeatedly patching individual sections.
+
+[Get a free quote](/quote) for flooring repairs, and we'll give you an honest view on repair versus replacement for your specific situation.`,
+  },
+  {
+    slug: "wall-and-floor-tiling-what-good-tiling-actually-looks-like",
+    title: "Wall & Floor Tiling: What Separates a Good Job From a Bad One",
+    excerpt:
+      "Tiling looks straightforward until it's done badly. Here's what to check for, and why the prep work matters more than the tiles themselves.",
+    category: "Interiors & Finishing",
+    relatedServiceSlug: "tiling",
+    coverPhoto: "photo-1629079447777-1e605162dc8d",
+    content: `Tiling is one of those jobs that looks deceptively simple when done well, and becomes obviously wrong fairly quickly when it isn't. Most of what separates good [wall and floor tiling](/services/tiling) from bad happens before a single tile is actually laid.
+
+## Surface Preparation Is Most of the Job
+
+Tiles laid directly onto an uneven or poorly prepared surface will show every imperfection underneath — lippage (uneven edges between adjacent tiles), inconsistent grout lines, and tiles that don't sit flush. Proper preparation, including levelling where needed, takes time that's easy to underestimate when quoting a job, which is often where corners get cut.
+
+## Waterproofing Behind Tiles (Tanking) Isn't Optional in Wet Areas
+
+In bathrooms and other wet areas, waterproof membrane behind the tiles — not just grout and sealant on the surface — is what actually stops water getting into the structure behind. This is invisible once finished, which is exactly why it's the step most likely to be skipped by a contractor cutting corners.
+
+## Grout Lines Should Be Consistent
+
+Uneven grout line widths are one of the clearest visual signs of rushed or careless tiling work, usually caused by not using spacers properly or not checking alignment as the work progresses rather than only at the end.
+
+## Cutting Around Fixtures Properly
+
+Neat cuts around pipes, sockets, and fittings — rather than large gaps covered by excessive sealant — are a genuine marker of a careful tiler versus one rushing to finish.
+
+## What to Check Before Accepting a Finished Job
+
+Run a hand across the surface feeling for lippage, check grout line consistency across the whole area (not just the most visible section), and confirm waterproofing was actually included in wet areas rather than assumed.
+
+[Get a free quote](/quote) for tiling work, whether it's a full bathroom or a kitchen splashback.`,
+  },
+  {
+    slug: "carpentry-and-joinery-repair-vs-replace",
+    title: "Carpentry & Joinery: When to Repair Original Features vs. When to Replace Them",
+    excerpt:
+      "Original doors, skirting, and staircases in period London properties are often worth repairing rather than replacing. Here's how to tell.",
+    category: "Interiors & Finishing",
+    relatedServiceSlug: "carpentry-joinery",
+    coverPhoto: "photo-1561297331-a9c00b9c2c44",
+    content: `Period London properties often have original doors, skirting, staircases, and other joinery that's genuinely worth preserving — both for character and, frequently, for the quality of timber used compared to modern equivalents. Good [carpentry and joinery](/services/carpentry-joinery) work knows when to repair rather than automatically replace.
+
+## Original Doors Are Usually Repairable
+
+Sticking doors are often a hinge or slight swelling issue, not a sign the door needs replacing. Even genuine damage — a cracked panel, a damaged frame — can usually be repaired by a skilled joiner working with matching timber, preserving the original character rather than fitting a modern replacement that won't match the rest of the property.
+
+## Skirting and Architrave
+
+Damaged sections can usually be spliced in and matched to existing profiles, rather than requiring an entire room's skirting to be replaced for one damaged length. This is both more cost-effective and better for keeping a consistent look throughout a property.
+
+## Staircases Need a Careful Assessment
+
+A creaking or slightly loose staircase is often fixable by addressing specific loose joints or worn treads, rather than requiring full replacement — genuine structural issues are less common than general wear, though any staircase with real movement or instability should be properly assessed rather than assumed to be cosmetic.
+
+## When Replacement Genuinely Makes Sense
+
+Severe rot, genuine structural failure, or damage beyond what timber matching can reasonably address are the situations where replacement is the sensible call rather than repair. A good joiner will tell you honestly when this is the case rather than defaulting to the more expensive option.
+
+## Matching New Work to Old
+
+Where new joinery is needed alongside original features — an extension, a replaced section — matching profiles, timber type, and finish properly is what makes new work blend in rather than visibly clash.
+
+[Get a free quote](/quote) for carpentry and joinery work, whether it's a repair or a considered replacement.`,
+  },
+  {
+    slug: "painting-and-decorating-what-actually-makes-paint-last",
+    title: "Painting & Decorating: What Actually Makes a Paint Job Last (It's Not the Paint)",
+    excerpt:
+      "Two identical paints can perform very differently depending on what happens before the roller comes out. Here's what actually matters.",
+    category: "Interiors & Finishing",
+    relatedServiceSlug: "painting-decorating",
+    coverPhoto: "photo-1632918572888-7a975f4b67b6",
+    content: `It's a common assumption that paint quality is what determines how long a paint job lasts. In practice, preparation matters more than the paint itself — a premium paint over poor prep will fail faster than a mid-range paint over properly prepared surfaces. Good [painting and decorating](/services/painting-decorating) is mostly about the steps before painting starts.
+
+## Preparation Is Most of the Work
+
+Filling cracks and holes properly (not just skimming over them), sanding surfaces to give paint something to key into, and removing flaking or loose old paint before applying new coats are all essential — and all invisible once the job's finished, which is exactly why they're the steps most likely to be rushed by less careful decorators.
+
+## Priming Isn't Always Optional
+
+Bare plaster, particularly on new plasterwork, needs a proper mist coat (a diluted first coat) to seal it before full-strength paint is applied — skipping this typically means uneven absorption and a patchy finish. Similarly, painting over a stain (water damage, nicotine, marker) without a stain-blocking primer usually means the stain reappears through the new paint within weeks.
+
+## Number of Coats Matters More Than People Expect
+
+Two coats is standard for a reason — one coat, even of good paint, rarely gives even, durable coverage. If a quote seems significantly cheaper than others, it's worth checking whether it's actually specifying two full coats or just one.
+
+## Ventilation and Drying Time
+
+Rushing drying time between coats, or painting in poor ventilation, both lead to a less durable finish. This is one of the more common ways a job gets compressed to save time at the expense of the result lasting well.
+
+## What a Well-Prepared Job Looks Like When Finished
+
+Even coverage with no patchiness, clean sharp lines at edges and corners, and a finish that doesn't show brush or roller marks under normal lighting — these are the visible signs that the invisible preparation work was actually done properly.
+
+[Get a free quote](/quote) for painting and decorating, whether it's a single room or a full property.`,
+  },
+  {
+    slug: "electrical-services-warning-signs-not-to-ignore",
+    title: "Electrical Services: Warning Signs in Your Property You Shouldn't Ignore",
+    excerpt:
+      "Some electrical issues are cosmetic. Others are genuine safety risks. Here's how to tell the difference and when to get something checked urgently.",
+    category: "Electrical",
+    relatedServiceSlug: "electrical",
+    coverPhoto: "photo-1621905251189-08b45d6a269e",
+    content: `Electrical problems range from a minor nuisance to a genuine safety hazard, and it's not always obvious which category a given symptom falls into. Knowing the warning signs worth acting on quickly is worth understanding before you need [electrical services](/services/electrical) urgently.
+
+## Signs Worth Getting Checked Promptly
+
+A burning smell near sockets or the fuse box, sockets or switches that feel warm to the touch, frequent tripping of the same circuit breaker, flickering lights that aren't just a loose bulb, and visible scorch marks around any socket or switch are all signs that warrant a professional visit soon rather than being monitored and hoped to resolve on their own.
+
+## What Frequent Tripping Actually Means
+
+A circuit breaker tripping repeatedly is doing its job — protecting you from a fault — but the underlying cause (an overloaded circuit, a faulty appliance, deteriorating wiring) needs identifying rather than just resetting the breaker each time and moving on.
+
+## Old Fuse Boxes and Consumer Units
+
+Properties with an older fuse box (rather than a modern consumer unit with RCD protection) lack some of the safety protections built into current wiring regulations. This isn't automatically dangerous, but it's worth having assessed, particularly ahead of any other electrical work being carried out in the property.
+
+## Rented Property Compliance
+
+Landlords are required to have electrical installations inspected periodically and hold a valid Electrical Installation Condition Report (EICR). If you're a [landlord](/sectors/landlords) and aren't sure when your last EICR was carried out or when it expires, this is worth checking — it's both a legal requirement and a genuine safety matter.
+
+## When It's Genuinely an Emergency
+
+No power at all, a burning smell that's strong or getting worse, or visible sparking should be treated as urgent — turn off the supply at the consumer unit if you can safely do so, and get it looked at immediately rather than waiting for a scheduled visit.
+
+[Get a free quote](/quote) for electrical work, or [report an urgent issue](/report-repair) if something needs prompt attention.`,
+  },
+  {
+    slug: "damp-and-mould-treatment-what-actually-works",
+    title: "Damp & Mould Treatment: What Actually Works (And What's Just a Temporary Fix)",
+    excerpt:
+      "Bleach and a fresh coat of paint will hide mould temporarily. Here's what actually stops it coming back, and why identifying the type of damp matters.",
+    category: "Damp & Mould",
+    relatedServiceSlug: "damp-mould",
+    coverPhoto: "photo-1517646287270-a5a9ca602e5c",
+    content: `Mould that keeps coming back despite regular cleaning is one of the most common — and most frustrating — property issues, precisely because surface cleaning treats the symptom without addressing why the mould is growing in the first place. Effective [damp and mould treatment](/services/damp-mould) starts with identifying which type of damp is actually present.
+
+## Condensation Damp
+
+By far the most common type in occupied properties, caused by warm moist air (from cooking, showering, drying laundry indoors) meeting cold surfaces and condensing. This shows up typically on external walls, in corners, and around windows, and is fundamentally a ventilation and heating issue rather than a structural one — extractor fans, trickle vents, and consistent heating are the actual fix, not just cleaning the visible mould.
+
+## Rising Damp
+
+Genuinely less common than people assume, but does occur where a damp-proof course has failed or was never properly installed, allowing ground moisture to rise through walls. This typically shows as damp patches low on walls, often with a "tide mark," and needs a different treatment approach entirely from condensation.
+
+## Penetrating Damp
+
+Caused by water getting in from outside — a damaged roof, defective guttering, cracked render, or a failed seal around a window — and showing up as damp patches that often correlate with rainfall. This requires finding and fixing the actual point of water entry, since treating the internal symptom without fixing the external cause means it simply returns.
+
+## Why Awaab's Law Makes This More Urgent for Social Housing
+
+Since October 2025, [housing associations and local authorities](/blog/awaabs-law-what-housing-associations-need-to-do-now) face strict legal timeframes for investigating and resolving damp and mould hazards — which makes correctly identifying the damp type on the first visit more important than ever, since misdiagnosis leads to repeat visits within an already tight compliance window.
+
+## Getting a Proper Diagnosis
+
+A good damp treatment starts with correctly identifying which type (or combination) is present — this isn't always obvious from the visible symptom alone, and treating the wrong type means the problem returns regardless of how thoroughly the visible mould was cleaned.
+
+[Get a free quote](/quote) for a proper damp assessment, or [contact us](/contact) if you're managing a portfolio with recurring damp issues.`,
+  },
+  {
+    slug: "insurance-reinstatement-what-to-expect-after-a-claim",
+    title: "Insurance Reinstatement: What to Expect After a Property Damage Claim",
+    excerpt:
+      "Fire, flood, or storm damage is stressful enough without confusing reinstatement work. Here's how the process typically works from claim to completion.",
+    category: "Insurance & Restoration",
+    relatedServiceSlug: "insurance-reinstatement",
+    coverPhoto: "photo-1558227691-41ea78d1f631",
+    content: `Dealing with significant property damage — from a burst pipe, fire, or storm — is stressful enough without also navigating an unfamiliar reinstatement process. Understanding roughly how [insurance reinstatement](/services/insurance-reinstatement) work actually proceeds can make a difficult situation more manageable.
+
+## The Process Usually Starts With a Loss Adjuster
+
+After a claim is submitted, your insurer will typically appoint a loss adjuster to assess the damage and agree the scope of work with you. A reinstatement contractor's role is to carry out the agreed scope properly — which is why clear communication between contractor, loss adjuster, and property owner matters throughout, rather than just at the start.
+
+## Scope Can Change Once Work Begins
+
+It's genuinely common for the true extent of damage to become clearer once work starts — water damage behind a wall that wasn't visible until it was opened up, for instance. A good reinstatement contractor documents this properly and communicates with the loss adjuster promptly, rather than either quietly expanding the job or ignoring damage that should be included in the claim.
+
+## Matching, Not Just Replacing
+
+Reinstatement isn't simply "put it back" — it's putting it back to match the pre-loss condition as closely as reasonably possible, which sometimes means sourcing matching materials, replicating period details, or coordinating multiple trades to restore a finish that took the original build considerable time to achieve.
+
+## Documentation Matters Throughout
+
+Photographs before, during, and after work, clear records of what was found and what was done, and organised communication with your insurer's process all make claims settle more smoothly — this is worth confirming a contractor does as standard, not as an optional extra.
+
+## Timeframes Are Often Longer Than Expected
+
+Between assessment, scope agreement, materials sourcing (particularly for period properties), and the work itself, reinstatement timelines are often longer than people initially expect. A contractor who gives you a realistic timeline upfront, rather than an optimistic one, makes the process considerably less stressful.
+
+[Contact us](/contact) if you're dealing with an active insurance claim, or [get a free quote](/quote) for reinstatement work already scoped with your insurer.`,
+  },
+  {
+    slug: "commercial-refurbishment-minimising-disruption-to-trading",
+    title: "Commercial Refurbishment: How to Minimise Disruption While You're Still Trading",
+    excerpt:
+      "Closing entirely for a refurbishment isn't always an option. Here's how a well-planned commercial refurbishment works around an operating business.",
+    category: "Commercial",
+    relatedServiceSlug: "commercial-refurbishment",
+    coverPhoto: "photo-1694521787193-9293daeddbaa",
+    content: `Refurbishing a commercial space while it's still trading is a genuinely different challenge from refurbishing an empty property — every day of disruption has a direct cost, and the work needs to be planned around the business's operating hours, not just the trades' preferences. Good [commercial refurbishment](/services/commercial-refurbishment) is built around this constraint from the start.
+
+## Phasing Is Usually the Answer
+
+Rather than closing an entire space, a phased approach — completing one section while the rest remains operational, then moving to the next — is usually how commercial refurbishments avoid a full shutdown. This takes more careful planning than a single continuous job, but it keeps revenue flowing throughout.
+
+## Working Outside Operating Hours
+
+For noisier or more disruptive work, out-of-hours working (evenings, overnight, weekends) is often the practical solution, even though it typically costs more than standard daytime hours — the trade-off against lost trading time usually makes this worthwhile for active businesses.
+
+## Dust and Noise Containment
+
+Proper containment — temporary partitions, dust screens, controlled access points — matters more in a trading environment than an empty one, both for customer experience and for compliance with health and safety obligations to staff and visitors during the works.
+
+## Planning Around Deliveries and Access
+
+Refurbishment work needs to coexist with a business's normal deliveries, customer access, and staff movement — this needs discussing properly upfront rather than assumed, since a refurbishment that blocks a business's normal operations defeats the purpose of trying to stay open during it.
+
+## Communication Throughout the Job
+
+Regular updates on progress and any changes to the plan matter more in a live commercial environment, where a business needs to plan staffing, marketing, and customer communication around the works.
+
+[Get a free quote](/quote) for a commercial refurbishment, and we'll talk through a phased plan that works around your trading hours from the outset.`,
+  },
+  {
+    slug: "general-construction-what-actually-needs-building-control",
+    title: "General Construction: What Actually Needs Building Control Sign-Off (And What Doesn't)",
+    excerpt:
+      "Not every building project needs formal building control approval, but getting this wrong can cause real problems later. Here's a practical guide.",
+    category: "Construction",
+    relatedServiceSlug: "construction",
+    coverPhoto: "photo-1574757987642-5755f0839101",
+    content: `One of the most common points of confusion in [general construction](/services/construction) work is whether a given project needs formal Building Control approval. Getting this wrong — either assuming approval isn't needed when it is, or over-engineering a simple project unnecessarily — causes real problems, so it's worth understanding the basics.
+
+## Work That Usually Needs Building Control
+
+Structural alterations (removing or altering load-bearing walls), extensions, loft conversions, and significant changes to drainage or structural waterproofing typically require Building Control sign-off, either through your local authority or an approved private inspector. This isn't optional paperwork — it protects you when selling the property later, since a lack of proper certification for structural work is a common cause of delays or complications in property sales.
+
+## Work That Usually Doesn't
+
+Like-for-like repairs, most internal non-structural work (a stud partition that isn't load-bearing), and cosmetic refurbishment generally fall outside Building Control requirements — though it's always worth confirming for your specific situation rather than assuming, since the line isn't always obvious from the outside.
+
+## Why This Matters Even If You're Not Selling Soon
+
+Unauthorised structural work discovered later — during a survey ahead of a sale, or by a mortgage lender's valuer — can hold up or even derail a transaction, sometimes years after the work was actually done. Getting proper sign-off at the time avoids this becoming a problem down the line.
+
+## Party Wall Considerations
+
+If work affects a shared wall with a neighbouring property (common in London's terraced and semi-detached housing), the Party Wall Act may apply, requiring formal notice to neighbours before work begins — a separate process from Building Control, and one that's easy to overlook until a neighbour raises it.
+
+## Getting It Right From the Start
+
+A contractor who raises Building Control and Party Wall questions proactively, before work begins rather than after a neighbour or inspector flags it, saves considerable stress later.
+
+[Get a free quote](/quote) for construction work, and we'll talk through what approvals your specific project actually needs.`,
+  },
 ];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -324,15 +870,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         published_at TIMESTAMPTZ
       );
     `);
+    await pool.query(`ALTER TABLE blog_posts ADD COLUMN IF NOT EXISTS related_service_slug TEXT;`);
 
     let inserted = 0;
     for (const post of POSTS) {
       const { rows: existing } = await pool.query(`SELECT id FROM blog_posts WHERE slug = $1;`, [post.slug]);
       if (existing.length > 0) continue;
       await pool.query(
-        `INSERT INTO blog_posts (slug, title, excerpt, content, category, cover_photo, status, published_at)
-         VALUES ($1, $2, $3, $4, $5, $6, 'published', now());`,
-        [post.slug, post.title, post.excerpt, post.content, post.category, post.coverPhoto]
+        `INSERT INTO blog_posts (slug, title, excerpt, content, category, cover_photo, related_service_slug, status, published_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, 'published', now());`,
+        [post.slug, post.title, post.excerpt, post.content, post.category, post.coverPhoto, post.relatedServiceSlug || null]
       );
       inserted++;
     }
