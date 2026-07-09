@@ -5,7 +5,6 @@ import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
 import { Footer } from "../components/Footer";
-import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
 import { ServiceSelect } from "../components/ServiceSelect";
 import { cn } from "../lib/utils";
@@ -52,13 +51,16 @@ export function Quote() {
       <Seo title={seoMeta.quote.title} description={seoMeta.quote.description} path="/quote" />
       <Header />
       <main>
-        <PageHero
-          eyebrow="Request a Quote"
-          title="Get a Free Quote"
-          subtitle="We'll come back to you within one working day."
-          compact
-          showBreadcrumb={false}
-        />
+        <div className="pt-20 lg:pt-24 pb-2 px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl">
+            <p className="text-sm text-slate leading-snug">
+              We&rsquo;ll come back to you within one working day.
+            </p>
+            <h1 className="mt-1 font-display font-bold text-navy-900 text-base sm:text-lg leading-snug">
+              Get a Free Quote
+            </h1>
+          </div>
+        </div>
 
         <section className="py-8 lg:py-12">
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
