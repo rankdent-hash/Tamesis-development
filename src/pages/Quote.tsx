@@ -51,7 +51,7 @@ export function Quote() {
       <Seo title={seoMeta.quote.title} description={seoMeta.quote.description} path="/quote" />
       <Header />
       <main>
-        <div className="pt-20 lg:pt-24 pb-2 px-6 lg:px-8">
+        <div className="pt-28 lg:pt-32 pb-2 px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">
             <p className="text-sm text-slate leading-snug">
               We&rsquo;ll come back to you within one working day.
