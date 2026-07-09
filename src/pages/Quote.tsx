@@ -54,12 +54,13 @@ export function Quote() {
       <main>
         <PageHero
           eyebrow="Request a Quote"
-          title="Get a Clear, No-Obligation Quote"
-          subtitle="Tell us a little about the work and we'll come back to you with a clear quote — usually within one working day."
-          breadcrumb="Request a Quote"
+          title="Get a Free Quote"
+          subtitle="We'll come back to you within one working day."
+          compact
+          showBreadcrumb={false}
         />
 
-        <section className="py-24 lg:py-32">
+        <section className="py-8 lg:py-12">
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
                 {/* Progress bar */}
                 <div className="mb-10">

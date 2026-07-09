@@ -6,12 +6,14 @@ export function PageHero({
   subtitle,
   breadcrumb,
   compact = false,
+  showBreadcrumb = true,
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
-  breadcrumb: string;
+  breadcrumb?: string;
   compact?: boolean;
+  showBreadcrumb?: boolean;
 }) {
   return (
     <section
@@ -26,11 +28,13 @@ export function PageHero({
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-navy-100/60 font-medium mb-6">
-          <a href="/" className="hover:text-blue-400 transition-colors">Home</a>
-          <ChevronRight size={12} />
-          <span className="text-navy-100/90">{breadcrumb}</span>
-        </nav>
+        {showBreadcrumb && breadcrumb && (
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-navy-100/60 font-medium mb-6">
+            <a href="/" className="hover:text-blue-400 transition-colors">Home</a>
+            <ChevronRight size={12} />
+            <span className="text-navy-100/90">{breadcrumb}</span>
+          </nav>
+        )}
 
         <span className="text-xs font-accent uppercase tracking-widest text-blue-400 font-semibold">{eyebrow}</span>
         <h1
@@ -43,7 +47,9 @@ export function PageHero({
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-4 text-navy-100/75 max-w-xl leading-relaxed">{subtitle}</p>
+          <p className={compact ? "mt-3 text-navy-100/75 max-w-xl leading-relaxed" : "mt-4 text-navy-100/75 max-w-xl leading-relaxed"}>
+            {subtitle}
+          </p>
         )}
       </div>
     </section>
