@@ -1,4 +1,4 @@
-import { Phone, Star, ShieldCheck, HardHat } from "lucide-react";
+import { Phone, Star, ShieldCheck, HardHat, Tag } from "lucide-react";
 import { HeroQuoteForm } from "./HeroQuoteForm";
 import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
@@ -29,19 +29,6 @@ export function ConversionHero({
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
-        {/* Trust bar — above everything, per conversion research */}
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6 text-[13px] font-medium text-navy-100/85">
-          <span className="flex items-center gap-1.5">
-            <Star size={14} className="text-orange-400 fill-orange-400" /> 4.6★ from 535+ reviews
-          </span>
-          <span className="flex items-center gap-1.5">
-            <HardHat size={14} className="text-orange-400" /> Directly employed engineers
-          </span>
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck size={14} className="text-orange-400" /> Fully insured
-          </span>
-        </div>
-
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-12 items-start">
           <div>
             {urgent && (
@@ -55,7 +42,15 @@ export function ConversionHero({
             </h1>
             <p className="mt-5 text-base sm:text-lg text-navy-100/80 max-w-xl leading-relaxed">{subtitle}</p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            {/* Offer badge — deliberately sits right before the CTAs, where it does the most work */}
+            <div className="mt-6 inline-flex items-center gap-2.5 rounded-xl bg-amber-400 text-navy-950 pl-3 pr-4 py-2.5 shadow-card">
+              <span className="flex w-7 h-7 shrink-0 items-center justify-center rounded-full bg-navy-950 text-amber-400">
+                <Tag size={14} strokeWidth={2} />
+              </span>
+              <span className="text-sm font-bold leading-tight">£25 off your call-out charge</span>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
                 href={telHref}
                 className={
@@ -80,6 +75,19 @@ export function ConversionHero({
                 Prefer not to call? <a href="#quote-form" className="text-orange-400 font-semibold hover:underline">Send us the details</a> and we'll call you back.
               </p>
             )}
+
+            {/* Trust bar — now sits under the CTAs as reinforcement */}
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] font-medium text-navy-100/85">
+              <span className="flex items-center gap-1.5">
+                <Star size={14} className="text-orange-400 fill-orange-400" /> 4.6★ from 535+ reviews
+              </span>
+              <span className="flex items-center gap-1.5">
+                <HardHat size={14} className="text-orange-400" /> Directly employed engineers
+              </span>
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck size={14} className="text-orange-400" /> Fully insured
+              </span>
+            </div>
           </div>
 
           <div id="quote-form" className="flex justify-center lg:justify-end scroll-mt-28">
