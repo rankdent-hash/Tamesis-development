@@ -19,6 +19,7 @@ import {
   updateBlogPost,
   deleteBlogPost,
   seedBlogPosts,
+  seedBlogPostsBatch2,
   type AdminBlogPost,
 } from "../../lib/adminAuth";
 
@@ -122,6 +123,24 @@ export function BlogAdmin() {
       load();
     } else {
       setError(result.error || "Failed to add starter posts");
+    }
+  };
+
+  const [seeding2, setSeeding2] = useState(false);
+  const handleSeedBatch2 = async () => {
+    setSeeding2(true);
+    setSeedMessage(null);
+    const result = await seedBlogPostsBatch2();
+    setSeeding2(false);
+    if (result.success) {
+      setSeedMessage(
+        result.inserted && result.inserted > 0
+          ? `Added ${result.inserted} new article${result.inserted === 1 ? "" : "s"} from the 3-month content strategy.`
+          : "Everything from this batch is already published."
+      );
+      load();
+    } else {
+      setError(result.error || "Failed to add content strategy posts");
     }
   };
 
@@ -240,6 +259,9 @@ export function BlogAdmin() {
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleSeed} disabled={seeding}>
             <Sparkles size={13} /> {seeding ? "Checking..." : "Publish Starter Articles"}
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleSeedBatch2} disabled={seeding2}>
+            <Sparkles size={13} /> {seeding2 ? "Checking..." : "Publish 3-Month Content Strategy (9 posts)"}
           </Button>
           <Button variant="primary" size="sm" onClick={openNew}>
             <Plus size={14} /> New Post

@@ -201,6 +201,22 @@ Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual 
 
 Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
 
+## 3-month content strategy — 9 researched posts, staggered publish dates
+
+A second, deliberately more thorough batch beyond the original starter posts — each grounded in real research (Semrush search volume/CPC data where relevant, live UK web research for pricing, legal, and compliance facts) rather than general knowledge alone, seeded via `api/seed-blog-posts-batch2.ts`. Triggered from the admin Blog toolbar's second button ("Publish 3-Month Content Strategy") — kept separate from the original seed endpoint since this batch needed a feature the first one didn't: **explicit, staggered publish dates** rather than everything landing on "now." Dates run from 9 July to 6 August 2026 (roughly one post every 3-4 days), which required a small but real change — the original seed pattern always used `now()` for `published_at`; this batch inserts an explicit date per post instead.
+
+Every post includes the 4 required internal links (home page, a relevant service page, `/contact`, `/about`), verified programmatically before deployment rather than eyeballed.
+
+1. *How Much Does a Plumber Cost in London?* — real 2026 UK pricing data (hourly rates, call-out fees, common job costs)
+2. *Do Plumbers Fix Boilers? What's Actually Included in a Plumbing Callout* — the plumber vs. Gas Safe heating engineer distinction, researched properly rather than assumed (this also resolves the "confirm before excluding" flag left open in the Google Ads negative keywords work)
+3. *How to Choose a Reliable Plumber in London*
+4. *How Much Does a Bathroom Renovation Cost in London?* — companion to the existing planning-guide post, distinct cost-focused search intent
+5. *What Does a Handyman Actually Do? A Guide for London Homeowners* — supports the Handyman London content gap identified in the keyword research
+6. *Property Maintenance in Croydon: A Local Guide* — the highest-demand individual area from the location keyword research
+7. *Can You Claim Compensation for Damp and Mould?* — real UK housing disrepair law and process, directly complementing the existing Awaab's Law post
+8. *Preparing Your Rental Property for Winter: A London Landlord's Checklist*
+9. *Property Maintenance in Ealing: A Local Guide* — second-highest-demand area researched
+
 ## PPC landing pages (plumbing sub-services)
 
 3 dedicated conversion-focused landing pages, built specifically for the Google Ads plumbing campaign's ad groups that previously pointed at generic pages — grounded in current UK plumbing-PPC conversion research (consistent across sources: message match between ad and page, prominent click-to-call, trust signals above the fold, single dominant CTA):
