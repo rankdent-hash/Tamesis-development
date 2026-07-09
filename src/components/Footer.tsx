@@ -210,6 +210,7 @@ export function Footer() {
             <a href="/cookie-policy" className="hover:text-orange-400 transition-colors">Cookie Policy</a>
             <a href="/terms" className="hover:text-orange-400 transition-colors">Terms</a>
             <a href="/sitemap" className="hover:text-orange-400 transition-colors">Sitemap</a>
+            <a href="/site-explorer" className="hover:text-orange-400 transition-colors">Site Explorer</a>
             <a href="/admin" className="hover:text-orange-400 transition-colors">Admin Login</a>
           </div>
         </div>

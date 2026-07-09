@@ -229,6 +229,41 @@ export function ServiceTemplate({ service }: { service: Service }) {
           </div>
         </section>
 
+        {/* Specific plumbing sub-services — only shown on the Plumbing and Drainage page */}
+        {service.slug === "plumbing" && (
+          <section className="py-16 lg:py-20 bg-navy-50">
+            <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Specific Needs</span>
+              <h2 className="mt-3 font-display font-bold text-navy-900 text-2xl sm:text-3xl leading-tight">
+                Looking for Something Specific?
+              </h2>
+              <div className="mt-8 grid sm:grid-cols-3 gap-5">
+                <a
+                  href="/services/emergency-plumbing"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Emergency Plumbing</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Burst pipes, flooding, no heating — fast response, any time.</p>
+                </a>
+                <a
+                  href="/services/blocked-drains"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Blocked Drains</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Same-day drain unblocking, with an honest answer if it's recurring.</p>
+                </a>
+                <a
+                  href="/services/landlord-plumbing"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Landlord &amp; Gas Safety</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">CP12 certificates and reliable plumbing for rental portfolios.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Related blog post, if one exists for this service */}
         {relatedPost && (
           <section className="py-16 lg:py-20 bg-navy-50">

@@ -34,6 +34,10 @@ const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy").then((m) 
 const CookiePolicy = lazy(() => import("./pages/legal/CookiePolicy").then((m) => ({ default: m.CookiePolicy })));
 const SitemapPage = lazy(() => import("./pages/SitemapPage").then((m) => ({ default: m.SitemapPage })));
 const ThankYou = lazy(() => import("./pages/ThankYou").then((m) => ({ default: m.ThankYou })));
+const EmergencyPlumbing = lazy(() => import("./pages/EmergencyPlumbing").then((m) => ({ default: m.EmergencyPlumbing })));
+const BlockedDrains = lazy(() => import("./pages/BlockedDrains").then((m) => ({ default: m.BlockedDrains })));
+const LandlordPlumbing = lazy(() => import("./pages/LandlordPlumbing").then((m) => ({ default: m.LandlordPlumbing })));
+const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const Admin = lazy(() => import("./pages/admin/Admin").then((m) => ({ default: m.Admin })));
@@ -57,6 +61,9 @@ function App() {
           {Object.entries(retiredServiceRedirects).map(([oldSlug, newSlug]) => (
             <Route key={oldSlug} path={`/services/${oldSlug}`} element={<Navigate to={`/services/${newSlug}`} replace />} />
           ))}
+          <Route path="/services/emergency-plumbing" element={<EmergencyPlumbing />} />
+          <Route path="/services/blocked-drains" element={<BlockedDrains />} />
+          <Route path="/services/landlord-plumbing" element={<LandlordPlumbing />} />
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />
@@ -78,6 +85,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/sitemap" element={<SitemapPage />} />
+          <Route path="/site-explorer" element={<SiteExplorer />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />

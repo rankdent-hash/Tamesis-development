@@ -201,6 +201,22 @@ Same treatment as the 20 service pages: `/sectors` (index) and all 6 individual 
 
 Hero headline/subheading rewritten for stronger conversion (leads with the fast-response/fixed-price/directly-employed hook that research showed matters most to this audience), and the primary CTA button label changed from "Request a Quote" to "Get a Free Quote" sitewide (the Quote page's own heading and the Contact form's dropdown option were left as "Request a Quote" since those describe the destination/category, not a persuasive button). The shared `getServiceContent()` generator in `content.ts` was also strengthened — since it drives all 20 service pages and all 160 service×location combo pages, this one edit improves conversion copy across all of them at once, rather than needing 180 individual rewrites.
 
+## PPC landing pages (plumbing sub-services)
+
+3 dedicated conversion-focused landing pages, built specifically for the Google Ads plumbing campaign's ad groups that previously pointed at generic pages — grounded in current UK plumbing-PPC conversion research (consistent across sources: message match between ad and page, prominent click-to-call, trust signals above the fold, single dominant CTA):
+
+- `/services/emergency-plumbing` — call-dominant layout (large "Call Now" leads, form is secondary) since research is unanimous that emergency searchers want to call immediately, not fill in a form
+- `/services/blocked-drains` — problem-specific, form and call get more equal billing
+- `/services/landlord-plumbing` — compliance/reliability-focused for the landlord/agent audience (Gas Safety Certificates, portfolio-wide service)
+
+Built on a new shared component, `src/components/ConversionHero.tsx` — distinct from `ServiceHero` (the standard service-page hero): trust bar above the fold, headline states the exact service, an `urgent` prop that shifts emphasis toward the call button for time-critical pages. Header/Footer were kept (unlike the "strip all navigation" approach some PPC guides recommend) to preserve brand consistency with the rest of the site — the page *bodies* are what's kept tight and conversion-focused instead.
+
+Cross-linked both directions: `/services/plumbing` (the main plumbing page) now has a "Looking for something specific?" section linking to all 3, and each new page links back into the relevant blog posts.
+
+## Site Explorer
+
+`/site-explorer` — a visual, card-based map of the whole site (Core Pages, Landing Pages, Services grouped by category, Sectors, Coverage areas grouped by region with an expandable accordion, Legal), pulling live from the same `services`/`sectors`/`locations` data everything else uses, so it can't go stale the way a hand-drawn diagram would. Complements rather than replaces the existing plain-text `/sitemap` — that one's better for a quick full link list; this one's for understanding the site's shape at a glance, and doubles as a fast internal navigation tool. Linked from the footer next to Sitemap.
+
 ## Blog
 
 A full, WordPress-style blog system — write posts from the admin panel, they publish immediately to `/blog`.
