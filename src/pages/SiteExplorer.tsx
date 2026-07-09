@@ -173,6 +173,24 @@ export function SiteExplorer() {
               subtitle="Plumbing campaign — landlord ad group"
               href="/services/landlord-plumbing"
             />
+            <SiteCard
+              icon={<Icon name="Droplet" size={18} strokeWidth={1.75} />}
+              title="Tap Repairs"
+              subtitle="Plumbing campaign — taps ad group"
+              href="/services/tap-repairs"
+            />
+            <SiteCard
+              icon={<Icon name="RefreshCw" size={18} strokeWidth={1.75} />}
+              title="Toilet Repairs"
+              subtitle="Plumbing campaign — toilets ad group"
+              href="/services/toilet-repairs"
+            />
+            <SiteCard
+              icon={<Icon name="Gauge" size={18} strokeWidth={1.75} />}
+              title="Low Water Pressure"
+              subtitle="Plumbing campaign — water pressure ad group"
+              href="/services/low-water-pressure"
+            />
           </div>
         </Section>
 

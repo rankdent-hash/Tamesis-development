@@ -37,6 +37,9 @@ const ThankYou = lazy(() => import("./pages/ThankYou").then((m) => ({ default: m
 const EmergencyPlumbing = lazy(() => import("./pages/EmergencyPlumbing").then((m) => ({ default: m.EmergencyPlumbing })));
 const BlockedDrains = lazy(() => import("./pages/BlockedDrains").then((m) => ({ default: m.BlockedDrains })));
 const LandlordPlumbing = lazy(() => import("./pages/LandlordPlumbing").then((m) => ({ default: m.LandlordPlumbing })));
+const TapRepairs = lazy(() => import("./pages/TapRepairs").then((m) => ({ default: m.TapRepairs })));
+const ToiletRepairs = lazy(() => import("./pages/ToiletRepairs").then((m) => ({ default: m.ToiletRepairs })));
+const LowWaterPressure = lazy(() => import("./pages/LowWaterPressure").then((m) => ({ default: m.LowWaterPressure })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -64,6 +67,9 @@ function App() {
           <Route path="/services/emergency-plumbing" element={<EmergencyPlumbing />} />
           <Route path="/services/blocked-drains" element={<BlockedDrains />} />
           <Route path="/services/landlord-plumbing" element={<LandlordPlumbing />} />
+          <Route path="/services/tap-repairs" element={<TapRepairs />} />
+          <Route path="/services/toilet-repairs" element={<ToiletRepairs />} />
+          <Route path="/services/low-water-pressure" element={<LowWaterPressure />} />
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />

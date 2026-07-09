@@ -259,6 +259,27 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <span className="font-display font-semibold text-navy-900">Landlord &amp; Gas Safety</span>
                   <p className="mt-1.5 text-sm text-slate leading-relaxed">CP12 certificates and reliable plumbing for rental portfolios.</p>
                 </a>
+                <a
+                  href="/services/tap-repairs"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Dripping Taps</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Fast, fixed-price repairs for dripping or leaking taps.</p>
+                </a>
+                <a
+                  href="/services/toilet-repairs"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Toilet Repairs</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Running, blocked, or won't flush — sorted fast.</p>
+                </a>
+                <a
+                  href="/services/low-water-pressure"
+                  className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
+                >
+                  <span className="font-display font-semibold text-navy-900">Low Water Pressure</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Weak shower or slow taps, diagnosed and fixed properly.</p>
+                </a>
               </div>
             </div>
           </section>

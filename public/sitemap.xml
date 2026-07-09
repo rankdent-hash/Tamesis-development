@@ -106,6 +106,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/tap-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/toilet-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/low-water-pressure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.tamesisdevelopment.co.uk/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
