@@ -7,7 +7,9 @@ export function ServicesMegaMenu() {
     <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[min(1160px,94vw)]">
       <div className="corner-marks rounded-2xl bg-white shadow-card-hover p-8">
         <div className="grid grid-cols-4 gap-x-5 gap-y-1">
-          {services.map((s) => (
+          {services
+            .filter((s) => !("hideFromMegaMenu" in s && s.hideFromMegaMenu))
+            .map((s) => (
             <a
               key={s.slug}
               href={`/services/${s.slug}`}

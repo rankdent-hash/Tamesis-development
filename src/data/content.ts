@@ -90,6 +90,7 @@ export const services = [
     slug: "construction",
     icon: "HardHat",
     category: "Repairs & Maintenance",
+    hideFromMegaMenu: true,
   },
   {
     name: "Handyman Services",
@@ -271,12 +272,14 @@ export const services = [
     slug: "insurance-reinstatement",
     icon: "ShieldCheck",
     category: "Building & Specialist",
+    hideFromMegaMenu: true,
   },
   {
     name: "Commercial Refurbishment",
     slug: "commercial-refurbishment",
     icon: "Building",
     category: "Building & Specialist",
+    hideFromMegaMenu: true,
   },
 ] as const;
 
