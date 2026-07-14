@@ -1,10 +1,31 @@
+import { useEffect } from "react";
 import { CheckCircle2, Phone } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Seo } from "../components/Seo";
 import { company } from "../data/content";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+// Google Ads conversion — fires once, right after any form on the site is
+// successfully submitted (quote, contact, report a repair, emergency
+// callout, careers), since every one of them redirects here on success.
+// Conversion action: "Contact" — AW-18308624211 / 8DUwCOGMs9AcENPenZpE
+const GOOGLE_ADS_CONVERSION_SEND_TO = "AW-18308624211/8DUwCOGMs9AcENPenZpE";
+
 export function ThankYou() {
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: GOOGLE_ADS_CONVERSION_SEND_TO,
+      });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-paper">
       <Seo
@@ -13,30 +34,6 @@ export function ThankYou() {
         path="/thank-you"
         noindex
       />
-      {/*
-        GOOGLE ADS CONVERSION TRACKING
-        ------------------------------
-        This page loads once, right after any form on the site is
-        successfully submitted (quote, contact, report a repair, emergency
-        callout, careers) — so it's the correct place to fire a Google Ads
-        (or GA4) conversion event once you have the tracking snippet.
-
-        Typical Google Ads setup once you have your conversion ID/label:
-
-          useEffect(() => {
-            if (typeof window.gtag === "function") {
-              window.gtag("event", "conversion", {
-                send_to: "AW-XXXXXXXXX/XXXXXXXXXXXXXXXXXXXX",
-              });
-            }
-          }, []);
-
-        The global gtag.js snippet itself (loaded once, sitewide) would go in
-        index.html, not here — this page only needs the per-conversion event
-        fire. Ask me to wire this up once you have the snippet from Google
-        Ads and I'll add it properly (loading gtag.js, env-var-gating it so
-        it only fires in production, etc.).
-      */}
       <Header />
       <main>
         <section className="pt-40 pb-24 lg:pt-52 lg:pb-32">
