@@ -5,6 +5,7 @@ import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
 import { company } from "../data/content";
+import { unsplashUrl, handymanSubPhotos } from "../data/photos";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
 const faqs = [
@@ -34,9 +35,25 @@ export function PaintingTouchUps() {
           eyebrow="Handyman — Painting Touch-Ups"
           title="Scuffs and Marks, Freshened Up Fast."
           subtitle="You don't need a full repaint for a few scuffs and marks — directly employed engineers handle small touch-ups on their own or bundled with your other jobs."
-          photo="photo-1621905252507-b35492cc74b4"
+          photo={handymanSubPhotos["painting-touch-ups"]}
           presetService="Handyman Services"
         />
+
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 -mt-8 relative">
+          <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+            <img
+              src={unsplashUrl(handymanSubPhotos["painting-touch-ups"])}
+              alt="Handyman touching up a scuffed wall with matching paint in a London home"
+              title="Painting Touch-Ups — Tamesis Development Ltd"
+              className="w-full aspect-[16/9] object-cover"
+              loading="lazy"
+            />
+            <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+              Scuffs and marks freshened up neatly, matched to your existing paint colour where possible.
+            </figcaption>
+          </figure>
+        </div>
+
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">

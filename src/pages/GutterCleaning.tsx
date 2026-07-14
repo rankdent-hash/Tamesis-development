@@ -5,6 +5,7 @@ import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
 import { company } from "../data/content";
+import { unsplashUrl, handymanSubPhotos } from "../data/photos";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
 const faqs = [
@@ -34,9 +35,25 @@ export function GutterCleaning() {
           eyebrow="Handyman — Gutter Cleaning"
           title="Blocked Gutters Cleared, Before They Cause Damp."
           subtitle="Overflowing gutters are one of the most common causes of damp walls — directly employed engineers clear and check them properly, across every London borough."
-          photo="photo-1621905252507-b35492cc74b4"
+          photo={handymanSubPhotos["gutter-cleaning"]}
           presetService="Handyman Services"
         />
+
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 -mt-8 relative">
+          <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+            <img
+              src={unsplashUrl(handymanSubPhotos["gutter-cleaning"])}
+              alt="Blocked gutters on a London roofline before professional gutter cleaning"
+              title="Gutter Cleaning — Tamesis Development Ltd"
+              className="w-full aspect-[16/9] object-cover"
+              loading="lazy"
+            />
+            <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+              Gutters cleared of leaves and debris before they cause overflow and penetrating damp.
+            </figcaption>
+          </figure>
+        </div>
+
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">

@@ -80,4 +80,16 @@ export const servicePhotos: Record<string, string> = {
   "insurance-reinstatement": "photo-1558227691-41ea78d1f631",
   "commercial-refurbishment": "photo-1694521787193-9293daeddbaa",
   construction: "photo-1574757987642-5755f0839101",
+  handyman: "photo-1690473768476-44b5cebb7d80",
+};
+
+// Photos for the 6 handyman sub-service landing pages - sourced separately
+// from servicePhotos since these aren't full services in their own right.
+export const handymanSubPhotos: Record<string, string> = {
+  "furniture-assembly": "photo-1772338537689-056082f100a9", // person using screwdriver on furniture hardware
+  "shelving-tv-mounting": "photo-1526450402191-50979219a8e1", // drilling into wood for wall fixing
+  "gutter-cleaning": "photo-1744044155829-610dded4cead", // dirty gutters and roof against blue sky
+  "minor-plumbing-repairs": "photo-1749532125405-70950966b0e5",
+  "minor-electrical-repairs": "photo-1621905251189-08b45d6a269e",
+  "painting-touch-ups": "photo-1632918572888-7a975f4b67b6",
 };

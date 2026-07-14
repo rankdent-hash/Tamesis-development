@@ -73,6 +73,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <img
                     src={unsplashUrl(servicePhotos[service.slug])}
                     alt={`${service.name} carried out by a Tamesis Development Ltd engineer in London`}
+                    title={`${service.name} — Tamesis Development Ltd`}
                     className="aspect-[4/3] w-full h-full object-cover"
                     loading="lazy"
                   />

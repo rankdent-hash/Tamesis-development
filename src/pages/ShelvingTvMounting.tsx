@@ -5,6 +5,7 @@ import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
 import { company } from "../data/content";
+import { unsplashUrl, handymanSubPhotos } from "../data/photos";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
 const faqs = [
@@ -34,9 +35,25 @@ export function ShelvingTvMounting() {
           eyebrow="Handyman — Shelving & TV Mounting"
           title="Shelves, TVs and Pictures — Properly Fixed."
           subtitle="The right fixings for your actual wall type, not a quick job that comes loose in a month. Directly employed engineers, across every London borough."
-          photo="photo-1621905252507-b35492cc74b4"
+          photo={handymanSubPhotos["shelving-tv-mounting"]}
           presetService="Handyman Services"
         />
+
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 -mt-8 relative">
+          <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+            <img
+              src={unsplashUrl(handymanSubPhotos["shelving-tv-mounting"])}
+              alt="Handyman drilling a wall fixing to mount a TV bracket or shelf in a London home"
+              title="Shelving & TV Mounting — Tamesis Development Ltd"
+              className="w-full aspect-[16/9] object-cover"
+              loading="lazy"
+            />
+            <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+              Shelves, TVs and pictures fixed securely to the correct wall type by our directly employed handyman team.
+            </figcaption>
+          </figure>
+        </div>
+
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">
