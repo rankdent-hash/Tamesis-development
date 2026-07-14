@@ -92,6 +92,25 @@ export const services = [
     category: "Repairs & Maintenance",
   },
   {
+    name: "Handyman Services",
+    slug: "handyman",
+    icon: "Toolbox",
+    category: "Repairs & Maintenance",
+    overview:
+      "Our handyman service covers the small, practical jobs that build up around any home or property — the kind of list that's too varied for a single specialist but still deserves properly trained, directly employed engineers rather than a one-off tradesperson found online. From furniture assembly to gutter cleaning to small plumbing, electrical, and painting jobs, we bundle your list into a single, efficient visit wherever possible.",
+    whatWeDo: [
+      "Furniture assembly (flat-pack, wardrobes, TV units)",
+      "Shelving, TV mounting, and picture or mirror hanging",
+      "Gutter cleaning and maintenance",
+      "Minor plumbing repairs (taps, toilets, small leaks)",
+      "Minor electrical jobs (light fittings, sockets, switches)",
+      "Painting touch-ups and small decorating jobs",
+      "Curtain rail and blind fitting",
+      "Door and cabinet adjustments, minor carpentry",
+      "General odd jobs and property to-do lists",
+    ],
+  },
+  {
     name: "Plumbing and Drainage",
     slug: "plumbing",
     icon: "Droplets",

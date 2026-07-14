@@ -121,6 +121,41 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/handyman</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/furniture-assembly</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/shelving-tv-mounting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/gutter-cleaning</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/minor-plumbing-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/minor-electrical-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/services/painting-touch-ups</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.tamesisdevelopment.co.uk/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>

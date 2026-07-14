@@ -49,6 +49,18 @@ const columns = [
     ],
   },
   {
+    title: "Handyman Services",
+    links: [
+      { label: "All Handyman Jobs", href: "/services/handyman" },
+      { label: "Furniture Assembly", href: "/services/furniture-assembly" },
+      { label: "Shelving & TV Mounting", href: "/services/shelving-tv-mounting" },
+      { label: "Gutter Cleaning", href: "/services/gutter-cleaning" },
+      { label: "Minor Plumbing", href: "/services/minor-plumbing-repairs" },
+      { label: "Minor Electrical", href: "/services/minor-electrical-repairs" },
+      { label: "Painting Touch-Ups", href: "/services/painting-touch-ups" },
+    ],
+  },
+  {
     title: "Resources",
     links: [
       { label: "FAQs", href: "/faqs" },
@@ -101,7 +113,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-6 gap-12">
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-7 gap-10">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center">
             <img src={logo} alt="Tamesis Development Ltd" className="h-[55px] w-auto invert" />

@@ -191,6 +191,42 @@ export function SiteExplorer() {
               subtitle="Plumbing campaign — water pressure ad group"
               href="/services/low-water-pressure"
             />
+            <SiteCard
+              icon={<Icon name="Toolbox" size={18} strokeWidth={1.75} />}
+              title="Furniture Assembly"
+              subtitle="Handyman sub-service"
+              href="/services/furniture-assembly"
+            />
+            <SiteCard
+              icon={<Icon name="Search" size={18} strokeWidth={1.75} />}
+              title="Shelving & TV Mounting"
+              subtitle="Handyman sub-service"
+              href="/services/shelving-tv-mounting"
+            />
+            <SiteCard
+              icon={<Icon name="CloudRain" size={18} strokeWidth={1.75} />}
+              title="Gutter Cleaning"
+              subtitle="Handyman sub-service"
+              href="/services/gutter-cleaning"
+            />
+            <SiteCard
+              icon={<Icon name="Droplet" size={18} strokeWidth={1.75} />}
+              title="Minor Plumbing Repairs"
+              subtitle="Handyman sub-service"
+              href="/services/minor-plumbing-repairs"
+            />
+            <SiteCard
+              icon={<Icon name="Zap" size={18} strokeWidth={1.75} />}
+              title="Minor Electrical Repairs"
+              subtitle="Handyman sub-service"
+              href="/services/minor-electrical-repairs"
+            />
+            <SiteCard
+              icon={<Icon name="PaintRoller" size={18} strokeWidth={1.75} />}
+              title="Painting Touch-Ups"
+              subtitle="Handyman sub-service"
+              href="/services/painting-touch-ups"
+            />
           </div>
         </Section>
 

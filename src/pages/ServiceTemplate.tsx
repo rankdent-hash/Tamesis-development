@@ -285,6 +285,44 @@ export function ServiceTemplate({ service }: { service: Service }) {
           </section>
         )}
 
+        {/* Specific handyman jobs — only shown on the Handyman Services page */}
+        {service.slug === "handyman" && (
+          <section className="py-16 lg:py-20 bg-navy-50">
+            <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Specific Jobs</span>
+              <h2 className="mt-3 font-display font-bold text-navy-900 text-2xl sm:text-3xl leading-tight">
+                Looking for a Specific Job?
+              </h2>
+              <div className="mt-8 grid sm:grid-cols-3 gap-5">
+                <a href="/services/furniture-assembly" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Furniture Assembly</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Flat-pack, wardrobes and TV units, assembled properly.</p>
+                </a>
+                <a href="/services/shelving-tv-mounting" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Shelving &amp; TV Mounting</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Shelves, TVs and pictures, fixed with the right fixings.</p>
+                </a>
+                <a href="/services/gutter-cleaning" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Gutter Cleaning</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Cleared and checked, before it causes damp.</p>
+                </a>
+                <a href="/services/minor-plumbing-repairs" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Minor Plumbing</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Dripping taps and running toilets, sorted quickly.</p>
+                </a>
+                <a href="/services/minor-electrical-repairs" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Minor Electrical</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Light fittings, sockets and switches, done safely.</p>
+                </a>
+                <a href="/services/painting-touch-ups" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">Painting Touch-Ups</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">Scuffs and marks, freshened up fast.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Related blog post, if one exists for this service */}
         {relatedPost && (
           <section className="py-16 lg:py-20 bg-navy-50">

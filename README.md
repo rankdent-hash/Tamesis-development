@@ -217,9 +217,23 @@ Every post includes the 4 required internal links (home page, a relevant service
 8. *Preparing Your Rental Property for Winter: A London Landlord's Checklist*
 9. *Property Maintenance in Ealing: A Local Guide* — second-highest-demand area researched
 
-## PPC landing pages (plumbing sub-services)
+## Handyman Services
+
+Added as the 17th service (business owner confirmed this is a genuine offering), grounded in real research on what UK handyman services actually cover (Checkatrade, TaskRabbit, Airtasker, HandyExperts) plus real Semrush search data — "handyman london" (2,900/mo) and, a genuine surprise, "gutter cleaning london" (2,400/mo, nearly as high as the head term).
+
+**Deliberately scoped to avoid cannibalising existing pages**: the site already has dedicated Plumbing, Electrical, and Painting & Decorating pages, so the new handyman sub-pages are framed as the *small, bundled* version of that work — e.g. Minor Plumbing Repairs links back to the full `/services/plumbing` page for anything bigger than a quick fix, rather than competing with it for the same search intent.
+
+- **Main page**: `/services/handyman` — added to the `services` array like any other service (not a separate mega-menu category, per the client's direction), so it appears in the standard mega menu and `ServiceSelect` dropdown automatically. Its `whatWeDo` list covers every job type requested, including the "minor" trade jobs.
+- **6 dedicated sub-pages**, same `ConversionHero` pattern as the plumbing sub-services: Furniture Assembly, Shelving & TV Mounting, Gutter Cleaning, Minor Plumbing Repairs, Minor Electrical Repairs, Painting Touch-Ups.
+- **Honest finding on the "minor" pages**: the exact phrasings for these ("small electrical jobs london", "minor plumbing repairs london") returned negligible standalone Semrush search volume — built anyway per explicit direction, since their value is service completeness and conversion once someone's already on the site, not primarily organic traffic on their own.
+- **New footer section**: "Handyman Services" as its own dedicated column (separate from the general "Services" column), linking to the main page and all 6 sub-pages — footer grid widened from 6 to 7 columns to fit it.
+- Cross-linked both directions: the main Handyman page has a "Looking for a Specific Job?" section (same pattern as the Plumbing page), and each sub-page links back to the relevant full-service page where the job is bigger than "minor."
+
+
 
 3 dedicated conversion-focused landing pages, built specifically for the Google Ads plumbing campaign's ad groups that previously pointed at generic pages — grounded in current UK plumbing-PPC conversion research (consistent across sources: message match between ad and page, prominent click-to-call, trust signals above the fold, single dominant CTA):
+
+## PPC landing pages (plumbing sub-services)
 
 - `/services/emergency-plumbing` — call-dominant layout (large "Call Now" leads, form is secondary) since research is unanimous that emergency searchers want to call immediately, not fill in a form
 - `/services/blocked-drains` — problem-specific, form and call get more equal billing

@@ -40,6 +40,12 @@ const LandlordPlumbing = lazy(() => import("./pages/LandlordPlumbing").then((m) 
 const TapRepairs = lazy(() => import("./pages/TapRepairs").then((m) => ({ default: m.TapRepairs })));
 const ToiletRepairs = lazy(() => import("./pages/ToiletRepairs").then((m) => ({ default: m.ToiletRepairs })));
 const LowWaterPressure = lazy(() => import("./pages/LowWaterPressure").then((m) => ({ default: m.LowWaterPressure })));
+const FurnitureAssembly = lazy(() => import("./pages/FurnitureAssembly").then((m) => ({ default: m.FurnitureAssembly })));
+const ShelvingTvMounting = lazy(() => import("./pages/ShelvingTvMounting").then((m) => ({ default: m.ShelvingTvMounting })));
+const GutterCleaning = lazy(() => import("./pages/GutterCleaning").then((m) => ({ default: m.GutterCleaning })));
+const MinorPlumbingRepairs = lazy(() => import("./pages/MinorPlumbingRepairs").then((m) => ({ default: m.MinorPlumbingRepairs })));
+const MinorElectricalRepairs = lazy(() => import("./pages/MinorElectricalRepairs").then((m) => ({ default: m.MinorElectricalRepairs })));
+const PaintingTouchUps = lazy(() => import("./pages/PaintingTouchUps").then((m) => ({ default: m.PaintingTouchUps })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -70,6 +76,12 @@ function App() {
           <Route path="/services/tap-repairs" element={<TapRepairs />} />
           <Route path="/services/toilet-repairs" element={<ToiletRepairs />} />
           <Route path="/services/low-water-pressure" element={<LowWaterPressure />} />
+          <Route path="/services/furniture-assembly" element={<FurnitureAssembly />} />
+          <Route path="/services/shelving-tv-mounting" element={<ShelvingTvMounting />} />
+          <Route path="/services/gutter-cleaning" element={<GutterCleaning />} />
+          <Route path="/services/minor-plumbing-repairs" element={<MinorPlumbingRepairs />} />
+          <Route path="/services/minor-electrical-repairs" element={<MinorElectricalRepairs />} />
+          <Route path="/services/painting-touch-ups" element={<PaintingTouchUps />} />
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />
