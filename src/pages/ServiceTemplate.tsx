@@ -299,6 +299,10 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <span className="font-display font-semibold text-navy-900">Furniture Assembly</span>
                   <p className="mt-1.5 text-sm text-slate leading-relaxed">Flat-pack, wardrobes and TV units, assembled properly.</p>
                 </a>
+                <a href="/services/ikea-installation" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
+                  <span className="font-display font-semibold text-navy-900">IKEA Installation</span>
+                  <p className="mt-1.5 text-sm text-slate leading-relaxed">PAX wardrobes, kitchen units and more, built right.</p>
+                </a>
                 <a href="/services/shelving-tv-mounting" className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all">
                   <span className="font-display font-semibold text-navy-900">Shelving &amp; TV Mounting</span>
                   <p className="mt-1.5 text-sm text-slate leading-relaxed">Shelves, TVs and pictures, fixed with the right fixings.</p>

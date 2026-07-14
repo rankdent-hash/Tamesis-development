@@ -46,6 +46,7 @@ const GutterCleaning = lazy(() => import("./pages/GutterCleaning").then((m) => (
 const MinorPlumbingRepairs = lazy(() => import("./pages/MinorPlumbingRepairs").then((m) => ({ default: m.MinorPlumbingRepairs })));
 const MinorElectricalRepairs = lazy(() => import("./pages/MinorElectricalRepairs").then((m) => ({ default: m.MinorElectricalRepairs })));
 const PaintingTouchUps = lazy(() => import("./pages/PaintingTouchUps").then((m) => ({ default: m.PaintingTouchUps })));
+const IkeaInstallation = lazy(() => import("./pages/IkeaInstallation").then((m) => ({ default: m.IkeaInstallation })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -82,6 +83,7 @@ function App() {
           <Route path="/services/minor-plumbing-repairs" element={<MinorPlumbingRepairs />} />
           <Route path="/services/minor-electrical-repairs" element={<MinorElectricalRepairs />} />
           <Route path="/services/painting-touch-ups" element={<PaintingTouchUps />} />
+          <Route path="/services/ikea-installation" element={<IkeaInstallation />} />
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />

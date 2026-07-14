@@ -198,6 +198,12 @@ export function SiteExplorer() {
               href="/services/furniture-assembly"
             />
             <SiteCard
+              icon={<Icon name="Package" size={18} strokeWidth={1.75} />}
+              title="IKEA Installation"
+              subtitle="Handyman sub-service"
+              href="/services/ikea-installation"
+            />
+            <SiteCard
               icon={<Icon name="Search" size={18} strokeWidth={1.75} />}
               title="Shelving & TV Mounting"
               subtitle="Handyman sub-service"

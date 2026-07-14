@@ -53,6 +53,7 @@ const columns = [
     links: [
       { label: "All Handyman Jobs", href: "/services/handyman" },
       { label: "Furniture Assembly", href: "/services/furniture-assembly" },
+      { label: "IKEA Installation", href: "/services/ikea-installation" },
       { label: "Shelving & TV Mounting", href: "/services/shelving-tv-mounting" },
       { label: "Gutter Cleaning", href: "/services/gutter-cleaning" },
       { label: "Minor Plumbing", href: "/services/minor-plumbing-repairs" },
