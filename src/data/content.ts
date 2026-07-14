@@ -98,9 +98,9 @@ export const services = [
     icon: "Toolbox",
     category: "Repairs & Maintenance",
     overview:
-      "Our handyman service covers the small, practical jobs that build up around any home or property — the kind of list that's too varied for a single specialist but still deserves properly trained, directly employed engineers rather than a one-off tradesperson found online. From furniture assembly to gutter cleaning to small plumbing, electrical, and painting jobs, we bundle your list into a single, efficient visit wherever possible.",
+      "Our handyman service covers the small, practical jobs that build up around any home or property — the kind of list that's too varied for a single specialist but still deserves properly trained, directly employed engineers rather than a one-off tradesperson found online. From IKEA and flat-pack furniture assembly to gutter cleaning, TV mounting, and small plumbing, electrical, and painting jobs, we bundle your list into a single, efficient visit wherever possible. If it's been sitting on your to-do list for weeks because it's too small to justify calling a specialist, this is exactly the service for it.",
     whatWeDo: [
-      "Furniture assembly (flat-pack, wardrobes, TV units)",
+      "IKEA and flat-pack furniture assembly (wardrobes, bookcases, kitchen units)",
       "Shelving, TV mounting, and picture or mirror hanging",
       "Gutter cleaning and maintenance",
       "Minor plumbing repairs (taps, toilets, small leaks)",

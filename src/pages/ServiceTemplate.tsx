@@ -5,7 +5,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { ServiceHero } from "../components/ServiceHero";
 import { Illustration } from "../components/Illustration";
-import { servicePhotos, unsplashUrl } from "../data/photos";
+import { servicePhotos, unsplashUrl, handymanSubPhotos } from "../data/photos";
 import { AnimateIn } from "../components/AnimateIn";
 import { Icon } from "../components/Icon";
 import { Faq } from "../components/Faq";
@@ -281,6 +281,45 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <span className="font-display font-semibold text-navy-900">Low Water Pressure</span>
                   <p className="mt-1.5 text-sm text-slate leading-relaxed">Weak shower or slow taps, diagnosed and fixed properly.</p>
                 </a>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Featured: IKEA Installation — only shown on the Handyman Services page */}
+        {service.slug === "handyman" && (
+          <section className="py-16 lg:py-20">
+            <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div>
+                  <span className="text-xs font-accent uppercase tracking-widest text-orange-600 font-semibold">Featured Handyman Job</span>
+                  <h2 className="mt-3 font-display font-bold text-navy-900 text-2xl sm:text-3xl leading-tight">
+                    IKEA Furniture Assembly &amp; Installation
+                  </h2>
+                  <p className="mt-4 text-slate leading-relaxed">
+                    One of the jobs we're asked for most. PAX wardrobes, BILLY bookcases, bed frames, and full METOD kitchen
+                    runs — assembled properly by directly employed engineers, so a delivery of flat boxes doesn't turn into
+                    a lost weekend with an Allen key. Fixed price confirmed before we start, same as every job we do.
+                  </p>
+                  <a
+                    href="/services/ikea-installation"
+                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-6 py-3 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
+                  >
+                    See IKEA Installation Details <ArrowRight size={16} />
+                  </a>
+                </div>
+                <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
+                  <img
+                    src={unsplashUrl(handymanSubPhotos["furniture-assembly"])}
+                    alt="Handyman assembling IKEA flat-pack furniture with a screwdriver in a London home"
+                    title="IKEA Furniture Assembly — Tamesis Development Ltd"
+                    className="aspect-[4/3] w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <figcaption className="px-5 py-3 bg-white text-xs text-slate-light leading-relaxed">
+                    IKEA flat-pack furniture assembled properly by our directly employed handyman team.
+                  </figcaption>
+                </figure>
               </div>
             </div>
           </section>
