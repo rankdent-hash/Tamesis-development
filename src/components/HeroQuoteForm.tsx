@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, MessageSquare } from "lucide-react";
+import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
 import { submitForm } from "../lib/submitForm";
 import { cn } from "../lib/utils";
 import { ServiceSelect } from "./ServiceSelect";
@@ -15,7 +15,7 @@ export function HeroQuoteForm({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
   const [service, setService] = useState(presetService ?? "");
-  const [otherDetails, setOtherDetails] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +25,9 @@ export function HeroQuoteForm({
     const ok = await submitForm("hero-quote", {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
       service: String(formData.get("service") || ""),
-      ...(service === "Other" ? { message: otherDetails } : {}),
+      ...(message ? { message } : {}),
       honeypot: String(formData.get("company_website") || ""),
     });
     setSubmitting(false);
@@ -92,22 +93,33 @@ export function HeroQuoteForm({
               )}
             />
           </div>
+          <div className="relative">
+            <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              required
+              className={cn(
+                "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
+                fieldPad
+              )}
+            />
+          </div>
 
           <ServiceSelect value={service} onChange={setService} disabled={!!presetService} compact={compact} />
 
-          {service === "Other" && (
-            <div className="relative">
-              <MessageSquare size={16} className="absolute left-3.5 top-3 text-navy-700 pointer-events-none" />
-              <textarea
-                value={otherDetails}
-                onChange={(e) => setOtherDetails(e.target.value)}
-                placeholder="Briefly describe what you need"
-                rows={2}
-                required
-                className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
-              />
-            </div>
-          )}
+          <div className="relative">
+            <MessageSquare size={16} className="absolute left-3.5 top-3 text-navy-700 pointer-events-none" />
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={service === "Other" ? "Briefly describe what you need" : "Anything else we should know? (optional)"}
+              rows={2}
+              required={service === "Other"}
+              className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none resize-none"
+            />
+          </div>
 
           <button
             type="submit"

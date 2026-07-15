@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { Phone, AlertTriangle, AlertCircle, User, MessageSquare, MapPin } from "lucide-react";
+import { Phone, AlertTriangle, AlertCircle, User, Mail, MessageSquare, MapPin } from "lucide-react";
 import { Header } from "../components/Header";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
@@ -32,6 +32,7 @@ export function Emergency() {
     const ok = await submitForm("emergency", {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
       address: String(formData.get("address") || ""),
       type: String(formData.get("type") || ""),
       details: String(formData.get("details") || ""),
@@ -94,6 +95,13 @@ export function Emergency() {
                       <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
                       <input id="e-phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="e-email" className="block text-sm font-medium text-navy-800 mb-1.5">Email <span className="font-normal text-slate-light">(optional)</span></label>
+                  <div className="relative">
+                    <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                    <input id="e-email" name="email" type="email" className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                 </div>
                 <div>
