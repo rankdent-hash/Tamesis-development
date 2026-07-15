@@ -90,6 +90,7 @@ export function ServiceSelect({
               </div>
               {services
                 .filter((s) => s.category === category)
+                .filter((s) => !("hideFromMegaMenu" in s && s.hideFromMegaMenu))
                 .map((s) => (
                   <button
                     key={s.slug}
