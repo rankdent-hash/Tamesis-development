@@ -21,9 +21,11 @@ import {
   X,
   Send,
   FileEdit,
+  PhoneCall,
 } from "lucide-react";
 import { Seo } from "../../components/Seo";
 import { BlogAdmin } from "./BlogAdmin";
+import { CallTracking } from "./CallTracking";
 import { Button } from "../../components/ui/button";
 import {
   adminLogin,
@@ -256,6 +258,16 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
           <div className="pt-3 mt-3 border-t border-navy-800 space-y-1">
             <button
+              onClick={() => setSection("calls")}
+              className={cn(
+                "w-full flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors text-left",
+                section === "calls" ? "bg-orange-500 text-navy-950" : "text-navy-100/75 hover:bg-white/5 hover:text-white"
+              )}
+            >
+              <PhoneCall size={16} className="shrink-0" />
+              Call Tracking
+            </button>
+            <button
               onClick={() => setSection("blog")}
               className={cn(
                 "w-full flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors text-left",
@@ -293,9 +305,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       <div className="flex-1 min-w-0">
         <header className="bg-white border-b-2 border-navy-900 px-8 py-5 flex items-center justify-between flex-wrap gap-4">
           <h2 className="font-display font-bold text-navy-900 text-xl">
-            {section === "settings" ? "Email Settings" : section === "blog" ? "Blog" : activeNav?.label || "Dashboard"}
+            {section === "settings" ? "Email Settings" : section === "blog" ? "Blog" : section === "calls" ? "Call Tracking" : activeNav?.label || "Dashboard"}
           </h2>
-          {section !== "settings" && section !== "blog" && (
+          {section !== "settings" && section !== "blog" && section !== "calls" && (
             <div className="flex items-center gap-2">
               <button
                 onClick={load}
@@ -312,6 +324,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             <SettingsPanel />
           ) : section === "blog" ? (
             <BlogAdmin />
+          ) : section === "calls" ? (
+            <CallTracking />
           ) : (
             <LeadsView
               leads={leads}

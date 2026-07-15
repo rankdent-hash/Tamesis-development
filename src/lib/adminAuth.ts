@@ -61,6 +61,32 @@ export async function fetchLeads(): Promise<{ success: boolean; leads?: Lead[]; 
   }
 }
 
+export interface CallClick {
+  id: number;
+  phone_number: string;
+  page_path: string;
+  created_at: string;
+}
+
+export async function fetchCallClicks(): Promise<{ success: boolean; clicks?: CallClick[]; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+
+  try {
+    const res = await fetch("/api/call-clicks", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      if (res.status === 401) clearAdminToken();
+      return { success: false, error: data.error || "Failed to load call clicks" };
+    }
+    return { success: true, clicks: data.clicks };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}
+
 export async function updateLead(
   id: number,
   updates: { status?: string; notes?: string }

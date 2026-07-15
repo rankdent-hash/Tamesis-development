@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SiteSchema } from "./components/SiteSchema";
 import { StickyMobileCall } from "./components/StickyMobileCall";
 import { InternalLinkInterceptor } from "./components/InternalLinkInterceptor";
+import { PhoneClickTracker } from "./components/PhoneClickTracker";
 import { PageLoader } from "./components/PageLoader";
 import { services, retiredServiceRedirects } from "./data/content";
 
@@ -60,6 +61,7 @@ function App() {
       <SiteSchema />
       <StickyMobileCall />
       <InternalLinkInterceptor />
+      <PhoneClickTracker />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Home />} />
