@@ -23,6 +23,7 @@ export function MinorPlumbingRepairs() {
         title="Minor Plumbing Repairs London — Small Jobs, Fixed Price"
         description="Small plumbing jobs — dripping taps, running toilets, minor leaks — bundled into a handyman visit or handled on their own. Directly employed engineers."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["minor-plumbing-repairs"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Minor Plumbing Repairs", path }]),
           faqJsonLd(faqs),

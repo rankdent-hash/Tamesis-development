@@ -46,6 +46,7 @@ export function SectorLayout({
         title={`${name} — Property Maintenance for ${name}`}
         description={metaDescription}
         path={path}
+        image={unsplashUrl(sectorPhotos[slug], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Sectors", path: "/sectors" },

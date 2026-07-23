@@ -23,6 +23,7 @@ export function PaintingTouchUps() {
         title="Painting Touch-Ups London — Small Jobs, Fixed Price"
         description="Scuffs, marks, and small painting touch-ups across London. Directly employed engineers, bundled with your other handyman jobs or handled on their own."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["painting-touch-ups"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Painting Touch-Ups", path }]),
           faqJsonLd(faqs),

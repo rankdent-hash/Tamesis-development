@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function TapRepairs() {
         title="Dripping Tap Repair London — Fast, Fixed Price"
         description="Dripping or leaking tap? Directly employed engineers fix it fast, fixed price, across London. Call now or book online."
         path={path}
+        image={unsplashUrl("photo-1749532125405-70950966b0e5", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Tap Repairs", path }]),
           faqJsonLd(faqs),

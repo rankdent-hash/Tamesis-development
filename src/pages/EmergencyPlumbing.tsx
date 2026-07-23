@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function EmergencyPlumbing() {
         title="Emergency Plumber London — Fast Response, Any Time"
         description="Burst pipe, flooding, no heating? Our directly employed emergency plumbers respond fast across London. Call now or request a callback."
         path={path}
+        image={unsplashUrl("photo-1749532125405-70950966b0e5", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

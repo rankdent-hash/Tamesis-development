@@ -23,6 +23,7 @@ export function ShelvingTvMounting() {
         title="TV Mounting & Shelving London — Fitted Properly"
         description="TV mounting, shelving, and picture hanging across London. Directly employed engineers, correct fixings for your wall type, fixed price."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["shelving-tv-mounting"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Shelving & TV Mounting", path }]),
           faqJsonLd(faqs),

@@ -23,6 +23,7 @@ export function GutterCleaning() {
         title="Gutter Cleaning London — Fast, Fixed Price"
         description="Gutter cleaning and maintenance across London. Directly employed engineers, checked for damage while we're up there, fixed price."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["gutter-cleaning"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Gutter Cleaning", path }]),
           faqJsonLd(faqs),

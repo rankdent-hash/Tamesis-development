@@ -23,6 +23,7 @@ export function IkeaInstallation() {
         title="IKEA Furniture Assembly & Installation London"
         description="IKEA wardrobes, bookcases, bed frames and kitchen units assembled properly across London. Directly employed engineers, fixed price, no tools needed on your end."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["furniture-assembly"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "IKEA Installation", path }]),
           faqJsonLd(faqs),

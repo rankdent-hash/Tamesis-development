@@ -23,6 +23,7 @@ export function MinorElectricalRepairs() {
         title="Minor Electrical Jobs London — Light Fittings, Sockets & More"
         description="Small electrical jobs — light fittings, sockets, switches — bundled into a handyman visit or handled on their own. Directly employed engineers."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["minor-electrical-repairs"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Minor Electrical Repairs", path }]),
           faqJsonLd(faqs),

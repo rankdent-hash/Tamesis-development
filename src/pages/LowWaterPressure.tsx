@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function LowWaterPressure() {
         title="Low Water Pressure London — Diagnosed & Fixed"
         description="Weak shower or slow-filling taps? Directly employed engineers diagnose and fix low water pressure across London."
         path={path}
+        image={unsplashUrl("photo-1749532125405-70950966b0e5", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Low Water Pressure", path }]),
           faqJsonLd(faqs),

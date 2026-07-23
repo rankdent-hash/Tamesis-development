@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function LandlordPlumbing() {
         title="Landlord Plumbing & Gas Safety Certificates — London"
         description="Gas Safety Certificates, tenant repairs and rental property plumbing maintenance from a directly employed team. One reliable contact for your whole portfolio."
         path={path}
+        image={unsplashUrl("photo-1621983209352-c2880ac507b2", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

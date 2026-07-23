@@ -1,21 +1,28 @@
 import { useEffect } from "react";
-import { SITE_URL, SITE_NAME } from "../lib/seo";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "../lib/seo";
 
 export function Seo({
   title,
   description,
   path,
+  image,
   jsonLd,
   noindex = false,
 }: {
   title: string;
   description: string;
   path: string;
+  image?: string;
   jsonLd?: object | object[];
   noindex?: boolean;
 }) {
   useEffect(() => {
     const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+    const absoluteImage = image
+      ? image.startsWith("http")
+        ? image
+        : `${SITE_URL}${image}`
+      : DEFAULT_OG_IMAGE;
     document.title = fullTitle;
 
     const setMeta = (attr: "name" | "property", key: string, content: string) => {
@@ -34,9 +41,13 @@ export function Seo({
     setMeta("property", "og:type", "website");
     setMeta("property", "og:url", `${SITE_URL}${path}`);
     setMeta("property", "og:site_name", SITE_NAME);
+    setMeta("property", "og:image", absoluteImage);
+    setMeta("property", "og:image:width", "1200");
+    setMeta("property", "og:image:height", "630");
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", absoluteImage);
 
     let robots = document.head.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
     if (noindex) {
@@ -72,7 +83,7 @@ export function Seo({
 
     window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, noindex]);
+  }, [title, description, path, image, noindex]);
 
   return null;
 }

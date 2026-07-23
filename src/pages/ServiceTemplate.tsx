@@ -38,6 +38,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
         title={`${service.name} in London`}
         description={metaDescription}
         path={path}
+        image={unsplashUrl(servicePhotos[service.slug], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

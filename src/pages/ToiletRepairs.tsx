@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function ToiletRepairs() {
         title="Toilet Repair London — Running, Blocked or Won't Flush"
         description="Running, blocked, or won't flush? Directly employed engineers fix toilet problems fast, fixed price, across London."
         path={path}
+        image={unsplashUrl("photo-1749532125405-70950966b0e5", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Toilet Repairs", path }]),
           faqJsonLd(faqs),

@@ -23,6 +23,7 @@ export function FurnitureAssembly() {
         title="Furniture Assembly London — Flat-Pack, Wardrobes & More"
         description="Flat-pack, wardrobe, or office furniture assembly across London. Directly employed engineers, fixed price, no tools needed on your end."
         path={path}
+        image={unsplashUrl(handymanSubPhotos["furniture-assembly"], "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Furniture Assembly", path }]),
           faqJsonLd(faqs),

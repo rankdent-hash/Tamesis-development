@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
 import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
+import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
@@ -34,6 +35,7 @@ export function BlockedDrains() {
         title="Blocked Drain Unblocking London — Same-Day Service"
         description="Blocked or backed-up drain? Our directly employed engineers clear it fast and tell you honestly if there's an underlying cause. Fixed price, same-day service across London."
         path={path}
+        image={unsplashUrl("photo-1521207418485-99c705420785", "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

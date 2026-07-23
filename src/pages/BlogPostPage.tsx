@@ -75,7 +75,13 @@ export function BlogPostPage() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <Seo title={post.title} description={post.excerpt} path={path} jsonLd={articleJsonLd} />
+      <Seo
+        title={post.title}
+        description={post.excerpt}
+        path={path}
+        image={post.cover_photo ? unsplashUrl(post.cover_photo, "auto=format&fit=crop&q=80&w=1200&h=630") : undefined}
+        jsonLd={articleJsonLd}
+      />
       <Header />
       <main>
         <section className="pt-32 sm:pt-36 lg:pt-44 pb-12 lg:pb-16 bg-navy-950 relative overflow-hidden">
