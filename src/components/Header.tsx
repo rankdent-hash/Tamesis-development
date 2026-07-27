@@ -18,6 +18,7 @@ import {
 import { company, navLinks } from "../data/content";
 import { cn } from "../lib/utils";
 import { ServicesMegaMenu } from "./ServicesMegaMenu";
+import { ContactLink } from "./ContactLink";
 import logo from "../assets/logo.png";
 
 const MOBILE_NAV_ICONS: Record<string, typeof HomeIcon> = {
@@ -60,14 +61,26 @@ export function Header() {
       <div className="hidden lg:flex bg-navy-950 text-navy-100 text-sm">
         <div className="mx-auto max-w-[1400px] w-full px-8 flex items-center justify-between py-2.5 font-accent text-xs tracking-wide">
           <div className="flex items-center gap-6">
-            <a href={`tel:${company.phoneManagement.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-orange-400 transition-colors">
+            <ContactLink
+              href={`tel:${company.phoneManagement.replace(/\s/g, "")}`}
+              mode="call"
+              label="Management"
+              phoneNumber={company.phoneManagement}
+              className="flex items-center gap-2 hover:text-orange-400 transition-colors"
+            >
               <Phone size={12} strokeWidth={2} />
               Management {company.phoneManagement}
-            </a>
-            <a href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-orange-400 transition-colors">
+            </ContactLink>
+            <ContactLink
+              href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+              mode="call"
+              label="Job Booking"
+              phoneNumber={company.phoneJobBooking}
+              className="flex items-center gap-2 hover:text-orange-400 transition-colors"
+            >
               <Phone size={12} strokeWidth={2} />
               Job Booking {company.phoneJobBooking}
-            </a>
+            </ContactLink>
           </div>
           <div className="flex items-center gap-4 font-medium">
             <a href="/quote" className="hover:text-orange-400 transition-colors">Get a Free Quote</a>
@@ -146,13 +159,16 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a
+            <ContactLink
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-              aria-label={`Call Job Booking on ${company.phoneJobBooking}`}
+              mode="call"
+              label="Job Booking"
+              phoneNumber={company.phoneJobBooking}
+              ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
               className="flex items-center justify-center w-11 h-11 rounded-full border border-navy-200 text-navy-900 hover:bg-navy-900 hover:text-white hover:border-navy-900 transition-colors shrink-0"
             >
               <Phone size={17} strokeWidth={2} />
-            </a>
+            </ContactLink>
             <a
               href="/quote"
               className="rounded-full bg-orange-500 text-navy-950 px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
@@ -163,13 +179,16 @@ export function Header() {
 
           {/* Mobile: compact call button + hamburger */}
           <div className="flex lg:hidden items-center gap-2">
-            <a
+            <ContactLink
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-              aria-label={`Call Job Booking on ${company.phoneJobBooking}`}
+              mode="call"
+              label="Job Booking"
+              phoneNumber={company.phoneJobBooking}
+              ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-navy-900 text-orange-400"
             >
               <Phone size={17} strokeWidth={2} />
-            </a>
+            </ContactLink>
             <button
               className="flex items-center justify-center w-10 h-10 text-navy-900"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -228,13 +247,16 @@ export function Header() {
             </a>
 
             <div className="mt-3 grid grid-cols-3 gap-2.5">
-              <a
+              <ContactLink
                 href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+                mode="call"
+                label="Job Booking"
+                phoneNumber={company.phoneJobBooking}
                 className="flex flex-col items-center gap-1.5 rounded-xl border border-navy-100 bg-white py-3 text-navy-800"
               >
                 <Phone size={18} className="text-orange-600" />
                 <span className="text-[11px] font-semibold">Call Now</span>
-              </a>
+              </ContactLink>
               <a
                 href="/report-repair"
                 onClick={() => setMenuOpen(false)}
