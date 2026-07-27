@@ -9,6 +9,7 @@ import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
 import { submitForm } from "../lib/submitForm";
+import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 
 const emergencyTypes = [
   "Flooding / Burst Pipe",
@@ -29,13 +30,17 @@ export function Emergency() {
     setError(false);
     setSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    const ok = await submitForm("emergency", {
+    const leadFields = {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       address: String(formData.get("address") || ""),
       type: String(formData.get("type") || ""),
       details: String(formData.get("details") || ""),
+    };
+    sendToGoHighLevel({ formType: "emergency", ...leadFields });
+    const ok = await submitForm("emergency", {
+      ...leadFields,
       honeypot: String(formData.get("company_website") || ""),
     });
     setSubmitting(false);

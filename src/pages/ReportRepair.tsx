@@ -9,6 +9,7 @@ import { PageHero } from "../components/PageHero";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
 import { submitForm } from "../lib/submitForm";
+import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 
 export function ReportRepair() {
   const navigate = useNavigate();
@@ -20,13 +21,17 @@ export function ReportRepair() {
     setError(false);
     setSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    const ok = await submitForm("report-repair", {
+    const leadFields = {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       address: String(formData.get("address") || ""),
       issue: String(formData.get("issue") || ""),
       access: String(formData.get("access") || ""),
+    };
+    sendToGoHighLevel({ formType: "report-repair", ...leadFields });
+    const ok = await submitForm("report-repair", {
+      ...leadFields,
       honeypot: String(formData.get("company_website") || ""),
     });
     setSubmitting(false);

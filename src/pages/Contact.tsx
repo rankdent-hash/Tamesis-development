@@ -11,6 +11,7 @@ import { AnimateIn } from "../components/AnimateIn";
 import { Button } from "../components/ui/button";
 import { company } from "../data/content";
 import { submitForm } from "../lib/submitForm";
+import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 
 export function Contact() {
   const navigate = useNavigate();
@@ -22,12 +23,16 @@ export function Contact() {
     setError(false);
     setSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    const ok = await submitForm("contact", {
+    const leadFields = {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       reason: String(formData.get("reason") || ""),
       message: String(formData.get("message") || ""),
+    };
+    sendToGoHighLevel({ formType: "contact", ...leadFields });
+    const ok = await submitForm("contact", {
+      ...leadFields,
       honeypot: String(formData.get("company_website") || ""),
     });
     setSubmitting(false);

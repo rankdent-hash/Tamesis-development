@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
 import { submitForm } from "../lib/submitForm";
+import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 import { cn } from "../lib/utils";
 import { ServiceSelect } from "./ServiceSelect";
 
@@ -22,12 +23,16 @@ export function HeroQuoteForm({
     setError(false);
     setSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    const ok = await submitForm("hero-quote", {
+    const leadFields = {
       name: String(formData.get("name") || ""),
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       service: String(formData.get("service") || ""),
       ...(message ? { message } : {}),
+    };
+    sendToGoHighLevel({ formType: "hero-quote", ...leadFields });
+    const ok = await submitForm("hero-quote", {
+      ...leadFields,
       honeypot: String(formData.get("company_website") || ""),
     });
     setSubmitting(false);

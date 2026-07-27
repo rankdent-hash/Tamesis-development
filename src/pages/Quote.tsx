@@ -9,6 +9,7 @@ import { Button } from "../components/ui/button";
 import { ServiceSelect } from "../components/ServiceSelect";
 import { cn } from "../lib/utils";
 import { submitForm } from "../lib/submitForm";
+import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 
 const steps = ["Your Details", "The Work", "Review & Submit"];
 
@@ -37,6 +38,7 @@ export function Quote() {
     e.preventDefault();
     setError(false);
     setSubmitting(true);
+    sendToGoHighLevel({ formType: "quote", ...form });
     const ok = await submitForm("quote", { ...form });
     setSubmitting(false);
     if (ok) {
