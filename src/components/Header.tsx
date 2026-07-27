@@ -165,6 +165,7 @@ export function Header() {
               label="Job Booking"
               phoneNumber={company.phoneJobBooking}
               ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
+              anchored
               className="flex items-center justify-center w-11 h-11 rounded-full border border-navy-200 text-navy-900 hover:bg-navy-900 hover:text-white hover:border-navy-900 transition-colors shrink-0"
             >
               <Phone size={17} strokeWidth={2} />
@@ -185,6 +186,7 @@ export function Header() {
               label="Job Booking"
               phoneNumber={company.phoneJobBooking}
               ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
+              anchored
               className="flex items-center justify-center w-10 h-10 rounded-full bg-navy-900 text-orange-400"
             >
               <Phone size={17} strokeWidth={2} />
