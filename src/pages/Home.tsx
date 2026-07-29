@@ -3,9 +3,7 @@ import { Hero } from "../components/Hero";
 import { TrustBar } from "../components/TrustBar";
 import { About } from "../components/About";
 import { Services } from "../components/Services";
-import { Sectors } from "../components/Sectors";
 import { WhyChoose } from "../components/WhyChoose";
-import { Projects } from "../components/Projects";
 import { Process } from "../components/Process";
 import { Reviews } from "../components/Reviews";
 import { Coverage } from "../components/Coverage";
@@ -27,9 +25,7 @@ export function Home() {
         <TrustBar />
         <About />
         <Services />
-        <Sectors />
         <WhyChoose />
-        <Projects />
         <Process />
         <Coverage />
         <EmergencyCallout />
