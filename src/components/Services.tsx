@@ -20,7 +20,9 @@ export function Services() {
         </AnimateIn>
 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
-          {services.map((service) => (
+          {services
+            .filter((service) => !("hideFromMegaMenu" in service && service.hideFromMegaMenu))
+            .map((service) => (
             <a
               key={service.slug}
               href={`/services/${service.slug}`}
