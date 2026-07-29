@@ -26,7 +26,6 @@ const columns = [
     links: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "Sectors", href: "/sectors" },
       { label: "Careers", href: "/careers" },
       { label: "Projects", href: "/projects" },
       { label: "Blog", href: "/blog" },
@@ -38,7 +37,22 @@ const columns = [
       { label: "Responsive Repairs", href: "/services/responsive-repairs" },
       { label: "Building Maintenance", href: "/services/general-building-maintenance" },
       { label: "Void Refurbishment", href: "/services/void-refurbishment" },
-      { label: "Construction", href: "/services/construction" },
+      { label: "Handyman Services", href: "/services/handyman" },
+      { label: "Plumbing & Drainage", href: "/services/plumbing" },
+      { label: "Leak Detection", href: "/services/leak-detection" },
+      { label: "Bathroom & Kitchen", href: "/services/bathroom-refurbishment" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "Flooring & Subfloor", href: "/services/flooring-repairs" },
+      { label: "Wall & Floor Tiling", href: "/services/tiling" },
+      { label: "Carpentry & Joinery", href: "/services/carpentry-joinery" },
+      { label: "Painting & Decorating", href: "/services/painting-decorating" },
+      { label: "Damp & Mould", href: "/services/damp-mould" },
+      { label: "Fencing & External", href: "/services/fencing-external-repairs" },
+      { label: "Electrical Services", href: "/services/electrical" },
     ],
   },
   {
@@ -116,7 +130,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-7 gap-10">
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-8 gap-10">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center">
             <img src={logo} alt="Tamesis Development Ltd" className="h-[55px] w-auto invert" />
@@ -180,8 +194,8 @@ export function Footer() {
           </div>
         </div>
 
-        {columns.map((col) => (
-          <div key={col.title}>
+        {columns.map((col, i) => (
+          <div key={`${col.title}-${i}`}>
             <h3 className="font-accent font-semibold text-white/90 text-xs uppercase tracking-[0.14em]">{col.title}</h3>
             <ul className="mt-6 space-y-3.5">
               {col.links.map((link) => (
