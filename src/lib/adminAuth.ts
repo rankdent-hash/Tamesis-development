@@ -350,3 +350,19 @@ export async function seedBlogPostsBatch2(): Promise<{ success: boolean; inserte
     return { success: false, error: "Network error — please try again" };
   }
 }
+
+export async function seedBlogPostsBatch3(): Promise<{ success: boolean; inserted?: number; error?: string }> {
+  const token = getAdminToken();
+  if (!token) return { success: false, error: "Not logged in" };
+  try {
+    const res = await fetch("/api/seed-blog-posts-batch3", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) return { success: false, error: data.error || "Failed to add posts" };
+    return { success: true, inserted: data.inserted };
+  } catch {
+    return { success: false, error: "Network error — please try again" };
+  }
+}

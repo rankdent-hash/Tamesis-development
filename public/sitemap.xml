@@ -1295,4 +1295,29 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog/how-much-does-ikea-furniture-assembly-cost-london</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog/pax-wardrobe-assembly-guide-london</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog/can-you-return-assembled-ikea-furniture</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog/how-to-secure-furniture-to-wall-safely</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.tamesisdevelopment.co.uk/blog/flat-pack-assembly-mistakes-to-avoid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
