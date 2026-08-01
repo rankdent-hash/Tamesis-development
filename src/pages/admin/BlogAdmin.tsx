@@ -21,6 +21,7 @@ import {
   seedBlogPosts,
   seedBlogPostsBatch2,
   seedBlogPostsBatch3,
+  seedBlogPostsBatch4,
   type AdminBlogPost,
 } from "../../lib/adminAuth";
 
@@ -129,6 +130,7 @@ export function BlogAdmin() {
 
   const [seeding2, setSeeding2] = useState(false);
   const [seeding3, setSeeding3] = useState(false);
+  const [seeding4, setSeeding4] = useState(false);
   const handleSeedBatch2 = async () => {
     setSeeding2(true);
     setSeedMessage(null);
@@ -160,6 +162,23 @@ export function BlogAdmin() {
       load();
     } else {
       setError(result.error || "Failed to add IKEA posts");
+    }
+  };
+
+  const handleSeedBatch4 = async () => {
+    setSeeding4(true);
+    setSeedMessage(null);
+    const result = await seedBlogPostsBatch4();
+    setSeeding4(false);
+    if (result.success) {
+      setSeedMessage(
+        result.inserted && result.inserted > 0
+          ? `Added the "IKEA Assembly Service" guide.`
+          : "This post is already published."
+      );
+      load();
+    } else {
+      setError(result.error || "Failed to add post");
     }
   };
 
@@ -284,6 +303,9 @@ export function BlogAdmin() {
           </Button>
           <Button variant="outline" size="sm" onClick={handleSeedBatch3} disabled={seeding3}>
             <Sparkles size={13} /> {seeding3 ? "Checking..." : "Publish IKEA & Flat-Pack Series (5 posts)"}
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleSeedBatch4} disabled={seeding4}>
+            <Sparkles size={13} /> {seeding4 ? "Checking..." : "Publish \"IKEA Assembly Service\" Guide (1 post)"}
           </Button>
           <Button variant="primary" size="sm" onClick={openNew}>
             <Plus size={14} /> New Post
