@@ -234,6 +234,12 @@ export function SiteExplorer() {
               subtitle="Handyman sub-service"
               href="/services/painting-touch-ups"
             />
+            <SiteCard
+              icon={<Icon name="Zap" size={18} strokeWidth={1.75} />}
+              title="Electrician Cost Guide"
+              subtitle="Electrical campaign — cost/rewire search intent"
+              href="/services/electrician-cost-guide"
+            />
           </div>
         </Section>
 

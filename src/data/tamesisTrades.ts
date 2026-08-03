@@ -98,9 +98,9 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "carpentry-joinery",
     mainServiceName: "Carpentry and Joinery",
     metaDescription:
-      "Tamesis Carpenter — skilled carpentry and joinery across London. Doors, skirting, staircase repairs, fitted furniture, and general woodwork.",
+      "Tamesis Carpenter — a local carpenter near you across London. Doors, skirting, staircase repairs, fitted furniture, and general woodwork.",
     heroSubtitle:
-      "Skilled carpentry and joinery, from a sticking door to fitted storage — directly employed tradespeople, fixed pricing agreed upfront.",
+      "Looking for a carpenter near you? Skilled carpentry and joinery, from a sticking door to fitted storage — directly employed tradespeople, fixed pricing agreed upfront.",
     scope: [
       "Door hanging, adjustment and repair",
       "Skirting boards and architrave",
@@ -152,9 +152,9 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "painting-decorating",
     mainServiceName: "Painting and Decorating",
     metaDescription:
-      "Tamesis Decorator — interior and exterior painting and decorating across London. Proper preparation, lasting finish, directly employed decorators.",
+      "Tamesis Decorator — a local decorator near you across London. Interior and exterior painting and decorating, proper preparation, lasting finish.",
     heroSubtitle:
-      "Interior and exterior painting and decorating — proper preparation for a finish that lasts, not just looks good on the day.",
+      "Looking for a decorator near you? Interior and exterior painting and decorating — proper preparation for a finish that lasts, not just looks good on the day.",
     scope: [
       "Interior painting, room by room or whole property",
       "Exterior painting and render",
