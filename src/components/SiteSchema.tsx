@@ -29,7 +29,7 @@ export function SiteSchema() {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.6",
-        reviewCount: "520",
+        reviewCount: "535",
       },
       foundingDate: "2019",
     });
