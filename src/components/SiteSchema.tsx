@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { SITE_URL, SITE_NAME } from "../lib/seo";
-import { company } from "../data/content";
+import { company, londonRegions } from "../data/content";
+
+// Flatten the 5 regions into a single deduplicated list of London boroughs
+// for areaServed - "Greater London" alone is valid but coarse; listing the
+// specific boroughs served is Google's documented approach for service-area
+// businesses and gives a stronger, more specific local-relevance signal.
+const allBoroughs = Array.from(new Set(londonRegions.flatMap((r) => r.boroughs)));
 
 export function SiteSchema() {
   useEffect(() => {
@@ -22,10 +28,10 @@ export function SiteSchema() {
         postalCode: "SW6 3LQ",
         addressCountry: "GB",
       },
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Greater London",
-      },
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Greater London" },
+        ...allBoroughs.map((name) => ({ "@type": "AdministrativeArea", name })),
+      ],
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.6",
