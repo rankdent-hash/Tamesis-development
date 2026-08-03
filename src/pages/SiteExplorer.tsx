@@ -20,6 +20,7 @@ import { PageHero } from "../components/PageHero";
 import { Seo } from "../components/Seo";
 import { Icon } from "../components/Icon";
 import { services, sectors, locations, londonRegions } from "../data/content";
+import { tamesisTrades } from "../data/tamesisTrades";
 
 function SiteCard({
   icon,
@@ -258,6 +259,27 @@ export function SiteExplorer() {
               </div>
             )
           )}
+        </Section>
+
+        <Section
+          eyebrow="14 Pages, Brand + Trade"
+          title="Tamesis Trade Landing Pages"
+          description="One page per trade, pairing “Tamesis” with the service — Tamesis Plumber, Tamesis Electrician, and so on. Distinct from the main service pages: hero + quote form, brand-forward positioning, and a link through to the full service page rather than duplicating it."
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {tamesisTrades.map((t) => {
+              const mainService = services.find((s) => s.slug === t.mainServiceSlug);
+              return (
+                <SiteCard
+                  key={t.slug}
+                  icon={<Icon name={mainService?.icon ?? "Wrench"} size={18} strokeWidth={1.75} />}
+                  title={`Tamesis ${t.tradeName}`}
+                  subtitle={`Links to /services/${t.mainServiceSlug}`}
+                  href={`/tamesis-${t.slug}`}
+                />
+              );
+            })}
+          </div>
         </Section>
 
         <Section eyebrow="Who We Work With" title="Sectors" tint>
