@@ -12,7 +12,7 @@ import { Button } from "../components/ui/button";
 import { services, sectors, locations, getLocationContent, type Location } from "../data/content";
 import { breadcrumbJsonLd, faqJsonLd } from "../lib/seo";
 import { CtaPhoneLine } from "../components/CtaPhoneLine";
-import { locationPhotos } from "../data/photos";
+import { locationPhotos, unsplashUrl, coveragePhoto } from "../data/photos";
 
 export function LocationTemplate({ location }: { location: Location }) {
   const content = getLocationContent(location);
@@ -26,6 +26,7 @@ export function LocationTemplate({ location }: { location: Location }) {
         title={`Property Maintenance in ${location.name}`}
         description={metaDescription}
         path={path}
+        image={unsplashUrl(locationPhotos[location.slug] || coveragePhoto, "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

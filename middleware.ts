@@ -1,5 +1,5 @@
-import { services, sectors } from "./src/data/content";
-import { servicePhotos, sectorPhotos, handymanSubPhotos, unsplashUrl } from "./src/data/photos";
+import { services, sectors, locations } from "./src/data/content";
+import { servicePhotos, sectorPhotos, handymanSubPhotos, locationPhotos, coveragePhoto, unsplashUrl } from "./src/data/photos";
 import { seoMeta } from "./src/data/seoMeta";
 
 // ---------------------------------------------------------------------------
@@ -181,6 +181,36 @@ function getStaticMeta(pathname: string): PageMeta | null {
       return {
         title: `${sector.name} — Property Maintenance for ${sector.name}`,
         description: `Tamesis Development Ltd provides property maintenance and repairs for ${sector.name.toLowerCase()} across London.`,
+        image: photoId ? unsplashUrl(photoId, IMG_PARAMS) : DEFAULT_IMAGE,
+      };
+    }
+  }
+
+  // /property-maintenance/{locationSlug} — general location pages
+  if (clean.startsWith("/property-maintenance/")) {
+    const slug = clean.replace("/property-maintenance/", "");
+    const location = locations.find((l) => l.slug === slug);
+    if (location) {
+      const photoId = locationPhotos[location.slug as keyof typeof locationPhotos] || coveragePhoto;
+      return {
+        title: `Property Maintenance in ${location.name}`,
+        description: `Property maintenance, repairs and refurbishment in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`,
+        image: unsplashUrl(photoId, IMG_PARAMS),
+      };
+    }
+  }
+
+  // /services/{serviceSlug}/{locationSlug} — service x location combo pages
+  const serviceLocationMatch = clean.match(/^\/services\/([^/]+)\/([^/]+)$/);
+  if (serviceLocationMatch) {
+    const [, serviceSlug, locationSlug] = serviceLocationMatch;
+    const service = services.find((s) => s.slug === serviceSlug);
+    const location = locations.find((l) => l.slug === locationSlug);
+    if (service && location) {
+      const photoId = servicePhotos[service.slug as keyof typeof servicePhotos];
+      return {
+        title: `${service.name} in ${location.name}`,
+        description: `${service.name} in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, no subcontractors.`,
         image: photoId ? unsplashUrl(photoId, IMG_PARAMS) : DEFAULT_IMAGE,
       };
     }
