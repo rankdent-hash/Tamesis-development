@@ -81,6 +81,8 @@ export const servicePhotos: Record<string, string> = {
   "commercial-refurbishment": "photo-1694521787193-9293daeddbaa",
   construction: "photo-1574757987642-5755f0839101",
   handyman: "photo-1690473768476-44b5cebb7d80",
+  "fencing-external-repairs": "photo-1604015641586-6fa03629f976",
+  "general-building-maintenance": "photo-1690473768476-44b5cebb7d80",
 };
 
 // Photos for the 6 handyman sub-service landing pages - sourced separately

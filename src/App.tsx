@@ -6,6 +6,7 @@ import { InternalLinkInterceptor } from "./components/InternalLinkInterceptor";
 import { PhoneClickTracker } from "./components/PhoneClickTracker";
 import { PageLoader } from "./components/PageLoader";
 import { services, retiredServiceRedirects } from "./data/content";
+import { tamesisTrades } from "./data/tamesisTrades";
 
 // Every route is code-split into its own chunk so the initial load only
 // fetches what's needed for the page the visitor actually lands on.
@@ -13,6 +14,7 @@ const Home = lazy(() => import("./pages/Home").then((m) => ({ default: m.Home })
 const About = lazy(() => import("./pages/About").then((m) => ({ default: m.About })));
 const ServicesPage = lazy(() => import("./pages/ServicesPage").then((m) => ({ default: m.ServicesPage })));
 const ServiceTemplate = lazy(() => import("./pages/ServiceTemplate").then((m) => ({ default: m.ServiceTemplate })));
+const TamesisTradeLanding = lazy(() => import("./pages/TamesisTradeLanding").then((m) => ({ default: m.TamesisTradeLanding })));
 const LocationRoute = lazy(() => import("./pages/LocationTemplate").then((m) => ({ default: m.LocationRoute })));
 const ServiceLocationRoute = lazy(() => import("./pages/ServiceLocationTemplate").then((m) => ({ default: m.ServiceLocationRoute })));
 const SectorsPage = lazy(() => import("./pages/SectorsPage").then((m) => ({ default: m.SectorsPage })));
@@ -69,6 +71,9 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           {services.map((s) => (
             <Route key={s.slug} path={`/services/${s.slug}`} element={<ServiceTemplate service={s} />} />
+          ))}
+          {tamesisTrades.map((t) => (
+            <Route key={t.slug} path={`/tamesis-${t.slug}`} element={<TamesisTradeLanding trade={t} />} />
           ))}
           {Object.entries(retiredServiceRedirects).map(([oldSlug, newSlug]) => (
             <Route key={oldSlug} path={`/services/${oldSlug}`} element={<Navigate to={`/services/${newSlug}`} replace />} />
