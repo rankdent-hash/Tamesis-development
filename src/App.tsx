@@ -51,6 +51,8 @@ const MinorElectricalRepairs = lazy(() => import("./pages/MinorElectricalRepairs
 const PaintingTouchUps = lazy(() => import("./pages/PaintingTouchUps").then((m) => ({ default: m.PaintingTouchUps })));
 const IkeaInstallation = lazy(() => import("./pages/IkeaInstallation").then((m) => ({ default: m.IkeaInstallation })));
 const ElectricianCostGuide = lazy(() => import("./pages/ElectricianCostGuide").then((m) => ({ default: m.ElectricianCostGuide })));
+const ExtractorFanRepair = lazy(() => import("./pages/ExtractorFanRepair").then((m) => ({ default: m.ExtractorFanRepair })));
+const UpvcDoorAdjustment = lazy(() => import("./pages/UpvcDoorAdjustment").then((m) => ({ default: m.UpvcDoorAdjustment })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -93,6 +95,8 @@ function App() {
           <Route path="/services/painting-touch-ups" element={<PaintingTouchUps />} />
           <Route path="/services/ikea-installation" element={<IkeaInstallation />} />
           <Route path="/services/electrician-cost-guide" element={<ElectricianCostGuide />} />
+          <Route path="/services/extractor-fan-repair-installation" element={<ExtractorFanRepair />} />
+          <Route path="/services/upvc-door-adjustment" element={<UpvcDoorAdjustment />} />
           <Route path="/services/:serviceSlug/:locationSlug" element={<ServiceLocationRoute />} />
           <Route path="/property-maintenance/:locationSlug" element={<LocationRoute />} />
           <Route path="/sectors" element={<SectorsPage />} />

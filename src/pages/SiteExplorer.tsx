@@ -240,6 +240,18 @@ export function SiteExplorer() {
               subtitle="Electrical campaign — cost/rewire search intent"
               href="/services/electrician-cost-guide"
             />
+            <SiteCard
+              icon={<Icon name="Zap" size={18} strokeWidth={1.75} />}
+              title="Extractor Fan Repair & Installation"
+              subtitle="Low-KD keyword landing page"
+              href="/services/extractor-fan-repair-installation"
+            />
+            <SiteCard
+              icon={<Icon name="Wrench" size={18} strokeWidth={1.75} />}
+              title="UPVC Door Adjustment"
+              subtitle="Low-KD keyword landing page"
+              href="/services/upvc-door-adjustment"
+            />
           </div>
         </Section>
 

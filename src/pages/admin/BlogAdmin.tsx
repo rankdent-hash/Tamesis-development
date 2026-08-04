@@ -24,6 +24,7 @@ import {
   seedBlogPostsBatch4,
   seedBlogPostsBatch5,
   seedBlogPostsBatch6,
+  seedBlogPostsBatch7,
   type AdminBlogPost,
 } from "../../lib/adminAuth";
 
@@ -135,6 +136,7 @@ export function BlogAdmin() {
   const [seeding4, setSeeding4] = useState(false);
   const [seeding5, setSeeding5] = useState(false);
   const [seeding6, setSeeding6] = useState(false);
+  const [seeding7, setSeeding7] = useState(false);
   const handleSeedBatch2 = async () => {
     setSeeding2(true);
     setSeedMessage(null);
@@ -217,6 +219,23 @@ export function BlogAdmin() {
       load();
     } else {
       setError(result.error || "Failed to add post");
+    }
+  };
+
+  const handleSeedBatch7 = async () => {
+    setSeeding7(true);
+    setSeedMessage(null);
+    const result = await seedBlogPostsBatch7();
+    setSeeding7(false);
+    if (result.success) {
+      setSeedMessage(
+        result.inserted && result.inserted > 0
+          ? `Added ${result.inserted} new low-competition article${result.inserted === 1 ? "" : "s"}.`
+          : "Everything from this batch is already published."
+      );
+      load();
+    } else {
+      setError(result.error || "Failed to add posts");
     }
   };
 
@@ -350,6 +369,9 @@ export function BlogAdmin() {
           </Button>
           <Button variant="outline" size="sm" onClick={handleSeedBatch6} disabled={seeding6}>
             <Sparkles size={13} /> {seeding6 ? "Checking..." : "Publish Condensation Guide (1 post)"}
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleSeedBatch7} disabled={seeding7}>
+            <Sparkles size={13} /> {seeding7 ? "Checking..." : "Publish Low-Competition Keyword Round-Ups (3 posts)"}
           </Button>
           <Button variant="primary" size="sm" onClick={openNew}>
             <Plus size={14} /> New Post
