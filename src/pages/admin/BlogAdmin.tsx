@@ -25,6 +25,7 @@ import {
   seedBlogPostsBatch5,
   seedBlogPostsBatch6,
   seedBlogPostsBatch7,
+  seedBlogPostsBatch8,
   type AdminBlogPost,
 } from "../../lib/adminAuth";
 
@@ -137,6 +138,7 @@ export function BlogAdmin() {
   const [seeding5, setSeeding5] = useState(false);
   const [seeding6, setSeeding6] = useState(false);
   const [seeding7, setSeeding7] = useState(false);
+  const [seeding8, setSeeding8] = useState(false);
   const handleSeedBatch2 = async () => {
     setSeeding2(true);
     setSeedMessage(null);
@@ -236,6 +238,23 @@ export function BlogAdmin() {
       load();
     } else {
       setError(result.error || "Failed to add posts");
+    }
+  };
+
+  const handleSeedBatch8 = async () => {
+    setSeeding8(true);
+    setSeedMessage(null);
+    const result = await seedBlogPostsBatch8();
+    setSeeding8(false);
+    if (result.success) {
+      setSeedMessage(
+        result.inserted && result.inserted > 0
+          ? "Added the handyman services catalog article."
+          : "This post is already published."
+      );
+      load();
+    } else {
+      setError(result.error || "Failed to add post");
     }
   };
 
@@ -372,6 +391,9 @@ export function BlogAdmin() {
           </Button>
           <Button variant="outline" size="sm" onClick={handleSeedBatch7} disabled={seeding7}>
             <Sparkles size={13} /> {seeding7 ? "Checking..." : "Publish Low-Competition Keyword Round-Ups (3 posts)"}
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleSeedBatch8} disabled={seeding8}>
+            <Sparkles size={13} /> {seeding8 ? "Checking..." : "Publish Handyman Services Catalog (1 post)"}
           </Button>
           <Button variant="primary" size="sm" onClick={openNew}>
             <Plus size={14} /> New Post
