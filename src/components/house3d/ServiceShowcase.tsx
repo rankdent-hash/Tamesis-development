@@ -53,7 +53,6 @@ export function ServiceShowcase() {
 
   const handleReady = useCallback(() => setSceneReady(true), []);
 
-  const current = houseServices[active];
 
   return (
     <div
@@ -79,21 +78,6 @@ export function ServiceShowcase() {
             <HouseScene activeIndex={active} onReady={handleReady} />
           </Suspense>
         )}
-
-        {/* Active service label */}
-        <div
-          className={`absolute left-4 right-4 bottom-4 transition-opacity duration-500 ${
-            sceneReady ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="rounded-xl bg-navy-950/85 backdrop-blur-sm px-5 py-4 text-white">
-            <span className="text-[10px] font-accent uppercase tracking-widest text-orange-400 font-semibold">
-              {current.location}
-            </span>
-            <h3 className="mt-1 font-display font-bold text-lg leading-tight">{current.name}</h3>
-            <p className="mt-0.5 text-xs text-navy-100/80 leading-snug">{current.blurb}</p>
-          </div>
-        </div>
       </div>
 
       {/* Service selector — real links, crawlable, and keyboard accessible.
