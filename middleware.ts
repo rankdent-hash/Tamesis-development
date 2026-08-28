@@ -66,6 +66,12 @@ const BESPOKE_PAGES: Record<string, { title: string; description: string; image:
     description: "Toilet not flushing or leaking? Directly employed engineers fix it fast, fixed price, across London.",
     image: unsplashUrl("photo-1749532125405-70950966b0e5", IMG_PARAMS),
   },
+  "/services/boiler-heating-repair": {
+    title: "Boiler Repair & Heating Engineers London — Gas Safe",
+    description:
+      "No heating or hot water? Gas Safe registered engineers repair boilers, radiators and central heating across London. Fixed price before we start.",
+    image: unsplashUrl("photo-1621983209352-c2880ac507b2", IMG_PARAMS),
+  },
   "/services/low-water-pressure": {
     title: "Low Water Pressure London — Diagnosis & Repair",
     description: "Weak shower or slow taps? Directly employed engineers diagnose and fix low water pressure across London.",
