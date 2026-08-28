@@ -53,6 +53,7 @@ const IkeaInstallation = lazy(() => import("./pages/IkeaInstallation").then((m) 
 const ElectricianCostGuide = lazy(() => import("./pages/ElectricianCostGuide").then((m) => ({ default: m.ElectricianCostGuide })));
 const ExtractorFanRepair = lazy(() => import("./pages/ExtractorFanRepair").then((m) => ({ default: m.ExtractorFanRepair })));
 const UpvcDoorAdjustment = lazy(() => import("./pages/UpvcDoorAdjustment").then((m) => ({ default: m.UpvcDoorAdjustment })));
+const BoilerHeatingRepair = lazy(() => import("./pages/BoilerHeatingRepair").then((m) => ({ default: m.BoilerHeatingRepair })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -87,6 +88,7 @@ function App() {
           <Route path="/services/tap-repairs" element={<TapRepairs />} />
           <Route path="/services/toilet-repairs" element={<ToiletRepairs />} />
           <Route path="/services/low-water-pressure" element={<LowWaterPressure />} />
+          <Route path="/services/boiler-heating-repair" element={<BoilerHeatingRepair />} />
           <Route path="/services/furniture-assembly" element={<FurnitureAssembly />} />
           <Route path="/services/shelving-tv-mounting" element={<ShelvingTvMounting />} />
           <Route path="/services/gutter-cleaning" element={<GutterCleaning />} />
