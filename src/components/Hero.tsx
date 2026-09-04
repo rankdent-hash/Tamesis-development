@@ -1,7 +1,9 @@
-import { ChevronDown, CheckCircle2 } from "lucide-react";
+import { ChevronDown, CheckCircle2, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { heroPhoto, unsplashUrl } from "../data/photos";
 import { HeroQuoteForm } from "./HeroQuoteForm";
+import { ContactLink } from "./ContactLink";
+import { company } from "../data/content";
 
 const badges = [
   "Established 2019",
@@ -57,6 +59,19 @@ export function Hero() {
             >
               Book a Repair
             </a>
+            {/* Desktop/tablet only, same as the services-page hero — phones
+                already get the sticky call bar (StickyMobileCall) fixed to
+                the bottom of the screen. */}
+            <ContactLink
+              href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+              mode="call"
+              label="Job Booking"
+              phoneNumber={company.phoneJobBooking}
+              ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
+              className="hidden md:inline-flex items-center justify-center w-[52px] h-[52px] rounded-full border border-white/30 text-white hover:bg-white/10 transition-all shrink-0"
+            >
+              <Phone size={20} strokeWidth={2} />
+            </ContactLink>
           </div>
 
           <ul className="mt-10 lg:mt-14 flex flex-wrap gap-x-6 gap-y-3 lg:gap-x-8">
