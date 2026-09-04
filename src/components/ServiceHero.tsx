@@ -54,14 +54,21 @@ export function ServiceHero({ service }: { service: Service }) {
                 third hero CTA would be redundant there. ContactLink itself
                 also switches behaviour at this same breakpoint: a direct
                 tel: call under 768px, a scan-to-call QR popup at 768px+
-                (see ContactLink.tsx), matching this button's visibility. */}
+                (see ContactLink.tsx), matching this button's visibility.
+                Deliberately NOT anchored: the header's phone icon sits in
+                the top-right corner, where the anchored popover (opening
+                leftward from the icon) always lands on-screen. This icon
+                sits mid-page in the hero's left column instead, so that
+                same anchored math can place the popover off past the left
+                or bottom edge depending on scroll position. The default
+                centred modal keeps it fully visible and consistent
+                regardless of where the icon ends up on the page. */}
             <ContactLink
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
               mode="call"
               label="Job Booking"
               phoneNumber={company.phoneJobBooking}
               ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
-              anchored
               className="hidden md:inline-flex items-center justify-center w-[52px] h-[52px] rounded-full border border-white/30 text-white hover:bg-white/10 transition-all shrink-0"
             >
               <Phone size={20} strokeWidth={2} />
