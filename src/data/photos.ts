@@ -74,7 +74,7 @@ export const servicePhotos: Record<string, string> = {
   "carpentry-joinery": "photo-1561297331-a9c00b9c2c44",
   "painting-decorating": "photo-1632918572888-7a975f4b67b6",
   electrical: "photo-1621905251189-08b45d6a269e",
-  "damp-mould": "photo-1517646287270-a5a9ca602e5c",
+  "damp-mould": "photo-1708895140733-8873a8b8ee0f", // black mould/mildew on a damp interior wall
   "planned-maintenance": "photo-1516216628859-9bccecab13ca",
   "void-refurbishment": "photo-1587582423116-ec07293f0395",
   "insurance-reinstatement": "photo-1558227691-41ea78d1f631",
