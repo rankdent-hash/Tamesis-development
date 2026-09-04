@@ -1,6 +1,7 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Phone } from "lucide-react";
 import { HeroQuoteForm } from "./HeroQuoteForm";
-import type { Service } from "../data/content";
+import { ContactLink } from "./ContactLink";
+import { company, type Service } from "../data/content";
 import { servicePhotos, unsplashUrl } from "../data/photos";
 
 export function ServiceHero({ service }: { service: Service }) {
@@ -48,6 +49,23 @@ export function ServiceHero({ service }: { service: Service }) {
             >
               Contact Us
             </a>
+            {/* Desktop/tablet only — phones already get the sticky call bar
+                (StickyMobileCall) fixed to the bottom of the screen, so a
+                third hero CTA would be redundant there. ContactLink itself
+                also switches behaviour at this same breakpoint: a direct
+                tel: call under 768px, a scan-to-call QR popup at 768px+
+                (see ContactLink.tsx), matching this button's visibility. */}
+            <ContactLink
+              href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
+              mode="call"
+              label="Job Booking"
+              phoneNumber={company.phoneJobBooking}
+              ariaLabel={`Call Job Booking on ${company.phoneJobBooking}`}
+              anchored
+              className="hidden md:inline-flex items-center justify-center w-[52px] h-[52px] rounded-full border border-white/30 text-white hover:bg-white/10 transition-all shrink-0"
+            >
+              <Phone size={20} strokeWidth={2} />
+            </ContactLink>
           </div>
         </div>
 
