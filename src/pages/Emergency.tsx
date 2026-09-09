@@ -35,6 +35,7 @@ export function Emergency() {
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       address: String(formData.get("address") || ""),
+      postcode: String(formData.get("postcode") || ""),
       type: String(formData.get("type") || ""),
       details: String(formData.get("details") || ""),
     };
@@ -109,12 +110,18 @@ export function Emergency() {
                     <input id="e-email" name="email" type="email" className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                   </div>
                 </div>
-                <div>
-                  <label htmlFor="e-address" className="block text-sm font-medium text-navy-800 mb-1.5">Property Address</label>
-                  <div className="relative">
-                      <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                      <input id="e-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
-                    </div>
+                <div className="grid sm:grid-cols-[1fr_9rem] gap-5">
+                  <div>
+                    <label htmlFor="e-address" className="block text-sm font-medium text-navy-800 mb-1.5">Property Address</label>
+                    <div className="relative">
+                        <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
+                        <input id="e-address" name="address" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      </div>
+                  </div>
+                  <div>
+                    <label htmlFor="e-postcode" className="block text-sm font-medium text-navy-800 mb-1.5">Postcode</label>
+                    <input id="e-postcode" name="postcode" type="text" required className="w-full rounded-lg border-2 border-navy-900 px-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                  </div>
                 </div>
                 <div>
                   <label htmlFor="e-type" className="block text-sm font-medium text-navy-800 mb-1.5">Type of Emergency</label>
