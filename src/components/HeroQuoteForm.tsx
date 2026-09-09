@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, Mail, MessageSquare } from "lucide-react";
+import { CheckCircle2, ArrowRight, AlertCircle, User, Phone, Mail, MessageSquare, MapPin } from "lucide-react";
 import { submitForm } from "../lib/submitForm";
 import { sendToGoHighLevel } from "../lib/sendToGoHighLevel";
 import { cn } from "../lib/utils";
@@ -28,6 +28,7 @@ export function HeroQuoteForm({
       phone: String(formData.get("phone") || ""),
       email: String(formData.get("email") || ""),
       service: String(formData.get("service") || ""),
+      postcode: String(formData.get("postcode") || ""),
       ...(message ? { message } : {}),
     };
     sendToGoHighLevel({ formType: "hero-quote", ...leadFields });
@@ -72,31 +73,33 @@ export function HeroQuoteForm({
           {/* Honeypot — hidden from real users, catches basic bots */}
           <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-          <div className="relative">
-            <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
-            <input
-              type="text"
-              name="name"
-              placeholder="Full name"
-              required
-              className={cn(
-                "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
-                fieldPad
-              )}
-            />
-          </div>
-          <div className="relative">
-            <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone number"
-              required
-              className={cn(
-                "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
-                fieldPad
-              )}
-            />
+          <div className="grid grid-cols-2 gap-2.5">
+            <div className="relative">
+              <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Full name"
+                required
+                className={cn(
+                  "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
+                  fieldPad
+                )}
+              />
+            </div>
+            <div className="relative">
+              <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone number"
+                required
+                className={cn(
+                  "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
+                  fieldPad
+                )}
+              />
+            </div>
           </div>
           <div className="relative">
             <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
@@ -112,7 +115,22 @@ export function HeroQuoteForm({
             />
           </div>
 
-          <ServiceSelect value={service} onChange={setService} disabled={!!presetService} compact={compact} />
+          <div className="grid grid-cols-2 gap-2.5">
+            <ServiceSelect value={service} onChange={setService} disabled={!!presetService} compact={compact} />
+            <div className="relative">
+              <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
+              <input
+                type="text"
+                name="postcode"
+                placeholder="Postcode"
+                required
+                className={cn(
+                  "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
+                  fieldPad
+                )}
+              />
+            </div>
+          </div>
 
           <div className="relative">
             <MessageSquare size={16} className="absolute left-3.5 top-3 text-navy-700 pointer-events-none" />
