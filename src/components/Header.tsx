@@ -99,7 +99,7 @@ export function Header() {
       <header
         className={cn(
           "bg-paper/98 backdrop-blur-md transition-shadow duration-300",
-          scrolled ? "shadow-[0_2px_12px_rgba(14,22,17,0.10)]" : "shadow-[0_1px_0_rgba(14,22,17,0.08)]"
+          scrolled ? "shadow-[0_2px_12px_rgba(10,22,38,0.10)]" : "shadow-[0_1px_0_rgba(10,22,38,0.08)]"
         )}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-16 lg:h-24">

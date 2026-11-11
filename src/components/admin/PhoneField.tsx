@@ -25,7 +25,7 @@ function QrTile({ label, icon: Icon, data }: { label: string; icon: typeof Phone
 
   useEffect(() => {
     let cancelled = false;
-    QRCode.toDataURL(data, { width: 120, margin: 1, color: { dark: "#0E1611", light: "#FAF8F4" } })
+    QRCode.toDataURL(data, { width: 120, margin: 1, color: { dark: "#0A1626", light: "#FAF8F4" } })
       .then((url) => {
         if (!cancelled) setSrc(url);
       })

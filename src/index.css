@@ -6,26 +6,26 @@
   --font-body: "Inter", sans-serif;
   --font-accent: "IBM Plex Mono", monospace;
 
-  /* Ink — deep heritage green-black, replaces generic navy */
-  --color-navy-950: #070B09;
-  --color-navy-900: #0E1611;
-  --color-navy-800: #16211A;
-  --color-navy-700: #203024;
-  --color-navy-600: #2C4335;
-  --color-navy-100: #E6EAE7;
-  --color-navy-50: #F4F6F4;
+  /* Ink — deep navy-blue from the Ninja Fix logo's dark fill, replaces heritage green-black */
+  --color-navy-950: #050C16;
+  --color-navy-900: #0A1626;
+  --color-navy-800: #102238;
+  --color-navy-700: #1B3350;
+  --color-navy-600: #284768;
+  --color-navy-100: #E2E8F0;
+  --color-navy-50: #F1F5F9;
 
-  /* Sage — muted olive, secondary accent for icons/labels/hover */
-  --color-blue-700: #47543F;
-  --color-blue-600: #5C6C52;
-  --color-blue-500: #74886C;
-  --color-blue-400: #93A48C;
-  --color-blue-300: #B3C0AC;
-  --color-blue-200: #CFD8C9;
-  --color-blue-100: #E4E9E1;
-  --color-blue-50: #F2F5F0;
+  /* Cyan — the logo's glow colour, secondary accent for icons/labels/hover */
+  --color-blue-700: #0E7C94;
+  --color-blue-600: #1498B0;
+  --color-blue-500: #22B8D4;
+  --color-blue-400: #5FD3E8;
+  --color-blue-300: #94E2F0;
+  --color-blue-200: #C3EFF7;
+  --color-blue-100: #DFF6FA;
+  --color-blue-50: #F0FBFD;
 
-  /* Brass — the one bold accent, used sparingly (primary CTAs only) */
+  /* Brass — kept as the secondary, warm CTA accent for contrast against the cool navy/cyan primary */
   --color-orange-700: #8A6423;
   --color-orange-600: #A87A2C;
   --color-orange-500: #C6A15B;
@@ -38,13 +38,13 @@
   --color-green-500: #3D8560;
   --color-green-400: #5CA37E;
 
-  --color-ink: #16201A;
-  --color-slate: #565F58;
-  --color-slate-light: #8A938C;
+  --color-ink: #0E1B2B;
+  --color-slate: #4E5C6B;
+  --color-slate-light: #85919D;
   --color-paper: #FAF8F4;
 
-  --shadow-card: 0 1px 2px rgba(14,22,17,0.05), 0 8px 24px -8px rgba(14,22,17,0.14);
-  --shadow-card-hover: 0 4px 10px rgba(14,22,17,0.07), 0 20px 40px -12px rgba(14,22,17,0.20);
+  --shadow-card: 0 1px 2px rgba(10,22,38,0.05), 0 8px 24px -8px rgba(10,22,38,0.14);
+  --shadow-card-hover: 0 4px 10px rgba(10,22,38,0.07), 0 20px 40px -12px rgba(10,22,38,0.20);
 }
 
 html {
@@ -116,8 +116,8 @@ body {
 
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(147, 164, 140, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(147, 164, 140, 0.16) 1px, transparent 1px);
+    linear-gradient(rgba(95, 211, 232, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 211, 232, 0.16) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
