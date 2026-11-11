@@ -133,7 +133,7 @@ export function Footer() {
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-8 gap-10">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center">
-            <img src={logo} alt="Ninja Fix" className="h-[55px] w-auto invert" />
+            <img src={logo} alt="Ninja Fix" className="h-[40px] w-auto" />
           </a>
 
           <div className="mt-7 space-y-3.5 text-sm text-navy-100/70 font-accent">

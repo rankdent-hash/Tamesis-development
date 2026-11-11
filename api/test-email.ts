@@ -69,10 +69,12 @@ try {
   console.error("Postgres pool init error (test-email):", err);
 }
 
-const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@ninjafix.co.uk";
-// TODO(ninjafix-rebrand): ninjafix.co.uk is NOT yet verified with Resend —
-// see the matching comment in api/submit-form.ts.
-const FROM = "Ninja Fix <notifications@ninjafix.co.uk>";
+// TODO(ninjafix-rebrand): per instruction, keep using the already-working
+// tamesisdevelopment.co.uk Resend sending domain and mailbox for now — see
+// the matching comment in api/submit-form.ts for what to switch once
+// ninjafix.co.uk is verified with Resend and its mailbox exists.
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
+const FROM = "Ninja Fix <notifications@tamesisdevelopment.co.uk>";
 
 interface EmailSettings {
   notifyEmail: string;

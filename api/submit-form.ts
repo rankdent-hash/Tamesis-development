@@ -65,7 +65,10 @@ try {
 }
 
 // Fallback notification email if no setting has been saved in the admin panel yet.
-const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@ninjafix.co.uk";
+// TODO(ninjafix-rebrand): switch to info@ninjafix.co.uk once that mailbox
+// and the Resend domain verification below are both actually set up —
+// using it before then would mean notifications going nowhere.
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
 
 interface EmailSettings {
   notifyEmail: string;
@@ -150,13 +153,15 @@ async function sendViaWeb3Forms(
   }
 }
 
-// TODO(ninjafix-rebrand): tamesisdevelopment.co.uk was verified with Resend
-// (SPF/DKIM) so mail sent from its real domain; ninjafix.co.uk is NOT yet
-// verified there, so this FROM address will fail or land in spam until that
-// verification is done in the Resend dashboard. Until then, Resend sends
-// will silently fail here (non-fatal — the lead still saves to Postgres and
-// falls back to Web3Forms if configured as "both").
-const FROM = "Ninja Fix <notifications@ninjafix.co.uk>";
+// tamesisdevelopment.co.uk is verified with Resend, so we send from the real
+// domain rather than Resend's shared sandbox address — this also lifts the
+// sandbox restriction of only being able to deliver to the account owner's
+// own email.
+// TODO(ninjafix-rebrand): per instruction, keep using this already-working
+// Resend sending domain for now — switch FROM (and NOTIFY_FALLBACK above) to
+// the ninjafix.co.uk equivalents once that domain is verified with Resend
+// (SPF/DKIM) at actual launch.
+const FROM = "Ninja Fix <notifications@tamesisdevelopment.co.uk>";
 
 const FORM_LABELS: Record<string, string> = {
   "hero-quote": "Hero Quote Form",

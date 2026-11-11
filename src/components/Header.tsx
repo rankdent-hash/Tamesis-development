@@ -103,8 +103,8 @@ export function Header() {
         )}
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 flex items-center justify-between h-16 lg:h-24">
-          <a href="/" className="flex items-center shrink-0">
-            <img src={logo} alt="Ninja Fix" className="h-[45px] lg:h-[55px] w-auto" />
+          <a href="/" className="flex items-center shrink-0 rounded-lg bg-navy-950 px-3 py-1.5">
+            <img src={logo} alt="Ninja Fix" className="h-[32px] lg:h-[40px] w-auto" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8 font-medium text-sm text-navy-800">
