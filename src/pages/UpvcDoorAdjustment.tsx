@@ -77,7 +77,7 @@ export function UpvcDoorAdjustment() {
             </div>
             <p className="mt-8 text-center text-sm text-slate">
               Wooden door instead? See our{" "}
-              <a href="/tamesis-carpenter" className="text-orange-600 font-semibold hover:underline">general carpentry and door repair service</a>.
+              <a href="/ninjafix-carpenter" className="text-orange-600 font-semibold hover:underline">general carpentry and door repair service</a>.
             </p>
           </div>
         </section>

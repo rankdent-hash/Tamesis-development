@@ -4,7 +4,7 @@
 // https://unsplash.com/license
 //
 // These are generic trade/property photos representing the *type* of work,
-// not actual photos of Tamesis's team or projects. Replace with real company
+// not actual photos of Ninja Fix's team or projects. Replace with real company
 // photography when available — see README.
 
 export function unsplashUrl(photoId: string, params = "auto=format&fit=crop&q=80&w=1600") {
@@ -54,7 +54,7 @@ export const projectPhotos: Record<string, string> = {
 
 // Keyed by exact article title (from `news` in content.ts)
 export const newsPhotos: Record<string, string> = {
-  "Tamesis Expands Planned Maintenance Team": "photo-1541888946425-d81bb19240f5",
+  "Ninja Fix Expands Planned Maintenance Team": "photo-1541888946425-d81bb19240f5",
   "A Guide to Preventing Winter Leaks in Occupied Properties": "photo-1542013936693-884638332954",
   "How We Deliver Void Turnarounds Faster": "photo-1513692398020-cbaea622c427",
 };

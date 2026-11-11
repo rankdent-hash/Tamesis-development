@@ -29,7 +29,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
     });
   }, [service.slug]);
   const path = `/services/${service.slug}`;
-  const metaDescription = `Professional ${service.name.toLowerCase()} across London from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
+  const metaDescription = `Professional ${service.name.toLowerCase()} across London from Ninja Fix — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
   const navigate = useNavigate();
   return (
@@ -73,8 +73,8 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
                   <img
                     src={unsplashUrl(servicePhotos[service.slug])}
-                    alt={`${service.name} carried out by a Tamesis Development Ltd engineer in London`}
-                    title={`${service.name} — Tamesis Development Ltd`}
+                    alt={`${service.name} carried out by a Ninja Fix engineer in London`}
+                    title={`${service.name} — Ninja Fix`}
                     className="aspect-[4/3] w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -184,12 +184,12 @@ export function ServiceTemplate({ service }: { service: Service }) {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-8">
             <AnimateIn className="max-w-2xl">
-              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Why Tamesis</span>
+              <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">Why Ninja Fix</span>
               <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
                 Why Choose Us for {service.name}
               </h2>
               <p className="mt-4 text-slate leading-relaxed">
-                Since founding in 2019, <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> has
+                Since founding in 2019, <a href="/" className="text-orange-600 font-semibold hover:underline">Ninja Fix</a> has
                 grown into one of London's trusted property maintenance contractors — directly employed teams, not agency labour.
               </p>
             </AnimateIn>
@@ -313,7 +313,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   <img
                     src={unsplashUrl(handymanSubPhotos["furniture-assembly"])}
                     alt="Handyman assembling IKEA flat-pack furniture with a screwdriver in a London home"
-                    title="IKEA Furniture Assembly — Tamesis Development Ltd"
+                    title="IKEA Furniture Assembly — Ninja Fix"
                     className="aspect-[4/3] w-full h-full object-cover"
                     loading="lazy"
                   />

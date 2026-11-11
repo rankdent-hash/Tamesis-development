@@ -1,4 +1,4 @@
-# Tamesis Development Ltd — Website
+# Ninja Fix — Website
 
 Vite + React + TypeScript + Tailwind CSS v4, with React Router, Framer Motion,
 and shadcn/ui-style primitives (`cn()` utility + CVA `Button`). Built to
@@ -48,9 +48,9 @@ All six forms (hero quote, `/quote`, `/contact`, `/report-repair`, `/emergency`,
 
 **To activate email notifications**, set in the Vercel project (Project → Settings → Environment Variables):
 - `RESEND_API_KEY` — from resend.com → API Keys
-- `NOTIFY_EMAIL` — fallback inbox if nothing's been saved in the admin panel's Settings tab yet (falls back further to `contact@tamesisdevelopment.co.uk` if both are unset)
+- `NOTIFY_EMAIL` — fallback inbox if nothing's been saved in the admin panel's Settings tab yet (falls back further to `contact@ninjafix.co.uk` if both are unset)
 
-`tamesisdevelopment.co.uk` is verified with Resend, so mail sends from `notifications@tamesisdevelopment.co.uk` (see the `FROM` constant in `api/submit-form.ts` and `api/test-email.ts`) rather than Resend's shared sandbox address. This matters beyond looking professional: Resend's sandbox sender can *only* deliver to the account owner's own email — sending to any other address returned a `403 validation_error` in production, which is exactly what happened before the domain was verified. If the domain's verification ever lapses (e.g. DNS records get removed), that same error will reappear in the logs.
+`ninjafix.co.uk` is verified with Resend, so mail sends from `notifications@ninjafix.co.uk` (see the `FROM` constant in `api/submit-form.ts` and `api/test-email.ts`) rather than Resend's shared sandbox address. This matters beyond looking professional: Resend's sandbox sender can *only* deliver to the account owner's own email — sending to any other address returned a `403 validation_error` in production, which is exactly what happened before the domain was verified. If the domain's verification ever lapses (e.g. DNS records get removed), that same error will reappear in the logs.
 
 ## Lead capture
 
@@ -130,7 +130,7 @@ CTA buttons (the `Button` component, which renders a `<button>` not an `<a>`) na
 - JSON-LD structured data: site-wide `LocalBusiness` schema (`SiteSchema.tsx`), plus `BreadcrumbList` on every inner page, `FAQPage` on every service page, and `Service` schema on service pages.
 - `public/sitemap.xml` and `public/robots.txt` are in place, listing all 210 routes (16 static pages + 20 services + 6 sectors + 8 location pages + 160 service×location combination pages).
 - **Location SEO pages**: `/property-maintenance/:location` (8 areas: Fulham, Chelsea, Westminster, Kensington, Hammersmith, Camden, Islington, Wandsworth) and `/services/:service/:location` (all 20 services × all 8 locations = 160 pages) are both single dynamic routes/templates (`LocationTemplate.tsx`, `ServiceLocationTemplate.tsx`) driven by `src/data/content.ts` — add a new entry to the `locations` array to automatically get a new location page plus 20 new service+location combination pages.
-- **Placeholder domain**: `https://www.tamesisdevelopment.co.uk` is used throughout (`src/lib/seo.ts`, `sitemap.xml`, `index.html`, and the company email) — update this to the real domain before launch. A quick way: search-and-replace `tamesisdevelopment.co.uk` across the repo.
+- **Placeholder domain**: `https://www.ninjafix.co.uk` is used throughout (`src/lib/seo.ts`, `sitemap.xml`, `index.html`, and the company email) — update this to the real domain before launch. A quick way: search-and-replace `ninjafix.co.uk` across the repo.
 - Still outstanding: location-based SEO pages (Property Maintenance London/Fulham/Chelsea etc. and service+location combinations) from the original brief haven't been built yet.
 
 ## Photography
@@ -180,7 +180,7 @@ Kept deliberately modest — one well-labelled link section per relationship, de
 
 A second, more targeted pass, grounded in Google's own Search Central guidance plus current SEO sources (see the anchor-text and contextual-linking principles cited): **repeated nav/footer links carry less weight than unique in-body contextual links** — every page already links to Home/About/Contact via the header and footer, but none of the service pages, sector pages, or the About page had a genuine contextual link to these three anywhere in their actual content before this pass. Audited first (`grep` for `href="/"` etc. inside each page's body) rather than assumed.
 
-- **All 20 service pages** (`ServiceTemplate.tsx`, one shared template): a branded Home link in the "Why Choose Us" intro ("Since founding in 2014, **Tamesis Development Ltd** has grown into..."), an About Us link after that section's grid, and a Contact link closing out the FAQ section ("Still have a question? **Get in touch**...").
+- **All 20 service pages** (`ServiceTemplate.tsx`, one shared template): a branded Home link in the "Why Choose Us" intro ("Since founding in 2014, **Ninja Fix** has grown into..."), an About Us link after that section's grid, and a Contact link closing out the FAQ section ("Still have a question? **Get in touch**...").
 - **All 6 sector pages** (`SectorLayout.tsx`, one shared template): the same branded Home link in the intro, an About Us link after the "What Sets Us Apart" grid, and a Contact link added alongside the existing coverage-areas line.
 - **About page**: the very first mention of the company name in "Our Story" now links Home (the most natural kind of branded anchor — Google's guidance and multiple sources agree self-referencing a business by name is normal, not manipulative), plus a new genuine Contact link after the credentials grid.
 - **Home page**: audited, found it already had both — a real `<a href="/about">` in the homepage's About teaser section and a real `<a href="/contact">` in the final CTA — so no changes were needed there.
@@ -290,7 +290,7 @@ Removed the "Sector" question entirely (client decision — no longer collected)
 ## Sitemap
 
 Two different things, both called "sitemap," worth distinguishing:
-- **`/sitemap.xml`** (`public/sitemap.xml`) — the machine-readable file Google Search Console actually reads. Already referenced in `robots.txt` (`Sitemap: https://www.tamesisdevelopment.co.uk/sitemap.xml`), so Google discovers it automatically without needing a link anywhere — this was already working correctly before this change.
+- **`/sitemap.xml`** (`public/sitemap.xml`) — the machine-readable file Google Search Console actually reads. Already referenced in `robots.txt` (`Sitemap: https://www.ninjafix.co.uk/sitemap.xml`), so Google discovers it automatically without needing a link anywhere — this was already working correctly before this change.
 - **`/sitemap`** (`src/pages/SitemapPage.tsx`) — a human-browsable page listing every page on the site (main pages, all 20 services, all 6 sectors, all 67 coverage areas grouped by region, legal pages), linked from the footer's bottom bar next to Privacy Policy/Terms. This is for visitors (and adds another set of internal links for crawlers), not something Search Console itself needs — it can't be "submitted" as a sitemap the way the XML file can.
 
 ## Local development

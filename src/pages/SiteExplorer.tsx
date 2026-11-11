@@ -20,7 +20,7 @@ import { PageHero } from "../components/PageHero";
 import { Seo } from "../components/Seo";
 import { Icon } from "../components/Icon";
 import { services, sectors, locations, londonRegions } from "../data/content";
-import { tamesisTrades } from "../data/tamesisTrades";
+import { ninjaFixTrades } from "../data/ninjaFixTrades";
 
 function SiteCard({
   icon,
@@ -120,7 +120,7 @@ export function SiteExplorer() {
     <div className="min-h-screen bg-paper">
       <Seo
         title="Site Explorer"
-        description="A visual map of every page on the Tamesis Development Ltd website — services, sectors, coverage areas, campaign landing pages, and more."
+        description="A visual map of every page on the Ninja Fix website — services, sectors, coverage areas, campaign landing pages, and more."
         path="/site-explorer"
       />
       <Header />
@@ -281,19 +281,19 @@ export function SiteExplorer() {
 
         <Section
           eyebrow="14 Pages, Brand + Trade"
-          title="Tamesis Trade Landing Pages"
-          description="One page per trade, pairing “Tamesis” with the service — Tamesis Plumber, Tamesis Electrician, and so on. Distinct from the main service pages: hero + quote form, brand-forward positioning, and a link through to the full service page rather than duplicating it."
+          title="Ninja Fix Trade Landing Pages"
+          description="One page per trade, pairing “Ninja Fix” with the service — Ninja Fix Plumber, Ninja Fix Electrician, and so on. Distinct from the main service pages: hero + quote form, brand-forward positioning, and a link through to the full service page rather than duplicating it."
         >
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {tamesisTrades.map((t) => {
+            {ninjaFixTrades.map((t) => {
               const mainService = services.find((s) => s.slug === t.mainServiceSlug);
               return (
                 <SiteCard
                   key={t.slug}
                   icon={<Icon name={mainService?.icon ?? "Wrench"} size={18} strokeWidth={1.75} />}
-                  title={`Tamesis ${t.tradeName}`}
+                  title={`Ninja Fix ${t.tradeName}`}
                   subtitle={`Links to /services/${t.mainServiceSlug}`}
-                  href={`/tamesis-${t.slug}`}
+                  href={`/ninjafix-${t.slug}`}
                 />
               );
             })}

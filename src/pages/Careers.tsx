@@ -46,7 +46,7 @@ export function Careers() {
       <main>
         <PageHero
           eyebrow="Careers"
-          title="Build Your Career With Tamesis"
+          title="Build Your Career With Ninja Fix"
           subtitle="We're always looking for reliable, skilled tradespeople and support staff to join our directly employed teams across London."
           breadcrumb="Careers"
         />

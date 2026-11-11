@@ -1,12 +1,12 @@
 export const company = {
-  name: "Tamesis Development Ltd",
-  shortName: "Tamesis",
+  name: "Ninja Fix",
+  shortName: "Ninja Fix",
   founded: 2019,
   addressLines: ["Upper Level", "48 Fulham High Street", "London", "SW6 3LQ"],
   phoneManagement: "020 3592 0042",
   phoneJobBooking: "020 3488 3737",
   whatsapp: "07379 021500",
-  email: "info@tamesisdevelopment.co.uk",
+  email: "info@ninjafix.co.uk",
 };
 
 export const navLinks = [
@@ -40,7 +40,7 @@ export const services = [
     icon: "Wrench",
     category: "Repairs & Maintenance",
     overview:
-      "At Tamesis Development Ltd, we provide fast, reliable, and high-quality responsive repair services across London. Our experienced teams attend emergency and routine maintenance issues promptly, ensuring properties are restored safely and efficiently while minimising disruption to residents. We understand the importance of meeting service level agreements (SLAs) and maintaining excellent resident satisfaction.",
+      "At Ninja Fix, we provide fast, reliable, and high-quality responsive repair services across London. Our experienced teams attend emergency and routine maintenance issues promptly, ensuring properties are restored safely and efficiently while minimising disruption to residents. We understand the importance of meeting service level agreements (SLAs) and maintaining excellent resident satisfaction.",
     whatWeDo: [
       "Emergency and routine repairs",
       "Internal and external property maintenance",
@@ -56,7 +56,7 @@ export const services = [
     icon: "Building2",
     category: "Repairs & Maintenance",
     overview:
-      "Tamesis Development Ltd offers complete building maintenance services designed to keep residential properties safe, compliant, and in excellent condition. Our experienced multi-trade teams deliver planned and reactive maintenance across all aspects of building fabric and internal finishes.",
+      "Ninja Fix offers complete building maintenance services designed to keep residential properties safe, compliant, and in excellent condition. Our experienced multi-trade teams deliver planned and reactive maintenance across all aspects of building fabric and internal finishes.",
     whatWeDo: [
       "Multi-trade maintenance",
       "Planned preventative maintenance",
@@ -708,7 +708,7 @@ export type Location = (typeof locations)[number];
 
 export function getLocationContent(location: Location) {
   return {
-    overview: `Tamesis Development Ltd provides property maintenance, repairs, refurbishment and construction services across ${location.name}. ${location.note} Whether it's a single reported repair or an ongoing planned maintenance contract, our directly employed engineers deliver the same professional standard throughout ${location.name}.`,
+    overview: `Ninja Fix provides property maintenance, repairs, refurbishment and construction services across ${location.name}. ${location.note} Whether it's a single reported repair or an ongoing planned maintenance contract, our directly employed engineers deliver the same professional standard throughout ${location.name}.`,
     whyChooseLocal: [
       `Local response times across ${location.name} and the surrounding area`,
       "Directly employed engineers, not ad-hoc subcontractors",
@@ -739,7 +739,7 @@ export function getLocationContent(location: Location) {
 export function getServiceLocationContent(service: Service, location: Location) {
   const serviceLower = service.name.toLowerCase();
   return {
-    overview: `Looking for ${serviceLower} in ${location.name}? Tamesis Development Ltd delivers professional ${serviceLower} across ${location.name}, carried out by our own directly employed engineers rather than a network of subcontractors. ${location.note}`,
+    overview: `Looking for ${serviceLower} in ${location.name}? Ninja Fix delivers professional ${serviceLower} across ${location.name}, carried out by our own directly employed engineers rather than a network of subcontractors. ${location.note}`,
     whatWeDo: [
       `Initial assessment and diagnosis of the ${serviceLower} issue in your ${location.name} property`,
       "A clear, itemised quotation before any work begins",
@@ -767,7 +767,7 @@ export const values = [
   {
     name: "Professionalism",
     icon: "BadgeCheck",
-    description: "Every engineer represents Tamesis on site — in conduct, communication and workmanship.",
+    description: "Every engineer represents Ninja Fix on site — in conduct, communication and workmanship.",
   },
   {
     name: "Reliability",
@@ -787,7 +787,7 @@ export const values = [
 ] as const;
 
 export const timeline = [
-  { year: "2019", title: "Tamesis Founded", description: "Started delivering responsive repairs across South West London." },
+  { year: "2019", title: "Ninja Fix Founded", description: "Started delivering responsive repairs across South West London." },
   { year: "2020", title: "First Housing Association Contract", description: "Secured our first multi-year planned maintenance contract." },
   { year: "2022", title: "10 Operational Teams", description: "Grew to ten directly managed teams covering all of Greater London." },
   { year: "2025", title: "3,000th Completed Job", description: "Passed 3,000 completed projects across repairs, refurbishment and construction." },
@@ -819,7 +819,7 @@ export const newsCategoryIcon: Record<string, string> = {
 
 export const news = [
   {
-    title: "Tamesis Expands Planned Maintenance Team",
+    title: "Ninja Fix Expands Planned Maintenance Team",
     category: "Company News",
     date: "June 2026",
   },

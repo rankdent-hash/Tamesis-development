@@ -45,7 +45,7 @@ export function MinorElectricalRepairs() {
             <img
               src={unsplashUrl(handymanSubPhotos["minor-electrical-repairs"])}
               alt="Handyman safely replacing a light fitting or socket in a London home"
-              title="Minor Electrical Repairs — Tamesis Development Ltd"
+              title="Minor Electrical Repairs — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

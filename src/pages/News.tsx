@@ -21,7 +21,7 @@ export function News() {
         <PageHero
           eyebrow="Insights"
           title="Latest News"
-          subtitle="Company updates, guidance and case studies from across Tamesis."
+          subtitle="Company updates, guidance and case studies from across Ninja Fix."
           breadcrumb="Latest News"
         />
 

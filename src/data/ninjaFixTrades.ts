@@ -1,23 +1,23 @@
-export interface TamesisTrade {
-  slug: string; // used as /tamesis-{slug}
+export interface NinjaFixTrade {
+  slug: string; // used as /ninjafix-{slug}
   tradeName: string; // "Plumber", "Handyman", etc.
   mainServiceSlug: string; // links back to the full /services/{slug} page
   mainServiceName: string; // exact service.name for presetService matching
   metaDescription: string;
   heroSubtitle: string;
   scope: string[]; // short bullet list, distinct wording from the main service page
-  whyTamesis: { title: string; body: string }[]; // 3 distinct trust points
+  whyNinjaFix: { title: string; body: string }[]; // 3 distinct trust points
   faqs: { q: string; a: string }[];
 }
 
-export const tamesisTrades: TamesisTrade[] = [
+export const ninjaFixTrades: NinjaFixTrade[] = [
   {
     slug: "plumber",
     tradeName: "Plumber",
     mainServiceSlug: "plumbing",
     mainServiceName: "Plumbing and Drainage",
     metaDescription:
-      "Tamesis Plumber — directly employed, Gas Safe registered plumbers across London. Emergency call-outs, blocked drains, leak detection, fixed pricing.",
+      "Ninja Fix Plumber — directly employed, Gas Safe registered plumbers across London. Emergency call-outs, blocked drains, leak detection, fixed pricing.",
     heroSubtitle:
       "Directly employed plumbers, not a subcontractor network — emergency call-outs, blocked drains, and general repairs across every London borough.",
     scope: [
@@ -27,13 +27,13 @@ export const tamesisTrades: TamesisTrade[] = [
       "Landlord gas safety checks and CP12 certificates",
       "Leak detection without unnecessary damage",
     ],
-    whyTamesis: [
-      { title: "One team, not a directory", body: "When you call Tamesis, a Tamesis engineer turns up — not whoever's free from a subcontractor pool that day. That consistency shows in the standard of work." },
+    whyNinjaFix: [
+      { title: "One team, not a directory", body: "When you call Ninja Fix, a Ninja Fix engineer turns up — not whoever's free from a subcontractor pool that day. That consistency shows in the standard of work." },
       { title: "Fixed price before we start", body: "No surprises once the van's outside. We confirm the cost, then do the work — the same price whether the job takes forty minutes or two hours." },
       { title: "Landlord and letting agent experience", body: "A large part of our plumbing work is for landlords, letting agents, and housing associations managing multiple properties — we understand compliance deadlines, not just individual repairs." },
     ],
     faqs: [
-      { q: "Is Tamesis Gas Safe registered?", a: "Yes — our engineers working on gas appliances and installations are Gas Safe registered, and we can provide documentation on request." },
+      { q: "Is Ninja Fix Gas Safe registered?", a: "Yes — our engineers working on gas appliances and installations are Gas Safe registered, and we can provide documentation on request." },
       { q: "Do you cover emergencies outside normal hours?", a: "Yes, our emergency plumbing line responds to burst pipes, flooding, and no-heat situations outside standard working hours." },
       { q: "Can you manage plumbing across a whole portfolio of rental properties?", a: "Yes — this is a significant part of our work for landlords and letting agents, with a single point of contact across every property rather than a different tradesperson per address." },
     ],
@@ -44,7 +44,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "handyman",
     mainServiceName: "Handyman Services",
     metaDescription:
-      "Tamesis Handyman — directly employed handyman services across London. Furniture assembly, IKEA installation, TV mounting, gutter cleaning and general odd jobs.",
+      "Ninja Fix Handyman — directly employed handyman services across London. Furniture assembly, IKEA installation, TV mounting, gutter cleaning and general odd jobs.",
     heroSubtitle:
       "One reliable team for the jobs that don't fit anywhere else — furniture assembly, TV mounting, gutter cleaning, and every small job in between.",
     scope: [
@@ -54,7 +54,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Small plumbing and electrical fixes",
       "Painting touch-ups and general odd jobs",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Batch your list into one visit", body: "Most households build up a list of small jobs over time. We work through the whole list in a single visit rather than needing a separate booking for each item." },
       { title: "Honest about scope", body: "If something genuinely needs a Gas Safe engineer or a qualified electrician rather than a handyman, we'll tell you — not take it on regardless." },
       { title: "The same standard on every job, small or large", body: "A shelf gets the same care as a full furniture-assembly day — wall fixings done properly, nothing rushed to move to the next item." },
@@ -71,7 +71,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "electrical",
     mainServiceName: "Electrical Services",
     metaDescription:
-      "Tamesis Electrician — qualified electricians across London for fault finding, rewiring, EICR certificates, and landlord electrical compliance.",
+      "Ninja Fix Electrician — qualified electricians across London for fault finding, rewiring, EICR certificates, and landlord electrical compliance.",
     heroSubtitle:
       "Qualified electricians for fault finding, rewiring, and landlord electrical certificates — directly employed, not subcontracted.",
     scope: [
@@ -81,8 +81,8 @@ export const tamesisTrades: TamesisTrade[] = [
       "Socket, switch, and light fitting installation",
       "Smoke and carbon monoxide alarm installation",
     ],
-    whyTamesis: [
-      { title: "Qualified and directly employed", body: "Our electricians are qualified to the standard required for domestic and rental-property work, employed directly by Tamesis rather than sourced per job." },
+    whyNinjaFix: [
+      { title: "Qualified and directly employed", body: "Our electricians are qualified to the standard required for domestic and rental-property work, employed directly by Ninja Fix rather than sourced per job." },
       { title: "Compliance-focused for landlords", body: "EICR certificates are a legal requirement for private landlords in England, renewed at least every five years — we handle this as routine, scheduled work, not just reactive call-outs." },
       { title: "Clear fault diagnosis before any work starts", body: "We explain what's actually wrong and what it'll cost to fix before starting, rather than an open-ended hourly job with no clear endpoint." },
     ],
@@ -98,7 +98,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "carpentry-joinery",
     mainServiceName: "Carpentry and Joinery",
     metaDescription:
-      "Tamesis Carpenter — a local carpenter near you across London. Doors, skirting, staircase repairs, fitted furniture, and general woodwork.",
+      "Ninja Fix Carpenter — a local carpenter near you across London. Doors, skirting, staircase repairs, fitted furniture, and general woodwork.",
     heroSubtitle:
       "Looking for a carpenter near you? Skilled carpentry and joinery, from a sticking door to fitted storage — directly employed tradespeople, fixed pricing agreed upfront.",
     scope: [
@@ -108,7 +108,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Fitted wardrobes and bespoke joinery",
       "General woodwork and timber repairs",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Matched to your property, not generic", body: "London's housing stock varies enormously — Victorian conversions, period terraces, modern builds. We match materials and technique to the actual property rather than a one-size approach." },
       { title: "Finish matters as much as function", body: "A door that closes properly and looks right sitting in its frame — we treat the finishing detail as part of the job, not an optional extra." },
       { title: "One call for the whole job", body: "Carpentry often overlaps with other trades — we coordinate directly rather than leaving you to manage separate bookings for each part of a job." },
@@ -125,7 +125,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "tiling",
     mainServiceName: "Wall and Floor Tiling",
     metaDescription:
-      "Tamesis Tiler — professional wall and floor tiling across London. Bathrooms, wet rooms, kitchen splashbacks, and re-grouting.",
+      "Ninja Fix Tiler — professional wall and floor tiling across London. Bathrooms, wet rooms, kitchen splashbacks, and re-grouting.",
     heroSubtitle:
       "Wall and floor tiling done properly — bathrooms, wet rooms, and kitchens, with waterproofing that's built in, not an afterthought.",
     scope: [
@@ -135,7 +135,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Re-grouting and tile repairs",
       "Waterproofing (tanking) for wet areas",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Waterproofing done properly, every time", body: "Tiling that looks good but leaks behind the wall is a false economy. We tank wet areas properly before a single tile goes up, not as a corner cut to save time." },
       { title: "Straight lines, level floors", body: "Uneven floors and out-of-square walls are common in older London properties — we address the substrate first rather than tiling over a problem that'll show later." },
       { title: "Repairs, not just full re-tiles", body: "A cracked tile or failing grout doesn't always need a full re-tile — we'll tell you honestly when a repair is the sensible option." },
@@ -152,7 +152,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "painting-decorating",
     mainServiceName: "Painting and Decorating",
     metaDescription:
-      "Tamesis Decorator — a local decorator near you across London. Interior and exterior painting and decorating, proper preparation, lasting finish.",
+      "Ninja Fix Decorator — a local decorator near you across London. Interior and exterior painting and decorating, proper preparation, lasting finish.",
     heroSubtitle:
       "Looking for a decorator near you? Interior and exterior painting and decorating — proper preparation for a finish that lasts, not just looks good on the day.",
     scope: [
@@ -162,7 +162,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Ceiling painting and repairs",
       "Landlord redecoration between tenancies",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Preparation is most of the job", body: "A good paint finish is mostly about what happens before the paint goes on — filling, sanding, and priming properly. We don't skip this to move faster." },
       { title: "Landlord turnaround work", body: "Redecorating between tenancies is a large part of what we do — coordinated efficiently so a property is ready for the next let without unnecessary delay." },
       { title: "Colour matching that actually matches", body: "Touch-ups and partial repaints are only worth doing if the colour genuinely matches — we take this seriously rather than treating it as close enough." },
@@ -179,7 +179,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "bathroom-refurbishment",
     mainServiceName: "Bathroom and Kitchen Repairs & Installations",
     metaDescription:
-      "Tamesis Bathroom Fitter — bathroom and kitchen fitting, refurbishment and repairs across London. Directly employed engineers, fixed pricing.",
+      "Ninja Fix Bathroom Fitter — bathroom and kitchen fitting, refurbishment and repairs across London. Directly employed engineers, fixed pricing.",
     heroSubtitle:
       "Bathroom and kitchen fitting and refurbishment — coordinated across plumbing, tiling, and electrics, with one team responsible for the whole job.",
     scope: [
@@ -189,7 +189,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Bathroom suite replacement",
       "Coordinated plumbing, tiling and electrics in one project",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "One team across the whole job", body: "Bathroom and kitchen refurbishment touches several trades — plumbing, tiling, electrics. We coordinate this internally rather than you managing separate tradespeople." },
       { title: "Realistic timelines, not optimistic ones", body: "We give a genuine estimate of how long a refurbishment will take, including the parts that aren't visible — first-fix plumbing and electrics before anything looks finished." },
       { title: "Fixed price agreed before work starts", body: "A full refurbishment is a significant cost — we confirm it clearly upfront rather than letting it grow as the job progresses." },
@@ -206,7 +206,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "flooring-repairs",
     mainServiceName: "Flooring and Subfloor Repairs",
     metaDescription:
-      "Tamesis Flooring Fitter — flooring installation and subfloor repairs across London. Vinyl, laminate, wood flooring and floor levelling.",
+      "Ninja Fix Flooring Fitter — flooring installation and subfloor repairs across London. Vinyl, laminate, wood flooring and floor levelling.",
     heroSubtitle:
       "Flooring installation and subfloor repairs — the preparation work most fitters skip is the part we won't cut corners on.",
     scope: [
@@ -216,7 +216,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Screed floor preparation",
       "Damp-affected subfloor remediation",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "The subfloor gets checked, not assumed", body: "New flooring over an uneven or damp subfloor fails early, regardless of the flooring quality. We check and prepare the subfloor properly before anything goes down." },
       { title: "Right flooring for the room", body: "Not every flooring type suits every space — we'll advise honestly on what holds up in a bathroom, hallway, or high-traffic area rather than just fitting what's been ordered." },
       { title: "Minimal disruption", body: "Flooring work affects a whole room's usability — we plan the sequence to minimise how long any space is out of action." },
@@ -233,7 +233,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "damp-mould",
     mainServiceName: "Damp and Mould Remedial Works",
     metaDescription:
-      "Tamesis Damp Specialist — damp diagnosis and mould remediation across London. We identify the real cause, not just treat the symptom.",
+      "Ninja Fix Damp Specialist — damp diagnosis and mould remediation across London. We identify the real cause, not just treat the symptom.",
     heroSubtitle:
       "Damp diagnosis and mould treatment that starts with finding the actual cause — not just painting over the symptom.",
     scope: [
@@ -243,7 +243,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Damp proof course installation",
       "Landlord damp compliance and reporting",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Diagnosis before treatment", body: "Damp has several distinct causes that need different fixes. We identify which one is actually present before recommending treatment, rather than applying a generic solution." },
       { title: "Aware of Awaab's Law and current standards", body: "For social housing and rental properties, damp and mould are increasingly subject to fixed response timeframes — we understand this regulatory context, not just the treatment itself." },
       { title: "Honest about what won't fix it", body: "Some damp is a ventilation or lifestyle issue rather than a structural one — we'll say so rather than recommending unnecessary remedial work." },
@@ -260,7 +260,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "fencing-external-repairs",
     mainServiceName: "Fencing and External Repairs",
     metaDescription:
-      "Tamesis Fencing Contractor — garden fencing, gates and external repairs across London. Directly employed engineers, fixed pricing.",
+      "Ninja Fix Fencing Contractor — garden fencing, gates and external repairs across London. Directly employed engineers, fixed pricing.",
     heroSubtitle:
       "Garden fencing, gates and external repairs — built to handle London weather, not just look right on the day it's installed.",
     scope: [
@@ -270,7 +270,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Decking-adjacent external repairs",
       "Boundary fencing for landlords and property managers",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Posts set properly, not just fast", body: "A fence is only as good as its posts. We set them with proper depth and concrete rather than the minimum needed to pass a quick look." },
       { title: "Built for the actual ground conditions", body: "Drainage and soil type affect how a fence holds up over time — we account for the specific garden rather than a generic installation." },
       { title: "Works for landlords managing multiple properties", body: "Boundary and external repairs are a common landlord request — we handle these as part of a wider property maintenance relationship where needed." },
@@ -287,7 +287,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "leak-detection",
     mainServiceName: "Leak Detection and Investigations",
     metaDescription:
-      "Tamesis Leak Detection Specialist — non-invasive leak detection across London. Find the source without unnecessary damage to your property.",
+      "Ninja Fix Leak Detection Specialist — non-invasive leak detection across London. Find the source without unnecessary damage to your property.",
     heroSubtitle:
       "Non-invasive leak detection — finding the actual source of a hidden leak without opening up more of your property than necessary.",
     scope: [
@@ -297,7 +297,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Thermal imaging and non-invasive detection methods",
       "Detailed reporting for insurance claims",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Proper equipment, not guesswork", body: "Non-invasive detection methods find the source without unnecessary damage — a genuinely different approach from opening up walls or floors to search by hand." },
       { title: "Clear reporting", body: "For anything involving an insurance claim, documented findings matter — we provide a clear account of what was found and where." },
       { title: "We fix what we find", body: "Detection and repair are handled by the same team, so there's no gap between diagnosing the problem and actually resolving it." },
@@ -314,7 +314,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "responsive-repairs",
     mainServiceName: "Responsive Property Repairs",
     metaDescription:
-      "Tamesis — a directly employed property maintenance company serving London. Responsive repairs for landlords, letting agents and housing associations.",
+      "Ninja Fix — a directly employed property maintenance company serving London. Responsive repairs for landlords, letting agents and housing associations.",
     heroSubtitle:
       "A single, reliable maintenance contractor across your whole portfolio — responsive repairs handled consistently, property by property.",
     scope: [
@@ -324,7 +324,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Coordinated multi-trade repairs",
       "Consistent response times across a portfolio",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "One contractor, every property", body: "Managing a different local tradesperson per address doesn't scale. We provide one consistent point of contact across an entire portfolio." },
       { title: "Directly employed, not a subcontractor panel", body: "The standard of work stays consistent because the same team is responsible for it, rather than whoever's available from a wider network." },
       { title: "Built for landlords and housing associations", body: "A significant part of our work is with housing associations, letting agents, and landlords managing multiple properties — we understand reporting and compliance needs, not just individual repairs." },
@@ -341,7 +341,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "general-building-maintenance",
     mainServiceName: "General Building Maintenance",
     metaDescription:
-      "Tamesis — a London building maintenance company handling planned and general maintenance contracts for landlords, agents and housing associations.",
+      "Ninja Fix — a London building maintenance company handling planned and general maintenance contracts for landlords, agents and housing associations.",
     heroSubtitle:
       "Planned and general building maintenance — scheduled work that prevents problems, not just reactive fixes after something's already gone wrong.",
     scope: [
@@ -351,7 +351,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Scheduled maintenance for housing associations",
       "Communal area maintenance for blocks and estates",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Planned work costs less than reactive work", body: "A scheduled maintenance visit catching a small issue is consistently cheaper than an emergency call-out once it's become a bigger problem — we build maintenance schedules around this principle." },
       { title: "Experience with larger buildings and estates", body: "Communal areas and larger properties bring different considerations than a single home — access, resident communication, and phased work — which we're set up to handle." },
       { title: "Consistent contractor relationship over time", body: "Building maintenance works best as an ongoing relationship, not a series of one-off jobs — we aim to be the same team a property or portfolio calls on year after year." },
@@ -368,7 +368,7 @@ export const tamesisTrades: TamesisTrade[] = [
     mainServiceSlug: "void-refurbishment",
     mainServiceName: "Void Property Refurbishments",
     metaDescription:
-      "Tamesis — a London refurbishment company specialising in void property turnaround for housing associations, landlords and letting agents.",
+      "Ninja Fix — a London refurbishment company specialising in void property turnaround for housing associations, landlords and letting agents.",
     heroSubtitle:
       "Void property refurbishment with turnaround speed that matters — every empty day between tenancies is a cost, and we plan around that.",
     scope: [
@@ -378,7 +378,7 @@ export const tamesisTrades: TamesisTrade[] = [
       "Compliance checks as part of the refurbishment",
       "Housing association void programmes",
     ],
-    whyTamesis: [
+    whyNinjaFix: [
       { title: "Turnaround speed is the whole point", body: "A void property earns nothing while it's empty. We plan refurbishment work specifically to minimise that gap, not just to complete the job eventually." },
       { title: "One project, multiple trades, one team", body: "Void refurbishment typically needs several trades — we coordinate this internally so nothing waits on a separate booking." },
       { title: "Experience with housing association void programmes", body: "A significant part of our work is void turnaround for housing associations, where consistent quality and turnaround time across many properties matters as much as any single job." },

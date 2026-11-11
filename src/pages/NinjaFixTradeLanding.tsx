@@ -7,30 +7,30 @@ import { Seo } from "../components/Seo";
 import { company } from "../data/content";
 import { unsplashUrl, servicePhotos } from "../data/photos";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
-import type { TamesisTrade } from "../data/tamesisTrades";
+import type { NinjaFixTrade } from "../data/ninjaFixTrades";
 
-export function TamesisTradeLanding({ trade }: { trade: TamesisTrade }) {
-  const path = `/tamesis-${trade.slug}`;
+export function NinjaFixTradeLanding({ trade }: { trade: NinjaFixTrade }) {
+  const path = `/ninjafix-${trade.slug}`;
   const photo = servicePhotos[trade.mainServiceSlug] ?? servicePhotos.handyman;
 
   return (
     <div className="min-h-screen bg-paper">
       <Seo
-        title={`Tamesis ${trade.tradeName}`}
+        title={`Ninja Fix ${trade.tradeName}`}
         description={trade.metaDescription}
         path={path}
         image={unsplashUrl(photo, "auto=format&fit=crop&q=80&w=1200&h=630")}
         jsonLd={[
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: `Tamesis ${trade.tradeName}`, path }]),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: `Ninja Fix ${trade.tradeName}`, path }]),
           faqJsonLd(trade.faqs),
-          serviceJsonLd(`Tamesis ${trade.tradeName}`, trade.metaDescription, path),
+          serviceJsonLd(`Ninja Fix ${trade.tradeName}`, trade.metaDescription, path),
         ]}
       />
       <Header />
       <main>
         <ConversionHero
-          eyebrow={`Tamesis ${trade.tradeName}`}
-          title={`Tamesis ${trade.tradeName}`}
+          eyebrow={`Ninja Fix ${trade.tradeName}`}
+          title={`Ninja Fix ${trade.tradeName}`}
           subtitle={trade.heroSubtitle}
           photo={photo}
           presetService={trade.mainServiceName}
@@ -58,7 +58,7 @@ export function TamesisTradeLanding({ trade }: { trade: TamesisTrade }) {
         <section className="py-16 lg:py-20">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">
-              What Your Tamesis {trade.tradeName} Covers
+              What Your Ninja Fix {trade.tradeName} Covers
             </h2>
             <ul className="mt-8 space-y-3">
               {trade.scope.map((item) => (
@@ -79,14 +79,14 @@ export function TamesisTradeLanding({ trade }: { trade: TamesisTrade }) {
           </div>
         </section>
 
-        {/* Why Tamesis */}
+        {/* Why Ninja Fix */}
         <section className="py-16 lg:py-20 bg-navy-50">
           <div className="mx-auto max-w-[1100px] px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">
-              Why Choose Tamesis as Your {trade.tradeName}
+              Why Choose Ninja Fix as Your {trade.tradeName}
             </h2>
             <div className="mt-10 grid sm:grid-cols-3 gap-5">
-              {trade.whyTamesis.map((point) => (
+              {trade.whyNinjaFix.map((point) => (
                 <div key={point.title} className="rounded-2xl bg-white border border-navy-100 p-6 shadow-card">
                   <h3 className="font-display font-semibold text-navy-900 text-sm">{point.title}</h3>
                   <p className="mt-2 text-sm text-slate leading-relaxed">{point.body}</p>
@@ -109,7 +109,7 @@ export function TamesisTradeLanding({ trade }: { trade: TamesisTrade }) {
           <div className="absolute inset-0 blueprint-grid opacity-50" />
           <div className="relative mx-auto max-w-2xl px-6 lg:px-8 text-center">
             <h2 className="font-display font-bold text-white text-2xl sm:text-3xl leading-tight text-balance">
-              Talk to Your Local Tamesis {trade.tradeName}
+              Talk to Your Local Ninja Fix {trade.tradeName}
             </h2>
             <a
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}

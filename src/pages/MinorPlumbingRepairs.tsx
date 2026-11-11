@@ -45,7 +45,7 @@ export function MinorPlumbingRepairs() {
             <img
               src={unsplashUrl(handymanSubPhotos["minor-plumbing-repairs"])}
               alt="Handyman carrying out a small plumbing repair, such as a dripping tap, in a London home"
-              title="Minor Plumbing Repairs — Tamesis Development Ltd"
+              title="Minor Plumbing Repairs — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

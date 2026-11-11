@@ -65,7 +65,7 @@ try {
 }
 
 // Fallback notification email if no setting has been saved in the admin panel yet.
-const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@ninjafix.co.uk";
 
 interface EmailSettings {
   notifyEmail: string;
@@ -111,7 +111,7 @@ async function sendViaWeb3Forms(
     const formData = new FormData();
     formData.append("access_key", apiKey);
     formData.append("subject", `New ${label} — ${fields.name || fields.fullName || "Website Visitor"}`);
-    formData.append("from_name", "Tamesis Development Ltd Website");
+    formData.append("from_name", "Ninja Fix Website");
     // Web3Forms always sends to the address registered with the access key;
     // additional addresses are cc'd. If only one address is configured, cc
     // is simply omitted.
@@ -150,11 +150,13 @@ async function sendViaWeb3Forms(
   }
 }
 
-// tamesisdevelopment.co.uk is verified with Resend, so we send from the real
-// domain rather than Resend's shared sandbox address — this also lifts the
-// sandbox restriction of only being able to deliver to the account owner's
-// own email.
-const FROM = "Tamesis Development Ltd <notifications@tamesisdevelopment.co.uk>";
+// TODO(ninjafix-rebrand): tamesisdevelopment.co.uk was verified with Resend
+// (SPF/DKIM) so mail sent from its real domain; ninjafix.co.uk is NOT yet
+// verified there, so this FROM address will fail or land in spam until that
+// verification is done in the Resend dashboard. Until then, Resend sends
+// will silently fail here (non-fatal — the lead still saves to Postgres and
+// falls back to Web3Forms if configured as "both").
+const FROM = "Ninja Fix <notifications@ninjafix.co.uk>";
 
 const FORM_LABELS: Record<string, string> = {
   "hero-quote": "Hero Quote Form",
@@ -248,7 +250,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           const html = `
             <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
               <div style="background:#0E1611;padding:20px 24px;border-radius:8px 8px 0 0;">
-                <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Tamesis Development Ltd</span>
+                <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Ninja Fix</span>
               </div>
               <div style="border:1px solid #E6EAE7;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
                 <h2 style="margin:0 0 16px;color:#16201A;font-size:18px;">New ${escapeHtml(label)}</h2>

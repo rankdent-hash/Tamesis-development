@@ -14,7 +14,7 @@ export interface HouseService {
 }
 
 /**
- * Deliberately does NOT include roofing. Tamesis doesn't offer roofing as a
+ * Deliberately does NOT include roofing. Ninja Fix doesn't offer roofing as a
  * service — it appears on the site only as "roof and external water ingress
  * investigations" within Leak Detection, and "roofing" is an active negative
  * keyword on the Google Ads account. Showing a roofing hotspot would

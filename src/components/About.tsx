@@ -10,14 +10,14 @@ export function About() {
         </AnimateIn>
 
         <AnimateIn delay={0.1}>
-          <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">About Tamesis</span>
+          <span className="text-xs font-accent uppercase tracking-widest text-blue-600 font-semibold">About Ninja Fix</span>
           <h2 className="mt-4 font-display font-bold text-navy-900 text-3xl lg:text-4xl leading-tight text-balance">
             Built on Quality. Trusted Across London.
           </h2>
 
           <div className="mt-6 space-y-5 text-slate leading-relaxed">
             <p>
-              Founded in 2019, Tamesis Development Ltd has become one of London&rsquo;s trusted property maintenance and
+              Founded in 2019, Ninja Fix has become one of London&rsquo;s trusted property maintenance and
               refurbishment contractors.
             </p>
             <p>

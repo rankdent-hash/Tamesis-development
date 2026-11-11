@@ -66,7 +66,7 @@ export function ServiceShowcase() {
             and permanently if WebGL isn't available */}
         <img
           src={unsplashUrl(aboutPhoto)}
-          alt="Tamesis engineers at work across London"
+          alt="Ninja Fix engineers at work across London"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             sceneReady ? "opacity-0" : "opacity-100"
           }`}

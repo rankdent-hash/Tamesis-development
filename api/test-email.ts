@@ -69,10 +69,10 @@ try {
   console.error("Postgres pool init error (test-email):", err);
 }
 
-const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@tamesisdevelopment.co.uk";
-// tamesisdevelopment.co.uk is verified with Resend - see the matching
-// comment in api/submit-form.ts.
-const FROM = "Tamesis Development Ltd <notifications@tamesisdevelopment.co.uk>";
+const NOTIFY_FALLBACK = process.env.NOTIFY_EMAIL || "info@ninjafix.co.uk";
+// TODO(ninjafix-rebrand): ninjafix.co.uk is NOT yet verified with Resend —
+// see the matching comment in api/submit-form.ts.
+const FROM = "Ninja Fix <notifications@ninjafix.co.uk>";
 
 interface EmailSettings {
   notifyEmail: string;
@@ -137,8 +137,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const { error } = await resend.emails.send({
           from: FROM,
           to: settings.notifyEmail,
-          subject: "Tamesis Website — Test Email",
-          html: `<p>This is a test email from the Tamesis Development Ltd website admin panel.</p><p>Sent via <strong>Resend</strong> to: ${settings.notifyEmail}</p><p>If you received this, email notifications are working correctly.</p>`,
+          subject: "Ninja Fix Website — Test Email",
+          html: `<p>This is a test email from the Ninja Fix website admin panel.</p><p>Sent via <strong>Resend</strong> to: ${settings.notifyEmail}</p><p>If you received this, email notifications are working correctly.</p>`,
         });
         if (error) {
           results.push({ provider: "Resend", success: false, detail: JSON.stringify(error) });
@@ -158,8 +158,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       try {
         const formData = new FormData();
         formData.append("access_key", settings.web3formsApiKey);
-        formData.append("subject", "Tamesis Website — Test Email");
-        formData.append("from_name", "Tamesis Development Ltd Website");
+        formData.append("subject", "Ninja Fix Website — Test Email");
+        formData.append("from_name", "Ninja Fix Website");
         formData.append("message", `This is a test email sent via Web3Forms to: ${settings.notifyEmail}`);
 
         const webRes = await fetch("https://api.web3forms.com/submit", {

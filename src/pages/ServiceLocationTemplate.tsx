@@ -16,7 +16,7 @@ import { CtaPhoneLine } from "../components/CtaPhoneLine";
 export function ServiceLocationTemplate({ service, location }: { service: Service; location: Location }) {
   const content = getServiceLocationContent(service, location);
   const path = `/services/${service.slug}/${location.slug}`;
-  const metaDescription = `${service.name} in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, no subcontractors.`;
+  const metaDescription = `${service.name} in ${location.name} from Ninja Fix — directly employed engineers, clear quotes, no subcontractors.`;
 
   const navigate = useNavigate();
   return (

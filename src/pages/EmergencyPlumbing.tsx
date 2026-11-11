@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "Are your engineers directly employed?",
-    a: "Yes — every engineer who attends is directly employed by Tamesis Development Ltd, not a subcontractor found on the day. That's part of why our response times stay consistent.",
+    a: "Yes — every engineer who attends is directly employed by Ninja Fix, not a subcontractor found on the day. That's part of why our response times stay consistent.",
   },
 ];
 

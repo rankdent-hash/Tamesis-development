@@ -49,7 +49,7 @@ export function SitemapPage() {
     <div className="min-h-screen bg-paper">
       <Seo
         title="Sitemap"
-        description="A full list of every page on the Tamesis Development Ltd website — services, sectors, and areas we cover across London."
+        description="A full list of every page on the Ninja Fix website — services, sectors, and areas we cover across London."
         path="/sitemap"
       />
       <Header />

@@ -23,8 +23,8 @@ import { seoMeta } from "./src/data/seoMeta";
 // Ordinary browser requests pass straight through untouched.
 // ---------------------------------------------------------------------------
 
-const SITE_URL = "https://www.tamesisdevelopment.co.uk";
-const SITE_NAME = "Tamesis Development Ltd";
+const SITE_URL = "https://www.ninjafix.co.uk";
+const SITE_NAME = "Ninja Fix";
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1632862378103-8248dccb7e3d?auto=format&fit=crop&q=80&w=1200&h=630";
 const IMG_PARAMS = "auto=format&fit=crop&q=80&w=1200&h=630";
@@ -173,7 +173,7 @@ function getStaticMeta(pathname: string): PageMeta | null {
       const photoId = servicePhotos[service.slug as keyof typeof servicePhotos];
       return {
         title: `${service.name} in London`,
-        description: `Professional ${service.name.toLowerCase()} across London from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`,
+        description: `Professional ${service.name.toLowerCase()} across London from Ninja Fix — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`,
         image: photoId ? unsplashUrl(photoId, IMG_PARAMS) : DEFAULT_IMAGE,
       };
     }
@@ -186,7 +186,7 @@ function getStaticMeta(pathname: string): PageMeta | null {
       const photoId = sectorPhotos[sector.slug as keyof typeof sectorPhotos];
       return {
         title: `${sector.name} — Property Maintenance for ${sector.name}`,
-        description: `Tamesis Development Ltd provides property maintenance and repairs for ${sector.name.toLowerCase()} across London.`,
+        description: `Ninja Fix provides property maintenance and repairs for ${sector.name.toLowerCase()} across London.`,
         image: photoId ? unsplashUrl(photoId, IMG_PARAMS) : DEFAULT_IMAGE,
       };
     }
@@ -200,7 +200,7 @@ function getStaticMeta(pathname: string): PageMeta | null {
       const photoId = locationPhotos[location.slug as keyof typeof locationPhotos] || coveragePhoto;
       return {
         title: `Property Maintenance in ${location.name}`,
-        description: `Property maintenance, repairs and refurbishment in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`,
+        description: `Property maintenance, repairs and refurbishment in ${location.name} from Ninja Fix — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`,
         image: unsplashUrl(photoId, IMG_PARAMS),
       };
     }
@@ -216,7 +216,7 @@ function getStaticMeta(pathname: string): PageMeta | null {
       const photoId = servicePhotos[service.slug as keyof typeof servicePhotos];
       return {
         title: `${service.name} in ${location.name}`,
-        description: `${service.name} in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, no subcontractors.`,
+        description: `${service.name} in ${location.name} from Ninja Fix — directly employed engineers, clear quotes, no subcontractors.`,
         image: photoId ? unsplashUrl(photoId, IMG_PARAMS) : DEFAULT_IMAGE,
       };
     }

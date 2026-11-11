@@ -19,7 +19,7 @@ export function About() {
       <Header />
       <main>
         <PageHero
-          eyebrow="About Tamesis"
+          eyebrow="About Ninja Fix"
           title="London Property Maintenance, Built on Trust Since 2019"
           subtitle="From a small responsive repairs team to seventeen operational teams covering the whole of London, our focus has never changed: reliable, professional work delivered by people who show up."
           breadcrumb="About Us"
@@ -46,7 +46,7 @@ export function About() {
             <AnimateIn className="corner-marks">
               <Illustration
                 icon="HardHat"
-                label="Tamesis founder & site team"
+                label="Ninja Fix founder & site team"
                 className="aspect-[4/5] lg:aspect-[5/6] rounded-2xl shadow-card-hover"
               />
             </AnimateIn>
@@ -57,7 +57,7 @@ export function About() {
               </h2>
               <div className="mt-6 space-y-5 text-slate leading-relaxed">
                 <p>
-                  <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> was
+                  <a href="/" className="text-orange-600 font-semibold hover:underline">Ninja Fix</a> was
                   founded in 2019 with a straightforward aim — bring a genuinely
                   professional standard of property maintenance to London, delivered by directly managed teams rather
                   than a loose network of subcontractors.

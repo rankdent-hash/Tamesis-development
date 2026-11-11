@@ -45,7 +45,7 @@ export function FurnitureAssembly() {
             <img
               src={unsplashUrl(handymanSubPhotos["furniture-assembly"])}
               alt="Handyman assembling flat-pack furniture with a screwdriver in a London home"
-              title="Furniture Assembly — Tamesis Development Ltd"
+              title="Furniture Assembly — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

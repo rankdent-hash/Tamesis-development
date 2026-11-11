@@ -17,7 +17,7 @@ import { locationPhotos, unsplashUrl, coveragePhoto } from "../data/photos";
 export function LocationTemplate({ location }: { location: Location }) {
   const content = getLocationContent(location);
   const path = `/property-maintenance/${location.slug}`;
-  const metaDescription = `Property maintenance, repairs and refurbishment in ${location.name} from Tamesis Development Ltd — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
+  const metaDescription = `Property maintenance, repairs and refurbishment in ${location.name} from Ninja Fix — directly employed engineers, clear quotes, and work for housing associations, landlords and homeowners.`;
 
   const navigate = useNavigate();
   return (

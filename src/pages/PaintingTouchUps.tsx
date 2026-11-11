@@ -45,7 +45,7 @@ export function PaintingTouchUps() {
             <img
               src={unsplashUrl(handymanSubPhotos["painting-touch-ups"])}
               alt="Handyman touching up a scuffed wall with matching paint in a London home"
-              title="Painting Touch-Ups — Tamesis Development Ltd"
+              title="Painting Touch-Ups — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

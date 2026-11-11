@@ -1,4 +1,4 @@
-const TOKEN_KEY = "tamesis_admin_token";
+const TOKEN_KEY = "ninjafix_admin_token";
 
 export function getAdminToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);

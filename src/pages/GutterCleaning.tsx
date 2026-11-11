@@ -45,7 +45,7 @@ export function GutterCleaning() {
             <img
               src={unsplashUrl(handymanSubPhotos["gutter-cleaning"])}
               alt="Blocked gutters on a London roofline before professional gutter cleaning"
-              title="Gutter Cleaning — Tamesis Development Ltd"
+              title="Gutter Cleaning — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

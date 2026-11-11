@@ -1,5 +1,5 @@
-export const SITE_URL = "https://www.tamesisdevelopment.co.uk";
-export const SITE_NAME = "Tamesis Development Ltd";
+export const SITE_URL = "https://www.ninjafix.co.uk";
+export const SITE_NAME = "Ninja Fix";
 // Used as the og:image/twitter:image fallback for any page that doesn't
 // pass its own — keeps social share cards from ever being image-less.
 export const DEFAULT_OG_IMAGE = "https://images.unsplash.com/photo-1632862378103-8248dccb7e3d?auto=format&fit=crop&q=80&w=1200&h=630";

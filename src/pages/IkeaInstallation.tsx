@@ -45,7 +45,7 @@ export function IkeaInstallation() {
             <img
               src={unsplashUrl(handymanSubPhotos["furniture-assembly"])}
               alt="Handyman assembling IKEA flat-pack furniture with a screwdriver in a London home"
-              title="IKEA Furniture Assembly — Tamesis Development Ltd"
+              title="IKEA Furniture Assembly — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />
@@ -116,7 +116,7 @@ export function IkeaInstallation() {
               <Phone size={20} /> Call Now — {company.phoneJobBooking}
             </a>
             <p className="mt-4 text-xs text-navy-100/50">
-              Tamesis Development Ltd is an independent handyman service and is not affiliated with or endorsed by IKEA.
+              Ninja Fix is an independent handyman service and is not affiliated with or endorsed by IKEA.
             </p>
           </div>
         </section>

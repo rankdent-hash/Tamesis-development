@@ -133,7 +133,7 @@ export function Footer() {
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-8 gap-10">
         <div className="lg:col-span-2">
           <a href="/" className="flex items-center">
-            <img src={logo} alt="Tamesis Development Ltd" className="h-[55px] w-auto invert" />
+            <img src={logo} alt="Ninja Fix" className="h-[55px] w-auto invert" />
           </a>
 
           <div className="mt-7 space-y-3.5 text-sm text-navy-100/70 font-accent">
@@ -248,7 +248,11 @@ export function Footer() {
 
       <div className="relative border-t border-navy-800">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-accent text-navy-100/50">
-          <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. 12210539.</span>
+          {/* TODO(ninjafix-rebrand): this was Tamesis Development Ltd's Companies House
+              number — replace with Ninja Fix's real registered number (or drop the
+              "Company No." clause entirely if Ninja Fix isn't operating as a limited
+              company) before this goes live. */}
+          <span>&copy; {new Date().getFullYear()} {company.name}. All rights reserved. Company No. [TBC].</span>
           <div className="flex gap-6">
             <a href="/privacy-policy" className="hover:text-orange-400 transition-colors">Privacy Policy</a>
             <a href="/cookie-policy" className="hover:text-orange-400 transition-colors">Cookie Policy</a>

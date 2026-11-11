@@ -103,7 +103,7 @@ export function Admin() {
 
   return (
     <div className="min-h-screen bg-navy-50">
-      <Seo title="Admin" description="Tamesis Development Ltd admin panel." path="/admin" />
+      <Seo title="Admin" description="Ninja Fix admin panel." path="/admin" />
       {authed ? <Dashboard onLogout={() => setAuthed(false)} /> : <LoginForm onSuccess={() => setAuthed(true)} />}
     </div>
   );
@@ -136,7 +136,7 @@ function LoginForm({ onSuccess }: { onSuccess: () => void }) {
             T
           </span>
           <h1 className="mt-4 font-display font-bold text-navy-900 text-2xl">Admin Login</h1>
-          <p className="mt-1 text-sm text-slate">Tamesis Development Ltd</p>
+          <p className="mt-1 text-sm text-slate">Ninja Fix</p>
         </div>
 
         <form onSubmit={handleSubmit} className="rounded-2xl border-2 border-navy-900 bg-white p-7 shadow-card space-y-4">
@@ -231,7 +231,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             T
           </span>
           <div>
-            <h1 className="font-display font-bold text-sm leading-tight">Tamesis Admin</h1>
+            <h1 className="font-display font-bold text-sm leading-tight">Ninja Fix Admin</h1>
             <p className="text-[10px] text-navy-100/60 font-accent">Customer follow-up</p>
           </div>
         </div>

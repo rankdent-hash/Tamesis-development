@@ -9,9 +9,9 @@ export function WhyChoose() {
       <div className="absolute inset-0 blueprint-grid opacity-60" />
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
         <AnimateIn className="max-w-2xl">
-          <span className="text-xs font-accent uppercase tracking-widest text-blue-400 font-semibold">Why Tamesis</span>
+          <span className="text-xs font-accent uppercase tracking-widest text-blue-400 font-semibold">Why Ninja Fix</span>
           <h2 className="mt-4 font-display font-bold text-white text-3xl lg:text-4xl leading-tight text-balance">
-            Why Choose Tamesis
+            Why Choose Ninja Fix
           </h2>
         </AnimateIn>
 

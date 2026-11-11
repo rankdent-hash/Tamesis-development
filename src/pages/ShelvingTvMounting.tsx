@@ -45,7 +45,7 @@ export function ShelvingTvMounting() {
             <img
               src={unsplashUrl(handymanSubPhotos["shelving-tv-mounting"])}
               alt="Handyman drilling a wall fixing to mount a TV bracket or shelf in a London home"
-              title="Shelving & TV Mounting — Tamesis Development Ltd"
+              title="Shelving & TV Mounting — Ninja Fix"
               className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />

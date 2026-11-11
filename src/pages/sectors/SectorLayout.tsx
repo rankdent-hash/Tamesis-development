@@ -76,7 +76,7 @@ export function SectorLayout({
                   <p key={p}>{p}</p>
                 ))}
                 <p>
-                  <a href="/" className="text-orange-600 font-semibold hover:underline">Tamesis Development Ltd</a> has
+                  <a href="/" className="text-orange-600 font-semibold hover:underline">Ninja Fix</a> has
                   delivered work across every London borough since 2019.
                 </p>
               </div>
@@ -91,7 +91,7 @@ export function SectorLayout({
                 <figure className="corner-marks overflow-hidden rounded-2xl shadow-card-hover">
                   <img
                     src={unsplashUrl(sectorPhotos[slug])}
-                    alt={`Property maintenance and repairs for ${name} in London — Tamesis Development Ltd`}
+                    alt={`Property maintenance and repairs for ${name} in London — Ninja Fix`}
                     className="aspect-[4/3] w-full h-full object-cover"
                     loading="lazy"
                   />
