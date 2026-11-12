@@ -38,7 +38,7 @@ function SiteCard({
       href={href}
       className="corner-marks group flex items-start gap-3 rounded-2xl bg-white border border-navy-100 p-5 shadow-card hover:shadow-card-hover transition-all"
     >
-      <span className="flex w-10 h-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+      <span className="flex w-10 h-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
         {icon}
       </span>
       <div className="min-w-0">

@@ -15,7 +15,7 @@ export function ServicesMegaMenu() {
               href={`/services/${s.slug}`}
               className="group flex items-center gap-2.5 rounded-lg px-2 py-2.5 -mx-2 text-navy-800 hover:bg-navy-50 hover:text-navy-900 transition-colors"
             >
-              <span className="flex w-7 h-7 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+              <span className="flex w-7 h-7 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
                 <Icon name={s.icon} size={14} strokeWidth={1.75} />
               </span>
               <span className="text-[13px] leading-snug">{s.name}</span>

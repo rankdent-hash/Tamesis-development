@@ -154,7 +154,7 @@ export function SectorLayout({
                   href={`/services/${service.slug}`}
                   className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all text-center"
                 >
-                  <span className="flex w-11 h-11 mx-auto items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                  <span className="flex w-11 h-11 mx-auto items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
                     <Icon name={service.icon} size={20} strokeWidth={1.75} />
                   </span>
                   <span className="mt-4 block font-display font-semibold text-navy-900 text-sm leading-snug">{service.name}</span>

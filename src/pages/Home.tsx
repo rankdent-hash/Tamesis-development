@@ -21,12 +21,12 @@ export function Home() {
       <Header />
       <main>
         <Hero />
-        <Reviews />
         <TrustBar />
-        <About />
         <Services />
+        <About />
         <WhyChoose />
         <Process />
+        <Reviews />
         <Coverage />
         <EmergencyCallout />
         <News />

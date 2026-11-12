@@ -255,7 +255,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           const html = `
             <div style="font-family: Arial, sans-serif; max-width: 560px; margin: 0 auto;">
               <div style="background:#0A1626;padding:20px 24px;border-radius:8px 8px 0 0;">
-                <span style="color:#C6A15B;font-weight:bold;font-size:16px;">Ninja Fix</span>
+                <span style="color:#FF7421;font-weight:bold;font-size:16px;">Ninja Fix</span>
               </div>
               <div style="border:1px solid #E2E8F0;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
                 <h2 style="margin:0 0 16px;color:#0E1B2B;font-size:18px;">New ${escapeHtml(label)}</h2>

@@ -169,7 +169,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
               <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-navy-700" />
               {process.map((item) => (
                 <div key={item.step} className="relative text-center flex flex-col items-center">
-                  <span className="relative z-10 flex w-12 h-12 items-center justify-center rounded-full bg-orange-500 text-white font-accent font-semibold text-lg">
+                  <span className="relative z-10 flex w-12 h-12 items-center justify-center rounded-full bg-orange-500 text-navy-950 font-accent font-semibold text-lg">
                     {item.step}
                   </span>
                   <h3 className="mt-5 font-display font-semibold text-white text-lg">{item.title}</h3>
@@ -411,7 +411,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   href={`/services/${s.slug}`}
                   className="corner-marks group rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover transition-all"
                 >
-                  <span className="flex w-11 h-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                  <span className="flex w-11 h-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
                     <Icon name={s.icon} size={20} strokeWidth={1.75} />
                   </span>
                   <span className="mt-5 flex items-center justify-between gap-2">

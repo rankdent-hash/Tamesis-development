@@ -22,8 +22,8 @@ export function Illustration({
   className?: string;
 }) {
   const seed = hashString(label);
-  const accent = seed % 2 === 0 ? "#C6A15B" : "#22B8D4"; // brass / cyan, alternating by item
-  const accentSoft = seed % 2 === 0 ? "#D4B67C" : "#5FD3E8";
+  const accent = seed % 2 === 0 ? "#FF7421" : "#22B8D4"; // orange / cyan, alternating by item
+  const accentSoft = seed % 2 === 0 ? "#FF9248" : "#5FD3E8";
 
   // Deterministic-but-varied positions for the decorative shapes, derived
   // from the hash so each label gets its own arrangement.

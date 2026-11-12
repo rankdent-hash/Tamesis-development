@@ -52,7 +52,7 @@ export function ThankYou() {
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <a
                 href="/"
-                className="inline-flex items-center justify-center rounded-full bg-orange-500 text-white px-9 py-4 text-sm font-bold shadow-card hover:bg-orange-600 hover:shadow-card-hover transition-all"
+                className="inline-flex items-center justify-center rounded-full bg-orange-500 text-navy-950 px-9 py-4 text-sm font-bold shadow-card hover:bg-orange-600 hover:shadow-card-hover transition-all"
               >
                 Back to Homepage
               </a>

@@ -227,7 +227,7 @@ export function Header() {
                   <span
                     className={cn(
                       "flex w-9 h-9 shrink-0 items-center justify-center rounded-lg",
-                      active ? "bg-orange-500 text-white" : "bg-navy-50 text-navy-700"
+                      active ? "bg-orange-500 text-navy-950" : "bg-navy-50 text-navy-700"
                     )}
                   >
                     <Icon size={17} strokeWidth={1.75} />

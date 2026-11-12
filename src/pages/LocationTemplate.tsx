@@ -90,7 +90,7 @@ export function LocationTemplate({ location }: { location: Location }) {
                   href={location.hasServiceCombos ? `/services/${service.slug}/${location.slug}` : `/services/${service.slug}`}
                   className="corner-marks group rounded-2xl bg-white border border-navy-100 p-5 shadow-card hover:shadow-card-hover transition-all"
                 >
-                  <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                  <span className="flex w-10 h-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
                     <Icon name={service.icon} size={18} strokeWidth={1.75} />
                   </span>
                   <span className="mt-3 flex items-start justify-between gap-2">

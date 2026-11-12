@@ -58,7 +58,7 @@ export function ReportRepair() {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
             <div className="mb-8 rounded-2xl border border-orange-100 bg-orange-50 p-6 flex items-center gap-4">
-              <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
+              <span className="flex w-11 h-11 shrink-0 items-center justify-center rounded-full bg-orange-500 text-navy-950">
                 <Phone size={18} />
               </span>
               <p className="text-sm text-navy-800">

@@ -13,24 +13,33 @@ This is a client-side SPA (React Router) combined with serverless API functions,
 
 ## Brand
 
-**Logo**: `src/assets/logo.png` (the client's actual logo — house/roof mark with "TAMESIS DEVELOPMENT" wordmark, black line art on transparent background). Used in the header as-is (black reads well on the always-light header); in the footer it's shown with a CSS `invert` filter to render white against the dark navy background, rather than needing a second exported file. If the source logo is ever replaced, drop the new file in at the same path and both spots update automatically.
+**Logo**: `src/assets/logo.png` — the Ninja Fix lockup (neon-blue ninja-mask shield + wordmark). It has a solid black background baked in, so the header shows it inside a small dark badge and the footer (already near-black) shows it as-is. `src/assets/logo-mark.png` is the shield on its own with the black converted to real transparency — only suitable on dark backgrounds; it's the emblem in the home page's closing call to action.
 
+**Design direction**: deep navy and neon cyan taken from the logo, with a vivid
+orange as the second colour, on warm ivory paper. Signature motifs are the
+blueprint grid, the logo's hexagon, and real-time 3D.
 
-**Design direction**: heritage British property brand — deep racing-green-black,
-antique brass, warm ivory paper — rather than a generic navy/corporate-SaaS
-palette. Signature motif is the blueprint-grid + corner-bracket treatment
-(nods to surveying/technical drawings, ties to the construction/property
-subject matter).
-
-- **Palette**:
-  - `navy-*` — ink: deep heritage green-black (`#0E1611`), primary dark
-    surfaces and text-on-light
-  - `orange-*` — brass: antique gold (`#C6A15B`), the **one** bold accent —
-    used sparingly, primary CTAs only
-  - `blue-*` — sage: muted olive-green, secondary accent for icons/labels/hover
-  - `green-*` — functional success states only (e.g. trust-badge checkmarks),
-    not a brand color
+- **Palette** (all in the `@theme` block of `src/index.css`):
+  - `navy-*` — ink: the logo's deep navy, primary dark surfaces and
+    text-on-light
+  - `blue-*` — the logo's cyan glow: eyebrow labels, icons, hover states
+  - `orange-*` — the second colour (`#FF7421`): every call to action,
+    highlighted words in section titles, and the emergency band. Text on
+    `orange-500` is always `navy-950` (white fails contrast); use
+    `orange-600` for orange text on light backgrounds
+  - `green-*` — functional success states only, not a brand color
   - `paper` — warm ivory background (`#FAF8F4`), not flat cool grey
+- **3D on the home page**:
+  - `src/components/scene3d/` — three.js scene of trade tools orbiting a
+    glowing hexagon over a perspective blueprint floor. `ToolsBackdrop` lazy-
+    loads it and centres the orbit on a DOM element: the quote form in the
+    hero on desktop, the rating on mobile, the emblem in the closing CTA
+  - `src/components/house3d/` — the interactive 3D house in the About section
+  - CSS-only 3D: tilt-to-cursor service cards (`TiltCard.tsx`), the tilted
+    London coverage board (`Coverage.tsx`), extruded process step blocks
+  - three.js is never in the initial bundle, scenes pause off-screen, and
+    everything falls back to a static layout without WebGL or with
+    reduced-motion set
 - **Fonts**: Bricolage Grotesque (headings — distinctive variable display
   face), Inter (body), IBM Plex Mono (labels, stats, phone numbers — ties
   into the blueprint/technical motif)

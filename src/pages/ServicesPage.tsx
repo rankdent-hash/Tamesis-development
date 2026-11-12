@@ -34,7 +34,7 @@ export function ServicesPage() {
                     href={`/services/${service.slug}`}
                     className="corner-marks group h-full rounded-2xl bg-white border border-navy-100 p-6 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
                   >
-                    <span className="flex w-11 h-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <span className="flex w-11 h-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
                       <Icon name={service.icon} size={22} strokeWidth={1.75} />
                     </span>
                     <span className="mt-5 flex items-start justify-between gap-2">
