@@ -121,8 +121,8 @@ export const houseStops: HouseStop[] = [
     href: "/services/damp-mould",
     where: "Ground-floor walls",
     blurb: "Diagnosis first, then the right treatment — so it doesn't just come back.",
-    camera: [-0.6, 1.9, 5.2],
-    target: [-3.8, 0.8, -1.6],
+    camera: [-0.9, 1.7, 4.9],
+    target: [-3.85, 0.9, 1.1],
     shell: false,
   },
   {
