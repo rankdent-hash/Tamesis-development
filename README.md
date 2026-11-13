@@ -34,7 +34,10 @@ blueprint grid, the logo's hexagon, and real-time 3D.
     glowing hexagon over a perspective blueprint floor. `ToolsBackdrop` lazy-
     loads it and centres the orbit on a DOM element: the quote form in the
     hero on desktop, the rating on mobile, the emblem in the closing CTA
-  - `src/components/house3d/` — the interactive 3D house in the About section
+  - `src/components/house3d/` — the cutaway house tour in the About section:
+    the camera visits one stop per service (`houseServices.ts`), the front
+    wall fades for interior stops, and the relevant part glows orange.
+    There is deliberately no roofing stop — see the note in that file
   - CSS-only 3D: tilt-to-cursor service cards (`TiltCard.tsx`), the tilted
     London coverage board (`Coverage.tsx`), extruded process step blocks
   - three.js is never in the initial bundle, scenes pause off-screen, and

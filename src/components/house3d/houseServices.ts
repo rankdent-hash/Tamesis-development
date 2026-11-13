@@ -1,96 +1,148 @@
-export interface HouseService {
+export type StopKey =
+  | "overview"
+  | "plumbing"
+  | "bathroom"
+  | "tiling"
+  | "flooring"
+  | "electrical"
+  | "painting"
+  | "carpentry"
+  | "damp"
+  | "leak"
+  | "fencing";
+
+export interface HouseStop {
+  key: StopKey;
   name: string;
   href: string;
-  /** Short line shown under the name while this service is active */
+  /** Where in the house this stop is, in plain words */
+  where: string;
+  /** One line on what we do there */
   blurb: string;
-  /** Where on the house this service applies, in plain words */
-  location: string;
-  /** Hotspot marker position [x, y, z] */
-  marker: [number, number, number];
-  /** Camera position when this service is active */
+  /** Camera position and look-at point for this stop */
   camera: [number, number, number];
-  /** What the camera looks at */
   target: [number, number, number];
+  /** true = front wall and roof on (outside view); false = cutaway */
+  shell: boolean;
 }
 
 /**
- * Deliberately does NOT include roofing. Ninja Fix doesn't offer roofing as a
- * service — it appears on the site only as "roof and external water ingress
- * investigations" within Leak Detection, and "roofing" is an active negative
- * keyword on the Google Ads account. Showing a roofing hotspot would
- * advertise something the business doesn't do.
+ * Stops on the 3D house tour, in tour order.
+ *
+ * There is deliberately no "roofing" stop. Ninja Fix doesn't offer roofing as
+ * a service — it appears on the site only as roof and external water ingress
+ * investigations within Leak Detection. The roof stop is therefore framed as
+ * leak investigation, which is what the business actually does up there.
  */
-export const houseServices: HouseService[] = [
+export const houseStops: HouseStop[] = [
   {
+    key: "overview",
+    name: "Your whole property",
+    href: "/services",
+    where: "Inside and out",
+    blurb: "One team for every repair, from the gutters to the garden gate. Take the tour to see what we do in each part of a home.",
+    camera: [9, 8.5, 14.5],
+    target: [0, 3, 0.5],
+    shell: true,
+  },
+  {
+    key: "plumbing",
     name: "Plumbing & Drainage",
     href: "/services/plumbing",
-    blurb: "Leaks, blockages and emergency call-outs",
-    location: "Soil pipe & drainage",
-    marker: [2.95, 2, 1.65],
-    camera: [11.36, 4.93, 6.49],
-    target: [2.2, 1.9, 1.2],
+    where: "Pipework, wastes and drains",
+    blurb: "Leaks, blockages and emergency call-outs — from the bathroom wastes down to the drain outside.",
+    camera: [6.2, 5, 13.5],
+    target: [2, 2.7, -1],
+    shell: false,
   },
   {
+    key: "bathroom",
     name: "Bathroom & Kitchen",
     href: "/services/bathroom-refurbishment",
-    blurb: "Full refurbishment and installation",
-    location: "First floor bathroom",
-    marker: [1.72, 2.55, 2.2],
-    camera: [5.57, 4.48, 10.15],
-    target: [1.5, 2.5, 1.8],
+    where: "First-floor bathroom, ground-floor kitchen",
+    blurb: "Repairs, full refurbishment and installation of bathrooms and kitchens.",
+    camera: [3, 3.6, 11.5],
+    target: [2.25, 2.6, -0.5],
+    shell: false,
   },
   {
-    name: "Electrical Services",
-    href: "/services/electrical",
-    blurb: "Fault finding, rewiring and EICR certificates",
-    location: "Throughout the property",
-    marker: [-1.72, 1.15, 2.2],
-    camera: [1.16, 5.17, 11.99],
-    target: [0, 2.0, 1.0],
-  },
-  {
+    key: "tiling",
     name: "Wall & Floor Tiling",
     href: "/services/tiling",
-    blurb: "Wet rooms, bathrooms and splashbacks",
-    location: "Bathroom & kitchen",
-    marker: [-1.72, 2.55, 2.2],
-    camera: [-5.28, 4.48, 10.29],
-    target: [-1.5, 2.5, 1.8],
+    where: "Bathroom walls and floor",
+    blurb: "Wet rooms, bathrooms and splashbacks, tiled and grouted properly.",
+    camera: [3.6, 5.1, 6.6],
+    target: [2.3, 3.7, -1.8],
+    shell: false,
   },
   {
-    name: "Carpentry & Joinery",
-    href: "/services/carpentry-joinery",
-    blurb: "Doors, skirting and fitted storage",
-    location: "Doors & internal joinery",
-    marker: [0, 1.5, 2.25],
-    camera: [1.95, 3.15, 10.75],
-    target: [0, 1.5, 1.6],
+    key: "flooring",
+    name: "Flooring & Subfloor",
+    href: "/services/flooring-repairs",
+    where: "Living room floor",
+    blurb: "Subfloor repairs and new floor finishes, laid level and finished neatly.",
+    camera: [-0.6, 2.6, 7.5],
+    target: [-1.9, 0.2, -0.3],
+    shell: false,
   },
   {
+    key: "electrical",
+    name: "Electrical Services",
+    href: "/services/electrical",
+    where: "Throughout the property",
+    blurb: "Fault finding, rewiring and EICR certificates — every circuit from the consumer unit out.",
+    camera: [0.5, 4.2, 14],
+    target: [0, 2.7, 0],
+    shell: false,
+  },
+  {
+    key: "painting",
     name: "Painting & Decorating",
     href: "/services/painting-decorating",
-    blurb: "Interior and exterior, properly prepared",
-    location: "Interior & exterior walls",
-    marker: [-0.9, 1.9, 2.15],
-    camera: [3.11, 6.3, 11.64],
-    target: [0, 2.2, 0.8],
+    where: "Interior and exterior walls",
+    blurb: "Interior and exterior decorating, properly prepared for a finish that lasts.",
+    camera: [-3.4, 4.9, 6.2],
+    target: [-1.9, 4, -2.6],
+    shell: false,
   },
   {
+    key: "carpentry",
+    name: "Carpentry & Joinery",
+    href: "/services/carpentry-joinery",
+    where: "Doors, stairs and skirting",
+    blurb: "Doors, staircases, skirting and fitted storage, repaired or made new.",
+    camera: [-3.2, 2.3, 6.8],
+    target: [0.1, 1.2, 0.2],
+    shell: false,
+  },
+  {
+    key: "damp",
     name: "Damp & Mould",
     href: "/services/damp-mould",
-    blurb: "Diagnosis first, then the right treatment",
-    location: "Ground floor walls",
-    marker: [-2.9, 0.8, 0.2],
-    camera: [-12.51, 3.49, 3.68],
-    target: [-2.4, 1.2, 0],
+    where: "Ground-floor walls",
+    blurb: "Diagnosis first, then the right treatment — so it doesn't just come back.",
+    camera: [-0.6, 1.9, 5.2],
+    target: [-3.8, 0.8, -1.6],
+    shell: false,
   },
   {
+    key: "leak",
+    name: "Roof & Leak Investigations",
+    href: "/services/leak-detection",
+    where: "Roof, chimney and gutters",
+    blurb: "Tracing exactly where water is getting in from above, before recommending any repair.",
+    camera: [7.5, 14, 11.5],
+    target: [0.4, 5.6, 0.5],
+    shell: true,
+  },
+  {
+    key: "fencing",
     name: "Fencing & External",
     href: "/services/fencing-external-repairs",
-    blurb: "Garden fencing, gates and external repairs",
-    location: "Garden & boundary",
-    marker: [1.6, 1.2, 6.4],
-    camera: [1.96, 4.32, 13.99],
-    target: [0.2, 1.6, 4.0],
+    where: "Garden and boundary",
+    blurb: "Garden fencing, gates and external repairs.",
+    camera: [6.5, 4.2, 17.5],
+    target: [0, 1.8, 4.2],
+    shell: true,
   },
 ];
