@@ -101,6 +101,41 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.ninjafix.co.uk/services/boiler-heating-repair</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/boiler-servicing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/gas-safety-certificate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/power-flushing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/radiator-repairs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/heating-controls</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ninjafix.co.uk/services/hot-water-cylinders</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.ninjafix.co.uk/services/landlord-plumbing</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

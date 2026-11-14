@@ -1,6 +1,7 @@
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Flame, Phone } from "lucide-react";
 import { services, company } from "../data/content";
 import { Icon } from "./Icon";
+import { heatingNav } from "../data/heatingServices";
 
 export function ServicesMegaMenu() {
   return (
@@ -21,6 +22,23 @@ export function ServicesMegaMenu() {
               <span className="text-[13px] leading-snug">{s.name}</span>
             </a>
           ))}
+        </div>
+
+        <div className="mt-5 rounded-xl border border-orange-500/25 bg-orange-50/60 px-5 py-4">
+          <div className="flex items-center gap-2 text-[11px] font-accent uppercase tracking-widest text-orange-700 font-semibold">
+            <Flame size={14} /> Boiler &amp; Heating
+          </div>
+          <div className="mt-2 grid grid-cols-4 gap-x-5">
+            {heatingNav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-lg px-2 py-1.5 -mx-2 text-[13px] leading-snug text-navy-800 hover:bg-white hover:text-orange-700 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="mt-6 pt-6 border-t border-navy-100 flex flex-wrap items-center justify-between gap-4">

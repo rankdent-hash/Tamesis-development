@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone, HardHat, Star, CalendarCheck, ShieldCheck, MapPinn
 import { company, londonRegions, boroughLinkMap } from "../data/content";
 import logo from "../assets/logo.png";
 import { ContactLink } from "./ContactLink";
+import { heatingNav } from "../data/heatingServices";
 
 // lucide-react no longer ships brand/logo icons — simple inline marks instead.
 const socialLinks = [
@@ -56,6 +57,10 @@ const columns = [
     ],
   },
   {
+    title: "Boiler & Heating",
+    links: heatingNav.map((item) => ({ label: item.label, href: item.href })),
+  },
+  {
     title: "Sectors",
     links: [
       { label: "Housing Associations", href: "/sectors" },
@@ -81,7 +86,7 @@ const columns = [
     title: "Resources",
     links: [
       { label: "FAQs", href: "/faqs" },
-      { label: "Health &amp; Safety", href: "/health-safety" },
+      { label: "Health & Safety", href: "/health-safety" },
       { label: "Accreditations", href: "/accreditations" },
       { label: "Reviews", href: "/reviews" },
     ],
@@ -130,8 +135,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-8 gap-10">
-        <div className="lg:col-span-2">
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 py-16 lg:py-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-x-8 gap-y-10">
+        <div className="sm:col-span-2 md:col-span-3 lg:col-span-2">
           <a href="/" className="flex items-center">
             <img src={logo} alt="Ninja Fix" className="h-[40px] w-auto" />
           </a>

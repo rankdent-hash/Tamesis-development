@@ -668,10 +668,17 @@ export function HouseTour({
       [0.4, 0.2],
     ].forEach(([dx, dz]) => box(house, [0.05, 0.33, 0.05], [-2.0 + dx, 0.18, -1.1 + dz], darkWoodMat, false));
 
-    // Radiator (plumbing) on the back wall
-    const radMat = accent("plumbing", { color: 0xffffff, roughness: 0.35 });
-    box(house, [0.9, 0.55, 0.08], [-0.95, 0.45, zBack + 0.07], radMat);
-    for (let i = 0; i < 8; i++) box(house, [0.02, 0.5, 0.02], [-1.34 + i * 0.11, 0.45, zBack + 0.12], radMat, false);
+    // Radiators (heating): living room, bedroom, and a towel rail in the bathroom
+    const radMat = accent("heating", { color: 0xffffff, roughness: 0.35 });
+    const radiator = (x: number, floorY: number) => {
+      box(house, [0.9, 0.55, 0.08], [x, floorY + 0.45, zBack + 0.07], radMat);
+      for (let i = 0; i < 8; i++) box(house, [0.02, 0.5, 0.02], [x - 0.39 + i * 0.11, floorY + 0.45, zBack + 0.12], radMat, false);
+    };
+    radiator(-0.95, 0);
+    radiator(-1.3, FLOOR2);
+    const TOWEL_Z = 1.1;
+    for (let i = 0; i < 6; i++) box(house, [0.03, 0.03, 0.5], [W / 2 - T - 0.06, FLOOR2 + 0.7 + i * 0.16, TOWEL_Z], radMat, false);
+    [-0.25, 0.25].forEach((dz) => box(house, [0.03, 0.95, 0.03], [W / 2 - T - 0.06, FLOOR2 + 1.1, TOWEL_Z + dz], radMat, false));
 
     // Stairs, door, architrave and skirting — the joinery
     const woodMat = accent("carpentry", { color: 0xc49a6c, roughness: 0.6, map: tiled(woodBase, 1, 1) });
@@ -729,19 +736,37 @@ export function HouseTour({
     const stackMat = accent("plumbing", { color: 0x2a2f35, roughness: 0.5 });
     const PZ = zBack + 0.1;
     const RXI = W / 2 - T - 0.1;
-    box(house, [0.3, 0.7, 0.45], [RXI - 0.06, 1.75, -0.3], radMat); // boiler
+    // Plumbing proper: water to the sink and basin, and the wastes to the stack
     const pipes: THREE.Mesh[] = [
-      polylineTube([[RXI, 1.4, -0.3], [RXI, 0.12, -0.3], [RXI, 0.12, PZ]], 0.04, pipeMat),
-      polylineTube([[RXI, 0.12, PZ], [1.3, 0.12, PZ], [1.3, 0.86, PZ]], 0.04, pipeMat),
-      polylineTube([[1.3, 0.12, PZ], [-0.95, 0.12, PZ], [-0.95, 0.2, PZ]], 0.04, pipeMat),
-      polylineTube([[RXI, 1.4, -0.3], [RXI, FLOOR2 + 0.12, -0.3], [RXI, FLOOR2 + 0.12, PZ]], 0.04, pipeMat),
-      polylineTube([[RXI, FLOOR2 + 0.12, PZ], [1.25, FLOOR2 + 0.12, PZ], [1.25, FLOOR2 + 0.75, PZ]], 0.045, pipeMat),
+      polylineTube([[1.3, 0.86, PZ], [1.3, 0.24, PZ], [RXI, 0.24, PZ]], 0.045, pipeMat),
+      polylineTube([[1.25, FLOOR2 + 0.75, PZ], [1.25, FLOOR2 + 0.24, PZ], [RXI, FLOOR2 + 0.24, PZ]], 0.045, pipeMat),
+      polylineTube([[2.85, FLOOR2 + 0.3, PZ + 0.1], [2.85, FLOOR2 + 0.24, PZ], [RXI, FLOOR2 + 0.24, PZ]], 0.045, pipeMat),
       polylineTube([[RXI, FLOOR2 + 0.75, PZ], [RXI, 0.05, PZ]], 0.075, stackMat),
       polylineTube([[W / 2 + 0.12, EAVES - 0.3, -1.6], [W / 2 + 0.12, 0.1, -1.6], [W / 2 + 0.6, 0.02, -1.6]], 0.08, stackMat),
     ];
     pipes.forEach((p) => house.add(p));
     const pipeCounts = pipes.map((p) => p.geometry.index!.count);
     box(house, [0.5, 0.1, 0.5], [W / 2 + 0.75, -0.02, -1.6], blackMat);
+
+    // ---- Heating: boiler, and flow pipework out to each radiator ----
+    const BOILER_Z = -0.3;
+    box(house, [0.3, 0.72, 0.46], [RXI - 0.06, 1.75, BOILER_Z], radMat);
+    box(house, [0.02, 0.1, 0.2], [RXI - 0.22, 1.56, BOILER_Z], blackMat, false); // control panel
+    const flameMat = keep(new THREE.MeshBasicMaterial({ color: 0xff8a2a, transparent: true, opacity: 0, toneMapped: false }));
+    box(house, [0.02, 0.12, 0.12], [RXI - 0.222, 1.82, BOILER_Z], flameMat, false); // sight glass
+    cyl(house, 0.05, 0.05, GH - 2.11, [RXI - 0.06, (GH + 2.11) / 2, BOILER_Z], steelMat, 10); // flue
+    const heatMat = accent("heating", { color: 0xd9743c, roughness: 0.3, metalness: 0.9 });
+    const HY = 0.1;
+    const heatPipes: THREE.Mesh[] = [
+      // down from the boiler, along the back wall to the living-room radiator
+      polylineTube([[RXI, 1.39, BOILER_Z], [RXI, HY, BOILER_Z], [RXI - 0.12, HY, PZ], [-0.95, HY, PZ], [-0.95, 0.2, PZ]], 0.04, heatMat),
+      // up through the floor to the towel rail
+      polylineTube([[RXI + 0.06, 2.11, BOILER_Z + 0.15], [RXI + 0.06, FLOOR2 + HY, BOILER_Z + 0.15], [RXI + 0.06, FLOOR2 + HY, TOWEL_Z], [RXI + 0.06, FLOOR2 + 0.62, TOWEL_Z]], 0.04, heatMat),
+      // and along the first-floor back wall to the bedroom radiator
+      polylineTube([[RXI + 0.06, FLOOR2 + HY, BOILER_Z + 0.15], [RXI - 0.12, FLOOR2 + HY, PZ], [-1.3, FLOOR2 + HY, PZ], [-1.3, FLOOR2 + 0.2, PZ]], 0.04, heatMat),
+    ];
+    heatPipes.forEach((p) => house.add(p));
+    const heatCounts = heatPipes.map((p) => p.geometry.index!.count);
 
     // ---- Electrics: consumer unit, sockets and circuit traces ----
     const CU: V3 = [W / 2 - T - 0.07, 1.6, 1.4];
@@ -981,7 +1006,7 @@ export function HouseTour({
     let raf = 0;
     let disposed = false;
     let readyFired = false;
-    const settled = { tiling: true, flooring: true, bathroom: true, fencing: true, plumbing: true };
+    const settled = { tiling: true, flooring: true, bathroom: true, fencing: true, plumbing: true, heating: true };
 
     const frame = (now: number) => {
       const t = (now - t0) / 1000;
@@ -1028,7 +1053,8 @@ export function HouseTour({
       camera.lookAt(camTarget);
 
       // Time of day: electrics are shown at night, leak tracing under rain cloud
-      const wantNight = key === "electrical" ? 1 : key === "leak" ? 0.5 : 0;
+      // and heating on a winter evening with the lamps on.
+      const wantNight = key === "electrical" ? 1 : key === "heating" ? 0.72 : key === "leak" ? 0.5 : 0;
       night += (wantNight - night) * k(2.2);
       sun.intensity = THREE.MathUtils.lerp(2.3, 0.1, night);
       sun.color.copy(dayColor).lerp(nightColor, night);
@@ -1099,6 +1125,21 @@ export function HouseTour({
       } else if (!settled.plumbing) {
         pipes.forEach((pipe) => pipe.geometry.setDrawRange(0, Infinity));
         settled.plumbing = true;
+      }
+
+      // Heating: the boiler fires, then heat runs out along each flow pipe
+      if (key === "heating") {
+        const p = work(3.4, 1.4);
+        heatPipes.forEach((pipe, i) => {
+          const local = clamp01(p * heatPipes.length - i * 0.6);
+          pipe.geometry.setDrawRange(0, Math.floor((heatCounts[i] * local) / 48) * 48);
+        });
+        flameMat.opacity = smooth((stopT - 0.7) / 0.6) * (0.75 + Math.sin(t * 17) * 0.12 + Math.sin(t * 7.3) * 0.1);
+        settled.heating = false;
+      } else if (!settled.heating) {
+        heatPipes.forEach((pipe) => pipe.geometry.setDrawRange(0, Infinity));
+        flameMat.opacity = 0;
+        settled.heating = true;
       }
 
       const paintP = key === "painting" ? work(3) : 1;

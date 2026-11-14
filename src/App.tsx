@@ -7,6 +7,7 @@ import { PhoneClickTracker } from "./components/PhoneClickTracker";
 import { PageLoader } from "./components/PageLoader";
 import { services, retiredServiceRedirects } from "./data/content";
 import { ninjaFixTrades } from "./data/ninjaFixTrades";
+import { heatingServices } from "./data/heatingServices";
 
 // Every route is code-split into its own chunk so the initial load only
 // fetches what's needed for the page the visitor actually lands on.
@@ -54,6 +55,7 @@ const ElectricianCostGuide = lazy(() => import("./pages/ElectricianCostGuide").t
 const ExtractorFanRepair = lazy(() => import("./pages/ExtractorFanRepair").then((m) => ({ default: m.ExtractorFanRepair })));
 const UpvcDoorAdjustment = lazy(() => import("./pages/UpvcDoorAdjustment").then((m) => ({ default: m.UpvcDoorAdjustment })));
 const BoilerHeatingRepair = lazy(() => import("./pages/BoilerHeatingRepair").then((m) => ({ default: m.BoilerHeatingRepair })));
+const HeatingServicePage = lazy(() => import("./pages/HeatingServicePage").then((m) => ({ default: m.HeatingServicePage })));
 const SiteExplorer = lazy(() => import("./pages/SiteExplorer").then((m) => ({ default: m.SiteExplorer })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -89,6 +91,9 @@ function App() {
           <Route path="/services/toilet-repairs" element={<ToiletRepairs />} />
           <Route path="/services/low-water-pressure" element={<LowWaterPressure />} />
           <Route path="/services/boiler-heating-repair" element={<BoilerHeatingRepair />} />
+          {heatingServices.map((s) => (
+            <Route key={s.slug} path={`/services/${s.slug}`} element={<HeatingServicePage service={s} />} />
+          ))}
           <Route path="/services/furniture-assembly" element={<FurnitureAssembly />} />
           <Route path="/services/shelving-tv-mounting" element={<ShelvingTvMounting />} />
           <Route path="/services/gutter-cleaning" element={<GutterCleaning />} />

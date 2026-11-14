@@ -14,6 +14,7 @@ import {
   Mail,
   FileWarning,
   AlertTriangle,
+  Flame,
 } from "lucide-react";
 import { company, navLinks } from "../data/content";
 import { cn } from "../lib/utils";
@@ -237,6 +238,17 @@ export function Header() {
                 </a>
               );
             })}
+            <a
+              href="/services/boiler-heating-repair"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-[15px] font-medium text-navy-800 hover:bg-navy-50 transition-colors"
+            >
+              <span className="flex w-9 h-9 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-orange-600">
+                <Flame size={17} strokeWidth={1.75} />
+              </span>
+              <span className="flex-1">Boiler &amp; Heating</span>
+              <ChevronRight size={16} className="text-slate-light" />
+            </a>
           </nav>
 
           <div className="px-5 pb-6 pt-2">

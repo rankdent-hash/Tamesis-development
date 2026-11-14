@@ -1,4 +1,4 @@
-import { Phone, Flame, ShieldCheck, Thermometer, Wrench, Droplets, ClipboardCheck } from "lucide-react";
+import { ArrowRight, Phone, Flame, ShieldCheck, Thermometer, Wrench, Droplets, ClipboardCheck } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { ConversionHero } from "../components/ConversionHero";
@@ -6,6 +6,7 @@ import { Faq } from "../components/Faq";
 import { Seo } from "../components/Seo";
 import { unsplashUrl } from "../data/photos";
 import { company } from "../data/content";
+import { heatingServices } from "../data/heatingServices";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "../lib/seo";
 
 // GAS_SAFE_NUMBER — set this to the real registration number when available.
@@ -172,6 +173,34 @@ export function BoilerHeatingRepair() {
         </section>
 
         <section className="py-16 lg:py-20">
+          <div className="mx-auto max-w-5xl px-6 lg:px-8">
+            <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center text-balance">
+              Our Boiler &amp; Heating Services
+            </h2>
+            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {heatingServices.map((s) => (
+                <a
+                  key={s.slug}
+                  href={`/services/${s.slug}`}
+                  className="group flex items-start gap-3 rounded-2xl border border-navy-100 bg-white p-5 shadow-card hover:border-orange-500/50 hover:-translate-y-0.5 transition-all"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-600 group-hover:bg-orange-500 group-hover:text-navy-950 transition-colors">
+                    <Flame size={18} strokeWidth={1.9} />
+                  </span>
+                  <span>
+                    <span className="flex items-center gap-1.5 font-display font-semibold text-navy-900 text-sm">
+                      {s.navLabel}
+                      <ArrowRight size={14} className="text-slate-light transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <span className="mt-1 block text-[13px] text-slate leading-relaxed">{s.short}</span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-16 lg:pb-20">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
             <h2 className="font-display font-bold text-navy-900 text-2xl sm:text-3xl text-center mb-4">
               Heating Problems, Explained

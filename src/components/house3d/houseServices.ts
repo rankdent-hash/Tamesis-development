@@ -1,6 +1,7 @@
 export type StopKey =
   | "overview"
   | "plumbing"
+  | "heating"
   | "bathroom"
   | "tiling"
   | "flooring"
@@ -53,6 +54,16 @@ export const houseStops: HouseStop[] = [
     blurb: "Leaks, blockages and emergency call-outs — from the bathroom wastes down to the drain outside.",
     camera: [6.2, 5, 13.5],
     target: [2, 2.7, -1],
+    shell: false,
+  },
+  {
+    key: "heating",
+    name: "Boiler & Heating",
+    href: "/services/boiler-heating-repair",
+    where: "Boiler, pipework and radiators",
+    blurb: "Boiler repairs and servicing, radiators, power flushing and heating controls, by Gas Safe registered engineers.",
+    camera: [1.2, 3.8, 13.5],
+    target: [0.6, 2.6, -0.5],
     shell: false,
   },
   {

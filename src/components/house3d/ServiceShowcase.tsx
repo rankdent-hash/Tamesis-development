@@ -8,6 +8,7 @@ import {
   DoorOpen,
   Droplets,
   Fence,
+  Flame,
   Grid3x3,
   House,
   Layers,
@@ -36,6 +37,7 @@ const CYCLE_MS = 7000;
 const icons: Record<StopKey, LucideIcon> = {
   overview: House,
   plumbing: Droplets,
+  heating: Flame,
   bathroom: Bath,
   tiling: Grid3x3,
   flooring: Layers,

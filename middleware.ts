@@ -1,6 +1,7 @@
 import { services, sectors, locations } from "./src/data/content";
 import { servicePhotos, sectorPhotos, handymanSubPhotos, locationPhotos, coveragePhoto, unsplashUrl } from "./src/data/photos";
 import { seoMeta } from "./src/data/seoMeta";
+import { heatingServices } from "./src/data/heatingServices";
 
 // ---------------------------------------------------------------------------
 // WHY THIS FILE EXISTS
@@ -159,6 +160,15 @@ function getStaticMeta(pathname: string): PageMeta | null {
   const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
 
   if (BESPOKE_PAGES[clean]) return BESPOKE_PAGES[clean];
+
+  const heating = heatingServices.find((s) => clean === `/services/${s.slug}`);
+  if (heating) {
+    return {
+      title: heating.seoTitle,
+      description: heating.seoDescription,
+      image: unsplashUrl("photo-1621983209352-c2880ac507b2", IMG_PARAMS),
+    };
+  }
 
   const staticKey = STATIC_PAGE_PATHS[clean];
   if (staticKey) {
