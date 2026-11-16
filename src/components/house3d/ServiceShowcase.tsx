@@ -112,8 +112,10 @@ export function ServiceShowcase() {
     <div
       ref={containerRef}
       className="relative overflow-hidden rounded-3xl border border-navy-700 bg-navy-950 shadow-[0_40px_80px_-30px_rgba(5,12,22,0.6)]"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      // Pointer events, mouse only: on touch, "enter" fires on tap and never
+      // leaves, which would pause the tour for good after the first touch.
+      onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
       {/* Stage */}
       <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[16/8.2]">
@@ -197,7 +199,7 @@ export function ServiceShowcase() {
       </div>
 
       {/* Stops — real links, so crawlers and screen readers get the full list */}
-      <div ref={tabsRef} className="no-scrollbar relative flex gap-2 overflow-x-auto border-t border-navy-700 bg-navy-900/60 p-3">
+      <div ref={tabsRef} className="no-scrollbar relative flex gap-2 overflow-x-auto overscroll-x-contain border-t border-navy-700 bg-navy-900/60 p-3">
         {houseStops.map((s, i) => {
           const TabIcon = icons[s.key];
           const isActive = i === active;

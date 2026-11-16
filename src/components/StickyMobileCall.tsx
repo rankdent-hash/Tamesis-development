@@ -16,8 +16,12 @@ export function StickyMobileCall() {
   return (
     <>
       <div
-        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 px-3 pt-2.5"
-        style={{ paddingBottom: "calc(0.625rem + env(safe-area-inset-bottom))" }}
+        className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2.5 pt-2.5"
+        style={{
+          paddingBottom: "calc(0.625rem + env(safe-area-inset-bottom, 0px))",
+          paddingLeft: "calc(0.75rem + env(safe-area-inset-left, 0px))",
+          paddingRight: "calc(0.75rem + env(safe-area-inset-right, 0px))",
+        }}
       >
         <a
           href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
@@ -40,7 +44,7 @@ export function StickyMobileCall() {
           onClick={() => setContactOpen(false)}
         >
           <div
-            className="w-full max-h-[88vh] overflow-y-auto rounded-t-2xl bg-paper p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
+            className="w-full max-h-[88dvh] overflow-y-auto overscroll-contain rounded-t-2xl bg-paper pt-5 pl-[calc(1.25rem+env(safe-area-inset-left,0px))] pr-[calc(1.25rem+env(safe-area-inset-right,0px))] pb-[calc(1.25rem+env(safe-area-inset-bottom,0px))]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-end mb-1">
@@ -48,7 +52,7 @@ export function StickyMobileCall() {
                 type="button"
                 onClick={() => setContactOpen(false)}
                 aria-label="Close"
-                className="flex items-center justify-center w-8 h-8 rounded-full text-slate-light hover:bg-navy-50 hover:text-navy-900 transition-colors"
+                className="flex items-center justify-center w-11 h-11 -mr-2 -mt-2 rounded-full text-slate-light hover:bg-navy-50 hover:text-navy-900 transition-colors"
               >
                 <X size={18} />
               </button>

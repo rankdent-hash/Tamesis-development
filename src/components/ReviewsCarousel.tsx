@@ -41,7 +41,7 @@ export function ReviewsCarousel({ limit = 15 }: { limit?: number }) {
     <div className="relative">
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2"
+        className="flex gap-5 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-smooth no-scrollbar pb-2"
       >
         {items.map((review) => (
           <div

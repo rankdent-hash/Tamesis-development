@@ -58,6 +58,68 @@ body {
   background-color: var(--color-paper);
 }
 
+/* ------------------------------------------------------------------
+   Touch baseline — the platform-level fixes that stop the site feeling
+   like "a website in a browser" on a phone. Each one has a reason.
+   ------------------------------------------------------------------ */
+html {
+  /* No grey flash over tapped links/buttons; :active below replaces it */
+  -webkit-tap-highlight-color: transparent;
+  /* No font inflation when the phone is turned to landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* viewport-fit=cover lets the page run under the notch in landscape; pad
+   the content back out. Fixed bars use .safe-x for the same reason. */
+body {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.safe-x {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* These never double-tap-zoom, so the browser can fire the tap at once */
+a,
+button,
+[role="button"],
+summary,
+label {
+  touch-action: manipulation;
+}
+
+/* Controls are not content: a long press shouldn't select a button's label */
+button,
+[role="button"] {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Press feedback the instant a finger lands, on every input type. Uses the
+   standalone `scale` property so it composes with existing transforms. */
+:where(button, [role="button"], a[class*="rounded-full"], a[class*="rounded-xl"], a[class*="rounded-2xl"], a[class*="rounded-3xl"]):active {
+  scale: 0.97;
+}
+:where(a[class*="rounded-2xl"], a[class*="rounded-3xl"]):active {
+  scale: 0.985;
+}
+:where(button, [role="button"]):disabled:active {
+  scale: 1;
+}
+
+/* iOS zooms the page into any field under 16px and never zooms back out.
+   Desktop keeps the tighter 14px; touch screens get 16px. */
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 1023px) {
   body {
     padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
@@ -80,8 +142,10 @@ body {
   border: 1px solid rgba(255, 116, 33, 0.24);
   transition: border-color 0.25s ease;
 }
-.corner-marks:hover {
-  border-color: rgba(255, 116, 33, 0.55);
+@media (hover: hover) and (pointer: fine) {
+  .corner-marks:hover {
+    border-color: rgba(255, 116, 33, 0.55);
+  }
 }
 .corner-marks::before,
 .corner-marks::after {
@@ -107,12 +171,14 @@ body {
   border-right: 2px solid;
   transform: translate(-4px, -4px);
 }
-.corner-marks:hover::before,
-.corner-marks:hover::after,
-.corner-marks:focus-within::before,
-.corner-marks:focus-within::after {
-  opacity: 1;
-  transform: translate(0, 0);
+@media (hover: hover) and (pointer: fine) {
+  .corner-marks:hover::before,
+  .corner-marks:hover::after,
+  .corner-marks:focus-within::before,
+  .corner-marks:focus-within::after {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
 
 .blueprint-grid {
@@ -184,8 +250,10 @@ body {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.prose-blog a:hover {
-  color: var(--color-orange-700);
+@media (hover: hover) and (pointer: fine) {
+  .prose-blog a:hover {
+    color: var(--color-orange-700);
+  }
 }
 .prose-blog strong {
   color: var(--color-navy-900);
@@ -209,19 +277,23 @@ body {
 .tilt-card .tilt-pop-sm {
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.tilt-card:hover .tilt-pop {
-  transform: translateZ(34px);
-}
-.tilt-card:hover .tilt-pop-sm {
-  transform: translateZ(16px);
+@media (hover: hover) and (pointer: fine) {
+  .tilt-card:hover .tilt-pop {
+    transform: translateZ(34px);
+  }
+  .tilt-card:hover .tilt-pop-sm {
+    transform: translateZ(16px);
+  }
 }
 .tilt-glare {
   background: radial-gradient(360px circle at var(--gx, 50%) var(--gy, 0%), rgba(95, 211, 232, 0.22), transparent 55%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.tilt-card:hover .tilt-glare {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .tilt-card:hover .tilt-glare {
+    opacity: 1;
+  }
 }
 
 /* Glass tiles that swing up toward the viewer on hover */
@@ -229,10 +301,12 @@ body {
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.4s ease;
   transform-origin: 50% 100%;
 }
-.lift-3d:hover {
-  transform: perspective(900px) translateY(-6px) rotateX(8deg);
-  border-color: rgba(255, 116, 33, 0.55);
-  box-shadow: 0 26px 40px -22px rgba(255, 116, 33, 0.55);
+@media (hover: hover) and (pointer: fine) {
+  .lift-3d:hover {
+    transform: perspective(900px) translateY(-6px) rotateX(8deg);
+    border-color: rgba(255, 116, 33, 0.55);
+    box-shadow: 0 26px 40px -22px rgba(255, 116, 33, 0.55);
+  }
 }
 
 /* Extruded step number — a solid orange block with a visible side */
@@ -250,8 +324,10 @@ body {
     14px 18px 26px -6px rgba(10, 22, 38, 0.35);
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-:hover > .step-block {
-  transform: translate(-50%, -62%) rotate(0deg);
+@media (hover: hover) and (pointer: fine) {
+  :hover > .step-block {
+    transform: translate(-50%, -62%) rotate(0deg);
+  }
 }
 
 @keyframes map-pulse {

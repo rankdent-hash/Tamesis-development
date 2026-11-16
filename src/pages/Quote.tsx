@@ -93,8 +93,8 @@ export function Quote() {
                   {step === 0 && (
                     <div className="space-y-5">
                       <div className="grid sm:grid-cols-2 gap-5">
-                        <Field label="Full Name" value={form.name} onChange={(v) => update("name", v)} required icon={User} />
-                        <Field label="Company (optional)" value={form.company} onChange={(v) => update("company", v)} icon={Building2} />
+                        <Field label="Full Name" autoComplete="name" value={form.name} onChange={(v) => update("name", v)} required icon={User} />
+                        <Field label="Company (optional)" autoComplete="organization" value={form.company} onChange={(v) => update("company", v)} icon={Building2} />
                       </div>
                       <div className="grid sm:grid-cols-2 gap-5">
                         <Field label="Phone" type="tel" value={form.phone} onChange={(v) => update("phone", v)} required icon={Phone} />
@@ -218,6 +218,7 @@ function Field({
   type = "text",
   required = false,
   icon: FieldIcon,
+  autoComplete,
 }: {
   label: string;
   value: string;
@@ -225,6 +226,7 @@ function Field({
   type?: string;
   required?: boolean;
   icon?: LucideIcon;
+  autoComplete?: string;
 }) {
   return (
     <div>
@@ -236,6 +238,11 @@ function Field({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           required={required}
+          // Right keyboard + one-tap autofill on phones
+          autoComplete={type === "tel" ? "tel" : type === "email" ? "email" : autoComplete}
+          inputMode={type === "tel" ? "tel" : type === "email" ? "email" : undefined}
+          autoCapitalize={type === "email" ? "none" : undefined}
+          enterKeyHint="next"
           className={cn(
             "w-full rounded-lg border-2 border-navy-900 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
             FieldIcon ? "pl-10 pr-4" : "px-4"

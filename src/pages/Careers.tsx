@@ -127,14 +127,14 @@ export function Careers() {
                     <label htmlFor="fullName" className="block text-sm font-medium text-navy-800 mb-1.5">Full Name</label>
                     <div className="relative">
                       <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                      <input id="fullName" name="fullName" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      <input id="fullName" name="fullName" autoComplete="name" autoCapitalize="words" enterKeyHint="next" type="text" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-navy-800 mb-1.5">Phone</label>
                     <div className="relative">
                       <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                      <input id="phone" name="phone" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      <input id="phone" name="phone" autoComplete="tel" inputMode="tel" enterKeyHint="next" type="tel" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export function Careers() {
                   <label htmlFor="email" className="block text-sm font-medium text-navy-800 mb-1.5">Email</label>
                   <div className="relative">
                       <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700 pointer-events-none" />
-                      <input id="email" name="email" type="email" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
+                      <input id="email" name="email" autoComplete="email" inputMode="email" autoCapitalize="none" autoCorrect="off" enterKeyHint="next" type="email" required className="w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 py-2.5 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none" />
                     </div>
                 </div>
                 <div>

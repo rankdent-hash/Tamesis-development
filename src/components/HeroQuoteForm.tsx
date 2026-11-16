@@ -78,7 +78,7 @@ export function HeroQuoteForm({
               <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
               <input
                 type="text"
-                name="name"
+                name="name" autoComplete="name" autoCapitalize="words" enterKeyHint="next"
                 placeholder="Full name"
                 required
                 className={cn(
@@ -91,8 +91,8 @@ export function HeroQuoteForm({
               <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
               <input
                 type="tel"
-                name="phone"
-                placeholder="Phone number"
+                name="phone" autoComplete="tel" inputMode="tel" enterKeyHint="next"
+                placeholder="Phone"
                 required
                 className={cn(
                   "w-full rounded-lg border-2 border-navy-900 pl-10 pr-4 text-sm focus:border-orange-500 focus:ring-1 focus:ring-orange-400 outline-none",
@@ -105,7 +105,7 @@ export function HeroQuoteForm({
             <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
             <input
               type="email"
-              name="email"
+              name="email" autoComplete="email" inputMode="email" autoCapitalize="none" autoCorrect="off" enterKeyHint="next"
               placeholder="Email address"
               required
               className={cn(
@@ -121,7 +121,7 @@ export function HeroQuoteForm({
               <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-navy-700" />
               <input
                 type="text"
-                name="postcode"
+                name="postcode" autoComplete="postal-code" autoCapitalize="characters" autoCorrect="off" enterKeyHint="next"
                 placeholder="Postcode"
                 required
                 className={cn(

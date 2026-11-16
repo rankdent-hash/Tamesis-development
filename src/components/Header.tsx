@@ -54,7 +54,7 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <div className="fixed top-0 inset-x-0 z-50">
+    <div className="safe-x fixed top-0 inset-x-0 z-50">
       {/* Top utility bar — desktop only. Always solid: a transparent bar over
           a photo hero can't guarantee WCAG-AA contrast (photos have
           unpredictable bright/dark patches), so this is deliberately never
@@ -209,7 +209,7 @@ export function Header() {
           would make this fixed-position overlay position itself relative
           to the (64px-tall) header instead of the viewport. */}
       {menuOpen && (
-        <div className="lg:hidden fixed top-16 inset-x-0 bottom-0 bg-paper overflow-y-auto z-40">
+        <div className="safe-x lg:hidden fixed top-16 inset-x-0 bottom-0 bg-paper overflow-y-auto overscroll-contain z-40 pb-[env(safe-area-inset-bottom,0px)]">
           <nav className="px-5 py-4">
             {navLinks.map((link) => {
               const Icon = MOBILE_NAV_ICONS[link.label] ?? HomeIcon;

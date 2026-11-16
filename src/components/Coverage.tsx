@@ -59,18 +59,18 @@ export function Coverage() {
 
           <ul
             className="mt-8 flex flex-wrap gap-2 max-w-xl"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            onPointerEnter={(e) => e.pointerType === "mouse" && setPaused(true)}
+            onPointerLeave={() => setPaused(false)}
           >
             {boroughs.map((b, i) => (
               <li key={b.name}>
                 <button
                   type="button"
-                  onMouseEnter={() => setActive(i)}
+                  onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
                   className={cn(
-                    "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors",
+                    "rounded-full border px-3.5 py-1.5 pointer-coarse:py-2.5 text-xs font-semibold transition-colors",
                     i === active
                       ? "border-orange-500 bg-orange-500 text-navy-950"
                       : "border-white/15 bg-white/[0.04] text-navy-100/80 hover:border-white/40"
