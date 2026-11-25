@@ -1,32 +1,23 @@
-import { useRef } from "react";
 import { ArrowRight, CheckCircle2, Phone, Star } from "lucide-react";
 import { HeroQuoteForm } from "./HeroQuoteForm";
 import { ContactLink } from "./ContactLink";
-import { ToolsBackdrop } from "./scene3d/ToolsBackdrop";
 import { company } from "../data/content";
 
 const badges = ["Directly employed engineers", "Fixed-price quotes", "Fully insured", "London-wide coverage"];
 
 export function Hero() {
-  // The 3D tool orbit wraps whichever of these is on screen: the quote form
-  // on desktop; on phones and tablets (where the form is full-width and
-  // there's nothing to orbit) it gets its own stage around the rating.
-  const formRef = useRef<HTMLDivElement>(null);
-  const mobileAnchorRef = useRef<HTMLAnchorElement>(null);
-
   return (
     <section className="relative isolate overflow-hidden bg-navy-950 pt-32 sm:pt-36 lg:pt-44 pb-28 sm:pb-32 lg:pb-40">
-      {/* Ambient light — cyan from the logo, a warm orange counter-glow */}
+      {/* Ambient light — cyan from the logo, a warm orange counter-glow. Plain
+          radial gradients: same look as big blurred blobs, but nearly free for a
+          phone to paint. */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute -top-48 right-[-12%] h-[760px] w-[760px] rounded-full bg-blue-500/20 blur-[150px]" />
-        <div className="absolute top-[30%] left-[-14%] h-[520px] w-[520px] rounded-full bg-orange-500/[0.09] blur-[150px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_85%_0%,rgba(34,184,212,0.22),transparent_70%),radial-gradient(ellipse_55%_45%_at_0%_55%,rgba(255,116,33,0.10),transparent_70%)]" />
         <div className="absolute inset-0 blueprint-grid opacity-25 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
       </div>
 
-      <ToolsBackdrop anchorRefs={[mobileAnchorRef, formRef]} floor className="-z-10" />
-
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-0 lg:gap-10 items-center">
-        <div className="hero-rise">
+        <div>
           <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-400/30 bg-navy-900/70 backdrop-blur px-4 py-1.5 text-[11px] sm:text-xs font-accent uppercase tracking-widest text-blue-300 mb-6 lg:mb-8">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-70" />
@@ -99,22 +90,37 @@ export function Hero() {
             </ul>
           </div>
 
-          {/* Phones/tablets: the hexagon and orbiting tools frame the rating */}
-          <div className="lg:hidden flex justify-center pt-[132px] pb-[104px]">
-            <a ref={mobileAnchorRef} href="/reviews" className="flex w-[170px] flex-col items-center text-center">
-              <span className="font-accent text-[2.6rem] font-semibold text-white leading-none">4.6</span>
-              <span className="mt-2.5 flex text-orange-400">
+          {/* Phones/tablets: one static visual - a hexagon badge framing the rating.
+              (The 3D tool orbit used to live here; it cost ~570 KB of 3D code on
+              every phone visit, so the home hero is now WebGL-free.) */}
+          <div className="lg:hidden flex justify-center pt-12 pb-14">
+            <a
+              href="/reviews"
+              className="relative flex h-[200px] w-[200px] flex-col items-center justify-center text-center"
+            >
+              <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                <defs>
+                  <linearGradient id="hero-hex" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#5FD3E8" />
+                    <stop offset="1" stopColor="#FF7421" />
+                  </linearGradient>
+                </defs>
+                <polygon points="100,8 180,54 180,146 100,192 20,146 20,54" fill="rgba(34,184,212,0.07)" stroke="url(#hero-hex)" strokeWidth="2" />
+                <polygon points="100,24 166,62 166,138 100,176 34,138 34,62" fill="none" stroke="rgba(95,211,232,0.25)" strokeWidth="1" />
+              </svg>
+              <span className="relative font-accent text-[2.6rem] font-semibold text-white leading-none">4.6</span>
+              <span className="relative mt-2.5 flex text-orange-400">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
                 ))}
               </span>
-              <span className="mt-2 text-[11px] text-navy-100/75 leading-tight">535+ Google reviews</span>
+              <span className="relative mt-2 text-[11px] text-navy-100/75 leading-tight">535+ Google reviews</span>
             </a>
           </div>
         </div>
 
-        <div className="flex justify-center hero-rise hero-rise-2">
-          <div ref={formRef} className="relative w-full max-w-md lg:max-w-[23.5rem]">
+        <div className="flex justify-center">
+          <div className="relative w-full max-w-md lg:max-w-[23.5rem]">
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-blue-400/25 blur-3xl" aria-hidden="true" />
             <HeroQuoteForm />
           </div>

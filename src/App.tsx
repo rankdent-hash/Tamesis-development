@@ -65,9 +65,14 @@ const Admin = lazy(() => import("./pages/admin/Admin").then((m) => ({ default: m
 const Terms = lazy(() => import("./pages/legal/Terms").then((m) => ({ default: m.Terms })));
 const ComingSoon = lazy(() => import("./pages/ComingSoon").then((m) => ({ default: m.ComingSoon })));
 
-function App() {
+/**
+ * Every page, router-agnostic. The browser wraps it in BrowserRouter (App,
+ * below); the build-time prerender (entry-server.tsx) wraps it in
+ * StaticRouter so the home page's first screen ships as real HTML.
+ */
+export function AppRoutes() {
   return (
-    <BrowserRouter>
+    <>
       <SiteSchema />
       <StickyMobileCall />
       <InternalLinkInterceptor />
@@ -136,6 +141,14 @@ function App() {
           <Route path="*" element={<ComingSoon title="Page Not Found" />} />
         </Routes>
       </Suspense>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

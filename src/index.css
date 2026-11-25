@@ -329,23 +329,6 @@ button,
   }
 }
 
-/* Hero entrance: pure CSS so the headline and buttons are painted with the
-   first frame and never wait for JavaScript. It only slides - it never starts
-   invisible, so it can't delay what the visitor sees. */
-@keyframes hero-rise {
-  from { transform: translateY(14px); }
-  to { transform: translateY(0); }
-}
-.hero-rise {
-  animation: hero-rise 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.hero-rise-2 {
-  animation-delay: 0.12s;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-rise { animation: none; }
-}
-
 @keyframes map-pulse {
   0% { box-shadow: 0 0 0 0 rgba(255, 116, 33, 0.55); }
   100% { box-shadow: 0 0 0 22px rgba(255, 116, 33, 0); }
