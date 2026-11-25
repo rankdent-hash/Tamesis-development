@@ -29,6 +29,9 @@ import { cn } from "../../lib/utils";
  *   2. only mounted once the section scrolls near the viewport
  *   3. optional — the info card, tabs and links all work without it, so
  *      nothing is lost on a slow connection or a device without WebGL
+ *   4. tablet and desktop only — on phones (< 768px) it is never loaded:
+ *      the 3D house was the heaviest thing on the mobile home page, so phones
+ *      get the service card and tabs on their own
  */
 const HouseTour = lazy(() => import("./HouseTour"));
 
@@ -56,6 +59,7 @@ export function ServiceShowcase() {
   const [hovered, setHovered] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [wide, setWide] = useState(false);
+  const [showScene, setShowScene] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
 
@@ -73,6 +77,15 @@ export function ServiceShowcase() {
     );
     io.observe(el);
     return () => io.disconnect();
+  }, []);
+
+  // Phones never load the 3D scene (see the note at the top)
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setShowScene(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   // On desktop the info card overlays the left of the stage, so the scene
@@ -118,14 +131,14 @@ export function ServiceShowcase() {
       onPointerLeave={() => setHovered(false)}
     >
       {/* Stage */}
-      <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-[16/8.2]">
+      <div className="relative hidden md:block md:aspect-[4/3] lg:aspect-[16/8.2]">
         <div className="absolute inset-0" aria-hidden="true">
           <div className="absolute inset-0 blueprint-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
           <div className="absolute left-1/2 top-1/2 h-[70%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/20 blur-[110px] lg:left-[62%]" />
           <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-orange-500/10 blur-[100px]" />
         </div>
 
-        {inView && (
+        {inView && showScene && (
           <div className={cn("absolute inset-0 transition-opacity duration-700", sceneReady ? "opacity-100" : "opacity-0")}>
             <Suspense fallback={null}>
               <HouseTour activeIndex={active} viewShift={wide ? 0.13 : 0} onReady={handleReady} />
@@ -165,8 +178,9 @@ export function ServiceShowcase() {
         </div>
       </div>
 
-      {/* Info card — overlays the stage on desktop, sits under it on phones */}
-      <div className="border-t border-navy-700 p-5 lg:absolute lg:left-6 lg:top-6 lg:w-[340px] lg:rounded-2xl lg:border lg:border-white/10 lg:bg-navy-900/85 lg:p-6 lg:backdrop-blur-md">
+      {/* Info card — overlays the stage on desktop, sits under it on tablets,
+          and is the whole showcase (with the tabs) on phones */}
+      <div className="p-5 md:border-t md:border-navy-700 lg:absolute lg:left-6 lg:top-6 lg:w-[340px] lg:rounded-2xl lg:border lg:border-white/10 lg:bg-navy-900/85 lg:p-6 lg:backdrop-blur-md">
         <div className="flex items-center justify-between">
           <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500 text-navy-950">
             <StopIcon size={22} strokeWidth={1.9} />
