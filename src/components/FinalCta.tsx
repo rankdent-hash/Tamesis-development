@@ -59,7 +59,8 @@ export function FinalCta() {
           <CtaPhoneLine />
         </div>
 
-        <div className="flex justify-center py-32 sm:py-40 lg:py-0" aria-hidden="true">
+        {/* Phones have no tool orbit, so they need no room for one */}
+        <div className="flex justify-center py-12 md:py-40 lg:py-0" aria-hidden="true">
           <div ref={emblemRef} className="relative h-36 w-32 sm:h-52 sm:w-48">
             <div className="absolute -inset-10 rounded-full bg-blue-400/25 blur-3xl" />
             <img

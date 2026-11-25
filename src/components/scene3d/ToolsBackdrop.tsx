@@ -34,6 +34,8 @@ export function ToolsBackdrop({
         // loading, then for an idle moment. Skip on data-saver / slow links.
         const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
         if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? "")) return;
+        // Phones (< 768px) never load the 3D engine; tablets and desktops do.
+        if (!window.matchMedia("(min-width: 768px)").matches) return;
         const start = () => {
           idle = window.setTimeout(() => setMounted(true), 1200);
         };
