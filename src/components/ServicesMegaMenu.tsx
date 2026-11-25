@@ -46,13 +46,13 @@ export function ServicesMegaMenu() {
           <div className="flex items-center gap-3 shrink-0">
             <a
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-5 py-2.5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-colors h-12 whitespace-nowrap"
             >
               <Phone size={14} /> {company.phoneJobBooking}
             </a>
             <a
               href="/services"
-              className="inline-flex items-center gap-2 rounded-full bg-navy-900 text-white px-5 py-2.5 text-sm font-bold hover:bg-navy-800 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 text-white px-5 text-sm font-bold hover:bg-navy-800 transition-colors h-12 whitespace-nowrap"
             >
               View All Services <ArrowRight size={14} />
             </a>

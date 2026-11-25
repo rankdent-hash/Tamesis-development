@@ -36,7 +36,7 @@ export function Reviews() {
         <div className="mt-10 text-center">
           <a
             href="/reviews"
-            className="group inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 py-3.5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all"
+            className="group inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all h-12 whitespace-nowrap"
           >
             Read More Reviews
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

@@ -177,7 +177,7 @@ export function Header() {
             </ContactLink>
             <a
               href="/quote"
-              className="rounded-full bg-orange-500 text-navy-950 px-6 py-2.5 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
+              className="rounded-full bg-orange-500 text-navy-950 px-6 text-sm font-semibold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
             >
               Get a Free Quote
             </a>

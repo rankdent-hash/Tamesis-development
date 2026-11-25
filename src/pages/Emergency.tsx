@@ -75,7 +75,7 @@ export function Emergency() {
               </p>
               <a
                 href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-orange-700 px-8 py-4 text-sm font-bold shadow-card hover:bg-orange-50 transition-colors"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-orange-700 px-8 text-sm font-bold shadow-card hover:bg-orange-50 transition-colors h-12 whitespace-nowrap"
               >
                 <Phone size={16} /> Call {company.phoneJobBooking}
               </a>

@@ -52,13 +52,13 @@ export function SectorHero({
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="/quote"
-              className="rounded-full bg-orange-500 text-navy-950 px-8 py-4 text-sm font-bold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all"
+              className="rounded-full bg-orange-500 text-navy-950 px-8 text-sm font-bold shadow-card hover:bg-orange-400 hover:shadow-card-hover transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
             >
               Get a Free Quote
             </a>
             <a
               href="/contact"
-              className="rounded-full border border-white/30 text-white px-8 py-4 text-sm font-bold hover:bg-white/10 transition-all"
+              className="rounded-full border border-white/30 text-white px-8 text-sm font-bold hover:bg-white/10 transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
             >
               Contact Us
             </a>

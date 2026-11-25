@@ -113,7 +113,7 @@ export function NinjaFixTradeLanding({ trade }: { trade: NinjaFixTrade }) {
             </h2>
             <a
               href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-              className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-orange-500 text-navy-950 px-9 py-4 text-base font-bold shadow-card hover:bg-orange-400 transition-all"
+              className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-orange-500 text-navy-950 px-9 text-sm font-bold shadow-card hover:bg-orange-400 transition-all h-12 whitespace-nowrap"
             >
               Call Now — {company.phoneJobBooking}
             </a>

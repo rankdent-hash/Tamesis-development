@@ -1,5 +1,5 @@
 import { Navigate, useParams, useNavigate } from "react-router-dom";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
@@ -59,9 +59,10 @@ export function ServiceLocationTemplate({ service, location }: { service: Servic
                 </Button>
                 <a
                   href={`/services/${service.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 py-3.5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all h-12 whitespace-nowrap"
                 >
-                  More on {service.name}
+                  Service Details
+                  <ArrowRight size={16} />
                 </a>
               </div>
             </AnimateIn>

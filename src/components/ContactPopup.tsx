@@ -116,7 +116,7 @@ export function ContactPopup({ open, onClose, mode, label, phoneNumber, anchorRe
 
       <button
         onClick={handleCopy}
-        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 text-white px-5 py-2.5 text-sm font-semibold hover:bg-navy-800 transition-colors"
+        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 text-white px-5 text-sm font-semibold hover:bg-navy-800 transition-colors h-12 whitespace-nowrap"
       >
         {copied ? <Check size={16} /> : <Copy size={16} />}
         {copied ? "Copied!" : "Copy Number"}

@@ -148,8 +148,7 @@ export function HeroQuoteForm({
             type="submit"
             disabled={submitting}
             className={cn(
-              "w-full inline-flex items-center justify-center gap-2 rounded-lg bg-orange-500 text-navy-950 px-5 text-sm font-bold hover:bg-orange-400 transition-colors disabled:opacity-60",
-              compact ? "py-3" : "py-3.5"
+              "w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-orange-500 text-navy-950 px-5 text-sm font-bold whitespace-nowrap hover:bg-orange-400 transition-colors disabled:opacity-60"
             )}
           >
             {submitting ? "Sending..." : "Get My Free Quote"} {!submitting && <ArrowRight size={16} />}

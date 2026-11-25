@@ -34,7 +34,7 @@ export function Services() {
           </div>
           <a
             href="/services"
-            className="group shrink-0 inline-flex items-center gap-2 self-start lg:self-auto rounded-full bg-navy-900 text-white px-7 py-3.5 text-sm font-bold hover:bg-navy-800 transition-colors"
+            className="group shrink-0 inline-flex items-center gap-2 self-start lg:self-auto rounded-full bg-navy-900 text-white px-7 text-sm font-bold hover:bg-navy-800 transition-colors h-12 whitespace-nowrap"
           >
             View All Services
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

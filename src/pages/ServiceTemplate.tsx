@@ -304,7 +304,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                   </p>
                   <a
                     href="/services/ikea-installation"
-                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-6 py-3 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
+                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-6 text-sm font-bold shadow-card hover:bg-orange-400 transition-all h-12 whitespace-nowrap"
                   >
                     See IKEA Installation Details <ArrowRight size={16} />
                   </a>
@@ -438,7 +438,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 <a
                   key={sector.slug}
                   href={`/sectors/${sector.slug}`}
-                  className="rounded-full border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                  className="rounded-full border border-navy-200 bg-white px-5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors h-12 whitespace-nowrap inline-flex items-center justify-center"
                 >
                   {sector.name}
                 </a>
@@ -461,7 +461,7 @@ export function ServiceTemplate({ service }: { service: Service }) {
                 <a
                   key={location.slug}
                   href={`/services/${service.slug}/${location.slug}`}
-                  className="rounded-full border border-navy-200 px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                  className="rounded-full border border-navy-200 px-5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors h-12 whitespace-nowrap inline-flex items-center justify-center"
                 >
                   {location.name}
                 </a>

@@ -84,7 +84,7 @@ export function Coverage() {
 
           <a
             href="/coverage"
-            className="group mt-9 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 text-white px-7 py-3.5 text-sm font-bold hover:bg-white/10 transition-colors"
+            className="group mt-9 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 text-white px-7 text-sm font-bold hover:bg-white/10 transition-colors h-12 whitespace-nowrap"
           >
             View Coverage Areas
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

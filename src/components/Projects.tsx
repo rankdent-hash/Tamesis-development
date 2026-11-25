@@ -16,7 +16,7 @@ export function Projects() {
           </div>
           <a
             href="/projects"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-6 py-3 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-6 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all h-12 whitespace-nowrap"
           >
             View All Projects
           </a>
@@ -60,7 +60,7 @@ export function Projects() {
         <div className="mt-10 text-center sm:hidden">
           <a
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 py-3.5 text-sm font-bold"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 text-sm font-bold h-12 whitespace-nowrap"
           >
             View All Projects
           </a>

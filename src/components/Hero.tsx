@@ -45,17 +45,17 @@ export function Hero() {
             by housing associations, local authorities, landlords and homeowners across London.
           </p>
 
-          <div className="mt-8 lg:mt-10 flex flex-row flex-nowrap items-center gap-3 sm:gap-4">
+          <div className="mt-8 lg:mt-10 flex flex-row flex-nowrap items-center gap-3 sm:gap-4 max-[359px]:flex-col max-[359px]:items-stretch">
             <a
               href="/quote"
-              className="group flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 text-center rounded-full bg-orange-500 text-navy-950 px-5 sm:px-8 py-3.5 sm:py-4 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.65)] hover:bg-orange-400 hover:-translate-y-0.5 transition-all"
+              className="group flex-1 max-[359px]:flex-none sm:flex-initial inline-flex items-center justify-center gap-2 text-center rounded-full bg-orange-500 text-navy-950 px-5 sm:px-8 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.65)] hover:bg-orange-400 hover:-translate-y-0.5 transition-all h-12 whitespace-nowrap"
             >
               Get a Free Quote
               <ArrowRight size={16} className="hidden sm:block transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="/report-repair"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center text-center rounded-full border border-white/25 bg-white/5 backdrop-blur text-white px-5 sm:px-8 py-3.5 sm:py-4 text-sm font-bold hover:bg-white/10 hover:border-white/40 transition-all"
+              className="flex-1 max-[359px]:flex-none sm:flex-initial inline-flex items-center justify-center text-center rounded-full border border-white/25 bg-white/5 backdrop-blur text-white px-5 sm:px-8 text-sm font-bold hover:bg-white/10 hover:border-white/40 transition-all h-12 whitespace-nowrap"
             >
               Book a Repair
             </a>

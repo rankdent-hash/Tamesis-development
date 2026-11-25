@@ -183,7 +183,7 @@ export function ServiceShowcase() {
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
             <a
               href="/quote"
-              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-bold text-navy-950 transition-colors hover:bg-orange-400"
+              className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 text-sm font-bold text-navy-950 transition-colors hover:bg-orange-400 h-12 whitespace-nowrap"
             >
               Get a Free Quote
             </a>

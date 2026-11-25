@@ -35,14 +35,14 @@ export function FinalCta() {
           <div className="mt-9 flex flex-wrap gap-4">
             <a
               href="/quote"
-              className="group inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-9 py-4 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.65)] hover:bg-orange-400 hover:-translate-y-0.5 transition-all"
+              className="group inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-9 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.65)] hover:bg-orange-400 hover:-translate-y-0.5 transition-all h-12 whitespace-nowrap"
             >
               Get a Free Quote
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="/contact"
-              className="rounded-full border border-white/25 bg-white/5 text-white px-9 py-4 text-sm font-bold hover:bg-white/10 transition-all"
+              className="rounded-full border border-white/25 bg-white/5 text-white px-9 text-sm font-bold hover:bg-white/10 transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
             >
               Contact Us
             </a>

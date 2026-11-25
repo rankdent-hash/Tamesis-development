@@ -127,7 +127,7 @@ export function Footer() {
             </h2>
             <a
               href="/quote"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 py-3.5 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 text-sm font-bold shadow-card hover:bg-orange-400 transition-all h-12 whitespace-nowrap"
             >
               Get a Free Quote
             </a>

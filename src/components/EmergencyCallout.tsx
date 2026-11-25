@@ -33,13 +33,13 @@ export function EmergencyCallout() {
         <div className="flex flex-wrap gap-3 shrink-0">
           <a
             href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-            className="inline-flex items-center gap-2.5 rounded-full bg-navy-950 text-white px-7 py-4 text-sm font-bold shadow-[0_14px_30px_-10px_rgba(5,12,22,0.7)] hover:bg-navy-800 transition-colors"
+            className="inline-flex items-center gap-2.5 rounded-full bg-navy-950 text-white px-7 text-sm font-bold shadow-[0_14px_30px_-10px_rgba(5,12,22,0.7)] hover:bg-navy-800 transition-colors h-12 whitespace-nowrap"
           >
             <Phone size={16} className="text-orange-400" /> Call {company.phoneJobBooking}
           </a>
           <a
             href="/emergency"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-navy-950 text-navy-950 px-7 py-4 text-sm font-bold hover:bg-navy-950 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-navy-950 text-navy-950 px-7 text-sm font-bold hover:bg-navy-950 hover:text-white transition-colors h-12 whitespace-nowrap"
           >
             Request Assistance
           </a>

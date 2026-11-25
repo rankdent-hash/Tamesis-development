@@ -25,14 +25,14 @@ export function StickyMobileCall() {
       >
         <a
           href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-navy-900 text-white py-3 text-sm font-bold"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-navy-900 text-white text-sm font-bold h-12 whitespace-nowrap"
         >
           <Phone size={16} /> Call Now
         </a>
         <button
           type="button"
           onClick={() => setContactOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-orange-500 text-navy-950 py-3 text-sm font-bold"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border-2 border-white bg-orange-500 text-navy-950 text-sm font-bold h-12 whitespace-nowrap"
         >
           <MessageCircle size={16} /> Contact Us
         </button>

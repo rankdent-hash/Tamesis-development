@@ -168,7 +168,7 @@ export function LocationTemplate({ location }: { location: Location }) {
                   <a
                     key={l.slug}
                     href={`/property-maintenance/${l.slug}`}
-                    className="rounded-full border border-navy-200 px-5 py-2.5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors"
+                    className="rounded-full border border-navy-200 px-5 text-sm font-semibold text-navy-700 hover:border-navy-900 hover:text-navy-900 transition-colors h-12 whitespace-nowrap inline-flex items-center justify-center"
                   >
                     {l.name}
                   </a>

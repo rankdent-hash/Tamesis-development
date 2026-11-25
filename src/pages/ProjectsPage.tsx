@@ -40,7 +40,7 @@ export function ProjectsPage() {
                   onClick={() => setFilter(f)}
                   aria-pressed={filter === f}
                   className={cn(
-                    "rounded-full px-5 py-2.5 text-sm font-semibold border transition-colors",
+                    "rounded-full px-5 text-sm font-semibold border transition-colors h-12 whitespace-nowrap inline-flex items-center justify-center",
                     filter === f
                       ? "bg-navy-900 text-white border-navy-900"
                       : "bg-white text-navy-700 border-navy-200 hover:border-navy-900"

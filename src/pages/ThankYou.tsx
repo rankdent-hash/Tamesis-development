@@ -52,13 +52,13 @@ export function ThankYou() {
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <a
                 href="/"
-                className="inline-flex items-center justify-center rounded-full bg-orange-500 text-navy-950 px-9 py-4 text-sm font-bold shadow-card hover:bg-orange-600 hover:shadow-card-hover transition-all"
+                className="inline-flex items-center justify-center rounded-full bg-orange-500 text-navy-950 px-9 text-sm font-bold shadow-card hover:bg-orange-600 hover:shadow-card-hover transition-all h-12 whitespace-nowrap"
               >
                 Back to Homepage
               </a>
               <a
                 href={`tel:${company.phoneJobBooking.replace(/\s/g, "")}`}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 py-3.5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-navy-900 text-navy-900 px-7 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all h-12 whitespace-nowrap"
               >
                 <Phone size={16} /> Call {company.phoneJobBooking}
               </a>

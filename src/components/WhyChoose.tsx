@@ -24,7 +24,7 @@ export function WhyChoose() {
           </p>
           <a
             href="/quote"
-            className="group mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 py-3.5 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.6)] hover:bg-orange-400 transition-colors"
+            className="group mt-8 inline-flex items-center gap-2 rounded-full bg-orange-500 text-navy-950 px-7 text-sm font-bold shadow-[0_10px_30px_-8px_rgba(255,116,33,0.6)] hover:bg-orange-400 transition-colors h-12 whitespace-nowrap"
           >
             Get a Free Quote
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

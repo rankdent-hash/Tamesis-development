@@ -151,13 +151,13 @@ export function BlogPostPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
                 href="/quote"
-                className="rounded-full bg-orange-500 text-navy-950 px-7 py-3.5 text-sm font-bold shadow-card hover:bg-orange-400 transition-all"
+                className="rounded-full bg-orange-500 text-navy-950 px-7 text-sm font-bold shadow-card hover:bg-orange-400 transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
               >
                 Get a Free Quote
               </a>
               <a
                 href="/blog"
-                className="rounded-full border-2 border-navy-900 text-navy-900 px-7 py-3.5 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all"
+                className="rounded-full border-2 border-navy-900 text-navy-900 px-7 text-sm font-bold hover:bg-navy-900 hover:text-white transition-all h-12 whitespace-nowrap inline-flex items-center justify-center"
               >
                 More Articles
               </a>
