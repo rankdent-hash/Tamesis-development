@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { ArrowRight, CheckCircle2, Phone, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import { HeroQuoteForm } from "./HeroQuoteForm";
 import { ContactLink } from "./ContactLink";
 import { ToolsBackdrop } from "./scene3d/ToolsBackdrop";
@@ -27,11 +26,7 @@ export function Hero() {
       <ToolsBackdrop anchorRefs={[mobileAnchorRef, formRef]} floor className="-z-10" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8 grid lg:grid-cols-2 gap-0 lg:gap-10 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <div className="hero-rise">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-400/30 bg-navy-900/70 backdrop-blur px-4 py-1.5 text-[11px] sm:text-xs font-accent uppercase tracking-widest text-blue-300 mb-6 lg:mb-8">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-70" />
@@ -116,19 +111,14 @@ export function Hero() {
               <span className="mt-2 text-[11px] text-navy-100/75 leading-tight">535+ Google reviews</span>
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="flex justify-center"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        >
+        <div className="flex justify-center hero-rise hero-rise-2">
           <div ref={formRef} className="relative w-full max-w-md lg:max-w-[23.5rem]">
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-blue-400/25 blur-3xl" aria-hidden="true" />
             <HeroQuoteForm />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

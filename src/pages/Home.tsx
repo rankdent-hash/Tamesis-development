@@ -1,18 +1,14 @@
+import { lazy, Suspense } from "react";
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { TrustBar } from "../components/TrustBar";
-import { About } from "../components/About";
-import { Services } from "../components/Services";
-import { WhyChoose } from "../components/WhyChoose";
-import { Process } from "../components/Process";
-import { Reviews } from "../components/Reviews";
-import { Coverage } from "../components/Coverage";
-import { EmergencyCallout } from "../components/EmergencyCallout";
-import { News } from "../components/News";
-import { FinalCta } from "../components/FinalCta";
-import { Footer } from "../components/Footer";
 import { Seo } from "../components/Seo";
 import { seoMeta } from "../data/seoMeta";
+
+// Everything below the first screen (including the footer and the 3D house
+// tour) lives in its own chunk. The header, hero text and call-to-actions are
+// in the initial bundle so they paint first; this loads right after.
+const HomeSections = lazy(() => import("./HomeSections"));
 
 export function Home() {
   return (
@@ -22,17 +18,10 @@ export function Home() {
       <main>
         <Hero />
         <TrustBar />
-        <Services />
-        <About />
-        <WhyChoose />
-        <Process />
-        <Reviews />
-        <Coverage />
-        <EmergencyCallout />
-        <News />
-        <FinalCta />
+        <Suspense fallback={<div className="min-h-[70vh]" aria-hidden="true" />}>
+          <HomeSections />
+        </Suspense>
       </main>
-      <Footer />
     </div>
   );
 }

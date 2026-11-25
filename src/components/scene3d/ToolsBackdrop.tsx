@@ -30,7 +30,15 @@ export function ToolsBackdrop({
       ([entry]) => {
         if (!entry.isIntersecting) return;
         io.disconnect();
-        idle = window.setTimeout(() => setMounted(true), 250);
+        // Never compete with the first paint: wait for the page to finish
+        // loading, then for an idle moment. Skip on data-saver / slow links.
+        const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+        if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? "")) return;
+        const start = () => {
+          idle = window.setTimeout(() => setMounted(true), 1200);
+        };
+        if (document.readyState === "complete") start();
+        else window.addEventListener("load", start, { once: true });
       },
       { rootMargin: "300px" }
     );

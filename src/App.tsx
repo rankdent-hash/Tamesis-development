@@ -5,13 +5,15 @@ import { StickyMobileCall } from "./components/StickyMobileCall";
 import { InternalLinkInterceptor } from "./components/InternalLinkInterceptor";
 import { PhoneClickTracker } from "./components/PhoneClickTracker";
 import { PageLoader } from "./components/PageLoader";
+// The home page is the main landing route, so it is bundled with the app (no extra
+// round trip before the hero shows); its heavy sections are split out inside Home.
+import { Home } from "./pages/Home";
 import { services, retiredServiceRedirects } from "./data/content";
 import { ninjaFixTrades } from "./data/ninjaFixTrades";
 import { heatingServices } from "./data/heatingServices";
 
 // Every route is code-split into its own chunk so the initial load only
 // fetches what's needed for the page the visitor actually lands on.
-const Home = lazy(() => import("./pages/Home").then((m) => ({ default: m.Home })));
 const About = lazy(() => import("./pages/About").then((m) => ({ default: m.About })));
 const ServicesPage = lazy(() => import("./pages/ServicesPage").then((m) => ({ default: m.ServicesPage })));
 const ServiceTemplate = lazy(() => import("./pages/ServiceTemplate").then((m) => ({ default: m.ServiceTemplate })));
