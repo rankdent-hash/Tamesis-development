@@ -154,18 +154,7 @@ export function Contact() {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-6 corner-marks overflow-hidden rounded-2xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.3181981003913!2d-0.2135167233821325!3d51.47067337180501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760f657b7b4bc9%3A0xe917e65315e63812!2sTamesis%20Development%20LTD!5e0!3m2!1sen!2suk!4v1788265149817!5m2!1sen!2suk"
-                  title={`Map showing ${company.name} at ${company.addressLines.join(", ")}`}
-                  className="w-full aspect-[16/10] block"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                />
-              </div>
+              {/* TODO(ninjafix-rebrand): re-add the Google Maps embed once Ninja Fix has its own listing */}
             </AnimateIn>
           </div>
         </section>
